@@ -25,6 +25,7 @@ preload: function () {
 // Here we load the assets required for our preloader (in this case a background and a loading bar)
 this.load.image('preloaderBackground', 'src/media/img/sky.png');
 this.load.image('preloaderBackground2', 'src/media/img/skylol.png');
+this.load.image('logo', 'src/media/img/Menu.png');
 this.load.audio('menu_music', 'src/media/audio/menu_music.ogg');
 },
 create: function () {
