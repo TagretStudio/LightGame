@@ -9,7 +9,6 @@ this.background2 = this.add.sprite(0, 0, 'preloaderBackground2');
 
 		},
 	create: function (){
-
 	},
 
 	update: function (){

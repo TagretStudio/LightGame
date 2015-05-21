@@ -16,6 +16,9 @@ this.background = this.add.sprite(0, 0, 'preloaderBackground');
 create: function () {
 // Once the load has finished we disable the crop because we're going to sit in the update loop for a short while as the music decodes
 space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+music = this.add.audio('menu_music');
+music.loop = true;
+music.play();
 
 },
 update: function () {
