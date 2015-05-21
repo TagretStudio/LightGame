@@ -29,12 +29,12 @@ BasicGame.MainMenu.prototype = {
 	this.logo = this.add.sprite(pointLogo.x, pointLogo.y, 'logo');
 
 	// buttons up to down : play, credits, quit
-	// button = game.add.button(pointButtons, 400, 'button', actionOnClick, this, 2, 1, 0);
+	this.buttonPlay = this.add.button(pointButtons.x, 400, 'button', function() {}, this, 2, 1, 0);
 
 	},
-
-	update: function (){
-
+	
+	update: function () {
+		
 	}
 };
 
