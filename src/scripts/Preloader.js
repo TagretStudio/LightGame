@@ -10,6 +10,7 @@ BasicGame.Preloader.prototype = {
 preload: function () {
 // These are the assets we loaded in Boot.js
 this.background = this.add.sprite(0, 0, 'preloaderBackground');
+	this.background.scale.set(1024/800, 768/600);
 },
 
 
