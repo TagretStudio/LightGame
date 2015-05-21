@@ -27,6 +27,7 @@ this.load.image('preloaderBackground', 'src/media/img/sky.png');
 this.load.image('preloaderBackground2', 'src/media/img/skylol.png');
 this.load.image('logo', 'src/media/img/Menu.png');
 this.load.audio('menu_music', 'src/media/audio/menu_music.ogg');
+this.load.audio('game_over_music', 'src/media/audio/Digital_Native.ogg');
 },
 create: function () {
 // By this point the preloader assets have loaded to the cache, we've set the game settings

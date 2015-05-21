@@ -16,6 +16,11 @@ BasicGame.MainMenu.prototype = {
 	},
 
 	create: function (){
+	music.loop = false;
+	music.stop();
+	music = this.add.audio('game_over_music');
+	music.loop = true;
+	music.play();
 	//background
 	this.background2 = this.add.sprite(0, 0, 'preloaderBackground');
 	this.background2.scale.set(1024/800, 768/600);
