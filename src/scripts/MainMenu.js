@@ -33,7 +33,8 @@ BasicGame.MainMenu.prototype = {
 	this.buttons = this.add.group();
 	this.buttons.add(this.buttonPlay = this.make.button(Math.round(Math.random()*10)*-5, 400, 'button', actionPlay, this, 2, 1, 0));
 	this.buttons.add(this.buttonCredits = this.make.button(Math.round(Math.random()*10)*-5, 450, 'button', actionCredits, this, 2, 1, 0));
-	
+	this.buttons.add(this.buttonQuit = this.make.button(Math.round(Math.random()*10)*-5, 500, 'button', actionQuit, this, 2, 1, 0));
+
 	},
 	
 	update: function () {
@@ -52,4 +53,8 @@ function actionPlay() {
 
 function actionCredits() {
 	this.buttonCredits.kill();
+}
+
+function actionQuit() {
+	this.buttonQuit.kill();
 }
