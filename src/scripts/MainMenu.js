@@ -2,6 +2,7 @@ BasicGame.MainMenu = function (game){
 this.background2 = null;
 this.logo = null;
 
+this.buttons = null;
 this.buttonPlay = null;
 this.buttonCredits = null;
 this.buttonQuit = null;
@@ -29,15 +30,25 @@ BasicGame.MainMenu.prototype = {
 	this.logo = this.add.sprite(pointLogo.x, pointLogo.y, 'logo');
 
 	// buttons up to down : play, credits, quit
-	this.buttonPlay = this.add.button(pointButtons.x, 400, 'button', actionPlay, this, 2, 1, 0);
-
+	this.buttons = this.add.group();
+	this.buttons.add(this.buttonPlay = this.make.button(Math.round(Math.random()*10)*-5, 400, 'button', actionPlay, this, 2, 1, 0));
+	this.buttons.add(this.buttonCredits = this.make.button(Math.round(Math.random()*10)*-5, 450, 'button', actionCredits, this, 2, 1, 0));
+	
 	},
 	
 	update: function () {
-		
+		this.buttons.forEach(
+				function(butt) {
+					butt.x += Math.min(30,(pointButtons.x - butt.x)/4);
+				}
+			    );
 	}
 };
 
 function actionPlay() {
 	this.buttonPlay.kill();
+}
+
+function actionCredits() {
+	this.buttonCredits.kill();
 }
