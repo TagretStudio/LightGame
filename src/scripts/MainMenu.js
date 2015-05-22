@@ -45,6 +45,7 @@ BasicGame.MainMenu.prototype = {
 	}
 };
 
+
 function actionPlay() {
 	this.buttonPlay.kill();
 }
