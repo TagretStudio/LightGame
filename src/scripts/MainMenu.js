@@ -57,4 +57,5 @@ function actionCredits() {
 
 function actionQuit() {
 	this.buttonQuit.kill();
+	this.state.start('Boot');
 }
