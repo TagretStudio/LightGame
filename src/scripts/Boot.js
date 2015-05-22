@@ -26,6 +26,9 @@ preload: function () {
 this.load.image('preloaderBackground', 'src/media/img/sky.png');
 this.load.image('preloaderBackground2', 'src/media/img/skylol.png');
 this.load.image('logo', 'src/media/img/Menu.png');
+this.load.image('cible', 'src/media/img/cible.png');
+this.load.image('tagret', 'src/media/img/tagret_studio.png');
+this.load.image('presents', 'src/media/img/Presents.png');
 this.load.audio('menu_music', 'src/media/audio/menu_music.ogg');
 this.load.audio('game_over_music', 'src/media/audio/Digital_Native.ogg');
 this.load.spritesheet('button', 'src/media/img/MenuButtons.png', 274, 71);
