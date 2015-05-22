@@ -29,7 +29,7 @@ BasicGame.MainMenu.prototype = {
 	this.logo = this.add.sprite(pointLogo.x, pointLogo.y, 'logo');
 
 	// buttons up to down : play, credits, quit
-	this.buttonPlay = this.add.button(pointButtons.x, 400, 'button', function() {}, this, 2, 1, 0);
+	this.buttonPlay = this.add.button(pointButtons.x, 400, 'button', actionPlay, this, 2, 1, 0);
 
 	},
 	
@@ -38,3 +38,6 @@ BasicGame.MainMenu.prototype = {
 	}
 };
 
+function actionPlay() {
+	this.buttonPlay.kill();
+}
