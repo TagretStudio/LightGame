@@ -1,0 +1,17 @@
+
+
+
+On contrôle un bonhomme (ou un quelque chose, peu importe).
+Ce bonhomme peut courir, sauter, etc.
+Le but de chaque niveau est d'atteindre la porte de sortie.
+
+Pas de défilement (on voit toujours l'ensemble du niveau)
+Pour atteindre la porte, on peut se servir d'elements lumineux.
+Par exemple, on peut utiliser des filtres pour changer de couleur (comme dans Lummings), ce qui nous permet de passer à travers certains murs, ou marcher sur des lasers de même couleur (dualité onde corpuscule).
+On peut aussi (si on veut) ajouter des ennemis, qui pourraient même être invisibles si on n'est pas en mouvement (car tout le monde se déplace à une vitesse proche de celle de la lumière, et on ne peut voir les autres que par effet Doppler)
+Notre bonhomme pourra aussi disposer de powerups (comme dans LightMan (nom temporaire)) lui permettant encore de surmonter des obstacles. Par exemple un rayon gamma pour détruire un mur.
+
+
+
+
+
