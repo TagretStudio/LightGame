@@ -17,6 +17,13 @@ BasicGame.MainMenu.prototype = {
 	},
 
 	create: function (){
+	var timeCheck = this.time.now;
+	for (var i = 0; i < 10; i++) {
+	    if (this.time.now - timeCheck > 85) {
+		music.volume *= 0.5;
+		timeCheck = this.time.now;
+	    }
+	}
 	music.loop = false;
 	music.stop();
 	music = this.add.audio('game_over_music');
