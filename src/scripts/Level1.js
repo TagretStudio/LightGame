@@ -10,6 +10,12 @@ BasicGame.Level1.prototype = {
 		this.load.image('sky', 'src/media/img/sky.png');
 		this.load.image('platform', 'src/media/img/platform.png');
 		this.load.spritesheet('lumming', 'src/media/img/lumming_magenta.png', 32, 32);
+	    if (music != null && music.isPlaying == true) {
+		music.fadeOut(700);
+	    }
+	    music = this.add.audio('game_over_music');
+	    music.loop = true;
+	    music.play();
 	},
 
 	create: function () {
