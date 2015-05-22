@@ -1,19 +1,23 @@
-BasicGame.Lumming = function (name) {
+BasicGame.Lumming = function(name) {
 	this.sprite = null;
+	this.direction = null;
 };
 
 BasicGame.Lumming.prototype = {
 	
-	preload: function () {
-		
+	preload: function(sprite) {
+		this.load.spritesheet('lumming', sprite, 32, 32);
 	},
 	
-	create: function () {
-		
+	create: function(x, y) {
+		lum = this.add.sprite(x, y, 'lumming');
+		this.physics.arcade.enable(lum);
+		lum.body.collideWorldBounds = true;
+		lum.body.gravity.y = 500;
 	},
 	
-	update: function () {
-		
+	update: function() {
+		lum.animations.play(direction);
 	}
 }
 
