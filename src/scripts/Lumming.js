@@ -1,8 +1,20 @@
 BasicGame.Lumming = function (name) {
+	this.sprite = null;
 };
 
 BasicGame.Lumming.prototype = {
 	
+	preload: function () {
+		
+	},
+	
+	create: function () {
+		
+	},
+	
+	update: function () {
+		
+	}
 }
 
 function VisibleLumming(color) {
