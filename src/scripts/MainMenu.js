@@ -34,7 +34,7 @@ BasicGame.MainMenu.prototype = {
 	this.buttons.add(this.buttonQuit = this.make.button(Math.round(Math.random()*10)*-5, 520, 'button', actionQuit, this, 6, 7, 8));
 
 	},
-	
+
 	update: function () {
 		this.buttons.forEach(
 				function(butt) {
@@ -52,6 +52,7 @@ function actionPlay() {
 
 function actionCredits() {
 	this.buttonCredits.kill();
+	this.state.start('Level2');
 }
 
 function actionQuit() {
