@@ -32,8 +32,8 @@ BasicGame.MainMenu.prototype = {
 	// buttons up to down : play, credits, quit
 	this.buttons = this.add.group();
 	this.buttons.add(this.buttonPlay = this.make.button(Math.round(Math.random()*10)*-5, 400, 'button', actionPlay, this, 0, 1, 2));
-	this.buttons.add(this.buttonCredits = this.make.button(Math.round(Math.random()*10)*-5, 450, 'button', actionCredits, this, 3, 4, 5));
-	this.buttons.add(this.buttonQuit = this.make.button(Math.round(Math.random()*10)*-5, 500, 'button', actionQuit, this, 6, 7, 8));
+	this.buttons.add(this.buttonCredits = this.make.button(Math.round(Math.random()*10)*-5, 460, 'button', actionCredits, this, 3, 4, 5));
+	this.buttons.add(this.buttonQuit = this.make.button(Math.round(Math.random()*10)*-5, 520, 'button', actionQuit, this, 6, 7, 8));
 
 	},
 	
