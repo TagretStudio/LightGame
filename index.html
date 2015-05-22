@@ -7,7 +7,7 @@
 <script src="src/scripts/Boot.js"></script>
 <script src="src/scripts/Preloader.js"></script>
 <script src="src/scripts/MainMenu.js"></script>
-<script src="src/scripts/Game.js"></script>
+<script src="src/scripts/Level1.js"></script>
 </head>
 <body>
 <div id="gameContainer"></div>
@@ -21,7 +21,7 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'gameContainer');
 game.state.add('Boot', BasicGame.Boot);
 game.state.add('Preloader', BasicGame.Preloader);
 game.state.add('MainMenu', BasicGame.MainMenu);
-game.state.add('Game', BasicGame.Game);
+game.state.add('Level1', BasicGame.Level1);
 // Now start the Boot state.
 game.state.start('Boot');
 };
