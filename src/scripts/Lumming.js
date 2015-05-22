@@ -26,4 +26,20 @@ function VisibleLumming(color) {
 	this.color = color;
 };
 
+function LowFreqLumming() {
+};
 
+function RadioLumming() {
+};
+
+function MicroLumming() {
+};
+
+function HighFreqLumming() {
+};
+
+function XRayLumming() {
+};
+
+function GammaLumming() {
+};
