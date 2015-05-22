@@ -38,9 +38,9 @@ BasicGame.Level2.prototype = {
 		lum1.body.collideWorldBounds = true;
 		lum1.body.gravity.y = 450;
 
-		arrive = this.add.sprite(300, this.world.height - 280 , 'arrive');
-	//	this.physic.arcade.enable(arrive);
-
+		arrive = this.add.sprite(300, this.world.height - 300 , 'arrive');
+		this.physics.arcade.enable(arrive);
+		arrive.body.immovable = true;
 	//	this.physics.arcade.enable(lum1);
 		lum1.animations.add('left', [4, 5, 6, 7], 10, true);
 		lum1.animations.add('right', [8, 9, 10, 11], 10, true);
@@ -55,8 +55,8 @@ BasicGame.Level2.prototype = {
 		this.physics.arcade.collide(lum1, platforms);
 		lum1.animations.play('right');
 		lum1.body.velocity.x = 50;
-
-//		game.physics.collide(lum1, arrive, functionarrive, null, this);
+	//	this.physics.arcade.collide(lum1, arrive);
+		this.physics.arcade.collide(lum1, arrive, functionarrive, null, this);
 
 	}
 };
@@ -64,7 +64,7 @@ BasicGame.Level2.prototype = {
 
 	function functionarrive(){
 		lum1.animations.play('left');
-	//	this.time.events.add(1000, ftransition, this);
+		this.time.events.add(1000, ftransition, this);
 
 	}
 
