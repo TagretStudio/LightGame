@@ -1,26 +1,43 @@
-BasicGame.Lumming = function (name) {
+BasicGame.Lumming = function(name) {
 	this.sprite = null;
+	this.direction = null;
 };
 
 BasicGame.Lumming.prototype = {
 	
-	preload: function () {
-		
+	preload: function(sprite) {
+		this.load.spritesheet('lumming', sprite, 32, 32);
 	},
 	
-	create: function () {
-		
+	create: function(x, y) {
+		lum = this.add.sprite(x, y, 'lumming');
+		this.physics.arcade.enable(lum);
+		lum.body.collideWorldBounds = true;
+		lum.body.gravity.y = 500;
 	},
 	
-	update: function () {
-		
+	update: function() {
+		lum.animations.play(direction);
+		if (direction == 'right') {
+			lum.body.velocity.x = 100;
+		} else {
+			lum.body.velocity.x = -100;	
+		}
 	}
 }
 
-function VisibleLumming(color) {
+BasicGame.VisibleLumming = function(color) {
 	this.color = color;
+	Lumming.call(this);
 };
-VisibleLumming.prototype = new Lumming;
+BasicGame.VisibleLumming.prototype = Object.create(Lumming.prototype);
+BasicGame.VisibleLumming.constructor = VisibleLumming;
+BasicGame.VisibleLumming.prototype.preload = function() {
+	Lumming.preload('src/media/img/lumming_' + color.name + '.png');
+};
+
+
+
 
 function LowFreqLumming() {
 };
