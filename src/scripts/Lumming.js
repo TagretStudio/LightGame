@@ -18,13 +18,26 @@ BasicGame.Lumming.prototype = {
 	
 	update: function() {
 		lum.animations.play(direction);
+		if (direction == 'right') {
+			lum.body.velocity.x = 100;
+		} else {
+			lum.body.velocity.x = -100;	
+		}
 	}
 }
 
-function VisibleLumming(color) {
+BasicGame.VisibleLumming = function(color) {
 	this.color = color;
+	Lumming.call(this);
 };
-VisibleLumming.prototype = new Lumming;
+BasicGame.VisibleLumming.prototype = Object.create(Lumming.prototype);
+BasicGame.VisibleLumming.constructor = VisibleLumming;
+BasicGame.VisibleLumming.prototype.preload = function() {
+	Lumming.preload('src/media/img/lumming_' + color.name + '.png');
+};
+
+
+
 
 function LowFreqLumming() {
 };
