@@ -113,8 +113,10 @@ function toBlue(lum, filter) {
 
 // TODO quand on aura des classes de lummings, la collision porte/lummming dépendra de la couleur de chacun
 // ça serait bien aussi une petite animation quand on gagne, plutôt que de passer direct au niveau suivant
-function mayExit(lum, door) {
-	lum.kill();
-	//compter les lummings restants ici et s'il n'y en a plus, passer au niveau suivant
-	this.state.start('Boot');
-}
+// ALL CAPS !!!!!11!11!1!1111!1!!!!!one!!!!!!eleven!!11!1
+// LA FONCTION MAYEXIT EST DEJA DEFINIE DANS LEVEL1, D'OU CONFLITS ET PROBLEMES
+//function mayExit(lum, door) {
+//	lum.kill();
+//	//compter les lummings restants ici et s'il n'y en a plus, passer au niveau suivant
+//	this.state.start('Boot');
+//}
