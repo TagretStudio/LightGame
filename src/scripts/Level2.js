@@ -11,7 +11,7 @@ BasicGame.Level2.prototype = {
 	preload: function () {
 		this.load.image('sky', 'src/media/img/sky.png');
 		this.load.image('platform', 'src/media/img/platform.png');
-		this.load.spritesheet('blue_door', 'src/media/img/lumming_cyan.png', 32, 32);
+		this.load.spritesheet('blue_door', 'src/media/img/door_blue.png', 32, 32);
 		this.load.spritesheet('white_lumming', 'src/media/img/lumming_white.png', 32, 32);
 		this.load.spritesheet('blue_lumming', 'src/media/img/lumming_blue.png', 32, 32);
 		this.load.image('blue_filter', 'src/media/img/diamond.png');
