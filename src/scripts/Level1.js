@@ -44,7 +44,7 @@ BasicGame.Level1.prototype = {
 			door = doors.create(600-200, 270, 'door');
 		}
 		doors.forEach(function(door) {
-			door.animations.add('anim', [8, 9, 10, 11], 10, true);
+			door.animations.add('anim', [], 10, true);
 			door.animations.play('anim');
 		});
 

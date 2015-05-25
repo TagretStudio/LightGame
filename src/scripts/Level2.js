@@ -14,7 +14,7 @@ BasicGame.Level2.prototype = {
 		this.load.spritesheet('blue_door', 'src/media/img/door_blue.png', 32, 32);
 		this.load.spritesheet('white_lumming', 'src/media/img/lumming_white.png', 32, 32);
 		this.load.spritesheet('blue_lumming', 'src/media/img/lumming_blue.png', 32, 32);
-		this.load.image('blue_filter', 'src/media/img/diamond.png');
+		this.load.spritesheet('blue_filter', 'src/media/img/filter_blue.png', 32, 32);
 
 		if (music != null && music.isPlaying == true) {
 			music.fadeOut(700);
@@ -48,7 +48,7 @@ BasicGame.Level2.prototype = {
 			door = blue_doors.create(700-200, 270, 'blue_door');
 		}
 		blue_doors.forEach(function(door) {
-			door.animations.add('anim', [8, 9, 10, 11], 10, true);
+			door.animations.add('anim', [], 10, true);
 			door.animations.play('anim');
 		});
 
@@ -72,11 +72,16 @@ BasicGame.Level2.prototype = {
 		
 		blue_filters = this.add.group();
 		blue_filters.enableBody = true;
+
 		var filter;
 		{
 			filter = blue_filters.create(600-200, 270, 'blue_filter');
 		}
-		
+		blue_filters.forEach(function(filter) {
+			filter.animations.add('anim', [], 10, true);
+			filter.animations.play('anim');
+		});
+
 	},
 	
 	update: function () {
