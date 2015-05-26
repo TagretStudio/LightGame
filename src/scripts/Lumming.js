@@ -48,6 +48,9 @@ define(function(){
 		,
 		create : function(color, x, y, vitesseX) {
 			return (new Lumming(_game, color, x, y, vitesseX));
+		},
+		objet : function(){
+			return Lumming;
 		}
 	}
 })

@@ -1,4 +1,4 @@
-define(['Images', 'Musiques', 'Lumming'], function(Images, Musiques, Lumming){
+define(['Images', 'Musiques', 'Lumming', 'Lumming2'], function(Images, Musiques, Lumming, Lumming2){
 	var _game = null;
 	var platforms = null;
 	var _groupLum = null;
@@ -10,7 +10,8 @@ define(['Images', 'Musiques', 'Lumming'], function(Images, Musiques, Lumming){
 			_game.load.image('platform', 'src/media/img/platform.png');
 			_game.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
 
-			Lumming.init(_game);
+		//	Lumming.init(_game);
+			Lumming2.init(_game);
 		},
 		create : function(){
 
@@ -29,8 +30,8 @@ define(['Images', 'Musiques', 'Lumming'], function(Images, Musiques, Lumming){
 			platforms.forEach(function(p){p.body.immovable=true});
 			_groupLum = _game.add.group();
 
-			lum1 = Lumming.create('blue', 0, 0, 100);
-			lum2 = Lumming.create('red', 100, 0, -200);
+			lum1 = Lumming2.create('blue', 0, 0, 100);
+			lum2 = Lumming2.create('red', 100, 0, -200);
 
 
 			_groupLum.add(lum1);
