@@ -4,15 +4,16 @@ BasicGame.Level3 = function (game) {
 	this.lums = null;
 	this.doors = null;
 
-	this.tilemap.height = 5;
-	this.tilemap.width = 5;
-	this.tilemap.map = ['not', 'not', 'not', 'not', 'not',
+	this.tilemap = 5;
+	//this.tilemap.width = 5;
+	
+	/*this.tilemap.map = ['not', 'not', 'not', 'not', 'not',
 						'not', 'not', 'pla', 'pla', 'not',
 						'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
 						'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
 						'not', 'pl0', 'not', 'pl0', 'not',
 						];
-	
+	*/
 };
 
 BasicGame.Level3.prototype = {
@@ -108,4 +109,5 @@ BasicGame.Level3.prototype = {
 		);
 
 	}
+
 };
