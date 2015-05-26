@@ -4,9 +4,10 @@ BasicGame.Level3 = function (game) {
 	this.lums = null;
 	this.doors = null;
 
+	/*
 	this.tilemapHeight = 6;
 	this.tilemapWidth = 5;
-	
+
 	this.tilemapMap = [
 		'not', 'not', 'not', 'not', 'not',
 		'not', 'not', 'pla', 'pla', 'not',
@@ -14,6 +15,16 @@ BasicGame.Level3 = function (game) {
 		'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
 		'pl0', 'pl0', 'not', 'pl0', 'not',
 		'not', 'not', 'not', 'not', 'not'
+	];
+	*/
+	this.tilemapHeight = 5;
+	this.tilemapWidth = 7;
+	this.tilemapMap = [
+		'not', 'not', 'not', 'not', 'pl0', 'not', 'not',
+		'pla', 'not', 'not', 'pla', 'pl0', 'not', 'not',
+		'pl0', 'pla', 'pla', 'pla', 'pl0', 'not', 'pla',
+		'pla', 'pl0', 'pl0', 'pla', 'pla', 'pla', 'pl0',
+		'pl0', 'pla', 'pla', 'pla', 'pla', 'pla', 'pla'
 	];
 };
 
@@ -43,41 +54,46 @@ BasicGame.Level3.prototype = {
 
 		platforms = this.add.group();
 		platforms.enableBody = true;
-		{
-			//platforms.create(  0-200, 100, 'platform');
-			//platforms.create(300-200, 200, 'platform');
-			//platforms.create(600-200, 300, 'platform');
-			//platforms.create(900-200, 280, 'platform');
-			var i=0;
-			for (var y=0; y<this.tilemapHeight; y++) {
-				for (var x=0; x<this.tilemapWidth; x++) {
-					//var sprite = platforms.create(x*32, y*32, 'tiles');
-					/*switch (this.tilemapMap[i]) {
-						case 'pla':sprite.frame = 2;break;
-						case 'pl0':sprite.frame = 8;break;
-						default:sprite.frame = 22;break;
-					}*/
-					var tmo = this.tilemapMap[i];
-					if (tmo != 'not') {
-						if (tmo == 'pla' || tmo == 'pl0') {
-							var sprite = platforms.create(x*32, y*32, 'tiles');
-							var l;
-							if (tmo == 'pla') {
-								l=0;
-							} else {
-								l=8;
-							}
-							tmo = this.tilemapMap[i+(Math.min(y+1,this.tilemapHeight-1)-y)*this.tilemapWidth];
-							if (tmo == 'pla' || tmo == 'pl0') l+=1;
-							tmo = this.tilemapMap[i+(Math.min(x+1,this.tilemapWidth-1)-x)];
-							if (tmo == 'pla' || tmo == 'pl0') l+=4;
-							tmo = this.tilemapMap[i+(Math.max(x-1,0)-x)];
-							if (tmo == 'pla' || tmo == 'pl0') l+=2;
-							sprite.frame = l;
+		var i=0;
+		for (var y=0; y<this.tilemapHeight; y++) {
+			for (var x=0; x<this.tilemapWidth; x++) {
+				var tmo = this.tilemapMap[i];
+				if (tmo != 'not') {
+					if (tmo == 'pla' || tmo == 'pl0') {
+						var tmd, tml, tmr, tmu;
+						var sprite = platforms.create(x*64, y*64, 'tiles');
+						var l;
+						if (tmo == 'pla') {
+							l=0;
+						} else {
+							sprite.body.checkCollision.up = false;
+							l=8;
 						}
+						tmd = this.tilemapMap[i+(Math.min(y+1,this.tilemapHeight-1)-y)*this.tilemapWidth];
+						if (tmd == 'pla' || tmd == 'pl0') {
+							l+=1;
+						}
+						tmr = this.tilemapMap[i+(Math.min(x+1,this.tilemapWidth-1)-x)];
+						if (tmr == 'pla' || tmr == 'pl0') {
+							l+=4;
+							sprite.body.checkCollision.right = false;
+						}
+						tml = this.tilemapMap[i+(Math.max(x-1,0)-x)];
+						if (tml == 'pla' || tml == 'pl0') {
+							l+=2;
+							sprite.body.checkCollision.left = false;
+						}
+						sprite.frame = l;
+
+						if (tmd == 'pla' && y<this.tilemapHeight-1) {
+							sprite.body.checkCollision.left = false;
+							sprite.body.checkCollision.right = false;
+						}
+
+						sprite.scale.set(2,2);
 					}
-					i++;
 				}
+				i++;
 			}
 		}
 		platforms.forEach(function(p){p.body.immovable=true});

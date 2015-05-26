@@ -83,12 +83,13 @@ BasicGame.Level1.prototype = {
 			}
 		);
 	    //Gestion Menu
-	    var space;
-	    var menuOpened = false;
-	    space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-	    if (space.isDown) {
-		this.add.text(200, 500, 'LOOOOOOOOOOL', { fontSize: '32px', fill: '#000' });
-	    }
+
+	    //var space;
+	    //var menuOpened = false;
+	    //space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	    //if (space.isDown || this.pointer.isDown) {
+		//	this.add.text(200, 500, 'LOOOOOOOOOOL', { fontSize: '32px', fill: '#000' });
+	    //}
 
 	}
 };
