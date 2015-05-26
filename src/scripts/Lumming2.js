@@ -2,7 +2,6 @@ define(['Lumming'], function(Lumming) {
   
     var _game = null;
 
-
     var Lumming2 = function(game, color, x, y, vitesseX) {
         Lumming.objet().call(this, game, color, x, y, vitesseX);
     }
