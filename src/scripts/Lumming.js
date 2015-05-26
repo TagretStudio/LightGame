@@ -1,64 +1,54 @@
-BasicGame.Lumming = function(name) {
-	this.sprite = null;
-	this.direction = null;
-};
+define(function(){
 
-BasicGame.Lumming.prototype = {
-	
-	preload: function(sprite) {
-		this.load.spritesheet('lumming', sprite, 32, 32);
-	},
-	
-	create: function(x, y) {
-		lum = this.add.sprite(x, y, 'lumming');
-		this.physics.arcade.enable(lum);
-		lum.body.collideWorldBounds = true;
-		lum.body.gravity.y = 500;
-	},
-	
-	update: function() {
-		lum.animations.play(direction);
-		if (direction == 'right') {
-			lum.body.velocity.x = 100;
-		} else {
-			lum.body.velocity.x = -100;	
-		}
+	var _game = null;
+
+	var Lumming = function(game, color, x, y, vitesseX) {
+
+		Phaser.Sprite.call(this, game, x, y, 'lumming_red', [1]);
+		game.physics.arcade.enable(this);
+		this.body.setSize(32, 32);
+
+		this.color = color;
+
+		this.body.collideWorldBounds = true;
+		this.body.gravity.y = 300;
+
+		this.body.velocity.x = vitesseX;
+		this.animations.add('left', [4, 5, 6, 7], 10, true);
+		this.animations.add('right',  [8, 9, 10, 11], 10, true);
+		this.body.bounce.x = 1;
+
+	}
+
+	Lumming.prototype = Object.create(Phaser.Sprite.prototype);
+	Lumming.prototype.constructor = Lumming;
+
+	Lumming.prototype.create = function(){
+
+}
+
+Lumming.prototype.update = function(){
+	if (this.body.velocity.x > 0) {
+		this.animations.play('right');
+	} else {
+		this.animations.play('left');
 	}
 }
 
-BasicGame.VisibleLumming = function(color) {
-	this.color = color;
-	Lumming.call(this);
-};
-BasicGame.VisibleLumming.prototype = Object.create(Lumming.prototype);
-BasicGame.VisibleLumming.constructor = VisibleLumming;
-BasicGame.VisibleLumming.prototype.preload = function() {
-	Lumming.preload('src/media/img/lumming_' + color.name + '.png');
-};
+Lumming.prototype.collide = function(objet) {
+	_game.physics.arcade.collide(this, objet);
+}
 
 
+	return{
+			init : function(game) {
+				_game = game;
+				_game.load.spritesheet('lumming_red','src/media/img/lumming_red.png', 32, 32 , 16);
+			}
+			,
+			create : function(color, x, y, vitesseX) {
+				return (new Lumming(_game, color, x, y, vitesseX));
+			}
+	}
 
-
-function LowFreqLumming() {
-};
-LowFreqLumming.prototype = new Lumming;
-
-function RadioLumming() {
-};
-RadioLumming.prototype = new LowFreqLumming;
-
-function MicroLumming() {
-};
-MicroLumming.prototype = new LowFreqLumming;
-
-function HighFreqLumming() {
-};
-HighFreqLumming.prototype = new Lumming;
-
-function XRayLumming() {
-};
-XRayLumming.prototype = new HighFreqLumming;
-
-function GammaLumming() {
-};
-GammaLumming.prototype = new HighFreqLumming;
+})
