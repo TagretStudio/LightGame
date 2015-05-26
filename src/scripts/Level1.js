@@ -74,10 +74,13 @@ BasicGame.Level1.prototype = {
 		lums.forEach(function(lum) {
 			lum.animations.add('left', [4, 5, 6, 7], 10, true);
 			lum.animations.add('right',  [8, 9, 10, 11], 10, true);
-			lum.body.gravity.y = 300;
+			lum.body.gravity.y = 1200;
 			lum.body.bounce.x = 1;
 		});
 
+		this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';}},this);
+		this.game.paused = true;
 	},
 	
 	update: function () {
