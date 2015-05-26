@@ -83,6 +83,8 @@ BasicGame.Level2.prototype = {
 			filter.animations.play('anim');
 		});
 
+		this.game.input.onDown.add(function () {if(this.game.paused)this.game.paused = false;},this);
+		this.game.paused = true;
 	},
 	
 	update: function () {
