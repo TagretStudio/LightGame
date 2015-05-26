@@ -27,6 +27,17 @@ define(['Images', 'Musiques', 'Lumming', 'Lumming2'], function(Images, Musiques,
 				platforms.create(600-200, 300, 'platform');
 				platforms.create(900-200, 280, 'platform');
 			}
+			doors = this.add.group();
+			doors.enableBody = true;
+			var door;
+			{
+				door = doors.create(600-200, 270, 'door');
+			}
+			doors.forEach(function(door) {
+				door.animations.add('anim', [], 10, true);
+				door.animations.play('anim');
+			});
+
 			platforms.forEach(function(p){p.body.immovable=true});
 			_groupLum = _game.add.group();
 
@@ -37,10 +48,14 @@ define(['Images', 'Musiques', 'Lumming', 'Lumming2'], function(Images, Musiques,
 			_groupLum.add(lum1);
 			_groupLum.add(lum2);
 
+			_game.startText = _game.add.text(0, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
+			_game.paused = true;
 
 
 		},
 		update : function(){
+
 			_game.physics.arcade.collide(_groupLum, platforms);
 			_groupLum.forEach(
 					function(p){
@@ -48,6 +63,8 @@ define(['Images', 'Musiques', 'Lumming', 'Lumming2'], function(Images, Musiques,
 					}
 					)
 		}
+
+
 
 	}
 
