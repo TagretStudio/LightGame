@@ -1,4 +1,4 @@
-define(['Images', 'Musiques', 'Lumming', 'Lumming2'], function(Images, Musiques, Lumming, Lumming2){
+define(['Images', 'Musiques', 'Lumming', 'Lumming2', 'ColorEnum'], function(Images, Musiques, Lumming, Lumming2, ColorEnum){
 	var _game = null;
 	var platforms = null;
 	var _groupLum = null;
@@ -41,8 +41,8 @@ define(['Images', 'Musiques', 'Lumming', 'Lumming2'], function(Images, Musiques,
 			platforms.forEach(function(p){p.body.immovable=true});
 			_groupLum = _game.add.group();
 
-			lum1 = Lumming2.create('blue', 0, 0, 100);
-			lum2 = Lumming2.create('red', 100, 0, -200);
+			lum1 = Lumming2.create(ColorEnum.BLUE, 0, 0, 100);
+			lum2 = Lumming2.create(ColorEnum.RED, 100, 0, -200);
 
 
 			_groupLum.add(lum1);
