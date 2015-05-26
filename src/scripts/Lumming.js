@@ -2,7 +2,7 @@ define(function(){
 
 	var Lumming = function(game, sprite, x, y, vitesseX) {
 
-		Phaser.Sprite.call(this, game, x, y, sprite, [1]);
+		Phaser.Sprite.call(this, game, x, y, 'lumming_red', [1]);
 		game.physics.arcade.enable(this);
 		this.body.setSize(32, 32);
 
