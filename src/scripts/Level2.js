@@ -78,11 +78,10 @@ BasicGame.Level2.prototype = {
 		});
 
 		this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';}},this);
+		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';music.play();}},this);
 		this.game.paused = true;
-	    music = this.add.audio('level');
+	    music = this.add.audio('level2');
 		music.loop = true;
-		music.play();
 	},
 	
 	update: function () {

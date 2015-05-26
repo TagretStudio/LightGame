@@ -17,21 +17,6 @@ BasicGame.Level1.prototype = {
 	    var sky = this.add.sprite(0, 0, 'sky');
 	    sky.scale.set(1024/800, 768/600);
 	    this.add.sprite(184, 265, 'logo');
-	    /*music.onFadeComplete.addOnce(function () {
-		music = this.add.audio('game_over_music');
-		music.loop = true;
-		if (!music.isPlaying) {
-		    music.play();
-		}
-	    }, this);	 
-
-	    music.onFadeComplete.dispatch();*/
-		/*if (music != null && music.isPlaying == true) {
-			music.fadeOut(700);
-		}
-		music = this.add.audio('game_over_music');
-		music.loop = true;
-		music.play();*/
 	},
 
 	create: function () {
@@ -76,11 +61,10 @@ BasicGame.Level1.prototype = {
 		});
 
 		this.startText = this.add.text(150, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';}},this);
+		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';music.play();}},this);
 		this.game.paused = true;
 		music = this.add.audio('level');
 		music.loop = true;
-		music.play();
 	},
 
 	update: function () {
@@ -98,6 +82,13 @@ BasicGame.Level1.prototype = {
 				}
 			}
 		);
+	    //Gestion Menu
+	    var space;
+	    var menuOpened = false;
+	    space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	    if (space.isDown || this.pointer.isDown) {
+		this.add.text(200, 500, 'LOOOOOOOOOOL', { fontSize: '32px', fill: '#000' });
+	    }
 
 	}
 };

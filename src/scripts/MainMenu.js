@@ -59,8 +59,16 @@ function actionPlay() {
 }
 
 function actionCredits() {
-	this.buttonCredits.kill();
-	this.state.start('Level2');
+    this.buttonPlay.kill();
+    this.background2 = this.add.sprite(0, 0, 'preloaderBackground');
+    this.logo = this.add.sprite(184, 265, 'logo');
+    if (music != null && music.isPlaying == true) {
+	music.fadeOut(700);
+	music.onFadeComplete.dispatch();
+	music.onFadeComplete.addOnce(function() {
+	    this.state.start('Level2');
+	}, this);
+    }
 }
 
 function actionQuit() {
