@@ -63,7 +63,8 @@ BasicGame.Level1.prototype = {
 			lum.body.bounce.x = 1;
 		});
 
-		this.game.input.onDown.add(function () {if(this.game.paused)this.game.paused = false;},this);
+		this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';}},this);
 		this.game.paused = true;
 	},
 	
