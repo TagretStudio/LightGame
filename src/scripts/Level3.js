@@ -1,37 +1,37 @@
-BasicGame.Level1 = function (game) {
+BasicGame.Level3 = function (game) {
 	this.nextState = 'Level2';
 	this.platforms = null;
 	this.lums = null;
 	this.doors = null;
+
+	this.tilemap = 5;
+	//this.tilemap.width = 5;
+	
+	/*this.tilemap.map = ['not', 'not', 'not', 'not', 'not',
+						'not', 'not', 'pla', 'pla', 'not',
+						'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
+						'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
+						'not', 'pl0', 'not', 'pl0', 'not',
+						];
+	*/
 };
 
-BasicGame.Level1.prototype = {
+BasicGame.Level3.prototype = {
 
 	preload: function () {
 		this.load.image('sky', 'src/media/img/sky.png');
-	    this.load.image('logo', 'src/media/img/Menu.png');
 		this.load.image('platform', 'src/media/img/platform.png');
 		this.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
 		// this.load.spritesheet('lumming', 'src/media/img/lumming_magenta.png', 32, 32);
 		this.load.spritesheet('lumming', 'src/media/img/gamma.png', 32, 32);
-	    var sky = this.add.sprite(0, 0, 'sky');
-	    sky.scale.set(1024/800, 768/600);
-	    this.add.sprite(184, 265, 'logo');
-	    /*music.onFadeComplete.addOnce(function () {
-		music = this.add.audio('game_over_music');
-		music.loop = true;
-		if (!music.isPlaying) {
-		    music.play();
-		}
-	    }, this);	 
+		this.load.spritesheet('tiles', 'src/media/img/tiles2.png', 32, 32);
 
-	    music.onFadeComplete.dispatch();*/
-		/*if (music != null && music.isPlaying == true) {
+		if (music != null && music.isPlaying == true) {
 			music.fadeOut(700);
 		}
 		music = this.add.audio('game_over_music');
 		music.loop = true;
-		music.play();*/
+		music.play();
 	},
 
 	create: function () {
@@ -43,10 +43,22 @@ BasicGame.Level1.prototype = {
 		platforms = this.add.group();
 		platforms.enableBody = true;
 		{
-			platforms.create(  0-200, 100, 'platform');
-			platforms.create(300-200, 200, 'platform');
-			platforms.create(600-200, 300, 'platform');
-			platforms.create(900-200, 280, 'platform');
+			//platforms.create(  0-200, 100, 'platform');
+			//platforms.create(300-200, 200, 'platform');
+			//platforms.create(600-200, 300, 'platform');
+			//platforms.create(900-200, 280, 'platform');
+			var i=0;
+			for (var y=0; y<this.tilemap.height; y++) {
+				for (var x=0; x<this.tilemap.width; x++) {
+					var sprite = platforms.create(x*32, y*32, 'tiles');
+					switch (this.tilemap.map) {
+						case 'pla':sprite.frame = 0;break;
+						case 'pl0':sprite.frame = 1;break;
+						default:sprite.frame = 2;break;
+					}
+					i++;
+				}
+			}
 		}
 		platforms.forEach(function(p){p.body.immovable=true});
 
@@ -75,12 +87,9 @@ BasicGame.Level1.prototype = {
 			lum.body.bounce.x = 1;
 		});
 
-		this.startText = this.add.text(150, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+		this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';}},this);
 		this.game.paused = true;
-		music = this.add.audio('level');
-		music.loop = true;
-		music.play();
 	},
 
 	update: function () {
@@ -100,20 +109,5 @@ BasicGame.Level1.prototype = {
 		);
 
 	}
-};
 
-// TODO quand on aura des classes de lummings, la collision porte/lummming dépendra de la couleur de chacun
-// ça serait bien aussi une petite animation quand on gagne, plutôt que de passer direct au niveau suivant
-function mayExit(lum, door) {
-	lum.kill();
-	//compter les lummings restants ici et s'il n'y en a plus, passer au niveau suivant
-    this.add.sprite(0, 0, 'sky');
-    this.add.sprite(184, 265, 'logo');
-    if (music != null && music.isPlaying == true) {
-	music.fadeOut(700);
-	music.onFadeComplete.dispatch();
-	music.onFadeComplete.addOnce(function() {
-	    this.state.start(this.nextState);
-	}, this);
-    }
-}
+};
