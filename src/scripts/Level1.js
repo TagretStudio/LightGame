@@ -86,7 +86,7 @@ BasicGame.Level1.prototype = {
 	    var space;
 	    var menuOpened = false;
 	    space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-	    if (space.isDown || this.pointer.isDown) {
+	    if (space.isDown) {
 		this.add.text(200, 500, 'LOOOOOOOOOOL', { fontSize: '32px', fill: '#000' });
 	    }
 

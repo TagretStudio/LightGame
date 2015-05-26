@@ -29,6 +29,7 @@ this.load.image('logo', 'src/media/img/Menu.png');
 this.load.image('cible', 'src/media/img/cible.png');
 this.load.image('tagret', 'src/media/img/tagret_studio.png');
 this.load.image('presents', 'src/media/img/Presents.png');
+this.load.image('clic', 'src/media/img/cliquerPourCommencer.png');
 this.load.audio('menu_music', 'src/media/audio/menu_music.ogg');
 this.load.audio('level', 'src/media/audio/Level 1.ogg');
 this.load.audio('level2', 'src/media/audio/level.ogg');
