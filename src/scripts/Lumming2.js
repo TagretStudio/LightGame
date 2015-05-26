@@ -3,10 +3,9 @@ define(['Lumming'], function(Lumming) {
     var _game = null;
 
     var Lumming2 = function(game, color, x, y, vitesseX) {
-        this.spriteName = 'lumming_' + color.name;
-        this.sprite = 'src/media/img/' + spriteName +'.png';
-        _game.load.spritesheet(spriteName, this.sprite, 32, 32, 16);
-        Lumming.objet().call(this, game, spriteName, x, y, vitesseX);
+        this.spriteName = 'lumming_' + color;//color.name;
+        this.sprite = 'src/media/img/' + this.spriteName +'.png';
+        Lumming.objet().call(this, game, this.spriteName, x, y, vitesseX);
     }
 
     Lumming2.prototype = Object.create(Lumming.objet().prototype);
@@ -17,6 +16,10 @@ define(['Lumming'], function(Lumming) {
         init: function(game) {
             _game = game;
             Lumming.init(_game);
+            _game.load.spritesheet('lumming_blue', 'src/media/img/lumming_blue.png', 32, 32, 16);
+            _game.load.spritesheet('lumming_red', 'src/media/img/lumming_red.png', 32, 32, 16);
+
+
         },
 
         create: function(color, x, y, vitesseX) {
