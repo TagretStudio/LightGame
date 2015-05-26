@@ -17,13 +17,6 @@ BasicGame.Level2.prototype = {
 		this.load.spritesheet('white_lumming', 'src/media/img/lumming_white.png', 32, 32);
 		this.load.spritesheet('blue_lumming', 'src/media/img/lumming_blue.png', 32, 32);
 		this.load.spritesheet('blue_filter', 'src/media/img/filter_blue.png', 32, 32);
-
-		if (music != null && music.isPlaying == true) {
-			music.fadeOut(700);
-		}
-		music = this.add.audio('game_over_music');
-		music.loop = true;
-		music.play();
 	},
 
 	create: function () {
@@ -87,6 +80,9 @@ BasicGame.Level2.prototype = {
 		this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';}},this);
 		this.game.paused = true;
+	    music = this.add.audio('level');
+		music.loop = true;
+		music.play();
 	},
 	
 	update: function () {
