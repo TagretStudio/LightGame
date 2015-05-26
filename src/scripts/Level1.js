@@ -1,5 +1,5 @@
 BasicGame.Level1 = function (game) {
-	//this.nextState = 'Level2';
+	this.nextState = 'Level2';
 	this.platforms = null;
 	this.lums = null;
 	this.doors = null;
@@ -18,13 +18,16 @@ BasicGame.Level1.prototype = {
 	    sky.scale.set(1024/800, 768/600);
 	    this.add.sprite(184, 265, 'logo');
 	    if (music != null && music.isPlaying == true) {
-		music.fadeOut(700);
+		music.fadeOut(200);
 	    }
-	    music.onFadeComplete.add(function () {
+	    music.onFadeComplete.addOnce(function () {
 		music = this.add.audio('game_over_music');
 		music.loop = true;
-		music.play();
-	    }, this);
+		if (!music.isPlaying) {
+		    music.play();
+		}
+	    }, this);	 
+
 	    music.onFadeComplete.dispatch();
 		/*if (music != null && music.isPlaying == true) {
 			music.fadeOut(700);
@@ -101,5 +104,5 @@ BasicGame.Level1.prototype = {
 function mayExit(lum, door) {
 	lum.kill();
 	//compter les lummings restants ici et s'il n'y en a plus, passer au niveau suivant
-	this.state.start('Level2');
+	this.state.start(this.nextState);
 }
