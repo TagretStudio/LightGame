@@ -45,4 +45,10 @@ define(function() {
 		}
 	});
 
+	return{
+		getColorEnum : function(){
+			return ColorEnum;
+		}
+	}
+
 })
