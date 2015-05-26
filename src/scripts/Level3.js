@@ -4,9 +4,10 @@ BasicGame.Level3 = function (game) {
 	this.lums = null;
 	this.doors = null;
 
+	/*
 	this.tilemapHeight = 6;
 	this.tilemapWidth = 5;
-	
+
 	this.tilemapMap = [
 		'not', 'not', 'not', 'not', 'not',
 		'not', 'not', 'pla', 'pla', 'not',
@@ -14,6 +15,16 @@ BasicGame.Level3 = function (game) {
 		'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
 		'pl0', 'pl0', 'not', 'pl0', 'not',
 		'not', 'not', 'not', 'not', 'not'
+	];
+	*/
+	this.tilemapHeight = 5;
+	this.tilemapWidth = 7;
+	this.tilemapMap = [
+		'not', 'not', 'not', 'not', 'pl0', 'not', 'not',
+		'pla', 'not', 'not', 'pla', 'pl0', 'not', 'not',
+		'pl0', 'pla', 'pla', 'pla', 'pl0', 'not', 'pla',
+		'pla', 'pl0', 'pl0', 'pla', 'pla', 'pla', 'pl0',
+		'pl0', 'pla', 'pla', 'pla', 'pla', 'pla', 'pla'
 	];
 };
 
