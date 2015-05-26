@@ -23,10 +23,6 @@ define(function(){
 	Lumming.prototype = Object.create(Phaser.Sprite.prototype);
 	Lumming.prototype.constructor = Lumming;
 
-	Lumming.prototype.create = function(){
-
-	}
-
 	Lumming.prototype.update = function(){
 		if (this.body.velocity.x > 0) {
 			this.animations.play('right');
