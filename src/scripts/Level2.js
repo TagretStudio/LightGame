@@ -1,4 +1,5 @@
 BasicGame.Level2 = function (game){
+	this.nextState = 'Boot';
 	this.platforms = null;
 	this.white_lums = null;
 	this.blue_lums = null;
@@ -115,13 +116,3 @@ function toBlue(lum, filter) {
 	newlum.body.bounce.x = 1;
 	lum.kill();
 }
-
-// TODO quand on aura des classes de lummings, la collision porte/lummming dépendra de la couleur de chacun
-// ça serait bien aussi une petite animation quand on gagne, plutôt que de passer direct au niveau suivant
-// ALL CAPS !!!!!11!11!1!1111!1!!!!!one!!!!!!eleven!!11!1
-// LA FONCTION MAYEXIT EST DEJA DEFINIE DANS LEVEL1, D'OU CONFLITS ET PROBLEMES
-//function mayExit(lum, door) {
-//	lum.kill();
-//	//compter les lummings restants ici et s'il n'y en a plus, passer au niveau suivant
-//	this.state.start('Boot');
-//}

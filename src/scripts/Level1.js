@@ -1,4 +1,5 @@
-BasicGame.Level1 = function (game){
+BasicGame.Level1 = function (game) {
+	this.nextState = 'Level2';
 	this.platforms = null;
 	this.lums = null;
 	this.doors = null;
@@ -88,5 +89,5 @@ BasicGame.Level1.prototype = {
 function mayExit(lum, door) {
 	lum.kill();
 	//compter les lummings restants ici et s'il n'y en a plus, passer au niveau suivant
-	this.state.start('Level2');
+	this.state.start(this.nextState);
 }
