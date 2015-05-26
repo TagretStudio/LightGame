@@ -11,10 +11,16 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     sourcemaps = require('gulp-sourcemaps'),
+    connect = require('gulp-connect'),
+    watch = require('gulp-watch'),
+    ffmpeg = require('gulp-fluent-ffmpeg'),
     del = require('del');
 
+// var run = require('gulp-run');
+// var cmd = new run.Command('audio');
+
 gulp.task('default', function() {
-    gulp.start('scripts', 'img', 'styles');
+    gulp.start('scripts', 'img', 'styles', 'connect'); //, 'audio');
 });
 
 gulp.task('styles', function() {
@@ -22,22 +28,34 @@ gulp.task('styles', function() {
     .pipe(sourcemaps.init())
     .pipe(minifycss())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('source/styles/css/'));
+    .pipe(gulp.dest('dest/styles/css/'));
 });
+
+// gulp.task('audio', function () {
+//   // transcode ogg files to mp3
+//   return gulp.src('src/media/audio/*.ogg')
+//     .pipe(ffmpeg('ogg', function (cmd) {
+//       return cmd
+//         .audioBitrate('128k')
+//         .audioChannels(2)
+//         .audioCodec('libmp3lame')
+//     }))
+//     .pipe(gulp.dest('dest/media/audio/'));
+// });
 
 gulp.task('scripts', function() {
   return gulp.src('src/scripts/*.js')
     .pipe(concat('main.js'))
-	.pipe(gulp.dest('source/scripts/'))
+	.pipe(gulp.dest('dest/scripts/'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(gulp.dest('source/scripts/'));
+    .pipe(gulp.dest('dest/scripts/'));
 });
 
 gulp.task('img', function() {
   return gulp.src('src/media/img/*.png')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(gulp.dest('source/media/img/'));
+    .pipe(gulp.dest('dest/media/img/'));
 });
 
 //automaticrefresh of the page on file change
@@ -55,12 +73,22 @@ gulp.task('watch', function() {
   // Create LiveReload server
   livereload.listen();
 
-  // Watch any files in dist/, reload on change
-  gulp.watch(['source/**']).on('change', livereload.changed);
+  // Watch any files in dest/, reload on change
+  gulp.watch(['dest/**']).on('change', livereload.changed);
 
 });
 
 //clean
 gulp.task('clean', function(cb) {
-    del(['source/styles/', 'source/scripts/js', 'source/media/img'], cb)
+    del(['dest/'], cb)
 });
+
+gulp.task('connect', function() {
+  connect.server({
+    port: 8888,
+    root: 'dest',
+    livereload: true
+  });
+});
+
+ 
