@@ -1,5 +1,5 @@
 BasicGame.Level1 = function (game) {
-	this.nextState = 'Level2';
+	//this.nextState = 'Level2';
 	this.platforms = null;
 	this.lums = null;
 	this.doors = null;
@@ -9,17 +9,29 @@ BasicGame.Level1.prototype = {
 
 	preload: function () {
 		this.load.image('sky', 'src/media/img/sky.png');
+	    this.load.image('logo', 'src/media/img/Menu.png');
 		this.load.image('platform', 'src/media/img/platform.png');
 		this.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
 		// this.load.spritesheet('lumming', 'src/media/img/lumming_magenta.png', 32, 32);
 		this.load.spritesheet('lumming', 'src/media/img/gamma.png', 32, 32);
-
-		if (music != null && music.isPlaying == true) {
+	    var sky = this.add.sprite(0, 0, 'sky');
+	    sky.scale.set(1024/800, 768/600);
+	    this.add.sprite(184, 265, 'logo');
+	    if (music != null && music.isPlaying == true) {
+		music.fadeOut(700);
+	    }
+	    music.onFadeComplete.add(function () {
+		music = this.add.audio('game_over_music');
+		music.loop = true;
+		music.play();
+	    }, this);
+	    music.onFadeComplete.dispatch();
+		/*if (music != null && music.isPlaying == true) {
 			music.fadeOut(700);
 		}
 		music = this.add.audio('game_over_music');
 		music.loop = true;
-		music.play();
+		music.play();*/
 	},
 
 	create: function () {
@@ -89,5 +101,5 @@ BasicGame.Level1.prototype = {
 function mayExit(lum, door) {
 	lum.kill();
 	//compter les lummings restants ici et s'il n'y en a plus, passer au niveau suivant
-	this.state.start(this.nextState);
+	this.state.start('Level2');
 }

@@ -46,8 +46,8 @@ BasicGame.MainMenu.prototype = {
 
 
 function actionPlay() {
-	this.buttonPlay.kill();
-	this.state.start('Level1');
+    this.buttonPlay.kill();
+    this.state.start('Level1');
 }
 
 function actionCredits() {
