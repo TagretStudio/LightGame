@@ -4,16 +4,17 @@ BasicGame.Level3 = function (game) {
 	this.lums = null;
 	this.doors = null;
 
-	this.tilemap = 5;
-	//this.tilemap.width = 5;
+	this.tilemapHeight = 6;
+	this.tilemapWidth = 5;
 	
-	/*this.tilemap.map = ['not', 'not', 'not', 'not', 'not',
-						'not', 'not', 'pla', 'pla', 'not',
-						'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
-						'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
-						'not', 'pl0', 'not', 'pl0', 'not',
-						];
-	*/
+	this.tilemapMap = [
+		'not', 'not', 'not', 'not', 'not',
+		'not', 'not', 'pla', 'pla', 'not',
+		'pla', 'pla', 'pla', 'pl0', 'pla',
+		'pl0', 'pl0', 'pl0', 'pl0', 'pl0',
+		'pl0', 'pl0', 'not', 'pl0', 'not',
+		'not', 'not', 'not', 'not', 'not'
+	];
 };
 
 BasicGame.Level3.prototype = {
@@ -24,7 +25,7 @@ BasicGame.Level3.prototype = {
 		this.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
 		// this.load.spritesheet('lumming', 'src/media/img/lumming_magenta.png', 32, 32);
 		this.load.spritesheet('lumming', 'src/media/img/gamma.png', 32, 32);
-		this.load.spritesheet('tiles', 'src/media/img/tiles2.png', 32, 32);
+		this.load.spritesheet('tiles', 'src/media/img/tiles3.png', 32, 32);
 
 		if (music != null && music.isPlaying == true) {
 			music.fadeOut(700);
@@ -48,13 +49,32 @@ BasicGame.Level3.prototype = {
 			//platforms.create(600-200, 300, 'platform');
 			//platforms.create(900-200, 280, 'platform');
 			var i=0;
-			for (var y=0; y<this.tilemap.height; y++) {
-				for (var x=0; x<this.tilemap.width; x++) {
-					var sprite = platforms.create(x*32, y*32, 'tiles');
-					switch (this.tilemap.map) {
-						case 'pla':sprite.frame = 0;break;
-						case 'pl0':sprite.frame = 1;break;
-						default:sprite.frame = 2;break;
+			for (var y=0; y<this.tilemapHeight; y++) {
+				for (var x=0; x<this.tilemapWidth; x++) {
+					//var sprite = platforms.create(x*32, y*32, 'tiles');
+					/*switch (this.tilemapMap[i]) {
+						case 'pla':sprite.frame = 2;break;
+						case 'pl0':sprite.frame = 8;break;
+						default:sprite.frame = 22;break;
+					}*/
+					var tmo = this.tilemapMap[i];
+					if (tmo != 'not') {
+						if (tmo == 'pla' || tmo == 'pl0') {
+							var sprite = platforms.create(x*32, y*32, 'tiles');
+							var l;
+							if (tmo == 'pla') {
+								l=0;
+							} else {
+								l=8;
+							}
+							tmo = this.tilemapMap[i+(Math.min(y+1,this.tilemapHeight-1)-y)*this.tilemapWidth];
+							if (tmo == 'pla' || tmo == 'pl0') l+=1;
+							tmo = this.tilemapMap[i+(Math.min(x+1,this.tilemapWidth-1)-x)];
+							if (tmo == 'pla' || tmo == 'pl0') l+=4;
+							tmo = this.tilemapMap[i+(Math.max(x-1,0)-x)];
+							if (tmo == 'pla' || tmo == 'pl0') l+=2;
+							sprite.frame = l;
+						}
 					}
 					i++;
 				}
