@@ -1,5 +1,6 @@
 define(['Images', 'Musiques', 'Lumming', 'Lumming2', 'ColorEnum'], function(Images, Musiques, Lumming, Lumming2, ColorEnum){
 	var _game = null;
+	var _etapesuivante = null;
 	var platforms = null;
 	var _groupLum = null;
 
