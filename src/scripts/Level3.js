@@ -1,5 +1,5 @@
 BasicGame.Level3 = function (game) {
-	this.nextState = 'Level2';
+	this.nextState = 'Boot';
 	this.platforms = null;
 	this.lums = null;
 	this.doors = null;
@@ -23,7 +23,7 @@ BasicGame.Level3 = function (game) {
 		'not', 'not', 'not', 'not', 'pl0', 'not', 'not',
 		'pla', 'not', 'not', 'pla', 'pl0', 'not', 'not',
 		'pl0', 'pla', 'pla', 'pla', 'pl0', 'not', 'pla',
-		'pla', 'pl0', 'pl0', 'pla', 'pla', 'pla', 'pl0',
+		'pla', 'not', 'pl0', 'pla', 'pla', 'pla', 'pl0',
 		'pl0', 'pla', 'pla', 'pla', 'pla', 'pla', 'pla'
 	];
 };
@@ -102,7 +102,7 @@ BasicGame.Level3.prototype = {
 		doors.enableBody = true;
 		var door;
 		{
-			door = doors.create(600-200, 270, 'door');
+			door = doors.create(600-200, 220, 'door');
 		}
 		doors.forEach(function(door) {
 			door.animations.add('anim', [], 10, true);
