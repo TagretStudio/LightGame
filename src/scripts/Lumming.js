@@ -25,30 +25,29 @@ define(function(){
 
 	Lumming.prototype.create = function(){
 
-}
-
-Lumming.prototype.update = function(){
-	if (this.body.velocity.x > 0) {
-		this.animations.play('right');
-	} else {
-		this.animations.play('left');
 	}
-}
 
-Lumming.prototype.collide = function(objet) {
-	_game.physics.arcade.collide(this, objet);
-}
+	Lumming.prototype.update = function(){
+		if (this.body.velocity.x > 0) {
+			this.animations.play('right');
+		} else {
+			this.animations.play('left');
+		}
+	}
+
+	Lumming.prototype.collide = function(objet) {
+		_game.physics.arcade.collide(this, objet);
+	}
 
 
 	return{
-			init : function(game) {
-				_game = game;
-				_game.load.spritesheet('lumming_red','src/media/img/lumming_red.png', 32, 32 , 16);
-			}
-			,
-			create : function(color, x, y, vitesseX) {
-				return (new Lumming(_game, color, x, y, vitesseX));
-			}
+		init : function(game) {
+			_game = game;
+			_game.load.spritesheet('lumming_red','src/media/img/lumming_red.png', 32, 32 , 16);
+		}
+		,
+		create : function(color, x, y, vitesseX) {
+			return (new Lumming(_game, color, x, y, vitesseX));
+		}
 	}
-
 })
