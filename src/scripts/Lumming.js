@@ -1,7 +1,5 @@
 define(function(){
 
-	var _game = null;
-
 	var Lumming = function(game, sprite, x, y, vitesseX) {
 
 		Phaser.Sprite.call(this, game, x, y, sprite, [1]);
@@ -29,17 +27,13 @@ define(function(){
 		}
 	}
 
-	Lumming.prototype.collide = function(objet) {
-		_game.physics.arcade.collide(this, objet);
+	Lumming.prototype.collide = function(game, objet) {
+		game.physics.arcade.collide(this, objet);
 	}
 
 	return{
-		init : function(game) {
-			_game = game;
-		}
-		,
-		create : function(sprite, x, y, vitesseX) {
-			return (new Lumming(_game, sprite, x, y, vitesseX));
+		create : function(game, sprite, x, y, vitesseX) {
+			return (new Lumming(game, sprite, x, y, vitesseX));
 		}
 	}
 })
