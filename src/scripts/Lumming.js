@@ -32,8 +32,16 @@ define(function(){
 	}
 
 	return{
-		create : function(game, sprite, x, y, vitesseX) {
-			return (new Lumming(game, sprite, x, y, vitesseX));
+		init : function(game) {
+			_game = game;
+			_game.load.spritesheet('lumming_red','src/media/img/lumming_red.png', 32, 32 , 16);
+		}
+		,
+		create : function(color, x, y, vitesseX) {
+			return (new Lumming(_game, color, x, y, vitesseX));
+		},
+		objet : function(){
+			return Lumming;
 		}
 	}
 })
