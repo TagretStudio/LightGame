@@ -33,7 +33,7 @@ BasicGame.VisibleLumming = function(color) {
 BasicGame.VisibleLumming.prototype = Object.create(Lumming.prototype);
 BasicGame.VisibleLumming.constructor = VisibleLumming;
 BasicGame.VisibleLumming.prototype.preload = function() {
-	Lumming.preload('src/media/img/lumming_' + color.name + '.png');
+	Lumming.preload('media/img/lumming_' + color.name + '.png');
 };
 
 

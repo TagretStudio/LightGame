@@ -8,12 +8,12 @@ BasicGame.Level1 = function (game) {
 BasicGame.Level1.prototype = {
 
 	preload: function () {
-		this.load.image('sky', 'src/media/img/sky.png');
-	    this.load.image('logo', 'src/media/img/Menu.png');
-		this.load.image('platform', 'src/media/img/platform.png');
-		this.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
+		this.load.image('sky', 'media/img/sky.png');
+	    this.load.image('logo', 'media/img/Menu.png');
+		this.load.image('platform', 'media/img/platform.png');
+		this.load.spritesheet('door', 'media/img/door_red.png', 32, 32);
 		// this.load.spritesheet('lumming', 'src/media/img/lumming_magenta.png', 32, 32);
-		this.load.spritesheet('lumming', 'src/media/img/gamma.png', 32, 32);
+		this.load.spritesheet('lumming', 'media/img/gamma.png', 32, 32);
 	    var sky = this.add.sprite(0, 0, 'sky');
 	    sky.scale.set(1024/800, 768/600);
 	    this.add.sprite(184, 265, 'logo');

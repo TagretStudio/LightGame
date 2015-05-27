@@ -20,8 +20,16 @@ var gulp = require('gulp'),
 // var cmd = new run.Command('audio');
 
 gulp.task('default', function() {
-    gulp.start('scripts', 'img', 'styles', 'connect'); //, 'audio');
+    gulp.start('scriptsMin', 'img', 'styles', 'connect', 'index', 'scripts','audio');
+    
 });
+
+
+// gulp.task('simple', function () {
+//   gulp.src('./index.html')
+//     .pipe(connect.reload());
+// });
+
 
 gulp.task('styles', function() {
   return gulp.src('src/styles/*.css')
@@ -43,11 +51,23 @@ gulp.task('styles', function() {
 //     .pipe(gulp.dest('dest/media/audio/'));
 // });
 
-gulp.task('scripts', function() {
+gulp.task('audio', function () {
+  // transcode ogg files to mp3
+  gulp.src(['src/media/audio/*.ogg'])
+    .pipe(gulp.dest('dest/media/audio/'))
+});
+
+gulp.task('scriptsMin', function() {
   return gulp.src('src/scripts/*.js')
     .pipe(concat('main.js'))
 	.pipe(gulp.dest('dest/scripts/'))
     .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest('dest/scripts/'));
+});
+
+gulp.task('scripts', function() {
+  return gulp.src('src/scripts/*.js')
     .pipe(uglify())
     .pipe(gulp.dest('dest/scripts/'));
 });
@@ -58,6 +78,10 @@ gulp.task('img', function() {
     .pipe(gulp.dest('dest/media/img/'));
 });
 
+gulp.task('index', function() {
+  gulp.src(['src/index.html'])
+    .pipe(gulp.dest('dest/'))
+});
 //automaticrefresh of the page on file change
 gulp.task('watch', function() {
 
