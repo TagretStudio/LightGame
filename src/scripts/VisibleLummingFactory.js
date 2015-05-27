@@ -5,7 +5,7 @@ define(['Lumming'], function(Lumming) {
     var Lumming2 = function(game, color, x, y, vitesseX) {
         this.spriteName = 'lumming_' + color;//color.name;
         this.sprite = 'src/media/img/' + this.spriteName +'.png';
-        Lumming.objet().call(this, game, this.spriteName, x, y, vitesseX);
+        Lumming.call(this, game, this.spriteName, x, y, vitesseX);
     }
 
     Lumming2.prototype = Object.create(Lumming.objet().prototype);

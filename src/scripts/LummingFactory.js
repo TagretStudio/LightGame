@@ -40,8 +40,8 @@ define(function(){
 		create : function(sprite, x, y, vitesseX) {
 			return (new Lumming(_game, sprite, x, y, vitesseX));
 		},
-		objet : function(){
-			return Lumming;
-		}
+		
+		Lumming : Lumming
+		
 	}
 })
