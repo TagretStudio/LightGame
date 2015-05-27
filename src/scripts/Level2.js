@@ -17,6 +17,7 @@ BasicGame.Level2.prototype = {
 		this.load.spritesheet('white_lumming', 'media/img/lumming_white.png', 32, 32);
 		this.load.spritesheet('blue_lumming', 'media/img/lumming_blue.png', 32, 32);
 		this.load.spritesheet('blue_filter', 'media/img/filter_blue.png', 32, 32);
+		this.load.image('cliquez', 'media/img/cliquerPourCommencer.png');
 	},
 
 	create: function () {
@@ -77,10 +78,16 @@ BasicGame.Level2.prototype = {
 			filter.animations.play('anim');
 		});
 
-		this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';music.play();}},this);
+		// this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+		// this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';music.play();}},this);
+		// this.game.paused = true;
+	 //    music = this.add.audio('level2');
+		// music.loop = true;
+
+		var cliquez = this.add.sprite(60, 500, 'cliquez');
+		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;music.play();cliquez.destroy();}},this);
 		this.game.paused = true;
-	    music = this.add.audio('level2');
+		music = this.add.audio('level2');
 		music.loop = true;
 	},
 	

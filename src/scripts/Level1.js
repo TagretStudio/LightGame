@@ -12,6 +12,7 @@ BasicGame.Level1.prototype = {
 	    this.load.image('logo', 'media/img/Menu.png');
 		this.load.image('platform', 'media/img/platform.png');
 		this.load.spritesheet('door', 'media/img/door_red.png', 32, 32);
+		this.load.image('cliquez', 'media/img/cliquerPourCommencer.png');
 		// this.load.spritesheet('lumming', 'src/media/img/lumming_magenta.png', 32, 32);
 		this.load.spritesheet('lumming', 'media/img/gamma.png', 32, 32);
 	    var sky = this.add.sprite(0, 0, 'sky');
@@ -60,8 +61,16 @@ BasicGame.Level1.prototype = {
 			lum.body.bounce.x = 1;
 		});
 
-		this.startText = this.add.text(150, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';music.play();}},this);
+		// this.startText = this.add.text(150, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+		// this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';music.play();}},this);
+		// this.game.paused = true;
+		// music = this.add.audio('level');
+		// music.loop = true;
+
+		var cliquez = this.add.sprite(60, 500, 'cliquez');
+
+		// this.startText = this.add.text(150, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;music.play();cliquez.destroy();}},this);
 		this.game.paused = true;
 		music = this.add.audio('level');
 		music.loop = true;
