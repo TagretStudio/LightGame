@@ -1,4 +1,5 @@
-define(['Images', 'Musiques', 'Lumming', 'Lumming2', 'ColorEnum'], function(Images, Musiques, Lumming, Lumming2, ColorEnum){
+define(['Images', 'Musiques', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum'],
+	   function(Images, Musiques, LummingFactory, VisibleLummingFactory, ColorEnum){
 	var _game = null;
 	var _etapesuivante = null;
 	var platforms = null;
@@ -12,7 +13,7 @@ define(['Images', 'Musiques', 'Lumming', 'Lumming2', 'ColorEnum'], function(Imag
 			_game.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
 
 		//	Lumming.init(_game);
-			Lumming2.init(_game);
+			VisibleLummingFactory.init(_game);
 		},
 		create : function(){
 
@@ -42,8 +43,8 @@ define(['Images', 'Musiques', 'Lumming', 'Lumming2', 'ColorEnum'], function(Imag
 			platforms.forEach(function(p){p.body.immovable=true});
 			_groupLum = _game.add.group();
 
-			lum1 = Lumming2.create('blue', 0, 0, 100);
-			lum2 = Lumming2.create('red', 100, 0, -200);
+			lum1 = VisibleLummingFactory.create('blue', 0, 0, 100);
+			lum2 = VisibleLummingFactory.create('red', 100, 0, -200);
 
 
 			_groupLum.add(lum1);
