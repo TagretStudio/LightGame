@@ -24,8 +24,6 @@ define(['LummingFactory'], function(LummingFactory) {
             _game.load.spritesheet('lumming_red', 'src/media/img/lumming_red.png', 32, 32, 16);
             _game.load.spritesheet('lumming_white', 'src/media/img/lumming_white.png', 32, 32, 16);
             _game.load.spritesheet('lumming_yellow', 'src/media/img/lumming_yellow.png', 32, 32, 16);
-
-
         },
 
         create: function(color, x, y, vitesseX) {
