@@ -31,12 +31,12 @@ BasicGame.Level3 = function (game) {
 BasicGame.Level3.prototype = {
 
 	preload: function () {
-		this.load.image('sky', 'src/media/img/sky.png');
-		this.load.image('platform', 'src/media/img/platform.png');
-		this.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
-		// this.load.spritesheet('lumming', 'src/media/img/lumming_magenta.png', 32, 32);
-		this.load.spritesheet('lumming', 'src/media/img/gamma.png', 32, 32);
-		this.load.spritesheet('tiles', 'src/media/img/tiles3.png', 32, 32);
+		this.load.image('sky', 'media/img/sky.png');
+		this.load.image('platform', 'media/img/platform.png');
+		this.load.spritesheet('door', 'media/img/door_red.png', 32, 32);
+		// this.load.spritesheet('lumming', 'media/img/lumming_magenta.png', 32, 32);
+		this.load.spritesheet('lumming', 'media/img/gamma.png', 32, 32);
+		this.load.spritesheet('tiles', 'media/img/tiles3.png', 32, 32);
 
 		if (music != null && music.isPlaying == true) {
 			music.fadeOut(700);
