@@ -15,3 +15,4 @@ define(['Items'], function(Items) {
 
     }
   }
+}
