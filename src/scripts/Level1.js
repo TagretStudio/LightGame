@@ -46,8 +46,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			platforms.forEach(function(p){p.body.immovable=true});
 			_groupLum = _game.add.group();
 
-			lum1 = VisibleLummingFactory.create('blue', 0, 0, 100, 'visible');
-			lum2 = VisibleLummingFactory.create('red', 100, 0, -200, 'visible');
+			lum1 = VisibleLummingFactory.create('blue', 0, 0, 100);
+			lum2 = VisibleLummingFactory.create('red', 100, 0, -200);
 
 
 			_groupLum.add(lum1);

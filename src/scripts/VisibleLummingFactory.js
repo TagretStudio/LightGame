@@ -2,10 +2,10 @@ define(['LummingFactory'], function(LummingFactory) {
 
     var _game = null;
 
-    var VisibleLumming = function(game, color, x, y, vitesseX, VisibleLevel) {
+    var VisibleLumming = function(game, color, x, y, vitesseX) {
         this.color = color;
         this.spriteName = 'lumming_' + color;//color.name;
-        LummingFactory.Lumming.call(this, game, this.spriteName, x, y, vitesseX, VisibleLevel);
+        LummingFactory.Lumming.call(this, game, this.spriteName, x, y, vitesseX, 'visible');
     }
 
     VisibleLumming.prototype = Object.create(LummingFactory.Lumming.prototype);
@@ -26,8 +26,8 @@ define(['LummingFactory'], function(LummingFactory) {
             _game.load.spritesheet('lumming_yellow', 'src/media/img/lumming_yellow.png', 32, 32, 16);
         },
 
-        create: function(color, x, y, vitesseX, VisibleLevel) {
-            return (new VisibleLumming(_game, color, x, y, vitesseX, VisibleLevel));
+        create: function(color, x, y, vitesseX) {
+            return (new VisibleLumming(_game, color, x, y, vitesseX));
         }
     }
 })

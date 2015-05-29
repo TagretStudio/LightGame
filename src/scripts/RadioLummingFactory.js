@@ -2,9 +2,9 @@ define(['LummingFactory'], function(LummingFactory) {
 
     var _game = null;
 
-    var RadioLumming = function(game, x, y, vitesseX, visibleLevel) {
+    var RadioLumming = function(game, x, y, vitesseX) {
 	this.sprite = 'src/media/img/lumming_radio';
-	LummingFactory.Lumming.call(this, game, 'lumming_radio', x, y, vitesseX, visibleLevel);
+	LummingFactory.Lumming.call(this, game, 'lumming_radio', x, y, vitesseX, 'low');
     }
 
     RadioLumming.prototype = Object.create(LummingFactory.Lumming.prototype);
@@ -19,7 +19,7 @@ define(['LummingFactory'], function(LummingFactory) {
 	},
 
 	create: function(x, y, vitesseX, visibleLevel) {
-            return (new RadioLumming(_game, x, y, vitesseX, visibleLevel));
+            return (new RadioLumming(_game, x, y, vitesseX));
         }
     }
 })
