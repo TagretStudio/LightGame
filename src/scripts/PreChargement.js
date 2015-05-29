@@ -4,6 +4,12 @@ define(['./Images', './Musiques', 'MusicFactory'], function(Images, Musiques, Mu
 
 	var _prechargement = {
 
+		init : function(){
+			_game.scale.pageAlignHorizontally = true;
+
+
+		},
+
 		preload : function(){
 			Images.init(_game);
 			Images.boot().preload();
