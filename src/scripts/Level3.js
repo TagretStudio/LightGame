@@ -73,23 +73,13 @@ BasicGame.Level3.prototype = {
 						tmr = this.tilemapMap[i+(Math.min(x+1,this.tilemapWidth-1)-x)];
 						tml = this.tilemapMap[i+(Math.max(x-1,0)-x)];
 						var sprite = platforms.create(x*64, y*64, 'tiles');
+						sprite.scale.set(2,2);
+						sprite.frame = tmo;
 						sprite.body.checkCollision.down = false;
 						sprite.body.checkCollision.left = false;
 						sprite.body.checkCollision.right = false;
 						sprite.body.checkCollision.up = false;
-						sprite.frame = tmo;
-
-						if (Math.floor(tmo/2)%2 != 0) {
-							sprite.body.checkCollision.left = true;
-						}
-						if (Math.floor(tmo/4)%2 != 0) {
-							sprite.body.checkCollision.right = true;
-						}
-						if (Math.floor(tmo/8)%2 != 0) {
-							sprite.body.checkCollision.up = true;
-						}
-
-						sprite.scale.set(2,2);
+						if (Math.floor(tmo/8)%2 != 0) sprite.body.checkCollision.up = true;
 					}
 				}
 				i++;
@@ -119,7 +109,7 @@ BasicGame.Level3.prototype = {
 			lum.animations.add('left', [4, 5, 6, 7], 10, true);
 			lum.animations.add('right',  [8, 9, 10, 11], 10, true);
 			lum.body.gravity.y = 1200;
-			lum.body.bounce.x = 1;
+			//lum.body.bounce.x = 1;
 		});
 
 		this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
@@ -130,6 +120,7 @@ BasicGame.Level3.prototype = {
 	update: function () {
 		this.physics.arcade.collide(lums, doors, mayExit, null, this);
 		this.physics.arcade.collide(lums, platforms);
+		this.physics.arcade.overlap(lums, platforms, collision, null, this);
 
 		lums.forEach(
 			function(lum) {
@@ -145,4 +136,20 @@ BasicGame.Level3.prototype = {
 
 	}
 
+};
+
+function collision(lum,p) {
+	var tmo = p.frame;
+	if (Math.floor(tmo/2)%2 != 0) {
+		if (lum.body.velocity.x > 0) {
+			lum.body.velocity.x *= -1;
+		}
+		//sprite.body.checkCollision.left = true;
+	}
+	if (Math.floor(tmo/4)%2 != 0) {
+		if (lum.body.velocity.x < 0) {
+			lum.body.velocity.x *= -1;
+		}
+		//sprite.body.checkCollision.right = true;
+	}
 };
