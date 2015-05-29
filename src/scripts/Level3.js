@@ -19,12 +19,19 @@ BasicGame.Level3 = function (game) {
 	*/
 	this.tilemapHeight = 5;
 	this.tilemapWidth = 7;
-	this.tilemapMap = [
+	/*this.tilemapMap = [
 		'not', 'not', 'not', 'not', 'pl0', 'not', 'not',
 		'pla', 'not', 'not', 'pla', 'pl0', 'not', 'not',
 		'pl0', 'pla', 'pla', 'pla', 'pl0', 'not', 'pla',
 		'pla', 'not', 'pl0', 'pla', 'pla', 'pla', 'pl0',
 		'pl0', 'pla', 'pla', 'pla', 'pla', 'pla', 'pla'
+	];*/
+	this.tilemapMap = [
+		 0,  0,  0,  0,  1,  0,  0,
+		12,  0,  0,  8,  1,  0,  0,
+		 1,  8,  8,  8,  1,  0, 10,
+		12,  1,  1,  8,  8,  8,  1,
+		 1,  8,  8,  8,  8,  8,  8
 	];
 };
 
@@ -36,7 +43,7 @@ BasicGame.Level3.prototype = {
 		this.load.spritesheet('door', 'media/img/door_red.png', 32, 32);
 		// this.load.spritesheet('lumming', 'media/img/lumming_magenta.png', 32, 32);
 		this.load.spritesheet('lumming', 'media/img/gamma.png', 32, 32);
-		this.load.spritesheet('tiles', 'media/img/tiles3.png', 32, 32);
+		this.load.spritesheet('tiles', 'media/img/tiles4.png', 32, 32);
 
 		if (music != null && music.isPlaying == true) {
 			music.fadeOut(700);
@@ -58,36 +65,28 @@ BasicGame.Level3.prototype = {
 		for (var y=0; y<this.tilemapHeight; y++) {
 			for (var x=0; x<this.tilemapWidth; x++) {
 				var tmo = this.tilemapMap[i];
-				if (tmo != 'not') {
-					if (tmo == 'pla' || tmo == 'pl0') {
+				if (tmo != 0) {
+					if (tmo <= 15) {
+						tmo -= tmo%2; //cas du "1" qui signifie "non vide ici" mais quand même "aucune collision"
 						var tmd, tml, tmr, tmu;
-						var sprite = platforms.create(x*64, y*64, 'tiles');
-						var l;
-						if (tmo == 'pla') {
-							l=0;
-						} else {
-							sprite.body.checkCollision.up = false;
-							l=8;
-						}
 						tmd = this.tilemapMap[i+(Math.min(y+1,this.tilemapHeight-1)-y)*this.tilemapWidth];
-						if (tmd == 'pla' || tmd == 'pl0') {
-							l+=1;
-						}
 						tmr = this.tilemapMap[i+(Math.min(x+1,this.tilemapWidth-1)-x)];
-						if (tmr == 'pla' || tmr == 'pl0') {
-							l+=4;
-							sprite.body.checkCollision.right = false;
-						}
 						tml = this.tilemapMap[i+(Math.max(x-1,0)-x)];
-						if (tml == 'pla' || tml == 'pl0') {
-							l+=2;
-							sprite.body.checkCollision.left = false;
-						}
-						sprite.frame = l;
+						var sprite = platforms.create(x*64, y*64, 'tiles');
+						sprite.body.checkCollision.down = false;
+						sprite.body.checkCollision.left = false;
+						sprite.body.checkCollision.right = false;
+						sprite.body.checkCollision.up = false;
+						sprite.frame = tmo;
 
-						if (tmd == 'pla' && y<this.tilemapHeight-1) {
-							sprite.body.checkCollision.left = false;
-							sprite.body.checkCollision.right = false;
+						if (Math.floor(tmo/2)%2 != 0) {
+							sprite.body.checkCollision.left = true;
+						}
+						if (Math.floor(tmo/4)%2 != 0) {
+							sprite.body.checkCollision.right = true;
+						}
+						if (Math.floor(tmo/8)%2 != 0) {
+							sprite.body.checkCollision.up = true;
 						}
 
 						sprite.scale.set(2,2);
