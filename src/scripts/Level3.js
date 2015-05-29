@@ -91,7 +91,7 @@ BasicGame.Level3.prototype = {
 		doors.enableBody = true;
 		var door;
 		{
-			door = doors.create(600-200, 220, 'door');
+			door = doors.create(600-200-64, 220, 'door');
 		}
 		doors.forEach(function(door) {
 			door.animations.add('anim', [], 10, true);
@@ -104,6 +104,12 @@ BasicGame.Level3.prototype = {
 			lum = lums.create(0, 0, 'lumming');
 			this.physics.arcade.enable(lum); //WARNING noter que cette ligne là doit se trouver avant les accès à "body.velocity"
 			lum.body.velocity.x = 100;
+			lum.collision = false;
+
+			lum = lums.create(10, 0, 'lumming');
+			this.physics.arcade.enable(lum); //WARNING noter que cette ligne là doit se trouver avant les accès à "body.velocity"
+			lum.body.velocity.x = 100;
+			lum.collision = true;
 		}
 		lums.forEach(function(lum) {
 			lum.animations.add('left', [4, 5, 6, 7], 10, true);
@@ -137,17 +143,19 @@ BasicGame.Level3.prototype = {
 
 function collision(lum,p) {
 	var tmo = p.frame;
-	if (Math.floor(tmo/2)%2 != 0) {
-		if (lum.body.velocity.x > 0) {
-			lum.body.velocity.x *= -1;
+	if (lum.collision) { //test stupide
+		if (Math.floor(tmo/2)%2 != 0) {
+			if (lum.body.velocity.x > 0) {
+				lum.body.velocity.x *= -1;
+			}
+			//sprite.body.checkCollision.left = true;
 		}
-		//sprite.body.checkCollision.left = true;
-	}
-	if (Math.floor(tmo/4)%2 != 0) {
-		if (lum.body.velocity.x < 0) {
-			lum.body.velocity.x *= -1;
+		if (Math.floor(tmo/4)%2 != 0) {
+			if (lum.body.velocity.x < 0) {
+				lum.body.velocity.x *= -1;
+			}
+			//sprite.body.checkCollision.right = true;
 		}
-		//sprite.body.checkCollision.right = true;
 	}
 	if (Math.floor(tmo/8)%2 != 0) {
 		if (lum.body.velocity.y > 0 && lum.body.position.y < p.body.position.y) { //peut etre renforcer la deuxieme condition
