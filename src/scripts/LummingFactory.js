@@ -1,6 +1,6 @@
 define(function(){
 
-	var Lumming = function(game, sprite, x, y, vitesseX) {
+	var Lumming = function(game, sprite, x, y, vitesseX, vision) {
 
 		Phaser.Sprite.call(this, game, x, y, sprite, [1]);
 		game.physics.arcade.enable(this);
@@ -13,6 +13,7 @@ define(function(){
 		this.animations.add('left', [4, 5, 6, 7], 10, true);
 		this.animations.add('right',  [8, 9, 10, 11], 10, true);
 		this.body.bounce.x = 1;
+	    this.vision = vision;
 
 	}
 
@@ -37,8 +38,8 @@ define(function(){
 			//_game.load.spritesheet('lumming_red','src/media/img/lumming_red.png', 32, 32 , 16);
 		}
 		,
-		create : function(sprite, x, y, vitesseX) {
-			return (new Lumming(_game, sprite, x, y, vitesseX));
+		create : function(sprite, x, y, vitesseX, vision) {
+			return (new Lumming(_game, sprite, x, y, vitesseX, vision));
 		},
 		
 		Lumming : Lumming
