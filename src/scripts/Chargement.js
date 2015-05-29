@@ -1,7 +1,8 @@
-define(['./Images', './Musiques'], function(Images, Musiques){
+define(['./Images', './Musiques', './MusicFactory'], function(Images, Musiques, MusicFactory){
 	var _game = null;
 	var _etapesuivante = null;
 	var _space = null;
+	var _music = null;
 
 
 	transition = function(){
@@ -10,13 +11,15 @@ define(['./Images', './Musiques'], function(Images, Musiques){
 
 	var _chargement = {
 		preload : function(){
+			_music = MusicFactory.create('Menu', 'src/media/audio/menu_music.ogg');
 
 		},
 
 		create : function(){
 			_space = _game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+			_music.play();
 			Images.boot().create();
-			Musiques.getmaintheme().create();
+		//	Musiques.getmaintheme().create();
 		},
 
 		update :function(){

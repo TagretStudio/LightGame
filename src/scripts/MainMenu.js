@@ -1,4 +1,4 @@
-define(['Images', 'Musiques'], function(Images, Musiques){
+define(['Images', 'Musiques','MusicFactory'], function(Images, Musiques, MusicFactory){
 	var _game = null;
 	var _etapesuivante = null;
 	var _pointLogo = null;
@@ -8,6 +8,7 @@ define(['Images', 'Musiques'], function(Images, Musiques){
 	var _buttonPlay = null;
 	var _buttonCredits = null;
 	var _buttonQuit = null;
+	var _music = null;
 
 	function actionPlay() {
 		_buttonPlay.kill();
@@ -26,13 +27,14 @@ define(['Images', 'Musiques'], function(Images, Musiques){
 
 	var _menu = {
 		preload : function(){
+			_music = MusicFactory.create('Menu', 'src/media/audio/menu_music.ogg');
 			_pointLogo = new Phaser.Point(234, 234);
 			_pointButtons = new Phaser.Point(380, 200);
 		},
 
 		create : function(){
 			Images.boot().create();
-			Musiques.getmaintheme().stop();
+			//Musiques.getmaintheme().stop();
 			_logo = _game.add.sprite(_pointLogo.x, _pointLogo.y, 'logo');
 			_logo.scale.set(800/1024, 600/768);
 
