@@ -10,7 +10,7 @@
             this.spriteName = 'platform';
         }
         Phaser.Sprite.call(this, game, x, y, sprite);
-		game.physics.arcade.enable(this);
+		//game.physics.arcade.enable(this);
         this.body.immovable = true;
     }
     

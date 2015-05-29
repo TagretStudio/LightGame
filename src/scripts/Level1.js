@@ -11,12 +11,13 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 //		var zizik = null;
 
 		preload : function(){
-			_game.load.image('platform', 'src/media/img/platform.png');
+			//_game.load.image('platform', 'src/media/img/platform.png');
 			_game.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
 			zizik = MusicFactory.create('Digital_Native', 'src/media/audio/Digital_Native.ogg');
 		//	zizik.preload('src/media/audio/menu_music.ogg');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
+			PlatformFactory.init(_game);
 		},
 		create : function(){
 			zizik.play();
@@ -27,11 +28,16 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			platforms = _game.add.group();
 			platforms.enableBody = true;
 			{
-				platforms.create(  0-200, 100, 'platform');
+				/*platforms.create(  0-200, 100, 'platform');
 				platforms.create(300-200, 200, 'platform');
 				platforms.create(600-200, 300, 'platform');
 				platforms.create(900-200, 280, 'platform');
+				*/
+				platform1 = PlatformFactory.create(0-200, 100, false);
 			}
+			platforms.add(platform1);
+			
+			
 			doors = this.add.group();
 			doors.enableBody = true;
 			var door;
@@ -43,7 +49,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				door.animations.play('anim');
 			});
 
-			platforms.forEach(function(p){p.body.immovable=true});
+			//platforms.forEach(function(p){p.body.immovable=true});
 			_groupLum = _game.add.group();
 
 			lum1 = VisibleLummingFactory.create('blue', 0, 0, 100);
