@@ -119,7 +119,6 @@ BasicGame.Level3.prototype = {
 
 	update: function () {
 		this.physics.arcade.collide(lums, doors, mayExit, null, this);
-		this.physics.arcade.collide(lums, platforms);
 		this.physics.arcade.overlap(lums, platforms, collision, null, this);
 
 		lums.forEach(
@@ -133,9 +132,7 @@ BasicGame.Level3.prototype = {
 				}
 			}
 		);
-
 	}
-
 };
 
 function collision(lum,p) {
@@ -151,5 +148,12 @@ function collision(lum,p) {
 			lum.body.velocity.x *= -1;
 		}
 		//sprite.body.checkCollision.right = true;
+	}
+	if (Math.floor(tmo/8)%2 != 0) {
+		if (lum.body.velocity.y > 0 && lum.body.position.y < p.body.position.y) { //peut etre renforcer la deuxieme condition
+			lum.body.velocity.y = 0;
+			lum.body.position.y = p.body.position.y - p.height/2;
+		}
+		//sprite.body.checkCollision.up = true;
 	}
 };
