@@ -9,7 +9,16 @@
         } else {
             this.spriteName = 'platform';
         }
-        
+        Phaser.Sprite.call(this, game, x, y, sprite);
+		game.physics.arcade.enable(this);
+        this.body.immovable = true;
+    }
+    
+    Platform.prototype = Object.create(Phaser.Sprite.prototype);
+    Platform.prototype.constructor = Platform;
+    
+    Platform.prototype.collide = function(game, objet) {
+        game.physics.arcade.collide(this, objet);
     }
     
     return {
