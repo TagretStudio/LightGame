@@ -28,17 +28,15 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			platforms = _game.add.group();
 			platforms.enableBody = true;
 			{
-				/*
-				platforms.create(  0-200, 100, 'platform');
-				platforms.create(300-200, 200, 'platform');
-				platforms.create(600-200, 300, 'platform');
-				platforms.create(900-200, 280, 'platform');
-				
-				platforms.forEach(function(p){p.body.immovable=true});
-				*/
-				platform1 = PlatformFactory.create(300-200, 200, false);
+				platform1 = PlatformFactory.create(-200, 100, false);
+				platform2 = PlatformFactory.create(100, 200, false);
+				platform3 = PlatformFactory.create(400, 300, false);
+				platform4 = PlatformFactory.create(700, 280, false);
 			}
 			platforms.add(platform1);
+			platforms.add(platform2);
+			platforms.add(platform3);
+			platforms.add(platform4);
 			
 			
 			doors = this.add.group();
