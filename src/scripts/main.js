@@ -1,6 +1,7 @@
 
 require(['./Chargement','./MainMenu', './PreChargement', './Level1'],function(Chargement, MainMenu, PreChargement, Level1){
 	var _game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
+
 	//  var _game = new Phaser.Game(1024, 768, Phaser.AUTO, 'game');
 
 	// boot state

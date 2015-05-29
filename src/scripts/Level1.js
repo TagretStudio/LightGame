@@ -1,5 +1,5 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory){
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory) {
 	var _game = null;
 	var _etapesuivante = null;
 	var platforms = null;
