@@ -41,7 +41,7 @@ define(function() {
 			7: {
 				name: "black",
 				value: 0x000000
-			},
+			}
 		}
 	});
 
