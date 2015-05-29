@@ -5,7 +5,6 @@ define(['LummingFactory'], function(LummingFactory) {
     var VisibleLumming = function(game, color, x, y, vitesseX) {
         this.color = color;
         this.spriteName = 'lumming_' + color;//color.name;
-        this.sprite = 'src/media/img/' + this.spriteName +'.png';
         LummingFactory.Lumming.call(this, game, this.spriteName, x, y, vitesseX);
     }
 
