@@ -20,14 +20,14 @@ define(function(){
 
   }
 
-  Music.prototype.stop = function(){
+  Music.prototype.stop = function(nextState){
     if (_music != null && _music.isPlaying == true) {
       _music.fadeOut(700);
       _music.onFadeComplete.dispatch();
-      /*music.onFadeComplete.dispatch();
-	     music.onFadeComplete.addOnce(function() {
+      /*music.onFadeComplete.dispatch();*/
+	_music.onFadeComplete.addOnce(function() {
 	    this.state.start(this.nextState);
-	   }, this);*/
+	}, this);
     }
   }
   return {
