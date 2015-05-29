@@ -13,8 +13,8 @@ define(function(){
 		this.animations.add('left', [4, 5, 6, 7], 10, true);
 		this.animations.add('right',  [8, 9, 10, 11], 10, true);
 		this.body.bounce.x = 1;
-	    this.vision = vision;
-
+		this.vision = vision;
+		this.frame = 0;
 	}
 
 	Lumming.prototype = Object.create(Phaser.Sprite.prototype);
