@@ -1,24 +1,27 @@
-define(['Images', 'Musiques', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum'],
-	   function(Images, Musiques, LummingFactory, VisibleLummingFactory, ColorEnum){
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory){
 	var _game = null;
 	var _etapesuivante = null;
 	var platforms = null;
 	var _groupLum = null;
 
-	var _level1 = {
+	var zizik = null;
 
+	var _level1 = {
+//		var zizik = null;
 
 		preload : function(){
 			_game.load.image('platform', 'src/media/img/platform.png');
 			_game.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
-
+			zizik = MusicFactory.create('Digital_Native', 'src/media/audio/Digital_Native.ogg');
+		//	zizik.preload('src/media/audio/menu_music.ogg');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
 		},
 		create : function(){
-
+			zizik.play();
 			Images.boot().create();
-			Musiques.getmaintheme().create();
+		//	Musiques.getmaintheme().create();
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			platforms = _game.add.group();

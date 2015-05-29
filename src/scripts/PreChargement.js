@@ -1,4 +1,4 @@
-define(['./Images', './Musiques'], function(Images, Musiques){
+define(['./Images', './Musiques', 'MusicFactory'], function(Images, Musiques, MusicFactory){
 	var _game = null;
 	var _etapesuivante = null;
 
@@ -7,6 +7,8 @@ define(['./Images', './Musiques'], function(Images, Musiques){
 		preload : function(){
 			Images.init(_game);
 			Images.boot().preload();
+			MusicFactory.init(_game);
+
 			Musiques.init(_game);
 			Musiques.getmaintheme().preload();
 		}
