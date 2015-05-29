@@ -1,4 +1,4 @@
-define(['./Images', './Musiques', './MusicFactory'], function(Images, Musiques, MusicFactory){
+define(['./Images', './Musiques', './MusicFactory' ,'./MainMenu'], function(Images, Musiques, MusicFactory, MainMenu){
 	var _game = null;
 	var _etapesuivante = null;
 	var _space = null;
@@ -12,6 +12,7 @@ define(['./Images', './Musiques', './MusicFactory'], function(Images, Musiques, 
 	var _chargement = {
 		preload : function(){
 			_music = MusicFactory.create('Menu', 'src/media/audio/menu_music.ogg');
+			MainMenu.setMusic(_music);
 
 		},
 

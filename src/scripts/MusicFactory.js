@@ -25,9 +25,9 @@ define(function(){
       _music.fadeOut(700);
       _music.onFadeComplete.dispatch();
       /*music.onFadeComplete.dispatch();*/
-	_music.onFadeComplete.addOnce(function() {
-	    this.state.start(this.nextState);
-	}, this);
+	     _music.onFadeComplete.addOnce(function() {
+	    _game.state.start(nextState);
+	}, _game);
     }
   }
   return {

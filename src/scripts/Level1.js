@@ -13,7 +13,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		preload : function(){
 			//_game.load.image('platform', 'src/media/img/platform.png');
 			_game.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
-			zizik = MusicFactory.create('Digital_Native', 'src/media/audio/Digital_Native.ogg');
+			zizik = MusicFactory.create('level1', 'src/media/audio/Level 1.ogg');
 		//	zizik.preload('src/media/audio/menu_music.ogg');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);

@@ -12,29 +12,35 @@ define(['Images', 'Musiques','MusicFactory'], function(Images, Musiques, MusicFa
 
 	function actionPlay() {
 		_buttonPlay.kill();
-		_game.state.start('Level1');
+		background2 = _game.add.sprite(0, 0, 'preloaderBackground');
+		logo = _game.add.sprite(184, 265, 'logo');
+		_music.stop(_etapesuivante);
 	}
 
 	function actionCredits(){
 		_buttonCredits.kill();
-		_game.state.start('Level1');
+		background2 = _game.add.sprite(0, 0, 'preloaderBackground');
+		logo = _game.add.sprite(184, 265, 'logo');
+		_music.stop(_etapesuivante);
+
 	}
 
 	function actionQuit(){
 		_buttonQuit.kill();
-		_game.state.start('Level1');
+		background2 = _game.add.sprite(0, 0, 'preloaderBackground');
+	  logo = _game.add.sprite(184, 265, 'logo');
+		_music.stop(_etapesuivante);
+
 	}
 
 	var _menu = {
 		preload : function(){
-			_music = MusicFactory.create('Menu', 'src/media/audio/menu_music.ogg');
 			_pointLogo = new Phaser.Point(234, 234);
 			_pointButtons = new Phaser.Point(380, 200);
 		},
 
 		create : function(){
 			Images.boot().create();
-			//Musiques.getmaintheme().stop();
 			_logo = _game.add.sprite(_pointLogo.x, _pointLogo.y, 'logo');
 			_logo.scale.set(800/1024, 600/768);
 
@@ -61,6 +67,10 @@ define(['Images', 'Musiques','MusicFactory'], function(Images, Musiques, MusicFa
 		init : function(game, etapesuivante){
 			_game = game;
 			_etapesuivante = etapesuivante;
+		},
+
+		setMusic : function(music){
+			_music = music ;
 		},
 
 		getMainMenu : function(){
