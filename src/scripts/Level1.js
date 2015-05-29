@@ -26,14 +26,17 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			platforms = _game.add.group();
-			platforms.enableBody = true;
+			//platforms.enableBody = true;
 			{
-				/*platforms.create(  0-200, 100, 'platform');
+				/*
+				platforms.create(  0-200, 100, 'platform');
 				platforms.create(300-200, 200, 'platform');
 				platforms.create(600-200, 300, 'platform');
 				platforms.create(900-200, 280, 'platform');
+				
+				platforms.forEach(function(p){p.body.immovable=true});
 				*/
-				platform1 = PlatformFactory.create(0-200, 100, false);
+				platform1 = PlatformFactory.create(300-200, 200, false);
 			}
 			platforms.add(platform1);
 			
@@ -49,7 +52,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				door.animations.play('anim');
 			});
 
-			//platforms.forEach(function(p){p.body.immovable=true});
 			_groupLum = _game.add.group();
 
 			lum1 = VisibleLummingFactory.create('blue', 0, 0, 100);

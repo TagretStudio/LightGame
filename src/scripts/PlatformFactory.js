@@ -17,9 +17,9 @@
     Platform.prototype = Object.create(Phaser.Sprite.prototype);
     Platform.prototype.constructor = Platform;
     
-    Platform.prototype.collide = function(game, objet) {
-        game.physics.arcade.collide(this, objet);
-    }
+    //Platform.prototype.collide = function(game, objet) {
+      //  game.physics.arcade.collide(this, objet);
+    //}
     
     return {
         init : function(game) {
@@ -28,7 +28,7 @@
         },
         
         create : function(x, y, isPb) {
-            return (new Lumming(_game, x, y, isPb));
+            return (new Platform(_game, x, y, isPb));
         }
     }
  })
