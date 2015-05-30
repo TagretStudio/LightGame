@@ -1,6 +1,8 @@
-define(['LummingFactory', 'ColorEnum'], function(LummingFactory, ColorEnum) {
+define(['LummingFactory', 'ColorEnum', 'VisionEnum'],
+       function(LummingFactory, ColorEnum, VisionEnum) {
 
     var _game = null;
+    var _vision = null;
 
     var VisibleLumming = function(game, color, x, y, vitesseX) {
         this.color = color;
@@ -15,6 +17,7 @@ define(['LummingFactory', 'ColorEnum'], function(LummingFactory, ColorEnum) {
     return {
         init: function(game) {
             _game = game;
+            _vision = VisionEnum.getVisionEnum().VISIBLE;
             LummingFactory.init(_game);
             _game.load.spritesheet('lumming_black', 'src/media/img/lumming_black.png', 32, 32, 16);
             _game.load.spritesheet('lumming_blue', 'src/media/img/lumming_blue.png', 32, 32, 16);

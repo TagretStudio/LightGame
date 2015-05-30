@@ -1,6 +1,8 @@
-define(['LummingFactory'], function(LummingFactory) {
+define(['LummingFactory', 'VisionEnum'],
+	   function(LummingFactory, VisionEnum) {
 
     var _game = null;
+	var _vision = null;
 
     var RadioLumming = function(game, x, y, vitesseX) {
 	this.sprite = 'src/media/img/lumming_radio';
@@ -14,6 +16,7 @@ define(['LummingFactory'], function(LummingFactory) {
     return {
         init: function(game) {
             _game = game;
+			_vision = VisionEnum.getVisionEnum().INFRA;
             LummingFactory.init(_game);
 	    _game.load.spritesheet('lumming_radio', 'src/media/img/lumming_radio.png', 32, 32, 16);
 	},

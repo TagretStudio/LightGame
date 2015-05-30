@@ -35,7 +35,7 @@ define(function(){
 	return{
 		init : function(game) {
 			_game = game;
-			//_game.load.spritesheet('lumming_red','src/media/img/lumming_red.png', 32, 32 , 16);
+			_game.load.spritesheet('lumming_invisible','src/media/img/lumming_invisible.png', 32, 32 , 16);
 		}
 		,
 		create : function(sprite, x, y, vitesseX, vision) {
