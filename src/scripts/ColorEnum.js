@@ -52,6 +52,10 @@ define(function() {
 		
 		getName: function(colorCode) {
 			return ColorEnum.properties[colorCode].name;
+		},
+		
+		getValue: function(colorCode) {
+			return ColorEnum.properties[colorCode].value;
 		}
 	}
 

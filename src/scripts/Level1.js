@@ -4,7 +4,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _etapesuivante = null;
 	var _groupPlatforms = null;
 	var _groupLum = null;
-	var _groupdoors = null;
+	var _groupDoors = null;
 	var zizik = null;
 
 	var _level1 = {
@@ -12,7 +12,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 		preload : function(){
 			//_game.load.image('platform', 'src/media/img/platform.png');
-			_game.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
+			//_game.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
 			zizik = MusicFactory.create('level1', 'src/media/audio/Level 1.ogg');
 		//	zizik.preload('src/media/audio/menu_music.ogg');
 		//	Lumming.init(_game);
@@ -41,7 +41,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 
 
-
+/*
 			doors = this.add.group();
 			doors.enableBody = true;
 			var door;
@@ -52,20 +52,26 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				door.animations.add('anim', [], 10, true);
 				door.animations.play('anim');
 			});
+	*/			
+			_groupDoors = _game.add.group();
+			_groupDoors.enableBody = true;
+			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 400, 100);
+			door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 200, 400);
+			_groupDoors.add(door1);
+			_groupDoors.add(door2);
+			
 
 			_groupLum = _game.add.group();
 
 			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 0, 0, 100);
 			lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 100, 0, -200);
 			lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 0, -100);
-			_groupdoors = this.add.group();
-			door1 = DoorsFactory.create('red', 400, 100);
-			door2 = DoorsFactory.create('yellow', 0, 400);
-			_groupdoors.add(door1);
-			_groupdoors.add(door2);
+			
 			_groupLum.add(lum1);
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
+
+
 
 			_game.startText = _game.add.text(0, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
@@ -81,7 +87,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 						p.update();
 					}
 					)
-				_groupdoors.forEach(
+				_groupDoors.forEach(
 					function(p){
 						p.update();
 					}

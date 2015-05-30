@@ -1,10 +1,10 @@
-define(['Items'], function(Items) {
+define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
   var _game = null;
 
   var Doors = function(color, x, y){
     this.color = color;
 
-    this.spriteName = 'door_' + color;
+    this.spriteName = 'door_' + ColorEnum.getName(color);
     Items.Item.call(this, this.spriteName, x, y);
     this.body.setSize(32, 32);
     this.animations.add('animDoor', [], 10, true);
