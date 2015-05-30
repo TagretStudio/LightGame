@@ -2,7 +2,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory) {
 	var _game = null;
 	var _etapesuivante = null;
-	var platforms = null;
+	var _groupPlatforms = null;
 	var _groupLum = null;
 	var _groupdoors = null;
 	var zizik = null;
@@ -26,18 +26,18 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		//	Musiques.getmaintheme().create();
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 
-			platforms = _game.add.group();
-			platforms.enableBody = true;
+			_groupPlatforms = _game.add.group();
+			_groupPlatforms.enableBody = true;
 			{
 				platform1 = PlatformFactory.create(-200, 100, false);
 				platform2 = PlatformFactory.create(100, 200, false);
 				platform3 = PlatformFactory.create(400, 300, false);
 				platform4 = PlatformFactory.create(700, 280, false);
 			}
-			platforms.add(platform1);
-			platforms.add(platform2);
-			platforms.add(platform3);
-			platforms.add(platform4);
+			_groupPlatforms.add(platform1);
+			_groupPlatforms.add(platform2);
+			_groupPlatforms.add(platform3);
+			_groupPlatforms.add(platform4);
 
 
 
@@ -75,7 +75,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		},
 		update : function(){
 
-			_game.physics.arcade.collide(_groupLum, platforms);
+			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_groupLum.forEach(
 					function(p){
 						p.update();
