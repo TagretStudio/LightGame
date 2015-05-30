@@ -1,5 +1,5 @@
-define(['LummingFactory', 'ColorEnum', 'VisionEnum'],
-       function(LummingFactory, ColorEnum, VisionEnum) {
+define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory'],
+       function(LummingFactory, ColorEnum, VisionEnum, DoorsFactory) {
 
     var _game = null;
     var _vision = null;
@@ -8,11 +8,23 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum'],
         this.color = color;
         this.spriteName = 'lumming_' + ColorEnum.getName(color);
         LummingFactory.Lumming.call(this, game, this.spriteName, x, y, vitesseX, 'visible');
+        this.animations.add('kill', [1, 4, 15, 11, 1], 10, true);
+
     }
 
     VisibleLumming.prototype = Object.create(LummingFactory.Lumming.prototype);
 
     VisibleLumming.prototype.constructor = VisibleLumming;
+
+    VisibleLumming.prototype.collideWithDoor = function(door){
+        if (this.color == door.color){
+          this.body.velocity.x = 0;
+          this.animations.play('kill');
+          this.kill();
+          return 1;
+        }
+        return 0;
+    }
 
     return {
         init: function(game) {

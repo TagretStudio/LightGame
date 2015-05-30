@@ -1,20 +1,20 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory'],
 	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory) {
 	var _game = null;
+	var _nbLummingsV = 0;
+	var _nbLummingsSaved = 0;
 	var _etapesuivante = null;
 	var _groupPlatforms = null;
 	var _groupLum = null;
 	var _groupDoors = null;
 	var zizik = null;
-
+	var text = null;
 	var _level1 = {
 //		var zizik = null;
 
 		preload : function(){
-			//_game.load.image('platform', 'src/media/img/platform.png');
-			//_game.load.spritesheet('door', 'src/media/img/door_red.png', 32, 32);
+
 			zizik = MusicFactory.create('level1', 'src/media/audio/Level 1.ogg');
-		//	zizik.preload('src/media/audio/menu_music.ogg');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
@@ -40,33 +40,25 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupPlatforms.add(platform4);
 
 
-
-/*
-			doors = this.add.group();
-			doors.enableBody = true;
-			var door;
-			{
-				door = doors.create(600-200, 270, 'door');
-			}
-			doors.forEach(function(door) {
-				door.animations.add('anim', [], 10, true);
-				door.animations.play('anim');
-			});
-	*/			
 			_groupDoors = _game.add.group();
 			_groupDoors.enableBody = true;
-			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 400, 100);
-			door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 200, 400);
+			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 0, 570);
+			door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 600, 570);
 			_groupDoors.add(door1);
 			_groupDoors.add(door2);
-			
+
 
 			_groupLum = _game.add.group();
 
-			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 0, 0, 100);
-			lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 100, 0, -200);
+			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 100);
+			lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 100, 0, -200);
 			lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 0, -100);
-			
+			 _nbLummingsV = 3;
+			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {
+        align: "center"
+    });
+
+
 			_groupLum.add(lum1);
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
@@ -82,6 +74,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		update : function(){
 
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
+			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_groupLum.forEach(
 					function(p){
 						p.update();
@@ -93,11 +86,22 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 					}
 				)
 
+			if (_nbLummingsV == _nbLummingsSaved) {
+				_etapesuivante = 'MainMenu';
+				zizik.stop(_etapesuivante);
+			}
 		}
 
-
-
 	}
+
+	function mayExit(lum, door){
+		var exit = lum.collideWithDoor(door);
+		if (exit == 1){
+			_nbLummingsSaved = _nbLummingsSaved +1;
+			text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
+		}
+	}
+
 
 	return{
 		init : function(game, etapesuivante){
