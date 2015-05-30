@@ -1,10 +1,10 @@
-define(['LummingFactory'], function(LummingFactory) {
+define(['LummingFactory', 'ColorEnum'], function(LummingFactory, ColorEnum) {
 
     var _game = null;
 
     var VisibleLumming = function(game, color, x, y, vitesseX) {
         this.color = color;
-        this.spriteName = 'lumming_' + color;//color.name;
+        this.spriteName = 'lumming_' + ColorEnum.getName(color);
         LummingFactory.Lumming.call(this, game, this.spriteName, x, y, vitesseX, 'visible');
     }
 

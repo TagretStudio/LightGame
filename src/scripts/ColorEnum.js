@@ -1,7 +1,6 @@
 define(function() {
 
 	var ColorEnum = Object.freeze({
-		WHITE: 0,
 		RED: 1,
 		GREEN: 2,
 		BLUE: 3,
@@ -9,11 +8,8 @@ define(function() {
 		YELLOW: 5,
 		CYAN: 6,
 		BLACK: 7,
+		WHITE: 8,
 		properties: {
-			0: {
-				name: "white",
-				value: 0xffffff
-			},
 			1: {
 				name: "red",
 				value: 0xff0000
@@ -41,13 +37,21 @@ define(function() {
 			7: {
 				name: "black",
 				value: 0x000000
+			},
+			8: {
+				name: "white",
+				value: 0xffffff
 			}
 		}
 	});
 
 	return{
-		getColorEnum : function(){
+		getColorEnum: function() {
 			return ColorEnum;
+		},
+		
+		getName: function(colorCode) {
+			return ColorEnum.properties[colorCode].name;
 		}
 	}
 

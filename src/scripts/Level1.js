@@ -55,9 +55,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_groupLum = _game.add.group();
 
-			lum1 = VisibleLummingFactory.create('blue', 0, 0, 100);
-			lum2 = VisibleLummingFactory.create('red', 100, 0, -200);
-			lum3 = VisibleLummingFactory.create('yellow', 500, 0, -100);
+			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 0, 0, 100);
+			lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 100, 0, -200);
+			lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 0, -100);
 			_groupdoors = this.add.group();
 			door1 = DoorsFactory.create('red', 400, 100);
 			door2 = DoorsFactory.create('yellow', 0, 400);
