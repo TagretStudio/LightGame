@@ -6,6 +6,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _etapesuivante = null;
 	var _groupPlatforms = null;
 	var _groupLum = null;
+	       var _groupLol = null;
 	var _groupDoors = null;
 	var zizik = null;
 	var text = null;
@@ -33,12 +34,31 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				platform2 = PlatformFactory.create(100, 200, false);
 				platform3 = PlatformFactory.create(400, 300, false);
 				platform4 = PlatformFactory.create(700, 280, false);
+			    //TEST DRAG&DROP
+			    //platform5 = PlatformFactory.create(200, 300, false);
+			    //platform5.inputEnabled = true;
+			    //platform5.input.enableDrag();
+			    //platform5.events.onDragStart.add(startDrag, _game);
+			    //platform5.events.onDragStop.add(stopDrag, _game);
+			    //
+
 			}
 			_groupPlatforms.add(platform1);
 			_groupPlatforms.add(platform2);
 			_groupPlatforms.add(platform3);
 			_groupPlatforms.add(platform4);
 
+		    //TEST DRAG&DROP
+		    	_groupLol = _game.add.group();
+			_groupLol.enableBody = true;
+		    lol1 = PlatformFactory.create(-200, 100, false);
+		    lol2 = PlatformFactory.create(100, 200, false);
+		    lol3 = PlatformFactory.create(400, 300, false);
+		    lol4 = PlatformFactory.create(700, 280, false);
+		    _groupLol.add(lol1);
+		    _groupLol.add(lol2);
+		    _groupLol.add(lol3);
+		    _groupLol.add(lol4);
 
 			_groupDoors = _game.add.group();
 			_groupDoors.enableBody = true;
@@ -50,7 +70,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_groupLum = _game.add.group();
 
-			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 100);
+			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 0);
+		    //TEST DRAG&DROP
+		    lum1.inputEnabled = true;
+		    lum1.input.enableDrag();
+		    lum1.events.onDragStop.add(stopDrag, _game);
+		    //
 			lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 100, 0, -200);
 			lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 0, -100);
 			 _nbLummingsV = 3;
@@ -62,6 +87,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupLum.add(lum1);
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
+
 
 
 
@@ -102,6 +128,20 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		}
 	}
 
+	       //TEST DRAG&DROP
+	       function startDrag() {
+		   var initial = getLocalPosition(platform5, game);
+	       }
+
+	       function stopDrag() {
+		   _game.physics.arcade.overlap(lum1, _groupLol, setInitialPosition, null, _game);
+	       }
+
+	       function setInitialPosition(lum) {
+		   lum.position.x = 0;
+		   lum.position.y = 0;
+	       }
+	       //
 
 	return{
 		init : function(game, etapesuivante){
