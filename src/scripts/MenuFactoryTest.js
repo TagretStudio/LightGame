@@ -31,6 +31,11 @@ define(function() {
 
 
     miroirV = _game.add.sprite(700, 536, 'mirroirV');
+    miroirV.inputEnabled = true;
+    miroirV.input.enableDrag();
+    miroirH.inputEnabled = true;
+    miroirH.input.enableDrag();
+
   //  this.groupInfra.add(miroirV);
   //  this.groupSupra.add(miroirV);
   //  this.groupVisible.add(miroirV);
@@ -38,24 +43,27 @@ define(function() {
 
   //antenes
     aerialRight = _game.add.sprite(410, 536, 'aerialRight');
-    this.groupSupra.add(aerialRight);
     aerialLeft = _game.add.sprite(170, 536, 'aerialLeft');
     this.groupSupra.add(aerialLeft);
+    this.groupSupra.add(aerialRight);
+
 
 
     //visibles
 
     red = _game.add.sprite(230, 536, 'red');
-    this.groupVisible.add(red);
-    green = _game.add.sprite(270, 536, 'green');
-    this.groupVisible.add(green);
     blue = _game.add.sprite(310, 536, 'blue');
-    this.groupVisible.add(blue);
+    green = _game.add.sprite(270, 536, 'green');
     magenta = _game.add.sprite(470, 536, 'magenta');
-    this.groupVisible.add(magenta);
     cyan = _game.add.sprite(510, 536, 'cyan');
-    this.groupVisible.add(cyan);
+
+
     yellow = _game.add.sprite(550, 536, 'yellow');
+    this.groupVisible.add(red);
+    this.groupVisible.add(blue);
+    this.groupVisible.add(green);
+    this.groupVisible.add(cyan);
+    this.groupVisible.add(magenta);
     this.groupVisible.add(yellow);
 
 
@@ -63,16 +71,21 @@ define(function() {
     this.groupInfra.forEach(
       function(p){
         p.exists = false;
+        p.inputEnabled = true;
+        p.input.enableDrag();
       }
     )
     this.groupSupra.forEach(
       function(p){
       p.exists = false;
+      p.inputEnabled = true;
+      p.input.enableDrag();
       })
       this.groupVisible.forEach(
         function(p){
           p.exists = true;
-          p.bringToTop();
+          p.inputEnabled = true;
+          p.input.enableDrag();
         }
       )
 
@@ -95,7 +108,6 @@ define(function() {
      this.groupInfra.forEach(
        function(p){
          p.exists = true;
-         p.bringToTop();
        }
      )
    }
@@ -116,7 +128,6 @@ define(function() {
        this.groupSupra.forEach(
          function(p){
            p.exists =true;
-           p.bringToTop();
          })
    }
 
@@ -135,7 +146,6 @@ define(function() {
      this.groupVisible.forEach(
         function(p){
          p.exists = true;
-         p.bringToTop();
        }
      )
    }

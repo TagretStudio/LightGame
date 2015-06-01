@@ -60,11 +60,11 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupDoors.add(door2);
 			_groupLum = _game.add.group();
 
-			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 500);
+			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 200);
 
 		    //
 			lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 100, 0, -200);
-			lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 0, -100);
+			lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 0, 0);
 			 _nbLummingsV = 3;
 			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 
@@ -72,7 +72,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupLum.add(lum1);
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
-			_menuNiveau.toInfra();
+			_menuNiveau.toSupra();
 
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
@@ -81,7 +81,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 		},
 		update : function(){
-			_menuNiveau.toSupra();	
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_groupLum.forEach(
@@ -106,6 +105,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_nbLummingsSaved = _nbLummingsSaved +1;
 			text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 		}
+		_menuNiveau.toVisible();
+
 	}
 
 
