@@ -1,5 +1,5 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'Transition'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, Transition) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'Transition', 'MenuFactoryTest'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, Transition, MenuFactoryTest) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -11,23 +11,24 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _groupDoors = null;
 	var _music = null;
 	var text = null;
+	var _menuNiveau = null;
 
-	var _level1 = {
+	var _level2 = {
 
 		preload : function(){
 
 			_music = MusicFactory.create('level1', 'src/media/audio/Level 1.ogg');
-		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
 			DoorsFactory.init(_game);
-
+			MenuFactoryTest.init(_game);
 		},
 		create : function(){
 			_nbLummingsSaved = 0;
-
 			_music.play();
 			Images.boot().create();
+			_menuNiveau = MenuFactoryTest.create();
+
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			_groupPlatforms = _game.add.group();
@@ -37,9 +38,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				platform2 = PlatformFactory.create(100, 200, false);
 				platform3 = PlatformFactory.create(400, 300, false);
 				platform4 = PlatformFactory.create(700, 280, false);
-			    platform5 = PlatformFactory.create(0, 504, false);
-			    platform6 = PlatformFactory.create(400, 504, false);
-
+			  platform5 = PlatformFactory.create(0, 504, false);
+			  platform6 = PlatformFactory.create(400, 504, false);
 			}
 			_groupPlatforms.add(platform1);
 			_groupPlatforms.add(platform2);
@@ -116,7 +116,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_etapesuivante = etapesuivante;
 		},
 		getLevel2 : function(){
-			return _level1;
+			return _level2;
 		}
 	}
 

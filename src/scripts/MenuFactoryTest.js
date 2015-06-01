@@ -1,6 +1,18 @@
 define(function() {
    var _game = null;
 
+   var Menu = function(){
+     this.vision = null;
+     regX = 64; // coordonnee X du MILIEU de la reglette
+     regY = _game.world.height-64-16;
+    this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
+
+
+
+   }
+   Menu.prototype.constructor = Menu;
+   Menu.prototype = Object.create(Phaser.Sprite.prototype);
+
 
    return {
      init : function(game){
@@ -30,7 +42,9 @@ define(function() {
        _game.load.image('plombCarre', 'src/media/img/plombCarre.png');
        _game.load.image('plombHorizontal', 'src/media/img/plombOrizontal.png');
        _game.load.image('plombVertical', 'src/media/img/plombVertical.png');
-
+     },
+     create : function(){
+       return (new Menu());
      }
    }
  })
