@@ -6,6 +6,13 @@ define(function() {
      regX = 64; // coordonnee X du MILIEU de la reglette
      regY = _game.world.height-64-16;
     this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
+    this.reglette = _game.add.sprite(regX, regY, 'Reg');
+    this.reglette.inputEnabled = true;
+		this.reglette.input.enableDrag();
+		this.reglette.input.allowVerticalDrag = false;
+		this.reglette.held = false;
+
+
     this.groupVisible = _game.add.group();
     this.groupInfra = _game.add.group();
     this.groupSupra = _game.add.group();
