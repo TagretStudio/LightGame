@@ -1,0 +1,95 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8" />
+<title>RegletteTest</title>
+<script type="text/javascript" src="js/phaser.min.js"></script>
+<style type="text/css">
+body {
+	margin: 0;
+}
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+	game.load.image('crate', 'assets/block.png');
+}
+
+var reglette;
+var regdist = 128;
+var regX = 128; // coordonnee X du MILIEU de la reglette
+var regY = 0;
+var RM1; //menu reglette 1
+var RM2;
+var RM3;
+var regBounds = new Phaser.Rectangle(0,0, regdist*2, 64);
+
+function create() {
+	reglette = game.add.sprite(regX, regY, 'crate');
+	reglette.inputEnabled = true;
+	reglette.input.enableDrag();
+	reglette.input.allowVerticalDrag = false;
+	reglette.held = false;
+	RM1 = game.add.group();
+	{
+		RM1.create(10, game.world.height, 'crate');
+	} RM1.forEach(hiddenPos);
+	RM2 = game.add.group();
+	{
+		RM2.create(50, game.world.height, 'crate');
+	} RM2.forEach(hiddenPos);
+	RM3 = game.add.group();
+	{
+		RM3.create(90, game.world.height, 'crate');
+	} RM3.forEach(hiddenPos);
+}
+
+function hiddenPos(b) {
+	b.wishedPos = game.world.height;
+}
+
+function deployedPos(b) {
+	b.wishedPos = game.world.height-64;
+}
+
+function moveIfNeeded(b) {
+	b.y += (b.wishedPos-b.y)/4;
+}
+
+
+function update() {
+	var rX = reglette.x;
+	if (!reglette.input.isDragged) {
+		if (rX < regX-regdist/3) {
+			RM1.forEach(deployedPos);
+			RM2.forEach(hiddenPos);
+			RM3.forEach(hiddenPos);
+			rX += ((regX-regdist*2/3)-rX)/4;
+		} else if (rX > regX+regdist/3) {
+			RM1.forEach(hiddenPos);
+			RM2.forEach(hiddenPos);
+			RM3.forEach(deployedPos);
+			rX += ((regX+regdist*2/3)-rX)/4;
+		} else {
+			RM1.forEach(hiddenPos);
+			RM2.forEach(deployedPos);
+			RM3.forEach(hiddenPos);
+			rX += (regX-rX)/4;
+		}
+	}
+	reglette.x = rX;
+
+	RM1.forEach(moveIfNeeded);
+	RM2.forEach(moveIfNeeded);
+	RM3.forEach(moveIfNeeded);
+}
+
+</script>
+
+</body>
+</html>
