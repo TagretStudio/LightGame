@@ -20,6 +20,7 @@ return{
       //music.onFadeComplete.dispatch();
       music.fadeOut();
       _game.time.events.add(2000, function() {
+            music.stop();
              _game.state.start(nextState);
            }, _game);
     }
