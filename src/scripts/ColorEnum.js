@@ -66,7 +66,7 @@ define(function() {
 			12: {
 				name: "radio",
 				value: 0x000000
-			},
+			}
 
 		}
 	});
