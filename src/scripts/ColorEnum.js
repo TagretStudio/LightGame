@@ -9,6 +9,13 @@ define(function() {
 		CYAN: 6,
 		BLACK: 7,
 		WHITE: 8,
+
+		GAMMA: 9,
+		X: 10,
+
+		MICRO: 11,
+		RADIO: 12,
+
 		properties: {
 			1: {
 				name: "red",
@@ -41,7 +48,26 @@ define(function() {
 			8: {
 				name: "white",
 				value: 0xffffff
-			}
+			},
+
+			9: {
+				name: "gamma",
+				value: 0x000000
+			},
+			10: {
+				name: "X",
+				value: 0x000000
+			},
+
+			11: {
+				name: "micro",
+				value: 0x000000
+			},
+			12: {
+				name: "radio",
+				value: 0x000000
+			},
+
 		}
 	});
 
