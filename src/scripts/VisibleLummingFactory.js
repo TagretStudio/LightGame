@@ -25,6 +25,10 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory'],
         }
         return 0;
     }
+    
+    VisibleLumming.prototype.update = function(currentVision) {
+        LummingFactory.Lumming.prototype.update.call(this, currentVision);
+    }
 
     return {
         init: function(game) {
