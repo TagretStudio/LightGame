@@ -1,5 +1,7 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory) {
+
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory', 'VisionEnum'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory, VisionEnum) {
+
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -10,7 +12,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _groupDoors = null;
 	var zizik = null;
 	var text = null;
-	       var menu = null;
+	var menu = null;
+	var _currentVision = null;
+	
 	var _level1 = {
 //		var zizik = null;
 
@@ -28,6 +32,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			zizik.play();
 			Images.boot().create();
+			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 		//	Musiques.getmaintheme().create();
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -80,7 +85,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_groupLum = _game.add.group();
 
-			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 0);
+			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 0, 0, 0);
 		    //TEST DRAG&DROP
 		    lum1.inputEnabled = true;
 		    lum1.input.enableDrag();
@@ -113,15 +118,13 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_groupLum.forEach(
-					function(p){
-						p.update();
-					}
-					)
-				_groupDoors.forEach(
-					function(p){
-						p.update();
-					}
-				)
+				function(p){
+					p.update(_currentVision);
+				})
+			_groupDoors.forEach(
+				function(p){
+					p.update();
+				})
 
 			if (_nbLummingsV == _nbLummingsSaved) {
 				_etapesuivante = 'MainMenu';
