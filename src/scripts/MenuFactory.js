@@ -2,9 +2,10 @@
     
     var _game = null;
     
-    var Menu = function(game /*vision*/) {
-        Phaser.Sprite.call(this, game, 0, 504, 'menu');
-	//game.physics.arcade.enable(this);
+//Argument Vision
+    var Menu = function(game) {
+        Phaser.Sprite.call(this, game, 0, 504, 'menuBlack');
+	game.physics.arcade.enable(this);
         this.body.immovable = true;
    }
     
@@ -14,12 +15,12 @@
     return {
         init : function(game) {
             _game = game;
-            _game.load.image('menu', 'src/media/img/simpleMenu.png');
+            _game.load.image('menuBlack', 'src/media/img/simpleMenu.png');
 			
         },
         
-        create : function(/*vision*/) {
-	        return (new Menu(_game /*vision*/));
+        create : function() {
+	        return (new Menu(_game));
         }
     }
  })	
