@@ -2,7 +2,7 @@ define(['Items', 'VisionEnum'], function(Items, VisionEnum) {
 	
 	var _game = null;
 	
-	var Filter = function(color, x, y) {
+	var Miroir = function(x, y, isVertical) {
 		this.color = color;
 		if (ColorEnum.getName(color) == ColorEnum.getColorEnum().RED
 			|| ColorEnum.getName(color) == ColorEnum.getColorEnum().GREEN
@@ -19,19 +19,15 @@ define(['Items', 'VisionEnum'], function(Items, VisionEnum) {
 		this.frame = 0;
 	}
 	
-	Filter.prototype = Object.create(Items.Item.prototype);
-	Filter.prototype.constructor = Filter;
+	Miroir.prototype = Object.create(Items.Item.prototype);
+	Miroir.prototype.constructor = Filter;
 	
-	Filter.prototype.update = function() {
+	Miroir.prototype.update = function() {
 		this.animations.play('animFilter');
 	}
 	
-	Filter.prototype.isAdditive = function() {
-		return this.isAdditive;
-	}
-	
-	Filter.prototype.getColor = function() {
-		return this.color;
+	Miroir.prototype.isVertical = function() {
+		return this.isVertical;
 	}
 	
 	return {
@@ -46,17 +42,13 @@ define(['Items', 'VisionEnum'], function(Items, VisionEnum) {
 			_game.load.spritesheet('filter_yellow', 'src/media/img/filter_yellow.png', 32, 32, 11);
 		},
 		
-		create: function(color, x, y) {
-			return (new Filter(color, x, y));
+		create: function(x, y, isVertical) {
+			return (new Miroir(x, y, isVertical));
 		},
 		
-		isAdditive: function() {
-			return isAdditive();
+		isVertical: function() {
+			return isVertical();
 		},
-		
-		getColorValue: function() {
-			return ColorEnum.getValue(getColor);
-		}
 	}
 	
 })
