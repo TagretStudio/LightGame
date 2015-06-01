@@ -7,25 +7,38 @@ define(function(){
     this.url = url;
 
     _game.load.audio(this.key, this.url);
-    _music = null;
+    this.music = null;
 
   }
   Music.prototype= Object.create(Music.prototype);
   Music.prototype.constructor = Music;
 
+  Music.prototype.isPlaying = function(){
+    return (this.music.isPlaying == true);
+  }
+
   Music.prototype.play = function(){
-    _music = _game.add.audio(this.key);
-    _music.loop  = true;
-    _music.play();
+    this.music = _game.add.audio(this.key);
+    this.music.loop  = true;
+    this.music.play();
 
   }
 
+  Music.prototype.returnMusic = function(){
+    return this.music;
+  }
+
+  Music.prototype.stop = function(){
+    this.music.mute = true;
+  }
+
   Music.prototype.stop = function(nextState){
-    if (_music != null && _music.isPlaying == true) {
-      _music.fadeOut(700);
-      _music.onFadeComplete.dispatch();
+    if (this.music != null && this.music.isPlaying == true) {
+      this.music.onFadeComplete.dispatch();
+
+      this.music.fadeOut(700);
       /*music.onFadeComplete.dispatch();*/
-	     _music.onFadeComplete.addOnce(function() {
+	     this.music.onFadeComplete.addOnce(function() {
 	    _game.state.start(nextState);
 	}, _game);
     }

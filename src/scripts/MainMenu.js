@@ -14,6 +14,7 @@ define(['Images', 'Musiques','MusicFactory'], function(Images, Musiques, MusicFa
 		_buttonPlay.kill();
 		background2 = _game.add.sprite(0, 0, 'preloaderBackground');
 		logo = _game.add.sprite(184, 265, 'logo');
+	//	_game.state.start(_etapesuivante);
 		_music.stop(_etapesuivante);
 	}
 
@@ -40,6 +41,9 @@ define(['Images', 'Musiques','MusicFactory'], function(Images, Musiques, MusicFa
 		},
 
 		create : function(){
+			if (_music.isPlaying() == false){
+				_music.play();
+			}
 			Images.boot().create();
 			_logo = _game.add.sprite(_pointLogo.x, _pointLogo.y, 'logo');
 			_logo.scale.set(800/1024, 600/768);

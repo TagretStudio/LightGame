@@ -24,6 +24,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    MenuFactory.init(_game);
 		},
 		create : function(){
+			_nbLummingsSaved = 0;
+
 			zizik.play();
 			Images.boot().create();
 		//	Musiques.getmaintheme().create();
@@ -123,6 +125,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			if (_nbLummingsV == _nbLummingsSaved) {
 				_etapesuivante = 'MainMenu';
+				background2 = _game.add.sprite(0, 0, 'preloaderBackground');
+				logo = _game.add.sprite(184, 265, 'logo');
+				zizik.stop();
 				zizik.stop(_etapesuivante);
 			}
 		}
