@@ -7,7 +7,7 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory'],
     var VisibleLumming = function(game, color, x, y, vitesseX) {
         this.color = color;
         this.spriteName = 'lumming_' + ColorEnum.getName(color);
-        LummingFactory.Lumming.call(this, game, this.spriteName, x, y, vitesseX, 'visible');
+        LummingFactory.Lumming.call(this, game, this.spriteName, x, y, vitesseX, _vision);
         this.animations.add('kill', [1, 4, 15, 11, 1], 10, true);
 
     }
