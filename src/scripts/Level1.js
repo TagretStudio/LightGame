@@ -70,8 +70,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupDoors.add(door1);
 			_groupDoors.add(door2);
 
-			reglette = Reglette.create();
-
 			_groupLum = _game.add.group();
 
 			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 0);
@@ -83,18 +81,16 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 100, 0, -200);
 			lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 0, -100);
 			 _nbLummingsV = 3;
-			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {
-        align: "center"
-    });
+			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 
 
-		_groupLum.add(lum1);
+			_groupLum.add(lum1);
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
 
 		    //TEST MENU
-		    menuBlack = MenuFactory.create(1);
-
+		    menuBlack = MenuFactory.create();
+			reglette = Reglette.create();
 
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
