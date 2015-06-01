@@ -1,5 +1,5 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory','VisionEnum','Transition'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory,VisionEnum, Transition) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory','VisionEnum','Transition','Reglette'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory,VisionEnum, Transition, Reglette) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -12,6 +12,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var text = null;
 	var menuBlack = null;
 	var _currentVision = null;
+	var reglette;
 	var _level1 = {
 
 		preload : function(){
@@ -22,6 +23,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			PlatformFactory.init(_game);
 			DoorsFactory.init(_game);
 		    MenuFactory.init(_game);
+			Reglette.init(_game);
 		},
 		create : function(){
 			_nbLummingsSaved = 0;
@@ -68,6 +70,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupDoors.add(door1);
 			_groupDoors.add(door2);
 
+			reglette = Reglette.create();
 
 			_groupLum = _game.add.group();
 
@@ -107,6 +110,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				function(p){
 					p.update(_currentVision);
 				})
+			reglette.update();
 			_groupDoors.forEach(
 				function(p){
 					p.update();

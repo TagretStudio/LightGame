@@ -27,13 +27,14 @@ var regY = 0;
 var RM1; //menu reglette 1
 var RM2;
 var RM3;
-var regBounds = new Phaser.Rectangle(0,0, regdist*2, 64);
+var regBounds = new Phaser.Rectangle(0, game.world.height, regdist*2, 64);
 
 function create() {
 	reglette = game.add.sprite(regX, regY, 'crate');
 	reglette.inputEnabled = true;
 	reglette.input.enableDrag();
 	reglette.input.allowVerticalDrag = false;
+	reglette.input.boundsRect = regBounds;
 	reglette.held = false;
 	RM1 = game.add.group();
 	{
