@@ -1,4 +1,4 @@
-define(['./Images', './Musiques', './MusicFactory' ,'./MainMenu'], function(Images, Musiques, MusicFactory, MainMenu){
+define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition'], function(Images, MusicFactory, MainMenu, Transition){
 	var _game = null;
 	var _etapesuivante = null;
 	var _space = null;
@@ -6,7 +6,7 @@ define(['./Images', './Musiques', './MusicFactory' ,'./MainMenu'], function(Imag
 
 
 	transition = function(){
-		_game.state.start(_etapesuivante);
+		Transition.nextState(_etapesuivante);
 	}
 
 	var _chargement = {
@@ -20,7 +20,6 @@ define(['./Images', './Musiques', './MusicFactory' ,'./MainMenu'], function(Imag
 			_space = _game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 			_music.play();
 			Images.boot().create();
-		//	Musiques.getmaintheme().create();
 		},
 
 		update :function(){

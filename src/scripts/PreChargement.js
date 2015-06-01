@@ -20,7 +20,8 @@ define(['./Images', './Musiques', 'MusicFactory', 'Transition'], function(Images
 		}
 				  ,
 				  create : function(){
-					  _game.state.start(_etapesuivante);
+						Transition.nextState(_etapesuivante);
+					//  _game.state.start(_etapesuivante);
 				  }
 
 	}

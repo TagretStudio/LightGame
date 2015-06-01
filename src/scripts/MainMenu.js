@@ -1,4 +1,4 @@
-define(['Images', 'Musiques','MusicFactory', 'Transition'], function(Images, Musiques, MusicFactory, Transition){
+define(['Images','MusicFactory', 'Transition'], function(Images, MusicFactory, Transition){
 	var _game = null;
 	var _etapesuivante = null;
 	var _pointLogo = null;
@@ -17,18 +17,12 @@ define(['Images', 'Musiques','MusicFactory', 'Transition'], function(Images, Mus
 
 	function actionCredits(){
 		_buttonCredits.kill();
-		background2 = _game.add.sprite(0, 0, 'preloaderBackground');
-		logo = _game.add.sprite(184, 265, 'logo');
-		_music.stop(_etapesuivante);
-
+		Transition.nextState('Level1', _music);
 	}
 
 	function actionQuit(){
 		_buttonQuit.kill();
-		background2 = _game.add.sprite(0, 0, 'preloaderBackground');
-	  logo = _game.add.sprite(184, 265, 'logo');
-		_music.stop(_etapesuivante);
-
+		Transition.nextState('Level1', _music);
 	}
 
 	var _menu = {

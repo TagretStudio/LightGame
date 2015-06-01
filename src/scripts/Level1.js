@@ -8,7 +8,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _groupLum = null;
 	       var _groupLol = null;
 	var _groupDoors = null;
-	var zizik = null;
+	var _music = null;
 	var text = null;
 	var menuBlack = null;
 	var _currentVision = null;
@@ -16,7 +16,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 		preload : function(){
 
-			zizik = MusicFactory.create('level1', 'src/media/audio/Level 1.ogg');
+			_music = MusicFactory.create('level1', 'src/media/audio/Level 1.ogg');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
@@ -26,10 +26,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		create : function(){
 			_nbLummingsSaved = 0;
 
-			zizik.play();
+			_music.play();
 			Images.boot().create();
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
-		//	Musiques.getmaintheme().create();
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			_groupPlatforms = _game.add.group();
@@ -114,8 +113,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				})
 
 			if (_nbLummingsV == _nbLummingsSaved) {
-				_etapesuivante = 'MainMenu';
-				Transition.nextState('MainMenu', zizik);
+				Transition.nextState('MainMenu', _music);
 			}
 		}
 
