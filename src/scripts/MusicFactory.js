@@ -34,8 +34,8 @@ define(function(){
   Music.prototype.stop = function(nextState){
     if (this.music != null && this.music.isPlaying == true) {
       this.music.onFadeComplete.dispatch();
-
-      this.music.fadeOut(700);
+      this.music.fateTo(700, 0);
+      //this.music.fadeOut(700);
       /*music.onFadeComplete.dispatch();*/
 	     this.music.onFadeComplete.addOnce(function() {
 	    _game.state.start(nextState);
