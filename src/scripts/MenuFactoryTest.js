@@ -1,10 +1,12 @@
 define(function() {
    var _game = null;
+   var regX = 64; // coordonnee X du MILIEU de la reglette
+   var regdist = 64;
+   var regY = null// _game.world.height-64-16;
 
    var Menu = function(){
      this.vision = null;
-     regX = 64; // coordonnee X du MILIEU de la reglette
-     regY = _game.world.height-64-16;
+
     this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
     this.reglette = _game.add.sprite(regX, regY, 'Reg');
     this.reglette.inputEnabled = true;
@@ -16,8 +18,6 @@ define(function() {
     this.groupVisible = _game.add.group();
     this.groupInfra = _game.add.group();
     this.groupSupra = _game.add.group();
-
-
 
     //infra
 
@@ -95,12 +95,42 @@ define(function() {
           p.input.enableDrag();
         }
       )
+      this.state = 'visible';
 
 
 
    }
    Menu.prototype.constructor = Menu;
    Menu.prototype = Object.create(Phaser.Sprite.prototype);
+
+   Menu.prototype.update = function(){
+     var rX = this.reglette.x;
+     var oldstate = this.state;
+     if (!this.reglette.input.isDragged) {
+       if (rX < regX-regdist/3) {
+         this.state = 'infra';
+         rX += ((regX-regdist*2/3)-rX)/4;
+       } else if (rX > regX+regdist/3) {
+         this.state = 'supra';
+         rX += ((regX+regdist*2/3)-rX)/4;
+       } else {
+         this.state = 'visible';
+         rX += (regX-rX)/4;
+       }
+     }
+     this.reglette.x = rX;
+     if (oldstate != this.state){
+       if (this.state == 'infra') {
+        this.toInfra();
+       } else if (this.state == 'visible') {
+         this.toVisible();
+ 				//code passTo le truc à le milieu
+ 			} else {
+         this.toSupra();
+ 				//code passTo le truc à droite
+ 			}
+     }
+   }
 
    Menu.prototype.toInfra = function(){
      this.groupVisible.forEach(
@@ -160,6 +190,8 @@ define(function() {
    return {
      init : function(game){
        _game = game;
+       regY = _game.world.height-64-16;
+
        _game.load.image('menuB', 'src/media/img/simpleMenu.png');
 
        _game.load.image('Reg', 'src/media/img/Reglette.png');

@@ -83,6 +83,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		update : function(){
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+			_menuNiveau.update();
 			_groupLum.forEach(
 				function(p){
 					p.update();
@@ -105,8 +106,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_nbLummingsSaved = _nbLummingsSaved +1;
 			text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 		}
-		_menuNiveau.toVisible();
-
 	}
 
 
