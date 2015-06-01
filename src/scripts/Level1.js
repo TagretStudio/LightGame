@@ -1,12 +1,13 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory','VisionEnum','Transition','Reglette'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory,VisionEnum, Transition, Reglette) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory', 'VisionEnum', 'Transition', 'Reglette', 'FilterFactory'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory,VisionEnum, Transition, Reglette, FilterFactory) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
 	var _etapesuivante = null;
 	var _groupPlatforms = null;
 	var _groupLum = null;
-	       var _groupLol = null;
+	var _groupLol = null;
+	var _groupFilter = null;
 	var _groupDoors = null;
 	var _music = null;
 	var text = null;
@@ -109,6 +110,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+			_game.physics.arcade.overlap(_groupLum, _groupFilter, changeColor, null, _game);
 			_groupLum.forEach(
 				function(p){
 					p.update(_currentVision);
@@ -132,6 +134,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_nbLummingsSaved = _nbLummingsSaved +1;
 			text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 		}
+	}
+	
+	function changeColor(lum, filter) {
+		lum.collideWithFilter(filter);
 	}
 
 	       //TEST DRAG&DROP
