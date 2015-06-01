@@ -2,7 +2,7 @@
     
     var _game = null;
     
-    var Menu = function(game, /*vision*/) {
+    var Menu = function(game /*vision*/) {
         Phaser.Sprite.call(this, game, 0, 504, 'menu');
 	//game.physics.arcade.enable(this);
         this.body.immovable = true;
@@ -19,7 +19,7 @@
         },
         
         create : function(/*vision*/) {
-	        return (new Menu(_game, /*vision*/));
+	        return (new Menu(_game /*vision*/));
         }
     }
  })	

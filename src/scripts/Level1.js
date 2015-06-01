@@ -1,4 +1,4 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory'],
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory'],
 	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory) {
 	var _game = null;
 	var _nbLummingsV = 0;
@@ -10,6 +10,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _groupDoors = null;
 	var zizik = null;
 	var text = null;
+	       var menu = null;
 	var _level1 = {
 //		var zizik = null;
 
@@ -20,6 +21,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
 			DoorsFactory.init(_game);
+		    MenuFactory.init(_game);
 		},
 		create : function(){
 			zizik.play();
@@ -94,7 +96,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
 
-
+		    //TEST MENU
+		    menu = MenuFactory.create();
 
 
 			_game.startText = _game.add.text(0, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
