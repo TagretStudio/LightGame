@@ -85,7 +85,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_groupLum = _game.add.group();
 
-			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 0, 0, 0);
+			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 0);
 		    //TEST DRAG&DROP
 		    lum1.inputEnabled = true;
 		    lum1.input.enableDrag();
