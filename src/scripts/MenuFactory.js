@@ -4,9 +4,9 @@
     
 //Argument Vision
     var Menu = function(game) {
-        Phaser.Sprite.call(this, game, 0, 504, 'menuBlack');
-	game.physics.arcade.enable(this);
-        this.body.immovable = true;
+        game.add.sprite(0, 504, 'menuBlack');
+	//game.physics.arcade.enable(this);
+        //this.body.immovable = true;
    }
     
     Menu.prototype = Object.create(Phaser.Sprite.prototype);
