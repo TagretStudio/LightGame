@@ -15,7 +15,7 @@
             plombHorizontal = game.add.sprite(550, 536, 'plombHorizontal');
 
             //mirroirs
-            miroirH = game.add.sprite(660, 536, 'mirroirO');
+            miroirH = game.add.sprite(660, 536, 'mirroirH');
             miroirV = game.add.sprite(700, 536, 'mirroirV');
         } else if(vision == 2) {
             //visibles
