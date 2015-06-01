@@ -20,11 +20,8 @@ return{
        music.fadeOut(1400);
 
         music.onFadeComplete.addOnce(function() {
-         _game.time.events.add(2000, function() {_game.state.start(nextState);}, _game);
-        }, _game);
-     }
-
-    else{
+	    _game.state.start(nextState);}, _game);
+     } else{
       _game.state.start(nextState);
     }
   }

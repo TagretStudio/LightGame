@@ -10,37 +10,37 @@
             //infra
 
             //plomb
-            game.add.sprite(470, 536, 'plombCarre');
-            game.add.sprite(510, 536, 'plombVertical');      
-            game.add.sprite(550, 536, 'plombHorizontal');
+            plombCarre = game.add.sprite(470, 536, 'plombCarre');
+            plombVertical = game.add.sprite(510, 536, 'plombVertical');      
+            plombHorizontal = game.add.sprite(550, 536, 'plombHorizontal');
 
             //mirroirs
-            game.add.sprite(660, 536, 'mirroirO');
-            game.add.sprite(700, 536, 'mirroirV');
+            miroirH = game.add.sprite(660, 536, 'mirroirO');
+            miroirV = game.add.sprite(700, 536, 'mirroirV');
         } else if(vision == 2) {
             //visibles
         
-            game.add.sprite(230, 536, 'red');
-            game.add.sprite(270, 536, 'green');      
-            game.add.sprite(310, 536, 'blue');
+            red = game.add.sprite(230, 536, 'red');
+            green = game.add.sprite(270, 536, 'green');      
+            blue = game.add.sprite(310, 536, 'blue');
 
-            game.add.sprite(470, 536, 'magenta');
-            game.add.sprite(510, 536, 'cyan');      
-            game.add.sprite(550, 536, 'yellow');
+            magenta = game.add.sprite(470, 536, 'magenta');
+            cyan = game.add.sprite(510, 536, 'cyan');      
+            yellow = game.add.sprite(550, 536, 'yellow');
 
-            game.add.sprite(660, 536, 'mirroirH');
-            game.add.sprite(700, 536, 'mirroirV');      
+            miroirH = game.add.sprite(660, 536, 'mirroirH');
+            miroirV = game.add.sprite(700, 536, 'mirroirV');      
         }else if(vision == 1){
 
             //supra
 
             //antenes
-            game.add.sprite(270, 536, 'aerialLeft');
-            game.add.sprite(310, 536, 'aerialRight');  
+            aerialLeft = game.add.sprite(270, 536, 'aerialLeft');
+            aerialRight = game.add.sprite(310, 536, 'aerialRight');  
 
             //mirroirs
-            game.add.sprite(660, 536, 'mirroirH');
-            game.add.sprite(700, 536, 'mirroirV');    
+            miroirH = game.add.sprite(660, 536, 'mirroirH');
+            miroirV = game.add.sprite(700, 536, 'mirroirV');    
         }
        
 
@@ -52,6 +52,52 @@
     
     Menu.prototype = Object.create(Phaser.Sprite.prototype);
     Menu.prototype.constructor = Menu;
+     Menu.prototype.passToVisible = function() {
+	 aerialLeft.exists = false;
+	 aerialRight.exists = false;
+	 plombCarre.exists = false;
+	 plombVertical.exists = false;
+	 plombHorizontal.exists = false;
+	 miroirH.exists = true;
+	 miroirV.exists= true;
+	 red.exists = true;
+	 blue.exists = true;
+	 green.exists = true;
+	 cyan.exists = true;
+	 yellow.exists = true;
+	 magenta.exists = true;
+     }
+     Menu.prototype.passToInfra = function() {
+	 aerialLeft.exists = true;
+	 aerialRight.exists = true;
+	 plombCarre.exists = false;
+	 plombVertical.exists = false;
+	 plombHorizontal.exists = false;
+	 miroirH.exists = true;
+	 miroirV.exists = true;
+	 red.exists = false;
+	 blue.exists = false;
+	 green.exists = false;
+	 cyan.exists = false;
+	 yellow.exists = false;
+	 magenta.exists = false;
+     }    
+     Menu.prototype.passToSupra = function() {
+	 aerialLeft.exists = false;
+	 aerialRight.exists = false;
+	 plombCarre.exists = true;
+	 plombVertical.exists = true;
+	 plombHorizontal.exists = true;
+	 miroirH.exists = true;
+	 miroirV.exists = true;
+	 red.exists = false;
+	 blue.exists = false;
+	 green.exists = false;
+	 cyan.exists = false;
+	 yellow.exists = false;
+	 magenta.exists = false;
+     }
+
     
     return {
         init : function(game) {
@@ -84,6 +130,8 @@
         
         create : function(vision) {
 	        return (new Menu(_game, vision));
-        }
+        },
+
+	
     }
  })	
