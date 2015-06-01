@@ -1,7 +1,5 @@
-
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory', 'VisionEnum'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory, VisionEnum) {
-
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory', 'Transition'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory, Transition) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -15,7 +13,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var menu = null;
 	var _currentVision = null;
 	var _level1 = {
-//		var zizik = null;
 
 		preload : function(){
 
@@ -86,9 +83,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 0, 0, 0);
 		    //TEST DRAG&DROP
-		    lum1.inputEnabled = true;
-		    lum1.input.enableDrag();
-		    lum1.events.onDragStop.add(stopDrag, _game);
+	//	    lum1.inputEnabled = true;
+	//	    lum1.input.enableDrag();
+	//	    lum1.events.onDragStop.add(stopDrag, _game);
 		    //
 			lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 100, 0, -200);
 			lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 0, -100);
@@ -98,12 +95,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
     });
 
 
-			_groupLum.add(lum1);
+		_groupLum.add(lum1);
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
 
 		    //TEST MENU
-		    menu = MenuFactory.create();
+		   menu = MenuFactory.create();
 
 
 			_game.startText = _game.add.text(0, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
@@ -127,10 +124,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			if (_nbLummingsV == _nbLummingsSaved) {
 				_etapesuivante = 'MainMenu';
-				background2 = _game.add.sprite(0, 0, 'preloaderBackground');
-				logo = _game.add.sprite(184, 265, 'logo');
-				zizik.stop();
-				zizik.stop(_etapesuivante);
+				Transition.nextState('MainMenu', zizik);
 			}
 		}
 

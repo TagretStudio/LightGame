@@ -12,6 +12,9 @@ define(function(){
   }
   Music.prototype= Object.create(Music.prototype);
   Music.prototype.constructor = Music;
+  Music.prototype.getMusic = function(){
+    return this.music;
+  }
 
   Music.prototype.isPlaying = function(){
     return (this.music.isPlaying == true);
@@ -22,10 +25,6 @@ define(function(){
     this.music.loop  = true;
     this.music.play();
 
-  }
-
-  Music.prototype.returnMusic = function(){
-    return this.music;
   }
 
   Music.prototype.stop = function(){
