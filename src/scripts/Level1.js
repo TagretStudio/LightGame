@@ -12,7 +12,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _groupDoors = null;
 	var zizik = null;
 	var text = null;
-	var menu = null;
+	var menuBlack = null;
 	var _currentVision = null;
 	var _level1 = {
 //		var zizik = null;
@@ -44,13 +44,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				platform4 = PlatformFactory.create(700, 280, false);
 			    platform5 = PlatformFactory.create(0, 504, false);
 			    platform6 = PlatformFactory.create(400, 504, false);
-			    //TEST DRAG&DROP
-			    //platform5 = PlatformFactory.create(200, 300, false);
-			    //platform5.inputEnabled = true;
-			    //platform5.input.enableDrag();
-			    //platform5.events.onDragStart.add(startDrag, _game);
-			    //platform5.events.onDragStop.add(stopDrag, _game);
-			    //
 
 			}
 			_groupPlatforms.add(platform1);
@@ -67,8 +60,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    lol2 = PlatformFactory.create(100, 200, false);
 		    lol3 = PlatformFactory.create(400, 300, false);
 		    lol4 = PlatformFactory.create(700, 280, false);
-		    lol5 = PlatformFactory.create(0, 504, false);
-		    lol6 = PlatformFactory.create(400, 504, false);
 		    _groupLol.add(lol1);
 		    _groupLol.add(lol2);
 		    _groupLol.add(lol3);
@@ -103,7 +94,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupLum.add(lum3);
 
 		    //TEST MENU
-		    menu = MenuFactory.create();
+		    menuBlack = MenuFactory.create();
 
 
 			_game.startText = _game.add.text(0, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
@@ -145,9 +136,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	}
 
 	       //TEST DRAG&DROP
-	       function startDrag() {
-		   var initial = getLocalPosition(platform5, game);
-	       }
 
 	       function stopDrag() {
 		   _game.physics.arcade.overlap(lum1, _groupLol, setInitialPosition, null, _game);
