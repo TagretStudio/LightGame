@@ -6,7 +6,69 @@ define(function() {
      regX = 64; // coordonnee X du MILIEU de la reglette
      regY = _game.world.height-64-16;
     this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
+    this.groupVisible = _game.add.group();
+    this.groupInfra = _game.add.group();
+    this.groupSupra = _game.add.group();
+    //infra
 
+    //plomb
+    plombCarre = _game.add.sprite(470, 536, 'plombCarre');
+    this.groupInfra.add(plombCarre);
+    plombVertical = _game.add.sprite(510, 536, 'plombVertical');
+    this.groupInfra.add(plombVertical);
+    plombHorizontal = _game.add.sprite(550, 536, 'plombHorizontal');
+    this.groupInfra.add(plombHorizontal);
+
+
+    //mirroirs
+    miroirH = _game.add.sprite(660, 536, 'mirroirH');
+  //  this.groupInfra.add(miroirH);
+  //  this.groupSupra.add(miroirH);
+  //  this.groupVisible.add(miroirH);
+
+
+    miroirV = _game.add.sprite(700, 536, 'mirroirV');
+  //  this.groupInfra.add(miroirV);
+  //  this.groupSupra.add(miroirV);
+  //  this.groupVisible.add(miroirV);
+
+
+    //visibles
+
+    red = _game.add.sprite(230, 536, 'red');
+    this.groupVisible.add(red);
+    green = _game.add.sprite(270, 536, 'green');
+    this.groupVisible.add(green);
+    blue = _game.add.sprite(310, 536, 'blue');
+    this.groupVisible.add(blue);
+    magenta = _game.add.sprite(470, 536, 'magenta');
+    this.groupVisible.add(magenta);
+    cyan = _game.add.sprite(510, 536, 'cyan');
+    this.groupVisible.add(cyan);
+    yellow = _game.add.sprite(550, 536, 'yellow');
+    this.groupVisible.add(yellow);
+    //supra
+
+    //antenes
+    aerialLeft = _game.add.sprite(270, 536, 'aerialLeft');
+    this.groupSupra.add(aerialLeft);
+    aerialRight = _game.add.sprite(310, 536, 'aerialRight');
+    this.groupSupra.add(aerialRight);
+
+    this.groupSupra.forEach(
+      function(p){
+        p.exists = false;
+      })
+    this.groupInfra.forEach(
+      function(p){
+        p.exists = false;
+      }
+    )
+      this.groupVisible.forEach(
+        function(p){
+          p.exists = true;
+        }
+      )
 
 
    }
