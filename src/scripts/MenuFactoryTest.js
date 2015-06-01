@@ -9,6 +9,9 @@ define(function() {
     this.groupVisible = _game.add.group();
     this.groupInfra = _game.add.group();
     this.groupSupra = _game.add.group();
+
+
+
     //infra
 
     //plomb
@@ -31,6 +34,13 @@ define(function() {
   //  this.groupInfra.add(miroirV);
   //  this.groupSupra.add(miroirV);
   //  this.groupVisible.add(miroirV);
+  //supra
+
+  //antenes
+    aerialRight = _game.add.sprite(410, 536, 'aerialRight');
+    this.groupSupra.add(aerialRight);
+    aerialLeft = _game.add.sprite(170, 536, 'aerialLeft');
+    this.groupSupra.add(aerialLeft);
 
 
     //visibles
@@ -47,34 +57,88 @@ define(function() {
     this.groupVisible.add(cyan);
     yellow = _game.add.sprite(550, 536, 'yellow');
     this.groupVisible.add(yellow);
-    //supra
 
-    //antenes
-    aerialLeft = _game.add.sprite(270, 536, 'aerialLeft');
-    this.groupSupra.add(aerialLeft);
-    aerialRight = _game.add.sprite(310, 536, 'aerialRight');
-    this.groupSupra.add(aerialRight);
 
-    this.groupSupra.forEach(
-      function(p){
-        p.exists = false;
-      })
+
     this.groupInfra.forEach(
       function(p){
         p.exists = false;
       }
     )
+    this.groupSupra.forEach(
+      function(p){
+      p.exists = false;
+      })
       this.groupVisible.forEach(
         function(p){
           p.exists = true;
+          p.bringToTop();
         }
       )
+
 
 
    }
    Menu.prototype.constructor = Menu;
    Menu.prototype = Object.create(Phaser.Sprite.prototype);
 
+   Menu.prototype.toInfra = function(){
+     this.groupVisible.forEach(
+       function(p){
+         p.exists = false;
+       }
+     )
+     this.groupSupra.forEach(
+       function(p){
+         p.exists = false;
+       })
+     this.groupInfra.forEach(
+       function(p){
+         p.exists = true;
+         p.bringToTop();
+       }
+     )
+   }
+
+   Menu.prototype.toSupra = function(){
+
+     this.groupVisible.forEach(
+       function(p){
+         p.exists = false;
+       }
+     )
+
+     this.groupInfra.forEach(
+       function(p){
+         p.exists = false;
+        }
+       )
+       this.groupSupra.forEach(
+         function(p){
+           p.exists =true;
+           p.bringToTop();
+         })
+   }
+
+   Menu.prototype.toVisible = function(){
+
+     this.groupInfra.forEach(
+       function(p){
+         p.exists = false;
+       }
+     )
+
+     this.groupSupra.forEach(
+       function(p){
+         p.exists = false;
+       })
+     this.groupVisible.forEach(
+        function(p){
+         p.exists = true;
+         p.bringToTop();
+       }
+     )
+   }
 
    return {
      init : function(game){
