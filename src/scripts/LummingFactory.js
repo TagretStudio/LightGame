@@ -26,6 +26,9 @@ define(function(){
 		} else {
 			this.animations.play('left');
 		}
+	    if (this.position.y > 504) {
+		this.kill();
+	    }
 	}
 
 	Lumming.prototype.collide = function(game, objet) {

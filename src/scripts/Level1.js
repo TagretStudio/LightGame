@@ -34,6 +34,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				platform2 = PlatformFactory.create(100, 200, false);
 				platform3 = PlatformFactory.create(400, 300, false);
 				platform4 = PlatformFactory.create(700, 280, false);
+			    platform5 = PlatformFactory.create(0, 504, false);
+			    platform6 = PlatformFactory.create(400, 504, false);
 			    //TEST DRAG&DROP
 			    //platform5 = PlatformFactory.create(200, 300, false);
 			    //platform5.inputEnabled = true;
@@ -47,6 +49,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupPlatforms.add(platform2);
 			_groupPlatforms.add(platform3);
 			_groupPlatforms.add(platform4);
+		    _groupPlatforms.add(platform5);
+		    _groupPlatforms.add(platform6);
 
 		    //TEST DRAG&DROP
 		    	_groupLol = _game.add.group();
@@ -55,6 +59,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    lol2 = PlatformFactory.create(100, 200, false);
 		    lol3 = PlatformFactory.create(400, 300, false);
 		    lol4 = PlatformFactory.create(700, 280, false);
+		    lol5 = PlatformFactory.create(0, 504, false);
+		    lol6 = PlatformFactory.create(400, 504, false);
 		    _groupLol.add(lol1);
 		    _groupLol.add(lol2);
 		    _groupLol.add(lol3);
@@ -62,8 +68,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_groupDoors = _game.add.group();
 			_groupDoors.enableBody = true;
-			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 0, 570);
-			door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 600, 570);
+			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 0, 470);
+			door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 600, 470);
 			_groupDoors.add(door1);
 			_groupDoors.add(door2);
 
