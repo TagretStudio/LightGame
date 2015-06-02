@@ -47,14 +47,13 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    _groupPlatforms.add(platform5);
 		    _groupPlatforms.add(platform6);
 
-			_menuNiveau = MenuFactoryTest.create();
 
 
 			_groupDoors = _game.add.group();
 			_groupDoors.enableBody = true;
 			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 0, 470);
 			door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 600, 470);
-
+			lol= DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 0, 270);
 			_groupDoors.add(door1);
 			_groupDoors.add(door2);
 			_groupLum = _game.add.group();
@@ -71,6 +70,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupLum.add(lum1);
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
+			_menuNiveau = MenuFactoryTest.create();
 
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
@@ -81,6 +81,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		update : function(){
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+			_game.physics.arcade.overlap(_groupLum, MenuFactoryTest.getGroupItem(), mayExit, null, _game);
+
 			_menuNiveau.update();
 			_groupLum.forEach(
 				function(p){

@@ -1,13 +1,15 @@
-define(['VisionEnum'], function(VisionEnum) {
+define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum, DoorsFactory) {
 	var _game = null;
 	var regX = 64; // coordonnee X du MILIEU de la reglette
 	var regdist = 64;
-	var regY = null// _game.world.height-64-16;
+	var regY = null;// _game.world.height-64-16;
+  var _groupItem = null;
 
 	var Menu = function(){
 		this.vision = null;
 		this.spriteTempo = null;
-
+    _groupItem = _game.add.group();
+    _groupItem.enableBody = true;
 		this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
 		this.reglette = _game.add.sprite(regX, regY, 'Reg');
 		this.reglette.inputEnabled = true;
@@ -169,13 +171,18 @@ define(['VisionEnum'], function(VisionEnum) {
 		sprite.x = sprite.origX;
 		sprite.y = sprite.origY;
 	    } else {
-		created = _game.add.sprite(sprite.x, sprite.y, sprite.key);
+	//	created = _game.add.sprite(sprite.x, sprite.y, sprite.key);
+    door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, sprite.x, sprite.y);
+    _groupItem.add(door1);
+
+
 		sprite.x = sprite.origX;
 		sprite.y = sprite.origY;
 	    }
 	}
 
 	Menu.prototype.update = function(){
+
 		var rX = this.reglette.x;
 		var oldstate = this.state;
 		if (!this.reglette.input.isDragged) {
@@ -267,6 +274,7 @@ define(['VisionEnum'], function(VisionEnum) {
 
        _game = game;
        regY = _game.world.height-64-16;
+       DoorsFactory.init(_game);
 
        _game.load.image('menuB', 'media/img/simpleMenu.png');
 
@@ -296,6 +304,10 @@ define(['VisionEnum'], function(VisionEnum) {
      },
      create : function(){
        return (new Menu());
+     },
+
+     getGroupItem : function(){
+       return _groupItem;
      }
    }
  })
