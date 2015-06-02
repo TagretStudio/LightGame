@@ -7,7 +7,8 @@ define(function() {
 
 
    var Menu = function(){
-     this.vision = null;
+    this.vision = null;
+    this.spriteTempo = null;
 
     this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
     this.reglette = _game.add.sprite(regX, regY, 'Reg');
@@ -82,7 +83,9 @@ define(function() {
         p.exists = false;
         p.inputEnabled = true;
         p.input.enableDrag();
-        p.events.onDragStart.add(Menu.prototype.dragStart, this, plombCarre);
+        p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
+        p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+
       }
     )
     this.groupSupra.forEach(
@@ -90,7 +93,9 @@ define(function() {
       p.exists = false;
       p.inputEnabled = true;
       p.input.enableDrag();
-      p.events.onDragStart.add(Menu.prototype.dragStart, this, plombCarre);
+      p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
+      p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+
 
       })
       this.groupVisible.forEach(
@@ -98,7 +103,9 @@ define(function() {
           p.exists = true;
           p.inputEnabled = true;
           p.input.enableDrag();
-          p.events.onDragStart.add(Menu.prototype.dragStart, this, plombCarre);
+          p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
+          p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+
 
         }
       )
@@ -110,10 +117,30 @@ define(function() {
 
    Menu.prototype.dragStart  = function(sprite){
      //this.toVisible();
-     sprite.destroy();
+  //   aux = sprite;
+     this.spriteTempo = _game.add.sprite(sprite.x, sprite.y, sprite.key);
+     this.spriteTempo.inputEnabled = true;
+     this.spriteTempo.input.enableDrag();
+     this.spriteTempo.events.onDragStart.add(Menu.prototype.dragStart, this, this.spriteTempo);
+     this.spriteTempo.events.onDragStop.add(Menu.prototype.dragStop, this, this.spriteTempo);
+    // this.spriteTempo.moveDown();
+    sprite.bringToTop();
+    // sprite = this.spriteTempo();
+    // this.spriteTempo = aux;
+     //sprite.destroy();
   //   this.destroy();
    }
 
+   Menu.prototype.dragStop  = function(sprite){
+     //this.toVisible();
+     aux = sprite;
+     sprite = this.spriteTempo;
+     sprite.moveUp();
+     aux.destroy();
+    // this.spriteTempo = _game.add.sprite(sprite.x, sprite.y, sprite.key);
+     //sprite.destroy();
+  //   this.destroy();
+   }
 
    Menu.prototype.update = function(){
      var rX = this.reglette.x;
