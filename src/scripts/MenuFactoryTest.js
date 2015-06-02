@@ -260,14 +260,14 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		if (oldstate != this.state){
 			if (this.state == 'infra') {
 				this.toInfra();
-			    VisionEnum.setVisionCurrent(1);
+			    VisionEnum.setVisionCurrent(3);
 			} else if (this.state == 'visible') {
 				this.toVisible();
 			    VisionEnum.setVisionCurrent(2);
 				//code passTo le truc à le milieu
 			} else {
 				this.toSupra();
-			    VisionEnum.setVisionCurrent(3);
+			    VisionEnum.setVisionCurrent(1);
 				//code passTo le truc à droite
 			}
 		}
