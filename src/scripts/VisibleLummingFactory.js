@@ -28,15 +28,15 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
     
     VisibleLumming.prototype.collideWithFilter = function(filter) {
         if (filter.isAdditive()) {
-            this.color = this.color | filter.getColorValue();
-        } else {
+            //this.color = this.color | filter.getColorValue();
+        } /*else {
             this.color = this.color & filter.getColorValue();
         }
         if (this.color == 0) {
             this.body.velocity.x = 0;
             this.animations.play('kill');
             this.kill();
-        }
+        }*/
     }
     
     VisibleLumming.prototype.update = function() {

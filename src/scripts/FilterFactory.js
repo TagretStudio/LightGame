@@ -50,9 +50,7 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 			return (new Filter(color, x, y));
 		},
 		
-		isAdditive: function() {
-			return isAdditive();
-		},
+		isAdditive: isAdditive,
 		
 		getColorValue: function() {
 			return ColorEnum.getValue(getColor);
