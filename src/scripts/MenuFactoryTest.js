@@ -80,7 +80,7 @@ define(['VisionEnum'], function(VisionEnum) {
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-
+          dragcopy.exists = false;
 					p.exists = false;
 					p.inputEnabled = true;
 					p.input.enableDrag();
@@ -99,7 +99,7 @@ define(['VisionEnum'], function(VisionEnum) {
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-
+          dragcopy.exists = false;
 					p.exists = false;
 					p.inputEnabled = true;
 					p.input.enableDrag();
@@ -118,7 +118,7 @@ define(['VisionEnum'], function(VisionEnum) {
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-
+          dragcopy.exists = true;
 					p.exists = true;
 					p.inputEnabled = true;
 					p.input.enableDrag();
