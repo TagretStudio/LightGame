@@ -97,7 +97,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupFilter = _game.add.group();
 			_groupFilter.enableBody = true;
 			filter1 = FilterFactory.create(ColorEnum.getColorEnum().GREEN, 200, 400);
+			filter2 = FilterFactory.create(ColorEnum.getColorEnum().MAGENTA, 300, 470);
 			_groupFilter.add(filter1);
+			_groupFilter.add(filter2);
 			
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
