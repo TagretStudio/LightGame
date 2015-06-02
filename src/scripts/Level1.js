@@ -1,5 +1,5 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory', 'VisionEnum', 'Transition', 'Reglette', 'FilterFactory'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory,VisionEnum, Transition, Reglette, FilterFactory) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -23,8 +23,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
 			DoorsFactory.init(_game);
-		    MenuFactory.init(_game);
-			Reglette.init(_game);
+		    MenuFactoryTest.init(_game);
 		},
 		create : function(){
 			_nbLummingsSaved = 0;
@@ -65,8 +64,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    _groupLol.add(lol4);
 
 		    //TEST MENU
-		    menuBlack = MenuFactory.create(1);
-			reglette = Reglette.create();
+		    menuBlack = MenuFactoryTest.create();
 
 			_groupDoors = _game.add.group();
 			_groupDoors.enableBody = true;
@@ -111,18 +109,18 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_game.physics.arcade.overlap(_groupLum, _groupFilter, changeColor, null, _game);
+		    menuBlack.update();
 			_groupLum.forEach(
 				function(p){
 					p.update(_currentVision);
 				})
-			reglette.update();
 			_groupDoors.forEach(
 				function(p){
 					p.update();
 				})
 
 			if (_nbLummingsV == _nbLummingsSaved) {
-				Transition.nextState('MainMenu', _music);
+				Transition.nextState('Level2', _music);
 			}
 		}
 
@@ -161,12 +159,15 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    function doorDragStop(door) {
 			if (_game.physics.arcade.overlap(door, menuBlack, getBack, null, _game)) {
 			    //Incrémenter le compteur
-			    door.setTo(620, 536);
 			} else {
 			    door.body.immovable = true;
 			    door.input.disableDrag();
 			}
 		    }
+
+	       function getBack(door) {
+		   door.setTo(620, 536);
+	       }
 		    //
 
 	return{

@@ -27,7 +27,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_nbLummingsSaved = 0;
 			_music.play();
 			Images.boot().create();
-			_menuNiveau = MenuFactoryTest.create();
 
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -48,7 +47,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    _groupPlatforms.add(platform5);
 		    _groupPlatforms.add(platform6);
 
-
+			_menuNiveau = MenuFactoryTest.create();
 
 
 			_groupDoors = _game.add.group();
