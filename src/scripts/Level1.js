@@ -1,12 +1,13 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory','VisionEnum','Transition','Reglette'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory,VisionEnum, Transition, Reglette) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactory', 'VisionEnum', 'Transition', 'Reglette', 'FilterFactory'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactory,VisionEnum, Transition, Reglette, FilterFactory) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
 	var _etapesuivante = null;
 	var _groupPlatforms = null;
 	var _groupLum = null;
-	       var _groupLol = null;
+	var _groupLol = null;
+	var _groupFilter = null;
 	var _groupDoors = null;
 	var _music = null;
 	var text = null;
@@ -63,12 +64,23 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    _groupLol.add(lol3);
 		    _groupLol.add(lol4);
 
+		    //TEST MENU
+		    menuBlack = MenuFactory.create(1);
+			reglette = Reglette.create();
+
 			_groupDoors = _game.add.group();
 			_groupDoors.enableBody = true;
 			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 0, 470);
 			door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 600, 470);
+		    //TEST DRAG&DROP AVANCE
+		    door3 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 620, 536);
+		    door3.inputEnabled = true;
+		    door3.input.enableDrag();
+		    door3.events.onDragStart.add(doorDragStart, _game);
+		    door3.events.onInputUp.add(doorDragStop, _game);
 			_groupDoors.add(door1);
 			_groupDoors.add(door2);
+		    _groupDoors.add(door3);
 
 			_groupLum = _game.add.group();
 
@@ -88,10 +100,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
 
-		    //TEST MENU
-		    menuBlack = MenuFactory.create(1);
-			reglette = Reglette.create();
-
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
 			_game.paused = true;
@@ -102,6 +110,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+			_game.physics.arcade.overlap(_groupLum, _groupFilter, changeColor, null, _game);
 			_groupLum.forEach(
 				function(p){
 					p.update(_currentVision);
@@ -126,6 +135,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 		}
 	}
+	
+	function changeColor(lum, filter) {
+		lum.collideWithFilter(filter);
+	}
 
 	       //TEST DRAG&DROP
 
@@ -138,6 +151,23 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		   lum.position.y = 0;
 	       }
 	       //
+
+		    //TEST DRAG&DROP AVANCE
+		    function doorDragStart(door) {
+			door.body.immovable = false;
+			//Diminuer le compteur
+		    }
+		    
+		    function doorDragStop(door) {
+			if (_game.physics.arcade.overlap(door, menuBlack, getBack, null, _game)) {
+			    //Incrémenter le compteur
+			    door.setTo(620, 536);
+			} else {
+			    door.body.immovable = true;
+			    door.input.disableDrag();
+			}
+		    }
+		    //
 
 	return{
 		init : function(game, etapesuivante){

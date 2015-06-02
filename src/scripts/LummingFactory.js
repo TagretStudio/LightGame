@@ -1,10 +1,10 @@
 define(['VisionEnum'], function(VisionEnum) {
-	
-	var _defaultVision = null;
+
+//	var _defaultVision = null;
 
 	var Lumming = function(game, sprite, x, y, vitesseX, vision) {
 
-		_defaultVision = vision;
+		this.defaultVision = vision;
 		Phaser.Sprite.call(this, game, x, y, sprite, [1]);
 		game.physics.arcade.enable(this);
 		this.body.setSize(32, 32);
@@ -24,8 +24,14 @@ define(['VisionEnum'], function(VisionEnum) {
 	Lumming.prototype = Object.create(Phaser.Sprite.prototype);
 	Lumming.prototype.constructor = Lumming;
 
-	Lumming.prototype.update = function(currentVision) {
-		if (VisionEnum.getVisionEnum().currentVision == VisionEnum.getVisionEnum()._defaultVision) {
+	Lumming.prototype.getDefautVision = function(){
+		return this.defaultVision;
+	}
+	
+
+	Lumming.prototype.update = function() {
+		if (VisionEnum.getVisionCurrent() == this.defaultVision) {
+
 			if (this.body.velocity.x > 0) {
 				this.animations.play('right');
 			} else {
@@ -55,8 +61,8 @@ define(['VisionEnum'], function(VisionEnum) {
 		create : function(sprite, x, y, vitesseX, vision) {
 			return (new Lumming(_game, sprite, x, y, vitesseX, vision));
 		},
-		
+
 		Lumming : Lumming
-		
+
 	}
 })

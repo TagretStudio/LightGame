@@ -1,5 +1,5 @@
-define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory'],
-       function(LummingFactory, ColorEnum, VisionEnum, DoorsFactory) {
+define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFactory'],
+       function(LummingFactory, ColorEnum, VisionEnum, DoorsFactory, FilterFactory) {
 
     var _game = null;
     var _vision = null;
@@ -26,8 +26,21 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory'],
         return 0;
     }
     
-    VisibleLumming.prototype.update = function(currentVision) {
-        LummingFactory.Lumming.prototype.update.call(this, currentVision);
+    VisibleLumming.prototype.collideWithFilter = function(filter) {
+        if (filter.isAdditive()) {
+            this.color = this.color | filter.getColorValue();
+        } else {
+            this.color = this.color & filter.getColorValue();
+        }
+        if (this.color == 0) {
+            this.body.velocity.x = 0;
+            this.animations.play('kill');
+            this.kill();
+        }
+    }
+    
+    VisibleLumming.prototype.update = function() {
+        LummingFactory.Lumming.prototype.update.call(this);
     }
 
     return {

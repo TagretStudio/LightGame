@@ -9,6 +9,7 @@ define([], function() {
 	var RM2;
 	var RM3;
 	var regBounds;
+	var state;
 
 	var Reglette = function() {
 		regY = _game.world.height-64-16;
@@ -38,18 +39,22 @@ define([], function() {
 
 	Reglette.prototype.update = function() {
 		var rX = reglette.x;
+		var oldstate = state;
 		if (!reglette.input.isDragged) {
 			if (rX < regX-regdist/3) {
+				state = 0;
 				RM1.forEach(Reglette.prototype.deployedPos);
 				RM2.forEach(Reglette.prototype.hiddenPos);
 				RM3.forEach(Reglette.prototype.hiddenPos);
 				rX += ((regX-regdist*2/3)-rX)/4;
 			} else if (rX > regX+regdist/3) {
+				state = 2;
 				RM1.forEach(Reglette.prototype.hiddenPos);
 				RM2.forEach(Reglette.prototype.hiddenPos);
 				RM3.forEach(Reglette.prototype.deployedPos);
 				rX += ((regX+regdist*2/3)-rX)/4;
 			} else {
+				state = 1;
 				RM1.forEach(Reglette.prototype.hiddenPos);
 				RM2.forEach(Reglette.prototype.deployedPos);
 				RM3.forEach(Reglette.prototype.hiddenPos);
@@ -57,6 +62,16 @@ define([], function() {
 			}
 		}
 		reglette.x = rX;
+
+		if (oldstate != state) {
+			if (state == 0) {
+				//code passTo le truc à gauche
+			} else if (state == 1) {
+				//code passTo le truc à le milieu
+			} else {
+				//code passTo le truc à droite
+			}
+		}
 	
 		RM1.forEach(Reglette.prototype.moveIfNeeded);
 		RM2.forEach(Reglette.prototype.moveIfNeeded);
