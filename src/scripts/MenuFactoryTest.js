@@ -74,7 +74,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible.add(magenta);
 		this.groupVisible.add(yellow);
 
-		this.groupInfra.visible = false;
+		this.groupInfra.visibl = false;
 		this.groupInfra.addAll('draggable', false)
 		this.groupInfra.forEach(
 			function(p){
@@ -96,7 +96,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			}
 		)
 
-		this.groupSupra.visible = false;
+		this.groupSupra.visibl = false;
 		this.groupSupra.addAll('draggable', false)
 		this.groupSupra.forEach(
 			function(p){
@@ -118,7 +118,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			}
 		)
 
-		this.groupVisible.visible = true;
+		this.groupVisible.visibl = true;
 		this.groupVisible.addAll('draggable', false)
 		this.groupVisible.forEach(
 			function(p){
@@ -190,57 +190,9 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 	}
 
 	Menu.prototype.update = function(){
-		this.groupVisible.forEach(
-			function(p) {
-				if (p.parent.visible) {
-					if (p.draggable) {
-	 					p.y += (_game.world.height-64 - p.y)/4;
-	 				} else {
-						if (!p.input.isDragged) {
-		 					p.y += (_game.world.height-64 - p.y)/4;
-							p.spriteText.y = p.y+32;
-                        }
-					}
-				} else {
-					p.y += (_game.world.height - p.y)/4;
-					if (!p.draggable) p.spriteText.y = p.y+32;
-				}
-			}
-		);
-		this.groupSupra.forEach(
-			function(p) {
-				if (p.parent.visible) {
-					if (p.draggable) {
-	 					p.y += (_game.world.height-64 - p.y)/4;
-	 				} else {
-						if (!p.input.isDragged) {
-		 					p.y += (_game.world.height-64 - p.y)/4;
-							p.spriteText.y = p.y+32;
-						}
-					}
-				} else {
-					p.y += (_game.world.height - p.y)/4;
-					if (!p.draggable) p.spriteText.y = p.y+32;
-				}
-			}
-		);
-		this.groupInfra.forEach(
-			function(p) {
-				if (p.parent.visible) {
-					if (p.draggable) {
-	 					p.y += (_game.world.height-64 - p.y)/4;
-	 				} else {
-						if (!p.input.isDragged) {
-		 					p.y += (_game.world.height-64 - p.y)/4;
-							p.spriteText.y = p.y+32;
-                        }
-					}
-				} else {
-					p.y += (_game.world.height - p.y)/4;
-					if (!p.draggable) p.spriteText.y = p.y+32;
-				}
-			}
-		);
+		this.groupVisible.forEach(moveIcon);
+		this.groupSupra.forEach(moveIcon);
+		this.groupInfra.forEach(moveIcon);
 
 		var rX = this.reglette.x;
 		var oldstate = this.state;
@@ -273,22 +225,38 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		}
 	}
 
+	function moveIcon(p) {
+		if (p.parent.visibl) {
+			if (p.draggable) {
+				p.y += (_game.world.height-64 - p.y)/4;
+			} else {
+				if (!p.input.isDragged) {
+					p.y += (_game.world.height-64 - p.y)/4;
+					p.spriteText.y = p.y+32;
+				}
+			}
+		} else {
+			p.y += (_game.world.height - p.y)/4;
+			if (!p.draggable) p.spriteText.y = p.y+32;
+		}
+	}
+
 	Menu.prototype.toInfra = function(){
-		this.groupVisible.visible = false;
-		this.groupSupra.visible = false;
-		this.groupInfra.visible = true;
+		this.groupVisible.visibl = false;
+		this.groupSupra.visibl = false;
+		this.groupInfra.visibl = true;
 	}
 
 	Menu.prototype.toSupra = function(){
-		this.groupVisible.visible = false;
-		this.groupSupra.visible = true;
-		this.groupInfra.visible = false;
+		this.groupVisible.visibl = false;
+		this.groupSupra.visibl = true;
+		this.groupInfra.visibl = false;
 	}
 
 	Menu.prototype.toVisible = function(){
-		this.groupVisible.visible = true;
-		this.groupSupra.visible = false;
-		this.groupInfra.visible = false;
+		this.groupVisible.visibl = true;
+		this.groupSupra.visibl = false;
+		this.groupInfra.visibl = false;
 	}
 
    return {
