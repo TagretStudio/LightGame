@@ -4,6 +4,8 @@ define(function() {
    var regdist = 64;
    var regY = null// _game.world.height-64-16;
 
+
+
    var Menu = function(){
      this.vision = null;
 
@@ -32,16 +34,16 @@ define(function() {
 
     //mirroirs
     miroirH = _game.add.sprite(660, 536, 'mirroirH');
+    miroirH.inputEnabled = true;
+    miroirH.input.enableDrag();
   //  this.groupInfra.add(miroirH);
   //  this.groupSupra.add(miroirH);
   //  this.groupVisible.add(miroirH);
 
-
     miroirV = _game.add.sprite(700, 536, 'mirroirV');
     miroirV.inputEnabled = true;
     miroirV.input.enableDrag();
-    miroirH.inputEnabled = true;
-    miroirH.input.enableDrag();
+
 
   //  this.groupInfra.add(miroirV);
   //  this.groupSupra.add(miroirV);
@@ -80,6 +82,7 @@ define(function() {
         p.exists = false;
         p.inputEnabled = true;
         p.input.enableDrag();
+        p.events.onDragStart.add(Menu.prototype.dragStart, this, plombCarre);
       }
     )
     this.groupSupra.forEach(
@@ -87,21 +90,30 @@ define(function() {
       p.exists = false;
       p.inputEnabled = true;
       p.input.enableDrag();
+      p.events.onDragStart.add(Menu.prototype.dragStart, this, plombCarre);
+
       })
       this.groupVisible.forEach(
         function(p){
           p.exists = true;
           p.inputEnabled = true;
           p.input.enableDrag();
+          p.events.onDragStart.add(Menu.prototype.dragStart, this, plombCarre);
+
         }
       )
       this.state = 'visible';
 
-
-
    }
    Menu.prototype.constructor = Menu;
    Menu.prototype = Object.create(Phaser.Sprite.prototype);
+
+   Menu.prototype.dragStart  = function(sprite){
+     //this.toVisible();
+     sprite.destroy();
+  //   this.destroy();
+   }
+
 
    Menu.prototype.update = function(){
      var rX = this.reglette.x;
@@ -189,6 +201,7 @@ define(function() {
 
    return {
      init : function(game){
+
        _game = game;
        regY = _game.world.height-64-16;
 
