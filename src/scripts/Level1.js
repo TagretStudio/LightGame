@@ -155,7 +155,14 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	       }
 	       //
 	    function actionOnClick() {
-		_game.state.start('Level1');
+		if (_music != null) {
+		    _music.getMusic().fadeOut(700);
+		    _music.getMusic().onFadeComplete.dispatch();
+		    _music.getMusic().onFadeComplete.addOnce(function() {
+			_music = null;
+			_game.state.start('Level1');
+			}, _game);
+		}
 	    }
 
 
