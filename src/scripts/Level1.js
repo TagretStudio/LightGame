@@ -70,15 +70,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupDoors.enableBody = true;
 			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 0, 470);
 			door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 600, 470);
-		    //TEST DRAG&DROP AVANCE
-		    door3 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 620, 536);
-		    door3.inputEnabled = true;
-		    door3.input.enableDrag();
-		    door3.events.onDragStart.add(doorDragStart, _game);
-		    door3.events.onInputUp.add(doorDragStop, _game);
 			_groupDoors.add(door1);
 			_groupDoors.add(door2);
-		    _groupDoors.add(door3);
 
 			_groupLum = _game.add.group();
 
@@ -150,25 +143,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	       }
 	       //
 
-		    //TEST DRAG&DROP AVANCE
-		    function doorDragStart(door) {
-			door.body.immovable = false;
-			//Diminuer le compteur
-		    }
-		    
-		    function doorDragStop(door) {
-			if (_game.physics.arcade.overlap(door, menuBlack, getBack, null, _game)) {
-			    //Incrémenter le compteur
-			} else {
-			    door.body.immovable = true;
-			    door.input.disableDrag();
-			}
-		    }
-
-	       function getBack(door) {
-		   door.setTo(620, 536);
-	       }
-		    //
 
 	return{
 		init : function(game, etapesuivante){
