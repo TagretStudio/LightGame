@@ -74,17 +74,18 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible.add(magenta);
 		this.groupVisible.add(yellow);
 
+		this.groupInfra.visible = false;
 		this.groupInfra.addAll('draggable', false)
 		this.groupInfra.forEach(
 			function(p){
 				if (!p.draggable) {
 					p.number = 1; //STUPIDE
-					p.spriteText = _game.add.text(p.x, p.y+32, "", {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-					dragcopy.exists = false;
-					p.exists = false;
+					//dragcopy.exists = false;
+					//p.exists = false;
 					p.inputEnabled = true;
 					p.input.enableDrag();
 					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
@@ -95,17 +96,18 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			}
 		)
 
+		this.groupSupra.visible = false;
 		this.groupSupra.addAll('draggable', false)
 		this.groupSupra.forEach(
 			function(p){
 				if (!p.draggable) {
 					p.number = 2; //STUPIDE
-					p.spriteText = _game.add.text(p.x, p.y+32, "", {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-					dragcopy.exists = false;
-					p.exists = false;
+					//dragcopy.exists = false;
+					//p.exists = false;
 					p.inputEnabled = true;
 					p.input.enableDrag();
 					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
@@ -116,6 +118,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			}
 		)
 
+		this.groupVisible.visible = true;
 		this.groupVisible.addAll('draggable', false)
 		this.groupVisible.forEach(
 			function(p){
@@ -125,8 +128,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-					dragcopy.exists = true;
-					p.exists = true;
+					//dragcopy.exists = true;
+					//p.exists = true;
 					p.inputEnabled = true;
 					p.input.enableDrag();
 					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
@@ -187,6 +190,57 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 	}
 
 	Menu.prototype.update = function(){
+		this.groupVisible.forEach(
+			function(p) {
+				if (p.parent.visible) {
+					if (p.draggable) {
+	 					p.y += (_game.world.height-64 - p.y)/4;
+	 				} else {
+						if (!p.input.isDragged) {
+		 					p.y += (_game.world.height-64 - p.y)/4;
+							p.spriteText.y = p.y+32;
+                        }
+					}
+				} else {
+					p.y += (_game.world.height - p.y)/4;
+					if (!p.draggable) p.spriteText.y = p.y+32;
+				}
+			}
+		);
+		this.groupSupra.forEach(
+			function(p) {
+				if (p.parent.visible) {
+					if (p.draggable) {
+	 					p.y += (_game.world.height-64 - p.y)/4;
+	 				} else {
+						if (!p.input.isDragged) {
+		 					p.y += (_game.world.height-64 - p.y)/4;
+							p.spriteText.y = p.y+32;
+						}
+					}
+				} else {
+					p.y += (_game.world.height - p.y)/4;
+					if (!p.draggable) p.spriteText.y = p.y+32;
+				}
+			}
+		);
+		this.groupInfra.forEach(
+			function(p) {
+				if (p.parent.visible) {
+					if (p.draggable) {
+	 					p.y += (_game.world.height-64 - p.y)/4;
+	 				} else {
+						if (!p.input.isDragged) {
+		 					p.y += (_game.world.height-64 - p.y)/4;
+							p.spriteText.y = p.y+32;
+                        }
+					}
+				} else {
+					p.y += (_game.world.height - p.y)/4;
+					if (!p.draggable) p.spriteText.y = p.y+32;
+				}
+			}
+		);
 
 		var rX = this.reglette.x;
 		var oldstate = this.state;
@@ -220,66 +274,21 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 	}
 
 	Menu.prototype.toInfra = function(){
-		this.groupVisible.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupSupra.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupInfra.forEach(
-			function(p){
-				p.exists = true;
-				if (!p.draggable) p.spriteText.text = ""+p.number;
-			}
-		)
+		this.groupVisible.visible = false;
+		this.groupSupra.visible = false;
+		this.groupInfra.visible = true;
 	}
 
 	Menu.prototype.toSupra = function(){
-		this.groupVisible.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupInfra.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupSupra.forEach(
-			function(p){
-				p.exists =true;
-				if (!p.draggable) p.spriteText.text = ""+p.number;
-			}
-		)
+		this.groupVisible.visible = false;
+		this.groupSupra.visible = true;
+		this.groupInfra.visible = false;
 	}
 
 	Menu.prototype.toVisible = function(){
-		this.groupInfra.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupSupra.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupVisible.forEach(
-			function(p){
-				p.exists = true;
-				if (!p.draggable) p.spriteText.text = ""+p.number;
-			}
-		)
+		this.groupVisible.visible = true;
+		this.groupSupra.visible = false;
+		this.groupInfra.visible = false;
 	}
 
    return {
