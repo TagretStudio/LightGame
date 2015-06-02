@@ -24,16 +24,16 @@ define(['VisionEnum'], function(VisionEnum) {
 	Lumming.prototype = Object.create(Phaser.Sprite.prototype);
 	Lumming.prototype.constructor = Lumming;
 
-	Lumming.prototype.update = function() {
+	/*Lumming.prototype.update = function() {
 			if (this.body.velocity.x > 0) {
 				this.animations.play('right');
 			} else {
 				this.animations.play('left');
 			}
-		}
+		}*/
 
-	Lumming.prototype.update = function(currentVision) {
-		if (VisionEnum.getVisionEnum().currentVision == VisionEnum.getVisionEnum()._defaultVision) {
+	Lumming.prototype.update = function() {
+		if (VisionEnum.getVisionCurrent() == VisionEnum.getVisionEnum()._defaultVision) {
 			if (this.body.velocity.x > 0) {
 				this.animations.play('right');
 			} else {

@@ -16,10 +16,18 @@ define(function() {
 			}
 		}
 	});
+
+    var VisionCurrent = VisionEnum.VISIBLE;
 	
 	return {
 		getVisionEnum: function() {
 			return VisionEnum;
-		}
+		},
+	    setVisionCurrent: function(vision) {
+		VisionCurrent = vision;
+	    },
+	    getVisionCurrent: function() {
+		return VisionCurrent;
+	    }
 	}
 })

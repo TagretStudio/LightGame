@@ -1,9 +1,8 @@
-define(function() {
+define(['VisionEnum'], function(VisionEnum) {
    var _game = null;
    var regX = 64; // coordonnee X du MILIEU de la reglette
    var regdist = 64;
-   var regY = null// _game.world.height-64-16;
-
+   var regY = null;// _game.world.height-64-16;
 
 
    var Menu = function(){
@@ -160,12 +159,15 @@ define(function() {
      this.reglette.x = rX;
      if (oldstate != this.state){
        if (this.state == 'infra') {
-        this.toInfra();
+           this.toInfra();
+	   VisionEnum.setVisionCurrent(1);
        } else if (this.state == 'visible') {
-         this.toVisible();
+           this.toVisible();
+	   VisionEnum.setVisionCurrent(2);
  				//code passTo le truc à le milieu
- 			} else {
-         this.toSupra();
+       } else {
+           this.toSupra();
+	   VisionEnum.setVisionCurrent(3);
  				//code passTo le truc à droite
  			}
      }

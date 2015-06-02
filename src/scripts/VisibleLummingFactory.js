@@ -39,8 +39,8 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
         }
     }
     
-    VisibleLumming.prototype.update = function(currentVision) {
-        LummingFactory.Lumming.prototype.update.call(this, currentVision);
+    VisibleLumming.prototype.update = function() {
+        LummingFactory.Lumming.prototype.update.call(this);
     }
 
     return {
