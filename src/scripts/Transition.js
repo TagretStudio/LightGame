@@ -4,8 +4,8 @@ define(['MusicFactory'],function(MusicFactory){
 return{
   init : function(game){
     _game = game;
-    _game.load.image('transitionBackground', 'src/media/img/sky.png');
-    _game.load.image('transitionLogo', 'src/media/img/Menu.png');
+    _game.load.image('transitionBackground', 'media/img/sky.png');
+    _game.load.image('transitionLogo', 'media/img/Menu.png');
 
 
   },

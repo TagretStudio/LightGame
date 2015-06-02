@@ -20,7 +20,7 @@
     return {
         init : function(game) {
             _game = game;
-            _game.load.image('platform', 'src/media/img/platform.png');
+            _game.load.image('platform', 'media/img/platform.png');
 			
         },
         

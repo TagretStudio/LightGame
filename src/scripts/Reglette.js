@@ -78,7 +78,7 @@ define([], function() {
 	return {
 		init: function(game) {
 			_game = game;
-			_game.load.image('Reg', 'src/media/img/Reglette.png');
+			_game.load.image('Reg', 'media/img/Reglette.png');
 		},
 	
 		create: function() {

@@ -35,13 +35,13 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory'],
             _game = game;
             _vision = VisionEnum.getVisionEnum().VISIBLE;
             LummingFactory.init(_game);
-            _game.load.spritesheet('lumming_blue', 'src/media/img/lumming_blue.png', 32, 32, 32);
-            _game.load.spritesheet('lumming_cyan', 'src/media/img/lumming_cyan.png', 32, 32, 32);
-            _game.load.spritesheet('lumming_green', 'src/media/img/lumming_green.png', 32, 32, 32);
-            _game.load.spritesheet('lumming_magenta', 'src/media/img/lumming_magenta.png', 32, 32, 32);
-            _game.load.spritesheet('lumming_red', 'src/media/img/lumming_red.png', 32, 32, 32);
-            _game.load.spritesheet('lumming_white', 'src/media/img/lumming_white.png', 32, 32, 32);
-            _game.load.spritesheet('lumming_yellow', 'src/media/img/lumming_yellow.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_blue', 'media/img/lumming_blue.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_cyan', 'media/img/lumming_cyan.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_green', 'media/img/lumming_green.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_magenta', 'media/img/lumming_magenta.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_red', 'media/img/lumming_red.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_white', 'media/img/lumming_white.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_yellow', 'media/img/lumming_yellow.png', 32, 32, 32);
         },
 
         create: function(color, x, y, vitesseX) {

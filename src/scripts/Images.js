@@ -16,12 +16,12 @@ define (function(){
 	}
 	var  _backgroundIntro = {
 		preload : function(){
-			_game.load.image('preloaderBackground', 'src/media/img/sky.png');
-			_game.load.image('logo', 'src/media/img/Menu.png');
-			_game.load.image('cible', 'src/media/img/cible.png');
-			_game.load.image('tagret', 'src/media/img/tagret_studio.png');
-			_game.load.image('presents', 'src/media/img/Presents.png');
-			_game.load.spritesheet('button', 'src/media/img/MenuButtons.png', 274, 71);
+			_game.load.image('preloaderBackground', 'media/img/sky.png');
+			_game.load.image('logo', 'media/img/Menu.png');
+			_game.load.image('cible', 'media/img/cible.png');
+			_game.load.image('tagret', 'media/img/tagret_studio.png');
+			_game.load.image('presents', 'media/img/Presents.png');
+			_game.load.spritesheet('button', 'media/img/MenuButtons.png', 274, 71);
 
 		},
 		create : function(){
