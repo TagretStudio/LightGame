@@ -38,12 +38,12 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 		init: function(game) {
 			_game = game;
 			Items.init(_game);
-			_game.load.spritesheet('filter_blue', 'src/media/img/filter_blue.png', 32, 32, 11);
-			_game.load.spritesheet('filter_cyan', 'src/media/img/filter_cyan.png', 32, 32, 11);
-			_game.load.spritesheet('filter_green', 'src/media/img/filter_green.png', 32, 32, 11);
-			_game.load.spritesheet('filter_magenta', 'src/media/img/filter_magenta.png', 32, 32, 11);
-			_game.load.spritesheet('filter_red', 'src/media/img/filter_red.png', 32, 32, 11);
-			_game.load.spritesheet('filter_yellow', 'src/media/img/filter_yellow.png', 32, 32, 11);
+			_game.load.spritesheet('filter_blue', 'media/img/filter_blue.png', 32, 32, 11);
+			_game.load.spritesheet('filter_cyan', 'media/img/filter_cyan.png', 32, 32, 11);
+			_game.load.spritesheet('filter_green', 'media/img/filter_green.png', 32, 32, 11);
+			_game.load.spritesheet('filter_magenta', 'media/img/filter_magenta.png', 32, 32, 11);
+			_game.load.spritesheet('filter_red', 'media/img/filter_red.png', 32, 32, 11);
+			_game.load.spritesheet('filter_yellow', 'media/img/filter_yellow.png', 32, 32, 11);
 		},
 		
 		create: function(color, x, y) {

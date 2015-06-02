@@ -5,7 +5,7 @@ define(['LummingFactory', 'VisionEnum'],
 	var _vision = null;
 
     var RadioLumming = function(game, x, y, vitesseX) {
-	this.sprite = 'src/media/img/lumming_radio';
+	this.sprite = 'media/img/lumming_radio';
 	LummingFactory.Lumming.call(this, game, 'lumming_radio', x, y, vitesseX, 'low');
     }
 
@@ -18,7 +18,7 @@ define(['LummingFactory', 'VisionEnum'],
             _game = game;
 			_vision = VisionEnum.getVisionEnum().INFRA;
             LummingFactory.init(_game);
-	    _game.load.spritesheet('lumming_radio', 'src/media/img/lumming_radio.png', 32, 32, 16);
+	    _game.load.spritesheet('lumming_radio', 'media/img/lumming_radio.png', 32, 32, 16);
 	},
 
 	create: function(x, y, vitesseX, visibleLevel) {

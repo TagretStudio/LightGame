@@ -11,7 +11,7 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition'], function(Imag
 
 	var _chargement = {
 		preload : function(){
-			_music = MusicFactory.create('Menu', 'src/media/audio/menu_music.ogg');
+			_music = MusicFactory.create('Menu', 'media/audio/menu_music.ogg');
 			MainMenu.setMusic(_music);
 
 		},

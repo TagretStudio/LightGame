@@ -5,7 +5,7 @@ define(function(){
 
 	var _maintheme = {
 		preload : function(){
-			_game.load.audio('menu_music', 'src/media/audio/menu_music.ogg');
+			_game.load.audio('menu_music', 'media/audio/menu_music.ogg');
 		},
 		create : function(){
 			if (_music != null && _music.isPlaying == true) {
