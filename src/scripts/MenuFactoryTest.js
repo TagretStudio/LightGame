@@ -1,232 +1,258 @@
-define(['VisionEnum'], function(VisionEnum) {
-   var _game = null;
-   var regX = 64; // coordonnee X du MILIEU de la reglette
-   var regdist = 64;
-   var regY = null;// _game.world.height-64-16;
+define(function() {
+	var _game = null;
+	var regX = 64; // coordonnee X du MILIEU de la reglette
+	var regdist = 64;
+	var regY = null// _game.world.height-64-16;
 
+	var Menu = function(){
+		this.vision = null;
+		this.spriteTempo = null;
 
-   var Menu = function(){
-    this.vision = null;
-    this.spriteTempo = null;
-
-    this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
-    this.reglette = _game.add.sprite(regX, regY, 'Reg');
-    this.reglette.inputEnabled = true;
+		this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
+		this.reglette = _game.add.sprite(regX, regY, 'Reg');
+		this.reglette.inputEnabled = true;
 		this.reglette.input.enableDrag();
 		this.reglette.input.allowVerticalDrag = false;
 		this.reglette.held = false;
 
+		this.groupVisible = _game.add.group();
+		this.groupInfra = _game.add.group();
+		this.groupSupra = _game.add.group();
 
-    this.groupVisible = _game.add.group();
-    this.groupInfra = _game.add.group();
-    this.groupSupra = _game.add.group();
+		//infra
 
-    //infra
-
-    //plomb
-    plombCarre = _game.add.sprite(470, 536, 'plombCarre');
-    this.groupInfra.add(plombCarre);
-    plombVertical = _game.add.sprite(510, 536, 'plombVertical');
-    this.groupInfra.add(plombVertical);
-    plombHorizontal = _game.add.sprite(550, 536, 'plombHorizontal');
-    this.groupInfra.add(plombHorizontal);
-
-
-    //mirroirs
-    miroirH = _game.add.sprite(660, 536, 'mirroirH');
-    miroirH.inputEnabled = true;
-    miroirH.input.enableDrag();
-  //  this.groupInfra.add(miroirH);
-  //  this.groupSupra.add(miroirH);
-  //  this.groupVisible.add(miroirH);
-
-    miroirV = _game.add.sprite(700, 536, 'mirroirV');
-    miroirV.inputEnabled = true;
-    miroirV.input.enableDrag();
+		//plomb
+		plombCarre = _game.add.sprite(470, 536, 'plombCarre');
+		this.groupInfra.add(plombCarre);
+		plombVertical = _game.add.sprite(510, 536, 'plombVertical');
+		this.groupInfra.add(plombVertical);
+		plombHorizontal = _game.add.sprite(550, 536, 'plombHorizontal');
+		this.groupInfra.add(plombHorizontal);
 
 
-  //  this.groupInfra.add(miroirV);
-  //  this.groupSupra.add(miroirV);
-  //  this.groupVisible.add(miroirV);
-  //supra
+		//mirroirs
+		miroirH = _game.add.sprite(660, 536, 'mirroirH');
+		miroirH.inputEnabled = true;
+		miroirH.input.enableDrag();
+		//  this.groupInfra.add(miroirH);
+		//  this.groupSupra.add(miroirH);
+		//  this.groupVisible.add(miroirH);
 
-  //antenes
-    aerialRight = _game.add.sprite(410, 536, 'aerialRight');
-    aerialLeft = _game.add.sprite(170, 536, 'aerialLeft');
-    this.groupSupra.add(aerialLeft);
-    this.groupSupra.add(aerialRight);
-
-
-
-    //visibles
-
-    red = _game.add.sprite(230, 536, 'red');
-    blue = _game.add.sprite(310, 536, 'blue');
-    green = _game.add.sprite(270, 536, 'green');
-    magenta = _game.add.sprite(470, 536, 'magenta');
-    cyan = _game.add.sprite(510, 536, 'cyan');
+		miroirV = _game.add.sprite(700, 536, 'mirroirV');
+		miroirV.inputEnabled = true;
+		miroirV.input.enableDrag();
 
 
-    yellow = _game.add.sprite(550, 536, 'yellow');
-    this.groupVisible.add(red);
-    this.groupVisible.add(blue);
-    this.groupVisible.add(green);
-    this.groupVisible.add(cyan);
-    this.groupVisible.add(magenta);
-    this.groupVisible.add(yellow);
+		//  this.groupInfra.add(miroirV);
+		//  this.groupSupra.add(miroirV);
+		//  this.groupVisible.add(miroirV);
+		//supra
+
+		//antenes
+		aerialRight = _game.add.sprite(410, 536, 'aerialRight');
+		aerialLeft = _game.add.sprite(170, 536, 'aerialLeft');
+		this.groupSupra.add(aerialLeft);
+		this.groupSupra.add(aerialRight);
 
 
 
-    this.groupInfra.forEach(
-      function(p){
-        p.exists = false;
-        p.inputEnabled = true;
-        p.input.enableDrag();
-        p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
-        p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+		//visibles
 
-      }
-    )
-    this.groupSupra.forEach(
-      function(p){
-      p.exists = false;
-      p.inputEnabled = true;
-      p.input.enableDrag();
-      p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
-      p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+		red = _game.add.sprite(230, 536, 'red');
+		blue = _game.add.sprite(310, 536, 'blue');
+		green = _game.add.sprite(270, 536, 'green');
+		magenta = _game.add.sprite(470, 536, 'magenta');
+		cyan = _game.add.sprite(510, 536, 'cyan');
 
 
-      })
-      this.groupVisible.forEach(
-        function(p){
-          p.exists = true;
-          p.inputEnabled = true;
-          p.input.enableDrag();
-          p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
-          p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+		yellow = _game.add.sprite(550, 536, 'yellow');
+		this.groupVisible.add(red);
+		this.groupVisible.add(blue);
+		this.groupVisible.add(green);
+		this.groupVisible.add(cyan);
+		this.groupVisible.add(magenta);
+		this.groupVisible.add(yellow);
 
+		this.groupInfra.addAll('draggable', false)
+		this.groupInfra.forEach(
+			function(p){
+				if (!p.draggable) {
+					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
+					p.parent.add(dragcopy);
+					dragcopy.draggable = true;
 
-        }
-      )
-      this.state = 'visible';
+					p.exists = false;
+					p.inputEnabled = true;
+					p.input.enableDrag();
+					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
+					p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+					p.origX = p.x;
+					p.origY = p.y;
+				}
+			}
+		)
 
-   }
-   Menu.prototype.constructor = Menu;
-   Menu.prototype = Object.create(Phaser.Sprite.prototype);
+		this.groupSupra.addAll('draggable', false)
+		this.groupSupra.forEach(
+			function(p){
+				if (!p.draggable) {
+					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
+					p.parent.add(dragcopy);
+					dragcopy.draggable = true;
 
-   Menu.prototype.dragStart  = function(sprite){
-     //this.toVisible();
-  //   aux = sprite;
-     this.spriteTempo = _game.add.sprite(sprite.x, sprite.y, sprite.key);
-     this.spriteTempo.inputEnabled = true;
-     this.spriteTempo.input.enableDrag();
-     this.spriteTempo.events.onDragStart.add(Menu.prototype.dragStart, this, this.spriteTempo);
-     this.spriteTempo.events.onDragStop.add(Menu.prototype.dragStop, this, this.spriteTempo);
-    // this.spriteTempo.moveDown();
-    sprite.bringToTop();
-    // sprite = this.spriteTempo();
-    // this.spriteTempo = aux;
-     //sprite.destroy();
-  //   this.destroy();
-   }
+					p.exists = false;
+					p.inputEnabled = true;
+					p.input.enableDrag();
+					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
+					p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+					p.origX = p.x;
+					p.origY = p.y;
+				}
+			}
+		)
 
-   Menu.prototype.dragStop  = function(sprite){
-     //this.toVisible();
-     aux = sprite;
-     sprite = this.spriteTempo;
-     sprite.moveUp();
-     aux.destroy();
-    // this.spriteTempo = _game.add.sprite(sprite.x, sprite.y, sprite.key);
-     //sprite.destroy();
-  //   this.destroy();
-   }
+		this.groupVisible.addAll('draggable', false)
+		this.groupVisible.forEach(
+			function(p){
+				if (!p.draggable) {
+					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
+					p.parent.add(dragcopy);
+					dragcopy.draggable = true;
 
-   Menu.prototype.update = function(){
-     var rX = this.reglette.x;
-     var oldstate = this.state;
-     if (!this.reglette.input.isDragged) {
-       if (rX < regX-regdist/3) {
-         this.state = 'infra';
-         rX += ((regX-regdist*2/3)-rX)/4;
-       } else if (rX > regX+regdist/3) {
-         this.state = 'supra';
-         rX += ((regX+regdist*2/3)-rX)/4;
-       } else {
-         this.state = 'visible';
-         rX += (regX-rX)/4;
-       }
-     }
-     this.reglette.x = rX;
-     if (oldstate != this.state){
-       if (this.state == 'infra') {
-           this.toInfra();
-	   VisionEnum.setVisionCurrent(1);
-       } else if (this.state == 'visible') {
-           this.toVisible();
-	   VisionEnum.setVisionCurrent(2);
- 				//code passTo le truc à le milieu
-       } else {
-           this.toSupra();
-	   VisionEnum.setVisionCurrent(3);
- 				//code passTo le truc à droite
- 			}
-     }
-   }
+					p.exists = true;
+					p.inputEnabled = true;
+					p.input.enableDrag();
+					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
+					p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+					p.origX = p.x;
+					p.origY = p.y;
+				}
+			}
+		)
 
-   Menu.prototype.toInfra = function(){
-     this.groupVisible.forEach(
-       function(p){
-         p.exists = false;
-       }
-     )
-     this.groupSupra.forEach(
-       function(p){
-         p.exists = false;
-       })
-     this.groupInfra.forEach(
-       function(p){
-         p.exists = true;
-       }
-     )
-   }
+		this.state = 'visible';
 
-   Menu.prototype.toSupra = function(){
+	}
+	Menu.prototype.constructor = Menu;
+	Menu.prototype = Object.create(Phaser.Sprite.prototype);
 
-     this.groupVisible.forEach(
-       function(p){
-         p.exists = false;
-       }
-     )
+	Menu.prototype.dragStart  = function(sprite){
+		/*
+		//this.toVisible();
+		//   aux = sprite;
+		this.spriteTempo = _game.add.sprite(sprite.x, sprite.y, sprite.key);
+		this.spriteTempo.inputEnabled = true;
+		this.spriteTempo.input.enableDrag();
+		this.spriteTempo.events.onDragStart.add(Menu.prototype.dragStart, this, this.spriteTempo);
+		this.spriteTempo.events.onDragStop.add(Menu.prototype.dragStop, this, this.spriteTempo);
+		// this.spriteTempo.moveDown();
+		sprite.bringToTop();
+		// sprite = this.spriteTempo();
+		// this.spriteTempo = aux;
+		//sprite.destroy();
+		//   this.destroy();
+		*/
+	}
 
-     this.groupInfra.forEach(
-       function(p){
-         p.exists = false;
-        }
-       )
-       this.groupSupra.forEach(
-         function(p){
-           p.exists =true;
-         })
-   }
+	Menu.prototype.dragStop  = function(sprite){
+		/*
+		//this.toVisible();
+		aux = sprite;
+		sprite = this.spriteTempo;
+		sprite.moveUp();
+		aux.destroy();
+		// this.spriteTempo = _game.add.sprite(sprite.x, sprite.y, sprite.key);
+		//sprite.destroy();
+		//   this.destroy();
+		*/
+		created = _game.add.sprite(sprite.x, sprite.y, sprite.key);
+		sprite.x = sprite.origX;
+		sprite.y = sprite.origY;
+	}
 
-   Menu.prototype.toVisible = function(){
+	Menu.prototype.update = function(){
+		var rX = this.reglette.x;
+		var oldstate = this.state;
+		if (!this.reglette.input.isDragged) {
+			if (rX < regX-regdist/3) {
+				this.state = 'infra';
+				rX += ((regX-regdist*2/3)-rX)/4;
+			} else if (rX > regX+regdist/3) {
+				this.state = 'supra';
+				rX += ((regX+regdist*2/3)-rX)/4;
+			} else {
+				this.state = 'visible';
+				rX += (regX-rX)/4;
+			}
+		}
+		this.reglette.x = rX;
+		if (oldstate != this.state){
+			if (this.state == 'infra') {
+				this.toInfra();
+			} else if (this.state == 'visible') {
+				this.toVisible();
+				//code passTo le truc à le milieu
+			} else {
+				this.toSupra();
+				//code passTo le truc à droite
+			}
+		}
+	}
 
-     this.groupInfra.forEach(
-       function(p){
-         p.exists = false;
-       }
-     )
+	Menu.prototype.toInfra = function(){
+		this.groupVisible.forEach(
+				function(p){
+					p.exists = false;
+				}
+				)
+			this.groupSupra.forEach(
+					function(p){
+						p.exists = false;
+					})
+		this.groupInfra.forEach(
+				function(p){
+					p.exists = true;
+				}
+				)
+	}
 
-     this.groupSupra.forEach(
-       function(p){
-         p.exists = false;
-       })
-     this.groupVisible.forEach(
-        function(p){
-         p.exists = true;
-       }
-     )
-   }
+	Menu.prototype.toSupra = function(){
+
+		this.groupVisible.forEach(
+				function(p){
+					p.exists = false;
+				}
+				)
+
+			this.groupInfra.forEach(
+					function(p){
+						p.exists = false;
+					}
+					)
+			this.groupSupra.forEach(
+					function(p){
+						p.exists =true;
+					})
+	}
+
+	Menu.prototype.toVisible = function(){
+
+		this.groupInfra.forEach(
+				function(p){
+					p.exists = false;
+				}
+				)
+
+			this.groupSupra.forEach(
+					function(p){
+						p.exists = false;
+					})
+		this.groupVisible.forEach(
+				function(p){
+					p.exists = true;
+				}
+				)
+	}
 
    return {
      init : function(game){
