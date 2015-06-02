@@ -1,11 +1,10 @@
 define(['VisionEnum'], function(VisionEnum) {
 
-//	var _defaultVision = null;
-
-	var Lumming = function(game, sprite, x, y, vitesseX, vision) {
+	var Lumming = function(game, spriteName, x, y, vitesseX, vision) {
 
 		this.defaultVision = vision;
-		Phaser.Sprite.call(this, game, x, y, sprite, [1]);
+		Phaser.Sprite.call(this, game, x, y, spriteName, [1]);
+		this.spriteName = spriteName;
 		game.physics.arcade.enable(this);
 		this.body.setSize(32, 32);
 
@@ -31,7 +30,6 @@ define(['VisionEnum'], function(VisionEnum) {
 
 	Lumming.prototype.update = function() {
 		if (VisionEnum.getVisionCurrent() == this.defaultVision) {
-
 			if (this.body.velocity.x > 0) {
 				this.animations.play('right');
 			} else {
@@ -45,8 +43,12 @@ define(['VisionEnum'], function(VisionEnum) {
 			}
 		}
 	    if (this.position.y > 504) {
-		this.kill();
+			this.kill();
 	    }
+	}
+	
+	Lumming.prototype.updateColor = function(spriteName) {
+		this.loadTexture(spriteName);
 	}
 
 	Lumming.prototype.collide = function(game, objet) {
@@ -56,10 +58,11 @@ define(['VisionEnum'], function(VisionEnum) {
 	return{
 		init : function(game) {
 			_game = game;
+			_game.load.spritesheet('lumming_yellow', 'media/img/lumming_yellow.png', 32, 32, 32);
 		}
 		,
-		create : function(sprite, x, y, vitesseX, vision) {
-			return (new Lumming(_game, sprite, x, y, vitesseX, vision));
+		create : function(spriteName, x, y, vitesseX, vision) {
+			return (new Lumming(_game, spriteName, x, y, vitesseX, vision));
 		},
 
 		Lumming : Lumming

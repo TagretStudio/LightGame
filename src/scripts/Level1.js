@@ -24,6 +24,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			PlatformFactory.init(_game);
 			DoorsFactory.init(_game);
 		    MenuFactoryTest.init(_game);
+			FilterFactory.init(_game);
 		},
 		create : function(){
 			_nbLummingsSaved = 0;

@@ -27,16 +27,25 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
     }
     
     VisibleLumming.prototype.collideWithFilter = function(filter) {
+        var temp = this.color;
+        var value = ColorEnum.getValue(temp);
         if (filter.isAdditive()) {
-            //this.color = this.color | filter.getColorValue();
-        } /*else {
-            this.color = this.color & filter.getColorValue();
+            value = value | ColorEnum.getValue(filter.getColor());
+            this.color = ColorEnum.getColorKnowingValue(value);
+        } else {
+            value = value & ColorEnum.getValue(filter.getColor());
+            this.color = ColorEnum.getColorKnowingValue(value);
+
         }
-        if (this.color == 0) {
-            this.body.velocity.x = 0;
-            this.animations.play('kill');
-            this.kill();
-        }*/
+        if (temp != this.color) {
+            if (value == 0) {
+               this.body.velocity.x = 0;
+               this.animations.play('kill');
+               this.kill();
+            } else {
+                LummingFactory.Lumming.prototype.updateColor.call(this, 'lumming_' + ColorEnum.getName(this.color));
+            }
+        }
     }
     
     VisibleLumming.prototype.update = function() {
