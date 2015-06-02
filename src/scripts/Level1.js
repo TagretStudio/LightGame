@@ -125,6 +125,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		update : function(){
 
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
+			_game.physics.arcade.collide(_groupLum, _groupMiroir);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), mayExit, null, _game);
 
