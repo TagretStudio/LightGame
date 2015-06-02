@@ -1,5 +1,5 @@
 define(['VisionEnum'], function(VisionEnum) {
-	
+
 	var _defaultVision = null;
 
 	var Lumming = function(game, sprite, x, y, vitesseX, vision) {
@@ -23,6 +23,14 @@ define(['VisionEnum'], function(VisionEnum) {
 
 	Lumming.prototype = Object.create(Phaser.Sprite.prototype);
 	Lumming.prototype.constructor = Lumming;
+
+	Lumming.prototype.update = function() {
+			if (this.body.velocity.x > 0) {
+				this.animations.play('right');
+			} else {
+				this.animations.play('left');
+			}
+		}
 
 	Lumming.prototype.update = function(currentVision) {
 		if (VisionEnum.getVisionEnum().currentVision == VisionEnum.getVisionEnum()._defaultVision) {
@@ -55,8 +63,8 @@ define(['VisionEnum'], function(VisionEnum) {
 		create : function(sprite, x, y, vitesseX, vision) {
 			return (new Lumming(_game, sprite, x, y, vitesseX, vision));
 		},
-		
+
 		Lumming : Lumming
-		
+
 	}
 })
