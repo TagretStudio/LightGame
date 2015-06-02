@@ -4,14 +4,13 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 	
 	var Filter = function(color, x, y) {
 		this.color = color;
-		if (ColorEnum.getName(color) == ColorEnum.getColorEnum().RED
-			|| ColorEnum.getName(color) == ColorEnum.getColorEnum().GREEN
-			|| ColorEnum.getName(color) == ColorEnum.getColorEnum().BLUE) {
-			this.isAdditive = true;
+		if (color == ColorEnum.getColorEnum().RED
+			|| color == ColorEnum.getColorEnum().GREEN
+			|| color == ColorEnum.getColorEnum().BLUE) {
+			this.isAdd = true;
 		} else {
-			this.isAdditive = false;
+			this.isAdd = false;
 		}
-		
 		this.spriteName = 'filter_' + ColorEnum.getName(color);
 		Items.Item.call(this, this.spriteName, x, y);
 		this.body.setSize(32, 32);
@@ -27,7 +26,7 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 	}
 	
 	Filter.prototype.isAdditive = function() {
-		return this.isAdditive;
+		return this.isAdd;
 	}
 	
 	Filter.prototype.getColor = function() {
@@ -48,12 +47,6 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 		
 		create: function(color, x, y) {
 			return (new Filter(color, x, y));
-		},
-		
-		isAdditive: isAdditive,
-		
-		getColorValue: function() {
-			return ColorEnum.getValue(getColor);
 		}
 	}
 	

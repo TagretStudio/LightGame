@@ -82,6 +82,16 @@ define(function() {
 		
 		getValue: function(colorCode) {
 			return ColorEnum.properties[colorCode].value;
+		},
+		
+		getColorKnowingValue: function(value) {
+			var col = ColorEnum;
+			for (c in col.properties) {
+				if (ColorEnum.properties[c].value == value) {
+					return c;
+				}
+			}
+			return ColorEnum.BLUE; // A changer
 		}
 	}
 
