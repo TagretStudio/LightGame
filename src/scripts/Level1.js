@@ -1,5 +1,5 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory', 'ItemsLevel'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory, ItemsLevel) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory', 'ItemsLevel'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory, RadioLummingFactory, ItemsLevel) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -26,6 +26,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			DoorsFactory.init(_game);
 		    MenuFactoryTest.init(_game);
 			FilterFactory.init(_game);
+		    RadioLummingFactory.init(_game);
 		},
 		create : function(){
 			_nbLummingsSaved = 0;
@@ -134,15 +135,19 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	}
 
 	function mayExit(lum, door){
+	    if (lum.getDefaultVision == 2) {
 		var exit = lum.collideWithDoor(door);
 		if (exit == 1){
-			_nbLummingsSaved = _nbLummingsSaved +1;
-			text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
+		    _nbLummingsSaved = _nbLummingsSaved +1;
+		    text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 		}
+	    }
 	}
 
 	function changeColor(lum, filter) {
+	    if (lum.getDefaultVision == 2) {
 		lum.collideWithFilter(filter);
+	    }
 	}
 
 	       //TEST DRAG&DROP
