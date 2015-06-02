@@ -26,7 +26,7 @@ define(['VisionEnum'], function(VisionEnum) {
 	Lumming.prototype.getDefautVision = function(){
 		return this.defaultVision;
 	}
-	
+
 
 	Lumming.prototype.update = function() {
 		if (VisionEnum.getVisionCurrent() == this.defaultVision) {
@@ -46,7 +46,7 @@ define(['VisionEnum'], function(VisionEnum) {
 			this.kill();
 	    }
 	}
-	
+
 	Lumming.prototype.updateColor = function(spriteName) {
 		this.loadTexture(spriteName);
 	}

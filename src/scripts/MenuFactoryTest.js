@@ -1,15 +1,15 @@
-define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum, DoorsFactory) {
+define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(VisionEnum,ColorEnum, DoorsFactory, ItemsLevel) {
 	var _game = null;
 	var regX = 64; // coordonnee X du MILIEU de la reglette
 	var regdist = 64;
 	var regY = null;// _game.world.height-64-16;
-  var _groupItem = null;
+//  var _groupItem = null;
 
 	var Menu = function(){
 		this.vision = null;
 		this.spriteTempo = null;
-    _groupItem = _game.add.group();
-    _groupItem.enableBody = true;
+  //  _groupItem = _game.add.group();
+  //  _groupItem.enableBody = true;
 		this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
 		this.reglette = _game.add.sprite(regX, regY, 'Reg');
 		this.reglette.inputEnabled = true;
@@ -74,17 +74,18 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 		this.groupVisible.add(magenta);
 		this.groupVisible.add(yellow);
 
+		this.groupInfra.visible = false;
 		this.groupInfra.addAll('draggable', false)
 		this.groupInfra.forEach(
 			function(p){
 				if (!p.draggable) {
 					p.number = 1; //STUPIDE
-					p.spriteText = _game.add.text(p.x, p.y+32, "", {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-					dragcopy.exists = false;
-					p.exists = false;
+					//dragcopy.exists = false;
+					//p.exists = false;
 					p.inputEnabled = true;
 					p.input.enableDrag();
 					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
@@ -95,17 +96,18 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 			}
 		)
 
+		this.groupSupra.visible = false;
 		this.groupSupra.addAll('draggable', false)
 		this.groupSupra.forEach(
 			function(p){
 				if (!p.draggable) {
 					p.number = 2; //STUPIDE
-					p.spriteText = _game.add.text(p.x, p.y+32, "", {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-					dragcopy.exists = false;
-					p.exists = false;
+					//dragcopy.exists = false;
+					//p.exists = false;
 					p.inputEnabled = true;
 					p.input.enableDrag();
 					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
@@ -116,6 +118,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 			}
 		)
 
+		this.groupVisible.visible = true;
 		this.groupVisible.addAll('draggable', false)
 		this.groupVisible.forEach(
 			function(p){
@@ -125,8 +128,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
-					dragcopy.exists = true;
-					p.exists = true;
+					//dragcopy.exists = true;
+					//p.exists = true;
 					p.inputEnabled = true;
 					p.input.enableDrag();
 					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
@@ -176,8 +179,9 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 			//bcall(_DoNothing)
 	    } else {
 			//created = _game.add.sprite(sprite.x, sprite.y, sprite.key);
-			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, sprite.x, sprite.y);
-			_groupItem.add(door1);
+		//	door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, sprite.x, sprite.y);
+		//	_groupItem.add(door1);
+      ItemsLevel.createItem(sprite.key, sprite.x, sprite.y);
 			sprite.number--;
 			sprite.spriteText.text = ""+sprite.number;
 	    }
@@ -186,6 +190,57 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 	}
 
 	Menu.prototype.update = function(){
+		this.groupVisible.forEach(
+			function(p) {
+				if (p.parent.visible) {
+					if (p.draggable) {
+	 					p.y += (_game.world.height-64 - p.y)/4;
+	 				} else {
+						if (!p.input.isDragged) {
+		 					p.y += (_game.world.height-64 - p.y)/4;
+							p.spriteText.y = p.y+32;
+                        }
+					}
+				} else {
+					p.y += (_game.world.height - p.y)/4;
+					if (!p.draggable) p.spriteText.y = p.y+32;
+				}
+			}
+		);
+		this.groupSupra.forEach(
+			function(p) {
+				if (p.parent.visible) {
+					if (p.draggable) {
+	 					p.y += (_game.world.height-64 - p.y)/4;
+	 				} else {
+						if (!p.input.isDragged) {
+		 					p.y += (_game.world.height-64 - p.y)/4;
+							p.spriteText.y = p.y+32;
+						}
+					}
+				} else {
+					p.y += (_game.world.height - p.y)/4;
+					if (!p.draggable) p.spriteText.y = p.y+32;
+				}
+			}
+		);
+		this.groupInfra.forEach(
+			function(p) {
+				if (p.parent.visible) {
+					if (p.draggable) {
+	 					p.y += (_game.world.height-64 - p.y)/4;
+	 				} else {
+						if (!p.input.isDragged) {
+		 					p.y += (_game.world.height-64 - p.y)/4;
+							p.spriteText.y = p.y+32;
+                        }
+					}
+				} else {
+					p.y += (_game.world.height - p.y)/4;
+					if (!p.draggable) p.spriteText.y = p.y+32;
+				}
+			}
+		);
 
 		var rX = this.reglette.x;
 		var oldstate = this.state;
@@ -219,66 +274,21 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 	}
 
 	Menu.prototype.toInfra = function(){
-		this.groupVisible.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupSupra.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupInfra.forEach(
-			function(p){
-				p.exists = true;
-				if (!p.draggable) p.spriteText.text = ""+p.number;
-			}
-		)
+		this.groupVisible.visible = false;
+		this.groupSupra.visible = false;
+		this.groupInfra.visible = true;
 	}
 
 	Menu.prototype.toSupra = function(){
-		this.groupVisible.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupInfra.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupSupra.forEach(
-			function(p){
-				p.exists =true;
-				if (!p.draggable) p.spriteText.text = ""+p.number;
-			}
-		)
+		this.groupVisible.visible = false;
+		this.groupSupra.visible = true;
+		this.groupInfra.visible = false;
 	}
 
 	Menu.prototype.toVisible = function(){
-		this.groupInfra.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupSupra.forEach(
-			function(p){
-				p.exists = false;
-				if (!p.draggable) p.spriteText.text = "";
-			}
-		)
-		this.groupVisible.forEach(
-			function(p){
-				p.exists = true;
-				if (!p.draggable) p.spriteText.text = ""+p.number;
-			}
-		)
+		this.groupVisible.visible = true;
+		this.groupSupra.visible = false;
+		this.groupInfra.visible = false;
 	}
 
    return {
@@ -316,10 +326,11 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
      },
      create : function(){
        return (new Menu());
-     },
-
+     }
+/*
      getGroupItem : function(){
        return _groupItem;
      }
+     */
    }
  })
