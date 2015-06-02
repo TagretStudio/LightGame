@@ -1,4 +1,4 @@
-define(['./Images', './Musiques', 'MusicFactory', 'Transition', 'MenuFactoryTest'], function(Images, Musiques, MusicFactory, Transition, MenuFactoryTest){
+define(['./Images', './Musiques', 'MusicFactory', 'Transition', 'MenuFactoryTest', 'ItemsLevel'], function(Images, Musiques, MusicFactory, Transition, MenuFactoryTest, ItemsLevel){
 	var _game = null;
 	var _etapesuivante = null;
 
@@ -18,6 +18,8 @@ define(['./Images', './Musiques', 'MusicFactory', 'Transition', 'MenuFactoryTest
 			Musiques.init(_game);
 			Musiques.getmaintheme().preload();
 			MenuFactoryTest.init(_game);
+			ItemsLevel.init(_game);
+			
 		}
 				  ,
 				  create : function(){

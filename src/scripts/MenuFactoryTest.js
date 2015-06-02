@@ -1,15 +1,15 @@
-define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum, DoorsFactory) {
+define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(VisionEnum,ColorEnum, DoorsFactory, ItemsLevel) {
 	var _game = null;
 	var regX = 64; // coordonnee X du MILIEU de la reglette
 	var regdist = 64;
 	var regY = null;// _game.world.height-64-16;
-  var _groupItem = null;
+//  var _groupItem = null;
 
 	var Menu = function(){
 		this.vision = null;
 		this.spriteTempo = null;
-    _groupItem = _game.add.group();
-    _groupItem.enableBody = true;
+  //  _groupItem = _game.add.group();
+  //  _groupItem.enableBody = true;
 		this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
 		this.reglette = _game.add.sprite(regX, regY, 'Reg');
 		this.reglette.inputEnabled = true;
@@ -176,8 +176,9 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 			//bcall(_DoNothing)
 	    } else {
 			//created = _game.add.sprite(sprite.x, sprite.y, sprite.key);
-			door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, sprite.x, sprite.y);
-			_groupItem.add(door1);
+		//	door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, sprite.x, sprite.y);
+		//	_groupItem.add(door1);
+      ItemsLevel.createItem(sprite.key, sprite.x, sprite.y);
 			sprite.number--;
 			sprite.spriteText.text = ""+sprite.number;
 	    }
@@ -316,10 +317,11 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
      },
      create : function(){
        return (new Menu());
-     },
-
+     }
+/*
      getGroupItem : function(){
        return _groupItem;
      }
+     */
    }
  })

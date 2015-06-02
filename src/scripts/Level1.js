@@ -1,5 +1,5 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory', 'ItemsLevel'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory, ItemsLevel) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -92,7 +92,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
 
-			
+
 			// TEST FILTRE
 			_groupFilter = _game.add.group();
 			_groupFilter.enableBody = true;
@@ -100,7 +100,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			filter2 = FilterFactory.create(ColorEnum.getColorEnum().MAGENTA, 300, 470);
 			_groupFilter.add(filter1);
 			_groupFilter.add(filter2);
-			
+			ItemsLevel.reinit(_game);
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
 			_game.paused = true;
@@ -111,6 +111,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), mayExit, null, _game);
+
 			_game.physics.arcade.overlap(_groupLum, _groupFilter, changeColor, null, _game);
 		    menuBlack.update();
 			_groupLum.forEach(
@@ -136,7 +138,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 		}
 	}
-	
+
 	function changeColor(lum, filter) {
 		lum.collideWithFilter(filter);
 	}
