@@ -79,7 +79,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 			function(p){
 				if (!p.draggable) {
 					p.number = 1; //STUPIDE
-					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x, p.y+32, "", {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
@@ -100,7 +100,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory'], function(VisionEnum,ColorEnum
 			function(p){
 				if (!p.draggable) {
 					p.number = 2; //STUPIDE
-					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x, p.y+32, "", {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
