@@ -165,9 +165,14 @@ define(['VisionEnum'], function(VisionEnum) {
 		//sprite.destroy();
 		//   this.destroy();
 		*/
+	    if (sprite.y >= _game.world.height - 96 - 32) {
+		sprite.x = sprite.origX;
+		sprite.y = sprite.origY;
+	    } else {
 		created = _game.add.sprite(sprite.x, sprite.y, sprite.key);
 		sprite.x = sprite.origX;
 		sprite.y = sprite.origY;
+	    }
 	}
 
 	Menu.prototype.update = function(){
