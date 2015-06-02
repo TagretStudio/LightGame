@@ -17,7 +17,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 		preload : function(){
 
-			_music = MusicFactory.create('level1', 'src/media/audio/Level 1.ogg');
+			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
 			DoorsFactory.init(_game);
