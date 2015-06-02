@@ -13,12 +13,13 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var text = null;
 	var menuBlack = null;
 	var _currentVision = null;
-	var reglette;
+	var button_restart;
 	var _level1 = {
 
 		preload : function(){
 
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
+		    _game.load.image('button', 'media/img/diamond.png');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
@@ -101,6 +102,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupFilter.add(filter1);
 			_groupFilter.add(filter2);
 			
+		    button_restart = _game.add.button(0,0,'button', actionOnClick, _game);
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
 			_game.paused = true;
@@ -152,6 +154,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		   lum.position.y = 0;
 	       }
 	       //
+	    function actionOnClick() {
+		_game.state.start('Level1');
+	    }
 
 
 	return{
