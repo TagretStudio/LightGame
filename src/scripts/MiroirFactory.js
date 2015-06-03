@@ -32,8 +32,8 @@ define(['Items', 'VisionEnum'], function(Items, VisionEnum) {
 		init: function(game) {
 			_game = game;
 			Items.init(_game);
-			_game.load.image('miroir_Horizontal', 'media/img/mirroirOrizontal.png');
-			_game.load.spritesheet('miroir_Vertical', 'media/img/mirroirVertical.png');
+			_game.load.image('miroir_Horizontal', 'src/media/img/miroirHorizontal.png');
+			_game.load.spritesheet('miroir_Vertical', 'src/media/img/miroirVertical.png');
 			},
 
 		create: function(x, y, isVertical) {

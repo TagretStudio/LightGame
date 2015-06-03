@@ -22,6 +22,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
 		    _game.load.image('buttonDiamond', 'media/img/diamond.png');
+		    _game.load.image('buttonRefresh', 'media/img/refresh.png');
+		    _game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
@@ -115,12 +117,14 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			miroir1 = MiroirFactory.create(100, 470, true);
 			_groupMiroir.add(miroir1);
 
-		    button_restart = _game.add.button(0,0,'buttonDiamond', actionOnRestart, _game);
 		    button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
+		    button_restart = _game.add.button(650,0,'buttonRefresh', actionOnClick, _game);
 			ItemsLevel.reinit(_game);
 
-			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
+			var cliquez = this.add.sprite(100, 300, 'cliquez');
+			cliquez.scale.set(0.7, 0.7);
+			// _game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
 			_game.paused = true;
 
 
