@@ -3,6 +3,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 	var regX = 100; // coordonnee X du MILIEU de la reglette
 	var regdist = 64;
 	var regY = null;// _game.world.height-64-16;
+	var regdots;
 //  var _groupItem = null;
 
 	var Menu = function(tab){
@@ -12,12 +13,15 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
   //  _groupItem.enableBody = true;
 		this.barre = _game.add.sprite(0, _game.world.height-96, 'menuB');
 		var regdot; //aucune idee de pourquoi il faut un -1 sur les trois suivants
-		regdot = _game.add.sprite(regX-1, regY, 'RegDot');
-		regdot.anchor.set(0.5, 0.5);
-		regdot = _game.add.sprite(regX-1+regdist*2/3, regY, 'RegDot');
-		regdot.anchor.set(0.5, 0.5);
-		regdot = _game.add.sprite(regX-1-regdist*2/3, regY, 'RegDot');
-		regdot.anchor.set(0.5, 0.5);
+		regdots = _game.add.group();
+		regdots.add(_game.add.sprite(regX-1, regY, 'RegDot'));
+		regdots.add(_game.add.sprite(regX-1+regdist*2/3, regY, 'RegDot'));
+		regdots.add(_game.add.sprite(regX-1-regdist*2/3, regY, 'RegDot'));
+		regdots.forEach(
+			function (p) {
+				p.anchor.set(0.5, 0.5);
+			}
+		)
 		this.reglette = _game.add.sprite(regX, _game.world.height-48, 'Reg');
 		this.reglette.anchor.set(0.5, 0.5);
 		this.reglette.inputEnabled = true;
@@ -254,6 +258,12 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 				//code passTo le truc à droite
 			}
 		}
+
+		regdots.forEach(
+			function (p) {
+				p.tint = 255 * 65536 + 255 * 256 + 255-Math.max(0,Math.min(255,(Math.abs(p.x-rX)*255/(regdist*4/3))));
+            }
+		);
 	}
 
 	function moveIcon(p) {
