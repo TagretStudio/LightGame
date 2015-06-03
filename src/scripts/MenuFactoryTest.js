@@ -11,7 +11,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
   //  _groupItem = _game.add.group();
   //  _groupItem.enableBody = true;
 		this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
-		this.reglette = _game.add.sprite(regX, regY, 'Reg');
+		this.reglette = _game.add.sprite(regX, _game.world.height, 'Reg');
 		this.reglette.inputEnabled = true;
 		this.reglette.input.enableDrag();
 		this.reglette.input.allowVerticalDrag = false;
@@ -24,11 +24,11 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		//infra
 
 		//plomb
-		plombCarre = _game.add.sprite(470, 536, 'plombCarre');
+		plombCarre = _game.add.sprite(20+330, 536, 'plombCarre');
 		this.groupInfra.add(plombCarre);
-		plombVertical = _game.add.sprite(510, 536, 'plombVertical');
+		plombVertical = _game.add.sprite(20+370, 536, 'plombVertical');
 		this.groupInfra.add(plombVertical);
-		plombHorizontal = _game.add.sprite(550, 536, 'plombHorizontal');
+		plombHorizontal = _game.add.sprite(20+410, 536, 'plombHorizontal');
 		this.groupInfra.add(plombHorizontal);
 
 
@@ -51,8 +51,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		//supra
 
 		//antenes
-		aerialRight = _game.add.sprite(410, 536, 'aerialRight');
-		aerialLeft = _game.add.sprite(170, 536, 'aerialLeft');
+		aerialRight = _game.add.sprite(20+170, 536, 'aerialRight');
+		aerialLeft = _game.add.sprite(20+570, 536, 'aerialLeft');
 		this.groupSupra.add(aerialLeft);
 		this.groupSupra.add(aerialRight);
 
@@ -60,12 +60,12 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		//visibles
 
-		red = _game.add.sprite(230, 536, 'red');
-		blue = _game.add.sprite(310, 536, 'blue');
-		green = _game.add.sprite(270, 536, 'green');
-		magenta = _game.add.sprite(470, 536, 'magenta');
-		cyan = _game.add.sprite(510, 536, 'cyan');
-		yellow = _game.add.sprite(550, 536, 'yellow');
+		red = _game.add.sprite(20+210, 536, 'red');
+		green = _game.add.sprite(20+250, 536, 'green');
+		blue = _game.add.sprite(20+290, 536, 'blue');
+		magenta = _game.add.sprite(20+450, 536, 'magenta');
+		cyan = _game.add.sprite(20+490, 536, 'cyan');
+		yellow = _game.add.sprite(20+530, 536, 'yellow');
 
 		this.groupVisible.add(red);
 		this.groupVisible.add(blue);
@@ -86,7 +86,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 						i++;
 					}
 					else {p.number = 1; }//STUPIDE
-					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText.anchor.set(0.5,0);
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
@@ -115,7 +116,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					else {p.number = 2;	
 
 					}
-					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText.anchor.set(0.5,0);
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
@@ -135,7 +137,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible.addAll('draggable', false)
 		this.groupVisible.forEach(
 			function(p){
-					p.y = _game.world.height - 128;
+					p.y = _game.world.height - 64;
 				if (!p.draggable) {
 					if (tab != null){
 						p.number = tab[i];
@@ -143,7 +145,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					}
 					else {p.number = 3; //STUPIDE
 					}
-					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText.anchor.set(0.5,0);
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
@@ -213,6 +216,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupSupra.forEach(moveIcon);
 		this.groupInfra.forEach(moveIcon);
 
+		this.reglette.y += (regY-this.reglette.y)/4;
 		var rX = this.reglette.x;
 		var oldstate = this.state;
 		if (!this.reglette.input.isDragged) {
