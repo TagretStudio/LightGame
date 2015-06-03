@@ -74,12 +74,13 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible.add(magenta);
 		this.groupVisible.add(yellow);
 
-		this.groupInfra.visible = false;
+		this.groupInfra.visibl = false;
 		this.groupInfra.addAll('draggable', false)
 		var i =1;
 		this.groupInfra.forEach(
 			function(p){
 				if (!p.draggable) {
+					p.y = _game.world.height - 64;
 					if (tab != null){
 						p.number = tab[i];
 						i++;
@@ -106,6 +107,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupSupra.forEach(
 			function(p){
 				if (!p.draggable) {
+					p.y = _game.world.height - 64;
 					if (tab != null){
 						p.number = tab[i];
 						i++;
@@ -133,6 +135,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible.addAll('draggable', false)
 		this.groupVisible.forEach(
 			function(p){
+					p.y = _game.world.height - 128;
 				if (!p.draggable) {
 					if (tab != null){
 						p.number = tab[i];
