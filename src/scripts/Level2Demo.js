@@ -41,7 +41,7 @@ var _level2Demo = {
     _groupPlatforms = _game.add.group();
     _groupPlatforms.enableBody = true;
     platform1 = PlatformFactory.create(100, 300, false);
-    platform2 = PlatformFactory.create(000, 500, false);
+    platform2 = PlatformFactory.create(050, 500, false);
     platform3 = PlatformFactory.create(300, 500, false);
     platform4 = PlatformFactory.create(600, 500, false);
 
@@ -63,7 +63,7 @@ var _level2Demo = {
     lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
     _groupLum.add(lum1);
 
-    _nbLummingsV = 2;
+    _nbLummingsV = 1;
     text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
     button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
     button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);
