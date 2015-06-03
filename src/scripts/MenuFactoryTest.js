@@ -281,7 +281,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
        //miroirs
        _game.load.image('miroirV', 'media/img/miroirVertical.png');
-       _game.load.image('miroirH', 'media/img/miroirOrizontal.png');
+       _game.load.image('miroirH', 'media/img/miroirHorizontal.png');
 
        //antenes
        _game.load.image('aerialLeft', 'media/img/aerialLeft.png');
@@ -289,7 +289,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
        //plomb
        _game.load.image('plombCarre', 'media/img/plombCarre.png');
-       _game.load.image('plombHorizontal', 'media/img/plombOrizontal.png');
+       _game.load.image('plombHorizontal', 'media/img/plombHorizontal.png');
        _game.load.image('plombVertical', 'media/img/plombVertical.png');
      },
      create : function(){
