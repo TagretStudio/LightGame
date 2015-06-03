@@ -14,9 +14,9 @@
             plombVertical = game.add.sprite(510, 536, 'plombVertical');      
             plombHorizontal = game.add.sprite(550, 536, 'plombHorizontal');
 
-            //mirroirs
-            miroirH = game.add.sprite(660, 536, 'mirroirH');
-            miroirV = game.add.sprite(700, 536, 'mirroirV');
+            //miroirs
+            miroirH = game.add.sprite(660, 536, 'miroirH');
+            miroirV = game.add.sprite(700, 536, 'miroirV');
         } else if(vision == 2) {
             //visibles
         
@@ -28,8 +28,8 @@
             cyan = game.add.sprite(510, 536, 'cyan');      
             yellow = game.add.sprite(550, 536, 'yellow');
 
-            miroirH = game.add.sprite(660, 536, 'mirroirH');
-            miroirV = game.add.sprite(700, 536, 'mirroirV');      
+            miroirH = game.add.sprite(660, 536, 'miroirH');
+            miroirV = game.add.sprite(700, 536, 'miroirV');      
         }else if(vision == 1){
 
             //supra
@@ -38,9 +38,9 @@
             aerialLeft = game.add.sprite(270, 536, 'aerialLeft');
             aerialRight = game.add.sprite(310, 536, 'aerialRight');  
 
-            //mirroirs
-            miroirH = game.add.sprite(660, 536, 'mirroirH');
-            miroirV = game.add.sprite(700, 536, 'mirroirV');    
+            //miroirs
+            miroirH = game.add.sprite(660, 536, 'miroirH');
+            miroirV = game.add.sprite(700, 536, 'miroirV');    
         }
        
 
@@ -114,9 +114,9 @@
             _game.load.image('cyan', 'media/img/filterCyanMenu.png');
             _game.load.image('yellow', 'media/img/filterYellowMenu.png');
 
-            //mirroirs
-            _game.load.image('mirroirV', 'media/img/mirroirVertical.png');
-            _game.load.image('mirroirH', 'media/img/mirroirOrizontal.png');
+            //miroirs
+            _game.load.image('miroirV', 'media/img/miroirVertical.png');
+            _game.load.image('miroirH', 'media/img/miroirOrizontal.png');
 
             //antenes
             _game.load.image('aerialLeft', 'media/img/aerialLeft.png');
