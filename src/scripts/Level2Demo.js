@@ -81,12 +81,18 @@ var _level2Demo = {
     _menu.update();
     _game.physics.arcade.collide(_groupLum, _groupPlatforms);
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+    _game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
 
 
     _groupLum.forEach(
       function(p){
         p.update(_currentVision);
       })
+    _groupDoors.forEach(
+      function(p){
+        p.update();
+     })
+
     if (_nbLummingsV == _nbLummingsSaved) {
       Transition.nextState('MainMenu', _music);
     }

@@ -85,6 +85,11 @@ var _level1Demo = {
       function(p){
         p.update(_currentVision);
       })
+    _groupDoors.forEach(
+			function(p){
+				p.update();
+			})
+
     if (_nbLummingsV == _nbLummingsSaved) {
       Transition.nextState('Level2Demo', _music);
     }
