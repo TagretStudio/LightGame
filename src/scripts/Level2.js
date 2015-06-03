@@ -16,7 +16,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _level2 = {
 
 		preload : function(){
-			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
+			_music = MusicFactory.create('level2', 'media/audio/level.ogg');
 			_game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
