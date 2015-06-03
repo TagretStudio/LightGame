@@ -21,49 +21,55 @@ var _button_restart = null;
 var _button_menu = null;
 
 
-var _level2Demo = {
+var _level4Demo = {
   preload : function(){
     _music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
     _game.load.image('buttonDiamond', 'media/img/menuButton.png');
     _game.load.image('buttonRefresh', 'media/img/refresh.png')
     _game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
-    MenuFactoryTest.init(_game);
     PlatformFactory.init(_game);
     VisibleLummingFactory.init(_game);
+    RadioLummingFactory.init(_game);
+    MenuFactoryTest.init(_game);
+
   },
 
   create : function(){
     _nbLummingsSaved = 0;
-//    _music.play();
+    _music.play();
     Images.boot().create();
     _game.physics.startSystem(Phaser.Physics.ARCADE);
     _currentVision = VisionEnum.getVisionEnum().VISIBLE;
     _groupPlatforms = _game.add.group();
     _groupPlatforms.enableBody = true;
-    platform1 = PlatformFactory.create(100, 300, false);
-    platform2 = PlatformFactory.create(050, 500, false);
-    platform3 = PlatformFactory.create(300, 500, false);
-    platform4 = PlatformFactory.create(600, 500, false);
-
+    platform1 = PlatformFactory.create(000, 300, false);
+    platform2 = PlatformFactory.create(300, 300, false);
+    platform3 = PlatformFactory.create(000, 400, false);
+    platform4 = PlatformFactory.create(300, 400, false);
+    platform5 = PlatformFactory.create(600, 400, false);
 
     _groupPlatforms.add(platform1);
     _groupPlatforms.add(platform2);
     _groupPlatforms.add(platform3);
     _groupPlatforms.add(platform4);
+    _groupPlatforms.add(platform5);
 
 
     _groupDoors = _game.add.group();
     _groupDoors.enableBody = true;
-    door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 50, 470);
-    _groupDoors.add(door1);
+    door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 600, 270);
     _groupDoors.add(door2);
 
 
     _groupLum = _game.add.group();
-    lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 150);
-    _groupLum.add(lum1);
+    lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 20, 200, 50);
+    lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 50, 200, 50);
+    lumRadio = RadioLummingFactory.create(400, 350, -90);
 
-    _nbLummingsV = 1;
+    _groupLum.add(lum1);
+    _groupLum.add(lum2);
+    _groupLum.add(lumRadio);
+    _nbLummingsV = 2;
     text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
     button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
     button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);
@@ -89,12 +95,12 @@ var _level2Demo = {
         p.update(_currentVision);
       })
     _groupDoors.forEach(
-      function(p){
-        p.update();
-     })
+			function(p){
+				p.update();
+			})
 
     if (_nbLummingsV == _nbLummingsSaved) {
-      Transition.nextState('Level3Demo', _music);
+      Transition.nextState('MainMenu', _music);
     }
   }
 
@@ -115,23 +121,19 @@ function mayExit(lum, door){
 function actionOnRestart() {
 var background = _game.add.sprite(0, 0, 'transitionBackground');
 var logo = _game.add.sprite(184, 265, 'logo');
-_game.state.start('Level2Demo');
-/*
 if (_music != null) {
   _music.getMusic().fadeOut(700);
   _music.getMusic().onFadeComplete.dispatch();
   _music.getMusic().onFadeComplete.addOnce(function() {
 _music = null;
-_game.state.start('Level2Demo');
+_game.state.start('Level3Demo');
 }, _game);
-}*/
+}
 }
 
 function actionOnMenu() {
    var background = _game.add.sprite(0, 0, 'transitionBackground');
    var logo = _game.add.sprite(184, 265, 'logo');
-   _game.state.start('MainMenu');
-/*
    if (_music != null) {
      _music.getMusic().fadeOut(700);
      _music.getMusic().onFadeComplete.dispatch();
@@ -139,7 +141,7 @@ function actionOnMenu() {
      _music = null;
      _game.state.start('MainMenu');
      }, _game);
- }*/
+ }
 }
 
 
@@ -149,8 +151,8 @@ function actionOnMenu() {
       _game = game;
       _etapesuivante = etapesuivante;
     },
-    getLevel2Demo : function(){
-      return _level2Demo;
+    getLevel4Demo : function(){
+      return _level4Demo;
     }
   }
 
