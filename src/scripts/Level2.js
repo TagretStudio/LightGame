@@ -17,6 +17,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 		preload : function(){
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
+			_game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
 			DoorsFactory.init(_game);
@@ -73,8 +74,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_menuNiveau = MenuFactoryTest.create();
 			ItemsLevel.reinit(_game);
 
-			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
+			// _game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+			// _game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
+			var cliquez = this.add.sprite(100, 300, 'cliquez');
+			cliquez.scale.set(0.7, 0.7);
+			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
+			
 			_game.paused = true;
 
 

@@ -118,9 +118,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    button_restart = _game.add.button(0,0,'button', actionOnClick, _game);
 			ItemsLevel.reinit(_game);
 
-			// cliquez = _game.add.sprite(510, 536, 'cliquez');
-			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
+			var cliquez = this.add.sprite(100, 300, 'cliquez');
+			cliquez.scale.set(0.7, 0.7);
+			// _game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
+			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
 			_game.paused = true;
 
 
