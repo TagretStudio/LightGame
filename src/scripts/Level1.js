@@ -1,5 +1,5 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory', 'ItemsLevel'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory, RadioLummingFactory, ItemsLevel) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory', 'ItemsLevel', 'MiroirFactory'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory, RadioLummingFactory, ItemsLevel, MiroirFactory) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -9,6 +9,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _groupLol = null;
 	var _groupFilter = null;
 	var _groupDoors = null;
+	var _groupMiroir = null;
 	var _music = null;
 	var text = null;
 	var menuBlack = null;
@@ -26,6 +27,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			DoorsFactory.init(_game);
 		    MenuFactoryTest.init(_game);
 			FilterFactory.init(_game);
+			MiroirFactory.init(_game);
 		    RadioLummingFactory.init(_game);
 		},
 		create : function(){
@@ -103,10 +105,18 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			filter1 = FilterFactory.create(ColorEnum.getColorEnum().GREEN, 200, 400);
 			filter2 = FilterFactory.create(ColorEnum.getColorEnum().MAGENTA, 300, 470);
 			_groupFilter.add(filter1);
+
 			_groupFilter.add(filter2);
-			ItemsLevel.reinit(_game);
+
+			// TEST MIROIR
+			_groupMiroir = _game.add.group();
+			_groupMiroir.enableBody = true;
+			miroir1 = MiroirFactory.create(100, 470, true);
+			_groupMiroir.add(miroir1);
 
 		    button_restart = _game.add.button(0,0,'button', actionOnClick, _game);
+			ItemsLevel.reinit(_game);
+
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
 			_game.paused = true;
@@ -116,6 +126,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		update : function(){
 
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
+			_game.physics.arcade.collide(_groupLum, _groupMiroir);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
 
