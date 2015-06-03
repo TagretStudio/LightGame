@@ -20,7 +20,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		preload : function(){
 
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
-		    _game.load.image('button', 'media/img/diamond.png');
+		    _game.load.image('button', 'media/img/refresh.png');
 		    _game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
@@ -114,7 +114,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			miroir1 = MiroirFactory.create(100, 470, true);
 			_groupMiroir.add(miroir1);
 
-		    button_restart = _game.add.button(0,0,'button', actionOnClick, _game);
+		    button_restart = _game.add.button(650,0,'button', actionOnClick, _game);
 			ItemsLevel.reinit(_game);
 
 			var cliquez = this.add.sprite(100, 300, 'cliquez');

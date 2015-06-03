@@ -32,15 +32,15 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupInfra.add(plombHorizontal);
 
 
-		//mirroirs
-		miroirH = _game.add.sprite(660, 536, 'mirroirH');
+		//miroirs
+		miroirH = _game.add.sprite(660, 536, 'miroirH');
 		miroirH.inputEnabled = true;
 		miroirH.input.enableDrag();
 		//  this.groupInfra.add(miroirH);
 		//  this.groupSupra.add(miroirH);
 		//  this.groupVisible.add(miroirH);
 
-		miroirV = _game.add.sprite(700, 536, 'mirroirV');
+		miroirV = _game.add.sprite(700, 536, 'miroirV');
 		miroirV.inputEnabled = true;
 		miroirV.input.enableDrag();
 
@@ -279,9 +279,9 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
        _game.load.image('cyan', 'media/img/filterCyanMenu.png');
        _game.load.image('yellow', 'media/img/filterYellowMenu.png');
 
-       //mirroirs
-       _game.load.image('mirroirV', 'media/img/mirroirVertical.png');
-       _game.load.image('mirroirH', 'media/img/mirroirOrizontal.png');
+       //miroirs
+       _game.load.image('miroirV', 'media/img/miroirVertical.png');
+       _game.load.image('miroirH', 'media/img/miroirHorizontal.png');
 
        //antenes
        _game.load.image('aerialLeft', 'media/img/aerialLeft.png');
@@ -289,7 +289,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
        //plomb
        _game.load.image('plombCarre', 'media/img/plombCarre.png');
-       _game.load.image('plombHorizontal', 'media/img/plombOrizontal.png');
+       _game.load.image('plombHorizontal', 'media/img/plombHorizontal.png');
        _game.load.image('plombVertical', 'media/img/plombVertical.png');
      },
      create : function(){
