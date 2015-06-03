@@ -21,6 +21,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
 		    _game.load.image('button', 'media/img/diamond.png');
+		    _game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
 		//	Lumming.init(_game);
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
@@ -117,6 +118,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    button_restart = _game.add.button(0,0,'button', actionOnClick, _game);
 			ItemsLevel.reinit(_game);
 
+			// cliquez = _game.add.sprite(510, 536, 'cliquez');
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
 			_game.paused = true;
