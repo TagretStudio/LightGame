@@ -1,5 +1,5 @@
-define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory', 'ItemsLevel'],
-	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory, ItemsLevel) {
+define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory', 'ItemsLevel', 'MiroirFactory'],
+	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory, ItemsLevel, MiroirFactory) {
 	var _game = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
@@ -9,6 +9,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var _groupLol = null;
 	var _groupFilter = null;
 	var _groupDoors = null;
+	var _groupMiroir = null;
 	var _music = null;
 	var text = null;
 	var menuBlack = null;
@@ -25,6 +26,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			DoorsFactory.init(_game);
 		    MenuFactoryTest.init(_game);
 			FilterFactory.init(_game);
+			MiroirFactory.init(_game);
 		},
 		create : function(){
 			_nbLummingsSaved = 0;
@@ -99,8 +101,16 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			filter1 = FilterFactory.create(ColorEnum.getColorEnum().GREEN, 200, 400);
 			filter2 = FilterFactory.create(ColorEnum.getColorEnum().MAGENTA, 300, 470);
 			_groupFilter.add(filter1);
-			_groupFilter.add(filter2);
+			_groupFilter.add(filter2);		
+			
+			// TEST MIROIR
+			_groupMiroir = _game.add.group();
+			_groupMiroir.enableBody = true;
+			miroir1 = MiroirFactory.create(100, 470, true);
+			_groupMiroir.add(miroir1);
+			
 			ItemsLevel.reinit(_game);
+
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
 			_game.paused = true;
