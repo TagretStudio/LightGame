@@ -17,17 +17,20 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		regdots.add(_game.add.sprite(regX-1, regY, 'RegDot'));
 		regdots.add(_game.add.sprite(regX-1+regdist*2/3, regY, 'RegDot'));
 		regdots.add(_game.add.sprite(regX-1-regdist*2/3, regY, 'RegDot'));
-		regdots.forEach(
-			function (p) {
-				p.anchor.set(0.5, 0.5);
-			}
-		)
 		this.reglette = _game.add.sprite(regX, _game.world.height-48, 'Reg');
 		this.reglette.anchor.set(0.5, 0.5);
 		this.reglette.inputEnabled = true;
 		this.reglette.input.enableDrag();
 		this.reglette.input.allowVerticalDrag = false;
 		this.reglette.held = false;
+		var rX = this.reglette.x;
+		regdots.forEach(
+			function (p) {
+				p.anchor.set(0.5, 0.5);
+				var i = Math.max(0,Math.min(1,(Math.abs(p.x-rX)/(regdist*4/3))));
+				p.tint = (Math.min(255,i*512)<<16) | (Math.min(255,512-i*512)<<8) | (0);
+			}
+		)
 
 		this.groupVisible = _game.add.group();
 		this.groupInfra = _game.add.group();
@@ -260,12 +263,13 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		}
 
 		regdots.forEach(
-			function (p) {
+			function dotscolors(p) {
 				var i = Math.max(0,Math.min(1,(Math.abs(p.x-rX)/(regdist*4/3))));
 				p.tint = (Math.min(255,i*512)<<16) | (Math.min(255,512-i*512)<<8) | (0);
-            }
+			}
 		);
 	}
+
 
 	function moveIcon(p) {
 		if (p.parent.visibl) {
