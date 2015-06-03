@@ -58,7 +58,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory'], fu
     },
 
     collideItem : function(lum, objet){
-
+      if (lum.defaultVision == 2){
       switch (objet.key){
         case 'filter_red' :
         case 'filter_magenta' :
@@ -68,11 +68,9 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory'], fu
         case 'filter_magenta' :
          lum.collideWithFilter(objet);
           break;
-/*
-        case 'filter_magenta' :
-          lum.collideWithFilter(objet);
-          break;*/
+        }
       }
+
     }
 
   }
