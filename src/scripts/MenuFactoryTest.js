@@ -261,7 +261,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		regdots.forEach(
 			function (p) {
-				p.tint = 255 * 65536 + 255 * 256 + 255-Math.max(0,Math.min(255,(Math.abs(p.x-rX)*255/(regdist*4/3))));
+				var i = Math.max(0,Math.min(255,(Math.abs(p.x-rX)*255/(regdist*4/3))));
+				p.tint = (i<<16) | (255-i<<8) | (64);
             }
 		);
 	}
