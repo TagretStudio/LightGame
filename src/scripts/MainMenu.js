@@ -12,7 +12,7 @@ define(['Images','MusicFactory', 'Transition'], function(Images, MusicFactory, T
 
 	function actionPlay() {
 		_buttonPlay.kill();
-		Transition.nextState('Level1', _music);
+		Transition.nextState('Level1Demo', _music);
 	}
 
 	function actionCredits(){
