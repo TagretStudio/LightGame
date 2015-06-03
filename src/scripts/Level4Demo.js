@@ -126,7 +126,7 @@ if (_music != null) {
   _music.getMusic().onFadeComplete.dispatch();
   _music.getMusic().onFadeComplete.addOnce(function() {
 _music = null;
-_game.state.start('Level3Demo');
+_game.state.start('Level4Demo');
 }, _game);
 }
 }
