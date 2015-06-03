@@ -103,9 +103,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			filter1 = FilterFactory.create(ColorEnum.getColorEnum().GREEN, 200, 400);
 			filter2 = FilterFactory.create(ColorEnum.getColorEnum().MAGENTA, 300, 470);
 			_groupFilter.add(filter1);
-			_groupFilter.add(filter2);			
-		    button_restart = _game.add.button(0,0,'button', actionOnClick, _game);
+			_groupFilter.add(filter2);
 			ItemsLevel.reinit(_game);
+
+		    button_restart = _game.add.button(0,0,'button', actionOnClick, _game);
 			_game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;_game.startText.text = '';}},_game);
 			_game.paused = true;
@@ -116,7 +117,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 
 			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
-			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), mayExit, null, _game);
+			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
 
 			_game.physics.arcade.overlap(_groupLum, _groupFilter, changeColor, null, _game);
 		    menuBlack.update();
