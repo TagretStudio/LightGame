@@ -63,6 +63,8 @@ var _level1Demo = {
 
 
     _menu = MenuFactoryTest.create();
+    ItemsLevel.reinit(_game);
+
     var cliquez = this.add.sprite(100, 300, 'cliquez');
     cliquez.scale.set(0.7, 0.7);
     _game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
@@ -79,6 +81,9 @@ var _level1Demo = {
       function(p){
         p.update(_currentVision);
       })
+    if (_nbLummingsV == _nbLummingsSaved) {
+      Transition.nextState('MainMenu', _music);
+    }
   }
 
 }
@@ -91,6 +96,8 @@ function mayExit(lum, door){
         text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
       }
     }
+
+
 }
 
 
