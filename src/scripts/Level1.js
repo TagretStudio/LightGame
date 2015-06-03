@@ -33,7 +33,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		},
 		create : function(){
 			_nbLummingsSaved = 0;
-
 			_music.play();
 			Images.boot().create();
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
@@ -152,7 +151,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	}
 
 	function mayExit(lum, door){
-	    if (lum.getDefaultVision == 2) {
+	    if (lum.getDefautVision() == 2) {
 		var exit = lum.collideWithDoor(door);
 		if (exit == 1){
 		    _nbLummingsSaved = _nbLummingsSaved +1;
