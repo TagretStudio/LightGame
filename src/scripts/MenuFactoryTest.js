@@ -1,6 +1,6 @@
 define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(VisionEnum,ColorEnum, DoorsFactory, ItemsLevel) {
 	var _game = null;
-	var regX = 64; // coordonnee X du MILIEU de la reglette
+	var regX = 100; // coordonnee X du MILIEU de la reglette
 	var regdist = 64;
 	var regY = null;// _game.world.height-64-16;
 //  var _groupItem = null;
@@ -10,8 +10,16 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.spriteTempo = null;
   //  _groupItem = _game.add.group();
   //  _groupItem.enableBody = true;
-		this.barre = _game.add.sprite(0,	_game.world.height-96, 'menuB');
-		this.reglette = _game.add.sprite(regX, _game.world.height, 'Reg');
+		this.barre = _game.add.sprite(0, _game.world.height-96, 'menuB');
+		var regdot; //aucune idee de pourquoi il faut un -1 sur les trois suivants
+		regdot = _game.add.sprite(regX-1, regY, 'RegDot');
+		regdot.anchor.set(0.5, 0.5);
+		regdot = _game.add.sprite(regX-1+regdist*2/3, regY, 'RegDot');
+		regdot.anchor.set(0.5, 0.5);
+		regdot = _game.add.sprite(regX-1-regdist*2/3, regY, 'RegDot');
+		regdot.anchor.set(0.5, 0.5);
+		this.reglette = _game.add.sprite(regX, _game.world.height-48, 'Reg');
+		this.reglette.anchor.set(0.5, 0.5);
 		this.reglette.inputEnabled = true;
 		this.reglette.input.enableDrag();
 		this.reglette.input.allowVerticalDrag = false;
@@ -286,12 +294,13 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
      init : function(game){
 
        _game = game;
-       regY = _game.world.height-64-16;
+       regY = _game.world.height-48;
        DoorsFactory.init(_game);
 
        _game.load.image('menuB', 'media/img/simpleMenu.png');
 
        _game.load.image('Reg', 'media/img/Reglette.png');
+       _game.load.image('RegDot', 'media/img/RegletteDot.png');
        //filtres aditifs
        _game.load.image('red', 'media/img/filterRedMenu.png');
        _game.load.image('green', 'media/img/filterGreenMenu.png');
