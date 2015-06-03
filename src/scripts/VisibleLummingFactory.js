@@ -25,7 +25,7 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
         }
         return 0;
     }
-    
+
     VisibleLumming.prototype.collideWithFilter = function(filter) {
         var temp = this.color;
         var value = ColorEnum.getValue(temp);
@@ -47,7 +47,7 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
             }
         }
     }
-    
+
     VisibleLumming.prototype.update = function() {
         LummingFactory.Lumming.prototype.update.call(this);
     }

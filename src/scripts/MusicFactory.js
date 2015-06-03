@@ -27,20 +27,21 @@ define(function(){
 
   }
 
-  Music.prototype.stop = function(){
+  /*Music.prototype.stop = function(){
     this.music.mute = true;
-  }
+  }*/
 
   Music.prototype.stop = function(nextState){
     if (this.music != null && this.music.isPlaying == true) {
 //      this.music.onFadeComplete.dispatch();
       //this.music.fateTo(700, 0);
 
-      this.music.fadeOut(1400);
+      this.music.fadeOut(700);
       /*music.onFadeComplete.dispatch();*/
       while (this.music.volume >0){
 
       }
+	this.music.onFadeComplete.dispatch();
 	     this.music.onFadeComplete.addOnce(function() {
 	    _game.state.start(nextState);
 	}, _game);
