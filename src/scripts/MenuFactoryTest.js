@@ -51,8 +51,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		//supra
 
 		//antenes
-		aerialRight = _game.add.sprite(20+170, 536, 'aerialRight');
-		aerialLeft = _game.add.sprite(20+570, 536, 'aerialLeft');
+		aerialRight = _game.add.sprite(310, 536, 'aerialRight');
+		aerialLeft = _game.add.sprite(470, 536, 'aerialLeft');
 		this.groupSupra.add(aerialLeft);
 		this.groupSupra.add(aerialRight);
 
@@ -60,12 +60,12 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		//visibles
 
-		red = _game.add.sprite(20+210, 536, 'red');
-		green = _game.add.sprite(20+250, 536, 'green');
-		blue = _game.add.sprite(20+290, 536, 'blue');
-		magenta = _game.add.sprite(20+450, 536, 'magenta');
-		cyan = _game.add.sprite(20+490, 536, 'cyan');
-		yellow = _game.add.sprite(20+530, 536, 'yellow');
+		red = _game.add.sprite(190, 536, 'red');
+		green = _game.add.sprite(230, 536, 'green');
+		blue = _game.add.sprite(270, 536, 'blue');
+		magenta = _game.add.sprite(510, 536, 'magenta');
+		cyan = _game.add.sprite(550, 536, 'cyan');
+		yellow = _game.add.sprite(590, 536, 'yellow');
 
 		this.groupVisible.add(red);
 		this.groupVisible.add(blue);
