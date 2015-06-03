@@ -72,8 +72,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupLum.add(lum2);
 			_groupLum.add(lum3);
 			_menuNiveau = MenuFactoryTest.create();
-			button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
-			button_restart = _game.add.button(650,0,'buttonRefresh', actionOnClick, _game);
 			ItemsLevel.reinit(_game);
 
 			// _game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });

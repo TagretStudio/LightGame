@@ -60,7 +60,7 @@ var _level2Demo = {
 
 
     _groupLum = _game.add.group();
-    lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+    lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 150);
     _groupLum.add(lum1);
 
     _nbLummingsV = 1;
@@ -115,6 +115,8 @@ function mayExit(lum, door){
 function actionOnRestart() {
 var background = _game.add.sprite(0, 0, 'transitionBackground');
 var logo = _game.add.sprite(184, 265, 'logo');
+_game.state.start('Level2Demo');
+/*
 if (_music != null) {
   _music.getMusic().fadeOut(700);
   _music.getMusic().onFadeComplete.dispatch();
@@ -122,12 +124,14 @@ if (_music != null) {
 _music = null;
 _game.state.start('Level2Demo');
 }, _game);
-}
+}*/
 }
 
 function actionOnMenu() {
    var background = _game.add.sprite(0, 0, 'transitionBackground');
    var logo = _game.add.sprite(184, 265, 'logo');
+   _game.state.start('MainMenu');
+/*
    if (_music != null) {
      _music.getMusic().fadeOut(700);
      _music.getMusic().onFadeComplete.dispatch();
@@ -135,7 +139,7 @@ function actionOnMenu() {
      _music = null;
      _game.state.start('MainMenu');
      }, _game);
- }
+ }*/
 }
 
 

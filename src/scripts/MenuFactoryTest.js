@@ -74,7 +74,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible.add(magenta);
 		this.groupVisible.add(yellow);
 
-		this.groupInfra.visibl = false;
+		this.groupInfra.visible = false;
 		this.groupInfra.addAll('draggable', false)
 		var i =1;
 		this.groupInfra.forEach(
@@ -110,7 +110,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 						p.number = tab[i];
 						i++;
 					}
-					else {p.number = 2; //STUPIDE
+					else {p.number = 2;	
+
 					}
 					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
