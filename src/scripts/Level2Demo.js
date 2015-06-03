@@ -21,7 +21,7 @@ var _button_restart = null;
 var _button_menu = null;
 
 
-var _level1Demo = {
+var _level2Demo = {
   preload : function(){
     _music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
     _game.load.image('buttonDiamond', 'media/img/menuButton.png');
@@ -34,32 +34,34 @@ var _level1Demo = {
 
   create : function(){
     _nbLummingsSaved = 0;
-    _music.play();
+//    _music.play();
     Images.boot().create();
     _game.physics.startSystem(Phaser.Physics.ARCADE);
     _currentVision = VisionEnum.getVisionEnum().VISIBLE;
     _groupPlatforms = _game.add.group();
     _groupPlatforms.enableBody = true;
     platform1 = PlatformFactory.create(100, 300, false);
-    platform2 = PlatformFactory.create(300, 300, false);
+    platform2 = PlatformFactory.create(000, 500, false);
+    platform3 = PlatformFactory.create(300, 500, false);
+    platform4 = PlatformFactory.create(600, 500, false);
+
 
     _groupPlatforms.add(platform1);
     _groupPlatforms.add(platform2);
+    _groupPlatforms.add(platform3);
+    _groupPlatforms.add(platform4);
 
 
     _groupDoors = _game.add.group();
     _groupDoors.enableBody = true;
-    door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
-    door2 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 400, 270);
+    door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 50, 470);
     _groupDoors.add(door1);
     _groupDoors.add(door2);
 
 
     _groupLum = _game.add.group();
-    lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
-    lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
+    lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
     _groupLum.add(lum1);
-    _groupLum.add(lum2);
 
     _nbLummingsV = 2;
     text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
@@ -86,7 +88,7 @@ var _level1Demo = {
         p.update(_currentVision);
       })
     if (_nbLummingsV == _nbLummingsSaved) {
-      Transition.nextState('Level2Demo', _music);
+      Transition.nextState('MainMenu', _music);
     }
   }
 
@@ -112,7 +114,7 @@ if (_music != null) {
   _music.getMusic().onFadeComplete.dispatch();
   _music.getMusic().onFadeComplete.addOnce(function() {
 _music = null;
-_game.state.start('Level1Demo');
+_game.state.start('Level2Demo');
 }, _game);
 }
 }
@@ -137,8 +139,8 @@ function actionOnMenu() {
       _game = game;
       _etapesuivante = etapesuivante;
     },
-    getLevel1Demo : function(){
-      return _level1Demo;
+    getLevel2Demo : function(){
+      return _level2Demo;
     }
   }
 

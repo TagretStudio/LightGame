@@ -5,7 +5,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 	var regY = null;// _game.world.height-64-16;
 //  var _groupItem = null;
 
-	var Menu = function(){
+	var Menu = function(tab){
 		this.vision = null;
 		this.spriteTempo = null;
   //  _groupItem = _game.add.group();
@@ -76,10 +76,15 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		this.groupInfra.visibl = false;
 		this.groupInfra.addAll('draggable', false)
+		var i =1;
 		this.groupInfra.forEach(
 			function(p){
 				if (!p.draggable) {
-					p.number = 1; //STUPIDE
+					if (tab != null){
+						p.number = tab[i];
+						i++;
+					}
+					else {p.number = 1; }//STUPIDE
 					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
@@ -101,7 +106,12 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupSupra.forEach(
 			function(p){
 				if (!p.draggable) {
-					p.number = 2; //STUPIDE
+					if (tab != null){
+						p.number = tab[i];
+						i++;
+					}
+					else {p.number = 2; //STUPIDE
+					}
 					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
@@ -123,7 +133,12 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible.forEach(
 			function(p){
 				if (!p.draggable) {
-					p.number = 3; //STUPIDE
+					if (tab != null){
+						p.number = tab[i];
+						i++;
+					}
+					else {p.number = 3; //STUPIDE
+					}
 					p.spriteText = _game.add.text(p.x, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
