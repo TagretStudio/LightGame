@@ -73,9 +73,9 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 
 		//antenes
-		aerialRight = _game.add.sprite(310, 536, 'aerialRight');
+		aerialRight = _game.add.sprite(310, 536, 'antenna_right');
 		aerialRight.number = tab[5];
-		aerialLeft = _game.add.sprite(470, 536, 'aerialLeft');
+		aerialLeft = _game.add.sprite(470, 536, 'antenna_left');
 		aerialLeft.number = tab[6];
 		this.groupSupra.add(aerialLeft);
 		this.groupSupra.add(aerialRight);
@@ -357,8 +357,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
        _game.load.image('miroirH', 'media/img/miroirHorizontal.png');
 
        //antenes
-       _game.load.image('aerialLeft', 'media/img/aerialLeft.png');
-       _game.load.image('aerialRight', 'media/img/aerialRight.png');
+       _game.load.image('antenna_left', 'media/img/antenna_left.png');
+       _game.load.image('antenna_right', 'media/img/antenna_right.png');
 
        //plomb
        _game.load.image('plombCarre', 'media/img/plombCarre.png');

@@ -1,4 +1,4 @@
-define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'MiroirFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory, MiroirFactory){
+define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'MiroirFactory', 'AntennaFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory, MiroirFactory, AntennaFactory){
   var _game = null;
   var _groupItem = null;
   var _grouplum;
@@ -70,6 +70,14 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
         case 'miroirH' :
           miroirH = MiroirFactory.create(x, y, false);
           _groupItem.add(miroirH);
+          break;
+        case 'antenna_left' :
+          antenna_left = AntennaFactory.create(x, y, true);
+          _groupItem.add(antenna_left);
+          break;
+        case 'antenna_right' :
+          antenna_right = AntennaFactory.create(x, y, false);
+          _groupItem.add(antenna_right);
           break;
 
         default :

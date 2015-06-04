@@ -22,7 +22,7 @@ define(['Images','MusicFactory', 'Transition'], function(Images, MusicFactory, T
 
 	function actionQuit(){
 		_buttonQuit.kill();
-		Transition.nextState('Level1', _music);
+		Transition.nextState('Level2', _music);
 	}
 
 	var _menu = {
