@@ -234,17 +234,15 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.reglette.y += (regY-this.reglette.y)/4;
 		var rX = this.reglette.x;
 		var oldstate = this.state;
-		if (!this.reglette.input.isDragged) {
-			if (rX < regX-regdist/3) {
-				this.state = 'infra';
-				rX += ((regX-regdist*2/3)-rX)/4;
-			} else if (rX > regX+regdist/3) {
-				this.state = 'supra';
-				rX += ((regX+regdist*2/3)-rX)/4;
-			} else {
-				this.state = 'visible';
-				rX += (regX-rX)/4;
-			}
+		if (rX < regX-regdist/3) {
+			this.state = 'infra';
+			if (!this.reglette.input.isDragged) rX += ((regX-regdist*2/3)-rX)/4;
+		} else if (rX > regX+regdist/3) {
+			this.state = 'supra';
+			if (!this.reglette.input.isDragged) rX += ((regX+regdist*2/3)-rX)/4;
+		} else {
+			this.state = 'visible';
+			if (!this.reglette.input.isDragged) rX += (regX-rX)/4;
 		}
 		this.reglette.x = rX;
 		if (oldstate != this.state){
