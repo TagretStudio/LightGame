@@ -49,7 +49,10 @@ define(['VisionEnum'], function(VisionEnum) {
 				}
 			}
 			if (this.position.y > 504) {
-				this.kill();
+				this.body.velocity.x = 0;
+				this.animations.play('kill');
+				this.color = null;
+				//this.kill();
 			}
 		}
 	}
