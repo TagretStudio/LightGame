@@ -13,6 +13,10 @@ define(['LummingFactory', 'VisionEnum'],
 
     GammaLumming.prototype.constructor = GammaLumming;
 
+    GammaLumming.prototype.collideWithDoor = function(door){
+        door.kill();
+    }
+
     return {
         init: function(game) {
             _game = game;

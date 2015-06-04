@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
- 'ItemsLevel', 'MiroirFactory'], function(Images, LummingFactory,
+ 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory'], function(Images, LummingFactory,
    VisibleLummingFactory, ColorEnum,
        MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum,
         Transition, FilterFactory, RadioLummingFactory, ItemsLevel,
-        MiroirFactory) {
+        MiroirFactory, GammaLummingFactory) {
 
 var _game;
 var _nbLummingsV = 0;
@@ -30,6 +30,7 @@ var _level1Demo = {
     MenuFactoryTest.init(_game);
     PlatformFactory.init(_game);
     VisibleLummingFactory.init(_game);
+    GammaLummingFactory.init(_game);
   },
 
   create : function(){
@@ -61,6 +62,11 @@ var _level1Demo = {
     _groupLum.add(lum1);
     _groupLum.add(lum2);
 
+    //Lumming Gamma
+    _groupGamma = _game.add.group();
+    lumGamma = GammaLummingFactory.create(270, 0, 100);
+    _groupGamma.add(lumGamma);
+
     _nbLummingsV = 2;
     text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
     button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
@@ -77,8 +83,11 @@ var _level1Demo = {
 
   update : function(){
     _menu.update();
-    _game.physics.arcade.collide(_groupLum, _groupPlatforms);
+    _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
+
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+    _game.physics.arcade.overlap(_groupGamma, _groupDoors, mayExit, null, _game);
+
 
 
     _groupLum.forEach(
@@ -98,16 +107,17 @@ var _level1Demo = {
 }
 
 function mayExit(lum, door){
-    if (lum.getDefautVision() == 2) {
     var exit = lum.collideWithDoor(door);
       if (exit == 1){
         _nbLummingsSaved = _nbLummingsSaved +1;
         text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
       }
-    }
-
-
 }
+
+// function collidePf(lum){
+//   if(lum.)
+
+// }
 
 function actionOnRestart() {
 var background = _game.add.sprite(0, 0, 'transitionBackground');
