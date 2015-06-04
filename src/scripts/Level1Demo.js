@@ -113,12 +113,13 @@ function actionOnRestart() {
 var background = _game.add.sprite(0, 0, 'transitionBackground');
 var logo = _game.add.sprite(184, 265, 'logo');
 if (_music != null) {
-  _music.getMusic().fadeOut(700);
-  _music.getMusic().onFadeComplete.dispatch();
-  _music.getMusic().onFadeComplete.addOnce(function() {
-_music = null;
-_game.state.start('Level1Demo');
-}, _game);
+    _music.getMusic().fadeOut(700);
+    _music.getMusic().onFadeComplete.dispatch();
+    _music.getMusic().onFadeComplete.addOnce(function() {
+	_music = null;
+	_currentVision = VisionEnum.getVisionEnum().VISIBLE;
+	_game.state.start('Level1Demo');
+    }, _game);
 }
 }
 
