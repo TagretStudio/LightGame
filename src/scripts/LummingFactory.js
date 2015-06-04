@@ -55,7 +55,7 @@ define(['VisionEnum'], function(VisionEnum) {
 	}
 
 	Lumming.prototype.collideWithDoor = function(door){
-			
+
 			return 0;
 	}
 
@@ -66,6 +66,14 @@ define(['VisionEnum'], function(VisionEnum) {
 	Lumming.prototype.collide = function(game, objet) {
 		game.physics.arcade.collide(this, objet);
 	}
+
+	Lumming.prototype.collideWithMiroir = function(game, objet) {
+		if (this.key != 'lumming_gamma'){
+			game.physics.arcade.collide(this, objet);
+		}
+
+	}
+
 
 	return{
 		init : function(game) {
