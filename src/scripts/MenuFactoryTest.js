@@ -58,17 +58,17 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		//miroirs
 		miroirH = _game.add.sprite(660, 536, 'miroirH');
-		miroirH.inputEnabled = true;
-	  miroirH.input.enableDrag();
+	//	miroirH.inputEnabled = true;
+	 // miroirH.input.enableDrag();
 		//  this.groupInfra.add(miroirH);
 		//  this.groupSupra.add(miroirH);
 		//  this.groupVisible.add(miroirH);
 
 		miroirV = _game.add.sprite(700, 536, 'miroirV');
-		miroirV.inputEnabled = true;
-		miroirV.input.enableDrag();
+	//	miroirV.inputEnabled = true;
+		//miroirV.input.enableDrag();
 		this.groupMiroir.add(miroirH);
-		this.groupMiroir.add(miroirH);
+		this.groupMiroir.add(miroirV);
 
 
 		//  this.groupInfra.add(miroirV);
@@ -158,6 +158,36 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 				}
 			}
 		)
+
+		this.groupMiroir.visibl = true;
+		this.groupMiroir.addAll('draggable', false)
+		this.groupMiroir.forEach(
+			function(p){
+					p.y = _game.world.height - 64;
+				if (!p.draggable) {
+					if (tab != null){
+						p.number = tab[i];
+						i++;
+					}
+					else {p.number = 3; //STUPIDE
+					}
+					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
+					p.spriteText.anchor.set(0.5,0);
+					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
+					p.parent.add(dragcopy);
+					dragcopy.draggable = true;
+					//dragcopy.exists = true;
+					//p.exists = true;
+					p.inputEnabled = true;
+					p.input.enableDrag();
+					p.events.onDragStart.add(Menu.prototype.dragStart, this, p);
+					p.events.onDragStop.add(Menu.prototype.dragStop, this, p);
+					p.origX = p.x;
+					p.origY = p.y;
+				}
+			}
+		)
+
 
 		this.groupVisible.visibl = true;
 		this.groupVisible.addAll('draggable', false)
