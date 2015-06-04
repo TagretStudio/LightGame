@@ -41,7 +41,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			
-			this.levelStruct = LevelStructure.create(indexLevel);
+			this.levelStruct = LevelStructure.create(1);
+			
+			_groupPlatforms = this.levelStruct.getPlatforms();
+			_groupDoors = this.levelStruct.getDoors();
+			_groupLum = this.levelStruct.getLummings();
+			
 			
 			_nbLummingsV = 2;
 			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
