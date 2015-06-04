@@ -66,7 +66,9 @@ var _level1Demo = {
     button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
     button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);
 
-    _menu = MenuFactoryTest.create();
+    _menu = MenuFactoryTest.create([1,2,3,4,5,6,7,8,9,10,11,12,13]);
+  //  _menu = MenuFactoryTest.create();
+
     ItemsLevel.reinit(_game);
 
     var cliquez = this.add.sprite(100, 300, 'cliquez');

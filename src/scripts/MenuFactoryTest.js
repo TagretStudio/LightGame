@@ -8,6 +8,9 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 	var Menu = function(tab){
 		this.vision = null;
+		if (tab == null){
+		tab = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+		}
 		this.spriteTempo = null;
   //  _groupItem = _game.add.group();
   //  _groupItem.enableBody = true;
@@ -49,36 +52,31 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		//plomb
 		plombCarre = _game.add.sprite(20+330, 536, 'plombCarre');
+		plombCarre.number = tab[0];
+
 		this.groupInfra.add(plombCarre);
 		plombVertical = _game.add.sprite(20+370, 536, 'plombVertical');
+		plombVertical.number = tab[1];
 		this.groupInfra.add(plombVertical);
 		plombHorizontal = _game.add.sprite(20+410, 536, 'plombHorizontal');
 		this.groupInfra.add(plombHorizontal);
-
+		plombHorizontal.number = tab[2];
 
 		//miroirs
 		miroirH = _game.add.sprite(660, 536, 'miroirH');
-	//	miroirH.inputEnabled = true;
-	 // miroirH.input.enableDrag();
-		//  this.groupInfra.add(miroirH);
-		//  this.groupSupra.add(miroirH);
-		//  this.groupVisible.add(miroirH);
-
+		miroirH.number= tab[3];
 		miroirV = _game.add.sprite(700, 536, 'miroirV');
-	//	miroirV.inputEnabled = true;
-		//miroirV.input.enableDrag();
+		miroirV.number = tab [4];
 		this.groupMiroir.add(miroirH);
 		this.groupMiroir.add(miroirV);
 
 
-		//  this.groupInfra.add(miroirV);
-		//  this.groupSupra.add(miroirV);
-		//  this.groupVisible.add(miroirV);
-		//supra
 
 		//antenes
 		aerialRight = _game.add.sprite(310, 536, 'aerialRight');
+		aerialRight.number = tab[5];
 		aerialLeft = _game.add.sprite(470, 536, 'aerialLeft');
+		aerialLeft.number = tab[6];
 		this.groupSupra.add(aerialLeft);
 		this.groupSupra.add(aerialRight);
 
@@ -87,12 +85,17 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		//visibles
 
 		red = _game.add.sprite(190, 536, 'red');
+		red.number = tab[7];
 		green = _game.add.sprite(230, 536, 'green');
+		green.number = tab[8];
 		blue = _game.add.sprite(270, 536, 'blue');
+		blue.number = tab[9];
 		magenta = _game.add.sprite(510, 536, 'magenta');
+		magenta.number = tab[10];
 		cyan = _game.add.sprite(550, 536, 'cyan');
+		cyan.number = tab[11];
 		yellow = _game.add.sprite(590, 536, 'yellow');
-
+		yellow.number = tab[12];
 		this.groupVisible.add(red);
 		this.groupVisible.add(blue);
 		this.groupVisible.add(green);
@@ -107,11 +110,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			function(p){
 				if (!p.draggable) {
 					p.y = _game.world.height - 64;
-					if (tab != null){
-						p.number = tab[i];
-						i++;
-					}
-					else {p.number = 1; }//STUPIDE
+
 					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					p.spriteText.anchor.set(0.5,0);
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
@@ -135,13 +134,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			function(p){
 				if (!p.draggable) {
 					p.y = _game.world.height - 64;
-					if (tab != null){
-						p.number = tab[i];
-						i++;
-					}
-					else {p.number = 2;
 
-					}
 					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					p.spriteText.anchor.set(0.5,0);
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
@@ -165,12 +158,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			function(p){
 					p.y = _game.world.height - 64;
 				if (!p.draggable) {
-					if (tab != null){
-						p.number = tab[i];
-						i++;
-					}
-					else {p.number = 3; //STUPIDE
-					}
+
 					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					p.spriteText.anchor.set(0.5,0);
 
@@ -196,12 +184,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			function(p){
 					p.y = _game.world.height - 64;
 				if (!p.draggable) {
-					if (tab != null){
-						p.number = tab[i];
-						i++;
-					}
-					else {p.number = 3; //STUPIDE
-					}
+
 					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					p.spriteText.anchor.set(0.5,0);
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
@@ -382,8 +365,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
        _game.load.image('plombHorizontal', 'media/img/plombHorizontal.png');
        _game.load.image('plombVertical', 'media/img/plombVertical.png');
      },
-     create : function(){
-       return (new Menu());
+     create : function(tab){
+       return (new Menu(tab));
      }
 /*
      getGroupItem : function(){
