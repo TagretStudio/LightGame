@@ -46,9 +46,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_groupPlatforms = this.levelStruct.getPlatforms();
 			_groupDoors = this.levelStruct.getDoors();
 			_groupLum = this.levelStruct.getLummings();
+			_nbLummingsV = this.levelStruct.getNbLummingsWin();
 			
 			
-			_nbLummingsV = 2;
 			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 			button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
 			button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);

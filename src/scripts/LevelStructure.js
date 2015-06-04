@@ -15,8 +15,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.groupPlatforms.enableBody = true;
 		this.groupDoors.enableBody = true;
 		
-		this.height = 600;
-		this.width = 800;
+		this.nbLummingsWin = 1;
 		
 		switch (indexLevel) {
 			case 1:
@@ -35,17 +34,12 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
 				this.groupLummings.add(lum1);
 				this.groupLummings.add(lum2);
+				
+				this.nbLummingsWin = 2;
+				
 				break;
 			
 		}
-	}
-	
-	LevelStructure.prototype.getHeigth = function() {
-		return this.height;
-	}
-	
-	LevelStructure.prototype.getWidth = function() {
-		return this.width;
 	}
 	
 	LevelStructure.prototype.getPlatforms = function() {
@@ -58,6 +52,10 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 	
 	LevelStructure.prototype.getDoors = function() {
 		return this.groupDoors;
+	}
+	
+	LevelStructure.prototype.getNbLummingsWin = function() {
+		return this.nbLummingsWin;
 	}
 	
 	return {
