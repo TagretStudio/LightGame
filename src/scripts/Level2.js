@@ -18,6 +18,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		preload : function(){
 			_music = MusicFactory.create('level2', 'media/audio/level.ogg');
 			_game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
+			_game.load.spritesheet('platforms', 'media/img/tiles3.png',32,32);
 			VisibleLummingFactory.init(_game);
 			PlatformFactory.init(_game);
 			DoorsFactory.init(_game);
@@ -48,6 +49,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    _groupPlatforms.add(platform5);
 		    _groupPlatforms.add(platform6);
 
+			platform(0,0,4,300);
 
 
 			_groupDoors = _game.add.group();
@@ -106,6 +108,21 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			}
 		}
 
+	}
+
+	function platform(x, y, h, w) {
+		var dummy = _game.add.sprite(0,0,'platforms',1);
+		var sw = dummy.width;
+		var p;
+		for (var i=0; i< Math.floor(Math.floor(w/sw)/2)+1; i++) {
+			p = _game.add.sprite(x + w/2 - i*sw, y,'platforms',6);
+			p.anchor.set(0,0);
+			p = _game.add.sprite(x + w/2 + i*sw, y,'platforms',6);
+			p.anchor.set(1,0);
+		}
+		p = _game.add.sprite(x,y,'platforms',4);
+		p = _game.add.sprite(x+w,y,'platforms',2);
+		p.anchor.set(1,0);
 	}
 
 	function mayExit(lum, door){
