@@ -274,12 +274,11 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			function dotscolors(p) {
 				var i = Math.max(0,Math.min(1,(Math.abs(p.x-rX)/(regdist*4/3))));
 				p.tint = (Math.min(255,i*512)<<16) | (Math.min(255,512-i*512)<<8) | (0);
-				p.amplitude = i*5;
-				p.y = p.amplitude*Math.sin(p.parent.time*i) + regY;
+				p.amplitude = (1-i)*5;
+				p.y = p.amplitude*Math.sin(p.parent.time*(1-i)) + regY;
 			}
 		);
 	}
-
 
 	function moveIcon(p) {
 		if (p.parent.visibl) {
