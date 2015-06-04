@@ -47,6 +47,11 @@ define(['VisionEnum'], function(VisionEnum) {
 	    }
 	}
 
+	Lumming.prototype.collideWithDoor = function(door){
+			
+			return 0;
+	}
+
 	Lumming.prototype.updateColor = function(spriteName) {
 		this.loadTexture(spriteName);
 	}
