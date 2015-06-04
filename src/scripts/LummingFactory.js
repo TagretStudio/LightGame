@@ -85,7 +85,6 @@ define(['VisionEnum'], function(VisionEnum) {
 	return{
 		init : function(game) {
 			_game = game;
-			_game.load.spritesheet('lumming_yellow', 'media/img/lumming_yellow.png', 32, 32, 32);
 		}
 		,
 		create : function(spriteName, x, y, vitesseX, vision) {

@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
- 'ItemsLevel', 'MiroirFactory'], function(Images, LummingFactory,
+ 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory'], function(Images, LummingFactory,
    VisibleLummingFactory, ColorEnum,
        MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum,
         Transition, FilterFactory, RadioLummingFactory, ItemsLevel,
-        MiroirFactory) {
+        MiroirFactory, GammaLummingFactory) {
 
 var _game;
 var _nbLummingsV = 0;
@@ -30,6 +30,7 @@ var _level1Demo = {
     MenuFactoryTest.init(_game);
     PlatformFactory.init(_game);
     VisibleLummingFactory.init(_game);
+    GammaLummingFactory.init(_game);
   },
 
   create : function(){
@@ -45,7 +46,6 @@ var _level1Demo = {
 
     _groupPlatforms.add(platform1);
     _groupPlatforms.add(platform2);
-
 
     _groupDoors = _game.add.group();
     _groupDoors.enableBody = true;
@@ -79,9 +79,8 @@ var _level1Demo = {
 
   update : function(){
     _menu.update();
-    _game.physics.arcade.collide(_groupLum, _groupPlatforms);
+    _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
-
 
     _groupLum.forEach(
       function(p){
@@ -100,14 +99,21 @@ var _level1Demo = {
 }
 
 function mayExit(lum, door){
-    if (lum.getDefautVision() == 2) {
     var exit = lum.collideWithDoor(door);
       if (exit == 1){
         _nbLummingsSaved = _nbLummingsSaved +1;
         text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
       }
-    }
+}
 
+function collidePf(lum, platform){
+  if(lum.color == 9){
+    if(platform.isPb){
+      _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
+    }
+  } else {
+     _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
+    }
 
 }
 
