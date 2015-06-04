@@ -34,7 +34,7 @@ var _level2Demo = {
 
   create : function(){
     _nbLummingsSaved = 0;
-//    _music.play();
+    _music.play();
     Images.boot().create();
     _game.physics.startSystem(Phaser.Physics.ARCADE);
     _currentVision = VisionEnum.getVisionEnum().VISIBLE;

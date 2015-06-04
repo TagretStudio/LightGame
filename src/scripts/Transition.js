@@ -1,5 +1,10 @@
 define(['MusicFactory'],function(MusicFactory){
   var _game = null;
+  var _nextstate = null;
+
+function transition(){
+  _game.state.start(_nextState);
+}
 
 return{
   init : function(game){
@@ -11,6 +16,7 @@ return{
   },
   nextState : function(nextState, musicA){
     var music = null;
+    _nextState = nextState;
     if (musicA != null){
       music = musicA.getMusic();
     }
@@ -20,11 +26,14 @@ return{
        music.fadeOut(700);
 	music.onFadeComplete.dispatch();
         music.onFadeComplete.addOnce(function() {
+          _game.time.events.add(Phaser.Timer.SECOND * 1, transition, this);
 	    music = null;
-	    _game.state.start(nextState);
+	   // _game.state.start(nextState);
 	}, _game);
      } else{
-      _game.state.start(nextState);
+       _game.time.events.add(Phaser.Timer.SECOND * 2, transition, this);
+
+  //    _game.state.start(nextState);
     }
   }
 }

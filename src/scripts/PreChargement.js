@@ -24,8 +24,8 @@ define(['./Images', './Musiques', 'MusicFactory', 'Transition', 'MenuFactoryTest
 				  ,
 				  create : function(){
 
-						Transition.nextState(_etapesuivante);
-					//  _game.state.start(_etapesuivante);
+					//	Transition.nextState(_etapesuivante);
+					  _game.state.start(_etapesuivante);
 				  }
 
 	}
