@@ -14,11 +14,12 @@ define(['Items', 'VisionEnum'], function(Items, VisionEnum) {
 		this.spriteName = 'miroir_' + this.spriteName;
 		Items.Item.call(this, this.spriteName, x, y);
 	    this.body.bounce = 1.1;
-	    if (isVertical) {
-		this.body.setSize(16, 32);
+	  /*  if (isVertical) {
+		this.body.setSize(6, 32);
 	    } else {
-		this.body.setSize(32, 16);
-	    }
+		this.body.setSize(32, 6);
+	}*/
+	
 	}
 
 	Miroir.prototype = Object.create(Items.Item.prototype);
