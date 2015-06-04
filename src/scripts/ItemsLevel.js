@@ -55,6 +55,10 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
           miroirV = MiroirFactory.create(x, y, true);
           _groupItem.add(miroirV);
           break;
+        case 'miroirH' :
+          miroirV = MiroirFactory.create(x, y, false);
+          _groupItem.add(miroirV);
+          break;
 
         default :
         var door = DoorsFactory.create(ColorEnum.getColorEnum().RED, x, y);
