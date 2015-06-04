@@ -29,22 +29,29 @@ define(['VisionEnum'], function(VisionEnum) {
 
 
 	Lumming.prototype.update = function() {
-		if (VisionEnum.getVisionCurrent() == this.defaultVision) {
-			if (this.body.velocity.x > 0) {
-				this.animations.play('right');
-			} else {
-				this.animations.play('left');
+		if (this.color == null) { //vaut null si on est en train de sortir d'une porte
+			this.alpha -= 0.01;
+			if (this.alpha == 0) {
+				this.kill();
 			}
 		} else {
-			if (this.body.velocity.x > 0) {
-				this.animations.play('right_invisible');
+			if (VisionEnum.getVisionCurrent() == this.defaultVision) {
+				if (this.body.velocity.x > 0) {
+					this.animations.play('right');
+				} else {
+					this.animations.play('left');
+				}
 			} else {
-				this.animations.play('left_invisible');
+				if (this.body.velocity.x > 0) {
+					this.animations.play('right_invisible');
+				} else {
+					this.animations.play('left_invisible');
+				}
+			}
+			if (this.position.y > 504) {
+				this.kill();
 			}
 		}
-	    if (this.position.y > 504) {
-			this.kill();
-	    }
 	}
 
 	Lumming.prototype.collideWithDoor = function(door){

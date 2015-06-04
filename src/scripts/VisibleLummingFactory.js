@@ -8,7 +8,7 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
         this.color = color;
         this.spriteName = 'lumming_' + ColorEnum.getName(color);
         LummingFactory.Lumming.call(this, game, this.spriteName, x, y, vitesseX, _vision);
-        this.animations.add('kill', [1, 4, 15, 11, 1], 10, true);
+        this.animations.add('kill', [1, 4, 15, 11], 10, true);
 
     }
 
@@ -20,7 +20,8 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
         if (this.color == door.color){
           this.body.velocity.x = 0;
           this.animations.play('kill');
-          this.kill();
+          this.color = null;
+          //this.kill(); géré dans l'update maintenant
           return 1;
         }
         return 0;
