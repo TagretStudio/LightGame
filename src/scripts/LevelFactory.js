@@ -31,7 +31,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			MenuFactoryTest.init(_game);
 			PlatformFactory.init(_game);
 			VisibleLummingFactory.init(_game);
-			LevelFactory.init(_game);
+			LevelStructure.init(_game);
 		},
 		
 		create: function() {

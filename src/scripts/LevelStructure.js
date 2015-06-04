@@ -20,7 +20,21 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		
 		switch (_indexLevel) {
 			case 1:
-
+				
+				platform1 = PlatformFactory.create(100, 300, false);
+				platform2 = PlatformFactory.create(300, 300, false);
+				_groupPlatforms.add(platform1);
+				_groupPlatforms.add(platform2);
+	
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
+				door2 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 400, 270);
+				_groupDoors.add(door1);
+				_groupDoors.add(door2);
+	
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
+				_groupLum.add(lum1);
+				_groupLum.add(lum2);
 				break;
 			
 		}
