@@ -7,7 +7,7 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition'], function(Imag
 
 		function transition(){
 		//	Transition.nextState(_etapesuivante);
-			_game.state.start(_etapesuivante);
+			_game.state.start(_etapesuivante); 
 
 		}
 

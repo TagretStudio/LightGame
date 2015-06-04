@@ -9,7 +9,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 var _game;
 var _nbLummingsV = 0;
-var _nbLummingsSaved = 0;
+var _nbLummingsSaved = 0; 
 var _etapesuivante = null;
 var _groupPlatforms = null;
 var _groupLum = null;

@@ -44,7 +44,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible = _game.add.group();
 		this.groupInfra = _game.add.group();
 		this.groupSupra = _game.add.group();
-
+		this.groupMiroir = _game.add.group();
 		//infra
 
 		//plomb
@@ -59,7 +59,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		//miroirs
 		miroirH = _game.add.sprite(660, 536, 'miroirH');
 		miroirH.inputEnabled = true;
-		miroirH.input.enableDrag();
+	  miroirH.input.enableDrag();
 		//  this.groupInfra.add(miroirH);
 		//  this.groupSupra.add(miroirH);
 		//  this.groupVisible.add(miroirH);
@@ -67,6 +67,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		miroirV = _game.add.sprite(700, 536, 'miroirV');
 		miroirV.inputEnabled = true;
 		miroirV.input.enableDrag();
+		this.groupMiroir.add(miroirH);
+		this.groupMiroir.add(miroirH);
 
 
 		//  this.groupInfra.add(miroirV);
@@ -137,7 +139,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 						p.number = tab[i];
 						i++;
 					}
-					else {p.number = 2;	
+					else {p.number = 2;
 
 					}
 					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});

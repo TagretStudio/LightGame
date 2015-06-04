@@ -12,7 +12,7 @@ return{
     _game.load.image('transitionBackground', 'media/img/sky.png');
     _game.load.image('transitionLogo', 'media/img/Menu.png');
 
-
+ 
   },
   nextState : function(nextState, musicA){
     var music = null;
