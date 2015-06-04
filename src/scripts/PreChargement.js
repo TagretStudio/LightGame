@@ -19,15 +19,17 @@ define(['./Images', './Musiques', 'MusicFactory', 'Transition', 'MenuFactoryTest
 			Musiques.getmaintheme().preload();
 			MenuFactoryTest.init(_game);
 			ItemsLevel.init(_game);
-			
+
 		}
 				  ,
 				  create : function(){
+
 						Transition.nextState(_etapesuivante);
 					//  _game.state.start(_etapesuivante);
 				  }
 
 	}
+
 
 	return {
 		init : function(game, etapesuivante){

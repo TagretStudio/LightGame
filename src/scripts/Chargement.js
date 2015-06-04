@@ -5,6 +5,11 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition'], function(Imag
 	var _music = null;
 
 
+		function transition(){
+			Transition.nextState(_etapesuivante);
+
+		}
+
 	var _chargement = {
 		preload : function(){
 			_music = MusicFactory.create('Menu', 'media/audio/menu_music.ogg');
@@ -24,7 +29,8 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition'], function(Imag
 			    Transition.nextState(_etapesuivante);
 			}, _game);
 			if (_space.isDown) {
-			    Transition.nextState(_etapesuivante);
+				_game.time.events.add(Phaser.Timer.SECOND * 2, transition, this);
+
 			}
 
 		}
