@@ -11,8 +11,11 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
     },
 
     radioCrea : function(x, y, isLeft){
-      var lumming = RadioLummingFactory.create(x, y, isLeft*85);
-      _grouplum.add(lumming);
+      _game.time.events.add(Phaser.Timer.SECOND, function(){
+          var lumming = RadioLummingFactory.create(x, y, isLeft*85);
+         _grouplum.add(lumming);
+           }, this);
+      
     },
 
     init : function(game){
