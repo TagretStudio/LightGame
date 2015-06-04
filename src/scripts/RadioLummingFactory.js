@@ -18,7 +18,7 @@ define(['LummingFactory', 'VisionEnum'],
             _game = game;
 			_vision = VisionEnum.getVisionEnum().INFRA;
             LummingFactory.init(_game);
-	    _game.load.spritesheet('lumming_radio', 'media/img/lumming_radio.png', 32, 32, 32);
+	    _game.load.spritesheet('lumming_gamma', 'media/img/lumming_radio.png', 32, 32, 32);
 	},
 
 	create: function(x, y, vitesseX) {
