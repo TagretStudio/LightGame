@@ -1,12 +1,24 @@
 define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'MiroirFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory, MiroirFactory){
   var _game = null;
   var _groupItem = null;
+  var _grouplum;
 
 
   return{
+
+    setgroup : function(groupe){
+      _grouplum = groupe;
+    },
+
+    testcrea : function(x, y){
+      var lumming = VisibleLummingFactory.create(ColorEnum.getColorEnum().MAGENTA, x, y, 100);
+      _grouplum.add(lumming);
+    },
+
     init : function(game){
       _game = game;
       DoorsFactory.init(game);
+      VisibleLummingFactory.init(game);
       FilterFactory.init(game);
       MiroirFactory.init(game);
     },
@@ -61,8 +73,10 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
           break;
 
         default :
-        var door = DoorsFactory.create(ColorEnum.getColorEnum().RED, x, y);
-        _groupItem.add(door);
+        this.testcrea(x, y);
+      //  testcrea();
+      //  var door = DoorsFactory.create(ColorEnum.getColorEnum().RED, x, y);
+      //  _groupItem.add(door);
           break;
       }
     },

@@ -15,7 +15,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	var menuBlack = null;
 	var _currentVision = null;
 	var button_restart;
-	var button_menu;       
+	var button_menu;
 	var _level1 = {
 
 		preload : function(){
@@ -117,7 +117,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_groupMiroir.add(miroir1);
 
 		    button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
-		    button_restart = _game.add.button(650,0,'buttonRefresh', actionOnClick, _game);
+		    button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);
 			ItemsLevel.reinit(_game);
 
 			var cliquez = this.add.sprite(100, 300, 'cliquez');
@@ -125,6 +125,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			// _game.startText = _game.add.text(0, 450, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
 			_game.paused = true;
+			ItemsLevel.setgroup(_groupLum);
 
 
 		},
@@ -204,7 +205,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			   _game.state.start('MainMenu');
 		       }, _game);
 		   }
-	       } 
+	       }
 
 
 	return{
