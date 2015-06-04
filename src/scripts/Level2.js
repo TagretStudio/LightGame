@@ -50,6 +50,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 		    _groupPlatforms.add(platform6);
 
 			platform(0,0,4,300);
+			platform(0,64,4,500);
 
 
 			_groupDoors = _game.add.group();
@@ -113,6 +114,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 	function platform(x, y, h, w) {
 		var dummy = _game.add.sprite(0,0,'platforms',1);
 		var sw = dummy.width;
+		dummy.kill();
 		var p;
 		for (var i=0; i< Math.floor(Math.floor(w/sw)/2)+1; i++) {
 			p = _game.add.sprite(x + w/2 - i*sw, y,'platforms',6);
