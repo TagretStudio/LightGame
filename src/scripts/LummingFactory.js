@@ -69,7 +69,9 @@ define(['VisionEnum'], function(VisionEnum) {
 
 	Lumming.prototype.collideWithMiroir = function(game, objet) {
 		if (this.key != 'lumming_gamma'){
+			this.body.bounce.y = 1.5;
 			game.physics.arcade.collide(this, objet);
+			this.body.bounce.y = 0;
 		}
 
 	}
