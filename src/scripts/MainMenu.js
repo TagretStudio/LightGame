@@ -17,7 +17,7 @@ define(['Images','MusicFactory', 'Transition'], function(Images, MusicFactory, T
 
 	function actionCredits(){
 		_buttonCredits.kill();
-		Transition.nextState('Level2', _music);
+		Transition.nextState('LevelFactory', _music);
 	}
 
 	function actionQuit(){

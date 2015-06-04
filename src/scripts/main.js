@@ -1,8 +1,8 @@
 
 require(['./Chargement','./MainMenu', './PreChargement', './Level1', './Level2'
-, 'Level1Demo', 'Level2Demo', 'Level3Demo', 'Level4Demo']
+, 'Level1Demo', 'Level2Demo', 'Level3Demo', 'Level4Demo', 'LevelFactory']
 ,function(Chargement, MainMenu, PreChargement, Level1, Level2, Level1Demo
-	, Level2Demo, Level3Demo, Level4Demo){
+	, Level2Demo, Level3Demo, Level4Demo, LevelFactory){
 	var _game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
 
 	//  var _game = new Phaser.Game(1024, 768, Phaser.AUTO, 'game');
@@ -27,6 +27,10 @@ require(['./Chargement','./MainMenu', './PreChargement', './Level1', './Level2'
 	_game.state.add('Level3Demo', Level3Demo.getLevel3Demo());
 	Level4Demo.init(_game, 'MainMenu');
 	_game.state.add('Level4Demo', Level4Demo.getLevel4Demo());
+	
+	LevelFactory.init(_game, 'MainMenu');
+	_game.state.add('LevelFactory', LevelFactory.getLevel());
+
 
 	_game.state.start('PreChargement');
 
