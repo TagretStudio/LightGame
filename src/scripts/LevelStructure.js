@@ -4,9 +4,9 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				DoorsFactory) {
 	
 	var _game = null;
-	var _indexLevel = 0;
 	
-	var LevelStructure = function() {
+	var LevelStructure = function(indexLevel) {
+		this.indexLevel = indexLevel;
 		
 		this.groupPlatforms = _game.add.group();
 		this.groupLummings = _game.add.group();
@@ -51,8 +51,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 			_game = game;
 		},
 		
-		chooseLevel(indexLevel) {
-			_indexLevel = indexLevel;
+		create: function(indexLevel) {
+			return (new LevelStructure(indexLevel));
 		}
 	}
 })
