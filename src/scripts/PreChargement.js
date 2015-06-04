@@ -6,7 +6,7 @@ define(['./Images', './Musiques', 'MusicFactory', 'Transition', 'MenuFactoryTest
 
 		init : function(){
 			_game.scale.pageAlignHorizontally = true;
-
+ 
 
 		},
 
