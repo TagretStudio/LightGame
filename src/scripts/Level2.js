@@ -38,8 +38,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				platform2 = PlatformFactory.create(100, 200, false);
 				platform3 = PlatformFactory.create(400, 300, false);
 				platform4 = PlatformFactory.create(700, 280, false);
-			  platform5 = PlatformFactory.create(0, 504, false);
-			  platform6 = PlatformFactory.create(400, 504, false);
+				platform5 = PlatformFactory.create(0, 504, false);
+				platform6 = PlatformFactory.create(400, 504, false);
 			}
 			_groupPlatforms.add(platform1);
 			_groupPlatforms.add(platform2);

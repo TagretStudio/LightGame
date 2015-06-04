@@ -50,6 +50,8 @@ define(['VisionEnum'], function(VisionEnum) {
 			}
 			if (this.position.y > 504) {
 				this.body.velocity.x = 0;
+				this.body.velocity.y = -100;
+				this.body.gravity.y = -100;
 				this.animations.play('kill');
 				this.color = null;
 				//this.kill();
