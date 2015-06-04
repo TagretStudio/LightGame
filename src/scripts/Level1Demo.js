@@ -47,7 +47,6 @@ var _level1Demo = {
     _groupPlatforms.add(platform1);
     _groupPlatforms.add(platform2);
 
-
     _groupDoors = _game.add.group();
     _groupDoors.enableBody = true;
     door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
@@ -61,11 +60,6 @@ var _level1Demo = {
     lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
     _groupLum.add(lum1);
     _groupLum.add(lum2);
-
-    //Lumming Gamma
-    _groupGamma = _game.add.group();
-    lumGamma = GammaLummingFactory.create(270, 0, 100);
-    _groupGamma.add(lumGamma);
 
     _nbLummingsV = 2;
     text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
@@ -84,11 +78,7 @@ var _level1Demo = {
   update : function(){
     _menu.update();
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
-
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
-    _game.physics.arcade.overlap(_groupGamma, _groupDoors, mayExit, null, _game);
-
-
 
     _groupLum.forEach(
       function(p){
@@ -114,10 +104,16 @@ function mayExit(lum, door){
       }
 }
 
-// function collidePf(lum){
-//   if(lum.)
+function collidePf(lum, platform){
+  if(lum.color == 9){
+    if(platform.isPb){
+      _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
+    }
+  } else {
+     _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
+    }
 
-// }
+}
 
 function actionOnRestart() {
 var background = _game.add.sprite(0, 0, 'transitionBackground');
