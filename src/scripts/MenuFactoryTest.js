@@ -271,6 +271,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupVisible.forEach(moveIcon);
 		this.groupSupra.forEach(moveIcon);
 		this.groupInfra.forEach(moveIcon);
+		this.groupMiroir.forEach(moveIcon);
 
 		this.reglette.y += (regY-this.reglette.y)/4;
 		var rX = this.reglette.x;

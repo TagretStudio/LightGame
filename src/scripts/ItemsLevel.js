@@ -1,4 +1,4 @@
-define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory){
+define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'MiroirFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory, MiroirFactory){
   var _game = null;
   var _groupItem = null;
 
@@ -8,6 +8,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory'], fu
       _game = game;
       DoorsFactory.init(game);
       FilterFactory.init(game);
+      MiroirFactory.init(game);
     },
     reinit : function(game){
       _game = game;
@@ -50,6 +51,11 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory'], fu
           filtre = FilterFactory.create(ColorEnum.getColorEnum().GREEN, x, y);
           _groupItem.add(filtre);
           break;
+        case 'miroirV' :
+          miroirV = MiroirFactory.create(x, y, true);
+          _groupItem.add(miroirV);
+          break;
+
         default :
         var door = DoorsFactory.create(ColorEnum.getColorEnum().RED, x, y);
         _groupItem.add(door);
