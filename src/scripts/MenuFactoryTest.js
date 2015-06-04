@@ -31,8 +31,10 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.reglette.input.allowVerticalDrag = false;
 		this.reglette.held = false;
 		var rX = this.reglette.x;
+		regdots.time = 0;
 		regdots.forEach(
 			function (p) {
+				p.amplitude = 1;
 				p.anchor.set(0.5, 0.5);
 				var i = Math.max(0,Math.min(1,(Math.abs(p.x-rX)/(regdist*4/3))));
 				p.tint = (Math.min(255,i*512)<<16) | (Math.min(255,512-i*512)<<8) | (0);
@@ -267,10 +269,13 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			}
 		}
 
+		regdots.time++;
 		regdots.forEach(
 			function dotscolors(p) {
 				var i = Math.max(0,Math.min(1,(Math.abs(p.x-rX)/(regdist*4/3))));
 				p.tint = (Math.min(255,i*512)<<16) | (Math.min(255,512-i*512)<<8) | (0);
+				p.amplitude = i*5;
+				p.y = p.amplitude*Math.sin(p.parent.time*i) + regY;
 			}
 		);
 	}
