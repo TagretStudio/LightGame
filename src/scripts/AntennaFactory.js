@@ -1,7 +1,6 @@
-define(['Items', 'VisionEnum', 'RadioLummingFactory'], function(Items, VisionEnum, RadioLummingFactory) {
+define(['Items', 'VisionEnum'], function(Items, VisionEnum) {
 
 	var _game = null;
-	var lum=null;
 
 	var Antenna = function(x, y, isLeft) {
 		if (isLeft) {
@@ -14,9 +13,6 @@ define(['Items', 'VisionEnum', 'RadioLummingFactory'], function(Items, VisionEnu
 
 		this.spriteName = 'antenna_' + this.spriteName;
 		Items.Item.call(this, this.spriteName, x, y);
-
-		// lum = RadioLummingFactory.create(300, 0, 10);
-		// _groupLum.add(lum);
 	
 	}
 
