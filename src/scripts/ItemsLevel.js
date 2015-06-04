@@ -1,4 +1,4 @@
-define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'MiroirFactory', 'AntennaFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory, MiroirFactory, AntennaFactory){
+define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'MiroirFactory', 'AntennaFactory', 'RadioLummingFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory, MiroirFactory, AntennaFactory, RadioLummingFactory){
   var _game = null;
   var _groupItem = null;
   var _grouplum;
@@ -10,8 +10,8 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
       _grouplum = groupe;
     },
 
-    testcrea : function(x, y){
-      var lumming = VisibleLummingFactory.create(ColorEnum.getColorEnum().MAGENTA, x, y, 100);
+    radioCrea : function(x, y, isLeft){
+      var lumming = RadioLummingFactory.create(x, y, isLeft*85);
       _grouplum.add(lumming);
     },
 
@@ -21,6 +21,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
       VisibleLummingFactory.init(game);
       FilterFactory.init(game);
       MiroirFactory.init(game);
+      RadioLummingFactory.init(game);
     },
     reinit : function(game){
       _game = game;
@@ -74,14 +75,16 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
         case 'antenna_left' :
           antenna_left = AntennaFactory.create(x, y, true);
           _groupItem.add(antenna_left);
+          this.radioCrea(x, y, -1);
           break;
         case 'antenna_right' :
           antenna_right = AntennaFactory.create(x, y, false);
           _groupItem.add(antenna_right);
+          this.radioCrea(x, y, 1);
           break;
 
         default :
-        this.testcrea(x, y);
+        this.radioCrea(x, y);
       //  testcrea();
       //  var door = DoorsFactory.create(ColorEnum.getColorEnum().RED, x, y);
       //  _groupItem.add(door);

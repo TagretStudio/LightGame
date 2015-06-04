@@ -75,6 +75,8 @@ var _level2Demo = {
     cliquez.scale.set(0.7, 0.7);
     _game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
     _game.paused = true;
+
+    ItemsLevel.setgroup(_groupLum);
   },
 
   update : function(){
