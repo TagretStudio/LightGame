@@ -61,8 +61,8 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory'], fu
       if (lum.defaultVision == 2){
       switch (objet.key){
         case 'filter_red' :
-        case 'filter_magenta' :
         case 'filter_green' :
+        case 'filter_blue' :
         case 'filter_cyan' :
         case 'filter_yellow' :
         case 'filter_magenta' :
