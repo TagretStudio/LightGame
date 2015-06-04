@@ -173,6 +173,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					}
 					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
 					p.spriteText.anchor.set(0.5,0);
+
 					var dragcopy = _game.add.sprite(p.x, p.y, p.key);
 					p.parent.add(dragcopy);
 					dragcopy.draggable = true;
@@ -253,7 +254,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		//sprite.destroy();
 		//   this.destroy();
 		*/
-	    if (sprite.y >= _game.world.height - 96 - 32 || sprite.number==0) {
+	    if (sprite.y >= _game.world.height - 96 - sprite.height || sprite.number==0) {
 			//bcall(_DoNothing)
 	    } else {
 			//created = _game.add.sprite(sprite.x, sprite.y, sprite.key);
