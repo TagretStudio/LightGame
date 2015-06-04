@@ -12,6 +12,12 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
   //  _groupItem = _game.add.group();
   //  _groupItem.enableBody = true;
 		this.barre = _game.add.sprite(0, _game.world.height-96, 'menuB');
+		var bounds = _game.add.sprite(0, 0, 'menuB');
+		bounds.anchor.set(0.5, 0.5);
+		bounds.height = 96;
+		bounds.width = regdist*3;
+		bounds.x = regX;
+		bounds.y = regY;
 		var regdot; //aucune idee de pourquoi il faut un -1 sur les trois suivants
 		regdots = _game.add.group();
 		regdots.add(_game.add.sprite(regX-1, regY, 'RegDot'));
@@ -21,6 +27,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.reglette.anchor.set(0.5, 0.5);
 		this.reglette.inputEnabled = true;
 		this.reglette.input.enableDrag();
+		this.reglette.input.boundsSprite = bounds;
 		this.reglette.input.allowVerticalDrag = false;
 		this.reglette.held = false;
 		var rX = this.reglette.x;
