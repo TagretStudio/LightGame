@@ -57,7 +57,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
           break;
         case 'miroirH' :
           miroirH = MiroirFactory.create(x, y, false);
-          _groupItem.add(miroirV);
+          _groupItem.add(miroirH);
           break;
 
         default :
@@ -78,7 +78,10 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
         case 'filter_magenta' :
          lum.collideWithFilter(objet);
           break;
-          case 'miroir_Vertical' :
+        case 'miroir_Vertical' :
+          lum.collideWithMiroir(_game, objet);
+          break;
+        case 'miroir_Horizontal' :
           lum.collideWithMiroir(_game, objet);
           break;
         }
