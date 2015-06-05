@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
- 'ItemsLevel', 'MiroirFactory'], function(Images, LummingFactory,
+ 'ItemsLevel', 'MiroirFactory', 'MicroLummingFactory'], function(Images, LummingFactory,
    VisibleLummingFactory, ColorEnum,
        MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum,
         Transition, FilterFactory, RadioLummingFactory, ItemsLevel,
-        MiroirFactory) {
+        MiroirFactory, MicroLummingFactory) {
 
 var _game;
 var _nbLummingsV = 0;
@@ -30,6 +30,7 @@ var _level2Demo = {
     MenuFactoryTest.init(_game);
     PlatformFactory.init(_game);
     VisibleLummingFactory.init(_game);
+    // MicroLummingFactory.init(_game);
   },
 
   create : function(){
@@ -62,6 +63,10 @@ var _level2Demo = {
     _groupLum = _game.add.group();
     lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 150);
     _groupLum.add(lum1);
+
+    //lum micro
+    // lumMicro = MicroLummingFactory.create(200, 200, 100);
+    // _groupLum.add(lumMicro);
 
     _nbLummingsV = 1;
     text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
