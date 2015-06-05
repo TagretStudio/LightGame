@@ -67,6 +67,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 				_menu = MenuFactoryTest.create(_tabAvailableObjects);
 				ItemsLevel.reinit(_game);
+				ItemsLevel.setgroup(_groupLum);
 				var cliquez = this.add.sprite(_game.world.width/2, _game.world.height*2/3, 'cliquez');
 				cliquez.anchor.set(0.5, 0.5);
 				cliquez.scale.set(0.7, 0.7);
@@ -122,6 +123,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			lum2.body.gravity.y = -100;
 			lum2.animations.play('kill');
 			lum2.color = null;
+			lum1.body.velocity.x = 0;
+			_game.time.events.add(Phaser.Timer.SECOND, function(){
+				lum1.body.velocity.x = 70;
+			}, this);
 			//lum2.kill();
 		}
 	}
