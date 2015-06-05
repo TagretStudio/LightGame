@@ -11,6 +11,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.groupPlatforms = _game.add.group();
 		this.groupLummings = _game.add.group();
 		this.groupDoors = _game.add.group();
+		this.groupElements = _game.add.group();
 
 		this.groupPlatforms.enableBody = true;
 		this.groupDoors.enableBody = true;
@@ -41,6 +42,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//X
 				lumX = XLummingFactory.create(200, 200, 50);
 				this.groupLummings.add(lumX);
+				this.groupElements.add(IceFactory.create(400, 240));
+
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 				
 				break;
@@ -103,6 +106,10 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 	
 	LevelStructure.prototype.getPlatforms = function() {
 		return this.groupPlatforms;
+	}
+
+	LevelStructure.prototype.getElements = function() {
+		return this.groupElements;
 	}
 	
 	LevelStructure.prototype.getLummings = function() {
