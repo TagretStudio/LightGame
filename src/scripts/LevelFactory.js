@@ -52,8 +52,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_tabAvailableObjects = this.levelStruct.getTabAvailableObjects();
 			
 			if (_groupLum.total == 0) {
-				Transition.nextState('MainMenu', _music);
 				_currentLevel = 1;
+				_game.state.start('MainMenu');
 			} else {
 				text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 				button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
