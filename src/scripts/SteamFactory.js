@@ -13,7 +13,7 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 	}
 
 	Steam.prototype.interact = function(lum) {
-		lum.body.velocity.y = Math.max(lum.body.velocity.y-100, -300);
+		lum.body.velocity.y = Math.max(lum.body.velocity.y-10, -300);
 	}
 
 	return {
