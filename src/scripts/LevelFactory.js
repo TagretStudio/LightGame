@@ -61,12 +61,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 				_menu = MenuFactoryTest.create(_tabAvailableObjects);
 				ItemsLevel.reinit(_game);
-				var cliquez = this.add.sprite(100, 300, 'cliquez');
+				var cliquez = this.add.sprite(_game.world.width/2, _game.world.height*2/3, 'cliquez');
+				cliquez.anchor.set(0.5, 0.5);
 				cliquez.scale.set(0.7, 0.7);
 				_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
 				_game.paused = true;
 			}
-			
 			
 		},
 		

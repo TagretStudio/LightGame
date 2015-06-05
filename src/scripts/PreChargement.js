@@ -15,8 +15,8 @@ define(['./Images', 'MusicFactory', 'Transition', 'MenuFactoryTest', 'ItemsLevel
 			Images.boot().preload();
 			MusicFactory.init(_game);
 			Transition.init(_game);
-			Musiques.init(_game);
-			Musiques.getmaintheme().preload();
+			//Musiques.init(_game);
+			//Musiques.getmaintheme().preload();
 			MenuFactoryTest.init(_game);
 			ItemsLevel.init(_game);
 
