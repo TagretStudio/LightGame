@@ -43,13 +43,17 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			
 			this.levelStruct = LevelStructure.create(_currentLevel);
-			alert(_currentLevel);
 			
 			_groupPlatforms = this.levelStruct.getPlatforms();
 			_groupDoors = this.levelStruct.getDoors();
 			_groupLum = this.levelStruct.getLummings();
 			_nbLummingsV = this.levelStruct.getNbLummingsWin();
 			_tabAvailableObjects = this.levelStruct.getTabAvailableObjects();
+			
+			if (_groupLum.total == 0) {
+				alert(_groupLum.total);
+				Transition.nextState('MainMenu', _music);
+			}
 			
 			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 			button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);

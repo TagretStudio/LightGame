@@ -62,7 +62,6 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				break;
 			
 			default:
-				
 				break;
 			
 		}
