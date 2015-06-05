@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 		'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
-		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory'],
+		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory', 'IceFactory'],
 	   function(Images, LummingFactory,	VisibleLummingFactory, ColorEnum,
 				MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest,
 				VisionEnum,	Transition, FilterFactory, RadioLummingFactory,
-				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory) {
+				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory, IceFactory) {
 	
 	var _game = null;
 	var _currentLevel = null;
@@ -13,6 +13,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _nbLummingsSaved = 0;
 	var _groupPlatforms = null;
 	var _groupLum = null;
+	var _groupElements = null;
 	var _music = null;
 	var _menu = null;
 	var _text = null;
@@ -33,6 +34,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			VisibleLummingFactory.init(_game);
 			LevelStructure.init(_game);
 			XLummingFactory.init(_game);
+			IceFactory.init(_game);
 		},
 		
 		create: function() {
@@ -48,6 +50,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_groupPlatforms = this.levelStruct.getPlatforms();
 			_groupDoors = this.levelStruct.getDoors();
 			_groupLum = this.levelStruct.getLummings();
+			_groupElements = this.levelStruct.getElements();
 			_nbLummingsV = this.levelStruct.getNbLummingsWin();
 			_tabAvailableObjects = this.levelStruct.getTabAvailableObjects();
 			
@@ -75,6 +78,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
+			_game.physics.arcade.overlap(_groupLum, _groupElements, elementOverlap, null, _game);
 
 			_groupLum.forEach(
 				function(p){
@@ -102,7 +106,11 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		}
 		
 	}
-	
+
+	function elementOverlap(lum, element) {
+		element.interact(lum);
+	}
+
 	function mayExit(lum, door){
 		var lx = (lum.left+lum.right)/2;
 		var dl = door.left;

@@ -151,6 +151,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				Transition.nextState('Level2', _music);
 			}
 		}
+
 	}
 
 	function mayExit(lum, door){
@@ -216,4 +217,5 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			return _level1;
 		}
 	}
+
 })
