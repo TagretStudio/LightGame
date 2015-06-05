@@ -86,8 +86,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			
 			if (_nbLummingsV == _nbLummingsSaved) {
 				if (!_alreadyChangeLevel) {
-					_currentLevel++;
-					Transition.nextState('LevelFactory', _music);
+					if (_groupLum.total == 0) {
+						Transition.nextState('MainMenu', _music);
+					} else {
+						_currentLevel++;
+						Transition.nextState('LevelFactory', _music);
+					}
 				}
 				_alreadyChangeLevel = true;
 			}
