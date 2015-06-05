@@ -35,6 +35,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		},
 		
 		create: function() {
+			_alreadyChangeLevel = false;
 			_nbLummingsSaved = 0;
 			_music.play();
 			Images.boot().create();
@@ -42,6 +43,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			
 			this.levelStruct = LevelStructure.create(_currentLevel);
+			alert(_currentLevel);
 			
 			_groupPlatforms = this.levelStruct.getPlatforms();
 			_groupDoors = this.levelStruct.getDoors();
@@ -80,16 +82,14 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			)
 			
 			if (_nbLummingsV == _nbLummingsSaved) {
-				_currentLevel++;
-				Transition.nextState('LevelFactory', _music);
+				if (!_alreadyChangeLevel) {
+					_currentLevel++;
+					Transition.nextState('LevelFactory', _music);
+				}
+				_alreadyChangeLevel = true;
 			}
 		}
 		
-	}
-	
-	function changeLevel(indexLevel) {
-		delete this.levelStruct;
-		this.levelStruct = LevelStructure.create(indexLevel);
 	}
 	
 	function mayExit(lum, door){

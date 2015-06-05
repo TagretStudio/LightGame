@@ -54,6 +54,15 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
 				this.groupLummings.add(lum1);
 				this.groupLummings.add(lum2);
+				
+				this.nbLummingsWin = 2;
+				
+				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+
+				break;
+			
+			default:
+				
 				break;
 			
 		}
