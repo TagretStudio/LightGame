@@ -72,6 +72,20 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
+			case 3:
+
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+
+				this.nbLummingsWin = 1;
+
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,0];
+
+				break;
+
 			default:
 				break;
 			
