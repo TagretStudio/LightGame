@@ -8,9 +8,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				ItemsLevel,	MiroirFactory, LevelStructure) {
 	
 	var _game = null;
+	var _currentLevel = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
-	var _etapesuivante = null;
 	var _groupPlatforms = null;
 	var _groupLum = null;
 	var _music = null;
@@ -19,7 +19,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _currentVision = null;
 	var _button_restart = null;
 	var _button_menu = null;
-
+	var _tabAvailableObjects = null;
 	
 	var LevelFactory = {
 		
@@ -35,25 +35,31 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		},
 		
 		create: function() {
+			_alreadyChangeLevel = false;
 			_nbLummingsSaved = 0;
 			_music.play();
 			Images.boot().create();
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			
-			this.levelStruct = LevelStructure.create(1);
+			this.levelStruct = LevelStructure.create(_currentLevel);
 			
 			_groupPlatforms = this.levelStruct.getPlatforms();
 			_groupDoors = this.levelStruct.getDoors();
 			_groupLum = this.levelStruct.getLummings();
+			_nbLummingsV = this.levelStruct.getNbLummingsWin();
+			_tabAvailableObjects = this.levelStruct.getTabAvailableObjects();
 			
+			if (_groupLum.total == 0) {
+				Transition.nextState('MainMenu', _music);
+				_currentLevel = 1;
+			}
 			
-			_nbLummingsV = 2;
 			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 			button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
 			button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);
 
-			_menu = MenuFactoryTest.create();
+			_menu = MenuFactoryTest.create(_tabAvailableObjects);
 			ItemsLevel.reinit(_game);
 			var cliquez = this.add.sprite(100, 300, 'cliquez');
 			cliquez.scale.set(0.7, 0.7);
@@ -63,8 +69,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		
 		update: function() {
 			_menu.update();
-			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
+			_game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
 
 			_groupLum.forEach(
 				function(p){
@@ -79,24 +86,47 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			)
 			
 			if (_nbLummingsV == _nbLummingsSaved) {
-				Transition.nextState('MainMenu', _music);
+				if (!_alreadyChangeLevel) {
+					if (_groupLum.total == 0) {
+						Transition.nextState('MainMenu', _music);
+					} else {
+						_currentLevel++;
+						Transition.nextState('LevelFactory', _music);
+					}
+				}
+				_alreadyChangeLevel = true;
 			}
 		}
 		
 	}
 	
-	function changeLevel(indexLevel) {
-		delete this.levelStruct;
-		this.levelStruct = LevelStructure.create(indexLevel);
-	}
-	
 	function mayExit(lum, door){
-		if (lum.getDefautVision() == 2) {
+		var lx = (lum.left+lum.right)/2;
+		var dl = door.left;
+		var dr = door.right;
+
+		if (lx>dl && lx<dr) {
 			var exit = lum.collideWithDoor(door);
 			if (exit == 1){
-				_nbLummingsSaved = _nbLummingsSaved +1;
-				text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
+				this.time.events.add(1000,
+					function() {
+						_nbLummingsSaved = _nbLummingsSaved +1;
+						text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
+					}
+				, this);
+				//_nbLummingsSaved = _nbLummingsSaved +1;
+				//text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 			}
+		}
+	}
+	
+	function collidePf(lum, platform){
+		if(lum.color == 9){
+			if(platform.isPb){
+			 _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
+			}
+		} else {
+		 _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
 		}
 	}
 	
@@ -128,9 +158,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	}
 	
 	return {
-		init: function(game, nextState) {
+		init: function(game) {
 			_game = game;
-			_etapesuivante = nextState;
+			_currentLevel = 1;
 		},
 		getLevel: function() {
 			return LevelFactory;
