@@ -26,16 +26,14 @@ BasicGame.Preloader.prototype = {
 		music = this.add.audio('menu_music');
 		music.loop = true;
 		music.play();
-
-	},
-	update: function () {
 		this.time.events.add(50, logo1, this);
 		this.time.events.add(800, logo2, this);
 		this.time.events.add(1500, logo3, this);
 		this.time.events.add(10800, transition, this);
-		if (space.isDown) {
-			this.state.start('MainMenu');
-		}
+	},
+
+	update: function () {
+		if (space.isDown) transition();
 	}
 };
 
