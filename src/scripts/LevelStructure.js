@@ -23,9 +23,9 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		switch (indexLevel) {
 			case 1:
 				platform1 = PlatformFactory.create(100, 300, false);
-				platform2 = PlatformFactory.create(300, 300, false);
+				//platform2 = PlatformFactory.create(300, 300, false);
 				this.groupPlatforms.add(platform1);
-				this.groupPlatforms.add(platform2);
+				//this.groupPlatforms.add(platform2);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
 				door2 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 400, 270);
@@ -46,7 +46,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				lumM = MicroLummingFactory.create(250, 100, 50);
 				this.groupLummings.add(lumM);
 
-				this.groupElements.add(IceFactory.create(460, 290));
+				//this.groupElements.add(IceFactory.create(460, 290));
+				icePit(this, platform1.right + 32, 300, 64);
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
@@ -79,17 +80,64 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.groupPlatforms.forEach(
 			function(p) {
 				p.body.immovable = true;
-				p.body.immovable = true;
-				p.body.checkCollision.down = false;
-				p.body.checkCollision.left = false;
-				p.body.checkCollision.right = false;
-				p.body.checkCollision.up = true;
+				if (p.collisionsSet == null) {
+					p.body.immovable = true;
+					p.body.checkCollision.down = false;
+					p.body.checkCollision.left = false;
+					p.body.checkCollision.right = false;
+					p.body.checkCollision.up = true;
+				}
 			}
 		);
 	}
 
-	icePit = function(ls, x, y) { //ls is LevelStructure
-		
+	icePit = function(ls, x, y, w) { //ls is LevelStructure
+		var ice;
+		var p;
+		ls.groupElements.add(ice = IceFactory.create(x, y));
+		ice.width = w;
+
+		p = _game.add.sprite(ice.left, ice.y, 'platforms',3);
+		p.anchor.set(1,0);
+		ls.groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = true;
+		p.body.checkCollision.up = true;
+		p.collisionsSet = true;
+
+		p = _game.add.sprite(ice.right, ice.y, 'platforms',5);
+		p.anchor.set(0,0);
+		ls.groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = true;
+		p.body.checkCollision.right = false;
+		p.body.checkCollision.up = true;
+		p.collisionsSet = true;
+
+		p = _game.add.sprite(ice.left, ice.y + ice.height, 'platforms',12);
+		p.anchor.set(1,0);
+		ls.groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = true;
+		p.body.checkCollision.up = true;
+		p.collisionsSet = true;
+
+		p = _game.add.sprite(x, ice.y + ice.height * 3/2, 'platforms',12); //sprite invisible servant aux collisions
+		p.height /=2;
+		p.anchor.set(0,0);
+		ls.groupPlatforms.add(p);
+		p.width = w;
+
+		p = _game.add.sprite(ice.right, ice.y + ice.height, 'platforms',10);
+		p.anchor.set(0,0);
+		ls.groupPlatforms.add(p);
+
+		p = _game.add.sprite(x, ice.y + ice.height, 'platforms',14);
+		p.anchor.set(0,0);
+		ls.groupPlatforms.add(p);
+		p.width = w;
 	}
 
 	waterPit = function(x, y) {
