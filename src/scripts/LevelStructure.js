@@ -26,19 +26,19 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				platform2 = PlatformFactory.create(300, 300, false);
 				this.groupPlatforms.add(platform1);
 				this.groupPlatforms.add(platform2);
-	
+
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
 				door2 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 400, 270);
 				this.groupDoors.add(door1);
 				this.groupDoors.add(door2);
-	
+
 				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
 				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
 				this.groupLummings.add(lum1);
 				this.groupLummings.add(lum2);
-				
+
 				this.nbLummingsWin = 2;
-				
+
 				//X
 				lumX = XLummingFactory.create(70, 200, 70);
 
@@ -48,28 +48,28 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupElements.add(IceFactory.create(400, 290));
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
-				
+
 				break;
 
 			case 2:
 				platform(this.groupPlatforms, 100, 300, 600);
-	
+
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
 				door2 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 400, 270);
 				this.groupDoors.add(door1);
 				this.groupDoors.add(door2);
-	
+
 				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
 				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
 				this.groupLummings.add(lum1);
 				this.groupLummings.add(lum2);
-				
+
 				this.nbLummingsWin = 2;
-				
+
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
 				break;
-			
+
 			default:
 				break;
 			
@@ -85,6 +85,14 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				p.body.checkCollision.up = true;
 			}
 		);
+	}
+
+	icePit = function(x, y) {
+		
+	}
+
+	waterPit = function(x, y) {
+		
 	}
 
 	platform = function(groupPlatforms, x, y, w) {
@@ -106,7 +114,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		groupPlatforms.add(p);
 		p.anchor.set(1,0);
 	}
-	
+
 	LevelStructure.prototype.getPlatforms = function() {
 		return this.groupPlatforms;
 	}
@@ -114,29 +122,29 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 	LevelStructure.prototype.getElements = function() {
 		return this.groupElements;
 	}
-	
+
 	LevelStructure.prototype.getLummings = function() {
 		return this.groupLummings;
 	}
-	
+
 	LevelStructure.prototype.getDoors = function() {
 		return this.groupDoors;
 	}
-	
+
 	LevelStructure.prototype.getNbLummingsWin = function() {
 		return this.nbLummingsWin;
 	}
-	
+
 	LevelStructure.prototype.getTabAvailableObjects = function() {
 		return this.tabAvailableObjects;
 	}
-	
+
 	return {
 		init: function(game) {
 			_game = game;
 			_game.load.spritesheet('platforms', 'media/img/tiles3.png',32,32);
 		},
-		
+
 		create: function(indexLevel) {
 			return (new LevelStructure(indexLevel));
 		}
