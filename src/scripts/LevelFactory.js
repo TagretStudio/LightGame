@@ -100,8 +100,14 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		if (lx>dl && lx<dr) {
 			var exit = lum.collideWithDoor(door);
 			if (exit == 1){
-				_nbLummingsSaved = _nbLummingsSaved +1;
-				text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
+				this.time.events.add(1000,
+					function() {
+						_nbLummingsSaved = _nbLummingsSaved +1;
+						text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
+					}
+				, this);
+				//_nbLummingsSaved = _nbLummingsSaved +1;
+				//text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 			}
 		}
 	}
