@@ -8,9 +8,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				ItemsLevel,	MiroirFactory, LevelStructure) {
 	
 	var _game = null;
+	var _currentLevel = null;
 	var _nbLummingsV = 0;
 	var _nbLummingsSaved = 0;
-	var _etapesuivante = null;
 	var _groupPlatforms = null;
 	var _groupLum = null;
 	var _music = null;
@@ -41,7 +41,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			
-			this.levelStruct = LevelStructure.create(2); // ICI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			this.levelStruct = LevelStructure.create(_currentLevel);
 			
 			_groupPlatforms = this.levelStruct.getPlatforms();
 			_groupDoors = this.levelStruct.getDoors();
@@ -80,7 +80,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			)
 			
 			if (_nbLummingsV == _nbLummingsSaved) {
-				Transition.nextState('MainMenu', _music);
+				_currentLevel++;
+				Transition.nextState('LevelFactory', _music);
 			}
 		}
 		
@@ -143,9 +144,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	}
 	
 	return {
-		init: function(game, nextState) {
+		init: function(game) {
 			_game = game;
-			_etapesuivante = nextState;
+			_currentLevel = 1;
 		},
 		getLevel: function() {
 			return LevelFactory;
