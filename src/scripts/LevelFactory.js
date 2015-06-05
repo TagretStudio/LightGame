@@ -58,7 +58,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
 			button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);
 
-			_menu = MenuFactoryTest.create();
+			_menu = MenuFactoryTest.create(_tabAvailableObjects);
 			ItemsLevel.reinit(_game);
 			var cliquez = this.add.sprite(100, 300, 'cliquez');
 			cliquez.scale.set(0.7, 0.7);
