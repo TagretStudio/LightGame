@@ -15,9 +15,13 @@ define(['Items', 'ColorEnum', 'SteamFactory'], function(Items, ColorEnum, SteamF
 	Water.prototype.interact = function(lum) {
 		switch (lum.color) {
 			case ColorEnum.getColorEnum().MICRO:
-				this.parent.add(SteamFactory.create(this.x, this.y));
-				//faudrait faire quelque chose pour éviter de créer de la fumée en boucle
-				//this.kill();
+				if (lum.inactive == null) {
+					var steam;
+					this.parent.add(steam = SteamFactory.create(this.x, this.y));
+					lum.inactive = true;
+					//faudrait faire quelque chose pour éviter de créer de la fumée en boucle
+					//this.kill();
+				}
 				break;
 		}
 	}
