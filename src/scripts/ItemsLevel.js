@@ -1,4 +1,4 @@
-define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'MiroirFactory', 'AntennaFactory', 'RadioLummingFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory, MiroirFactory, AntennaFactory, RadioLummingFactory){
+define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'MiroirFactory', 'AntennaFactory', 'RadioLummingFactory', 'PlombFactory'], function(DoorsFactory, FilterFactory, ColorEnum, VisibleLummingFactory, MiroirFactory, AntennaFactory, RadioLummingFactory, PlombFactory){
   var _game = null;
   var _groupItem = null;
   var _grouplum;
@@ -25,6 +25,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
       FilterFactory.init(game);
       MiroirFactory.init(game);
       RadioLummingFactory.init(game);
+	PlombFactory.init(game);
     },
     reinit : function(game){
       _game = game;
@@ -40,7 +41,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
       return _groupItem;
     },
     createItem : function(key, x, y){
-      var door = DoorsFactory.create(ColorEnum.getColorEnum().RED, x, y);
+      //var door = DoorsFactory.create(ColorEnum.getColorEnum().RED, x, y);
 
       switch (key) {
         case 'red' :
@@ -85,10 +86,21 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
           _groupItem.add(antenna_right);
           this.radioCrea(x, y, 1);
           break;
+      case 'plombCarre' :
+	  plombCarre = PlombFactory.create(x, y, 0);
+	  _groupItem.add(plombCarre);
+	  break;
+      case 'plombHorizontal' :
+	  plombHorizontal = PlombFactory.create(x, y, 1);
+	  _groupItem.add(plombHorizontal);
+	  break;
+      case 'plombVertical' :
+	  plombVertical = PlombFactory.create(x, y, 2);
+	  _groupItem.add(plombVertical);
+	  break;
 
         default :
-        this.radioCrea(x, y);
-      //  testcrea();
+        //this.radioCrea(x, y);
       //  var door = DoorsFactory.create(ColorEnum.getColorEnum().RED, x, y);
       //  _groupItem.add(door);
           break;
@@ -96,7 +108,6 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
     },
 
     collideItem : function(lum, objet){
-      if (lum.defaultVision == 2){
       switch (objet.key){
         case 'filter_red' :
         case 'filter_green' :
@@ -112,8 +123,12 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
         case 'miroir_Horizontal' :
           lum.collideWithMiroir(_game, objet);
           break;
+      case 'plomb_Bloc' :
+      case 'plomb_Vertical' :
+      case 'plomb_Horizontal' :
+	  lum.collide(_game, objet);
+	  break;
         }
-      }
 
     }
 
