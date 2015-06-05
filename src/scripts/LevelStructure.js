@@ -40,12 +40,13 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 2;
 
 				//X
-				lumX = XLummingFactory.create(70, 200, 70);
+				lumX = XLummingFactory.create(300, 200, 70);
 
 				this.groupLummings.add(lumX);
-				lumM = MicroLummingFactory.create(200, 200, 50);
+				lumM = MicroLummingFactory.create(250, 100, 50);
 				this.groupLummings.add(lumM);
-				this.groupElements.add(IceFactory.create(400, 290));
+
+				this.groupElements.add(IceFactory.create(460, 290));
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
@@ -87,7 +88,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		);
 	}
 
-	icePit = function(x, y) {
+	icePit = function(ls, x, y) { //ls is LevelStructure
 		
 	}
 

@@ -18,6 +18,7 @@ define(['Items', 'ColorEnum', 'SteamFactory'], function(Items, ColorEnum, SteamF
 				if (lum.inactive == null) {
 					var steam;
 					this.parent.add(steam = SteamFactory.create(this.x, this.y));
+					steam.anchor.set(0, 1);
 					lum.inactive = true;
 					//faudrait faire quelque chose pour éviter de créer de la fumée en boucle
 					//this.kill();
