@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
- 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory'], function(Images, LummingFactory,
+ 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory', 'PorteAntennaFactory'], function(Images, LummingFactory,
    VisibleLummingFactory, ColorEnum,
        MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum,
         Transition, FilterFactory, RadioLummingFactory, ItemsLevel,
-        MiroirFactory, GammaLummingFactory) {
+        MiroirFactory, GammaLummingFactory, PorteAntennaFactory) {
 
 var _game;
 var _nbLummingsV = 0;
@@ -19,7 +19,7 @@ var _text = null;
 var _currentVision = null;
 var _button_restart = null;
 var _button_menu = null;
-
+var _groupDoorsRadio = null;
 
 var _level1Demo = {
   preload : function(){
@@ -31,6 +31,7 @@ var _level1Demo = {
     PlatformFactory.init(_game);
     VisibleLummingFactory.init(_game);
     GammaLummingFactory.init(_game);
+    PorteAntennaFactory.init(_game);
   },
 
   create : function(){
@@ -46,6 +47,12 @@ var _level1Demo = {
 
     _groupPlatforms.add(platform1);
     _groupPlatforms.add(platform2);
+
+    _groupDoorsRadio = _game.add.group();
+    _groupDoorsRadio.enableBody = true;
+    porteAntenne1 = PorteAntennaFactory.create(220, 236, 10);
+    _groupDoorsRadio.add(porteAntenne1);
+
 
     _groupDoors = _game.add.group();
     _groupDoors.enableBody = true;
@@ -82,6 +89,9 @@ var _level1Demo = {
   update : function(){
     _menu.update();
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
+    _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
+    _game.physics.arcade.collide(_groupLum, _groupDoorsRadio);
+
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 
     _groupLum.forEach(
@@ -92,6 +102,12 @@ var _level1Demo = {
 			function(p){
 				p.update();
 			})
+
+    _groupDoorsRadio.forEach(
+      function(p){
+        p.update();
+      }
+    )
 
     if (_nbLummingsV == _nbLummingsSaved) {
       Transition.nextState('Level2Demo', _music);
