@@ -7,7 +7,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 	
 	var LevelStructure = function(indexLevel) {
 		this.indexLevel = indexLevel;
-		
+
 		this.groupPlatforms = _game.add.group();
 		this.groupLummings = _game.add.group();
 		this.groupDoors = _game.add.group();
@@ -19,7 +19,6 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.nbLummingsWin = 1;
 		this.tabAvailableObjects = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
-		
 		switch (indexLevel) {
 			case 1:
 				platform1 = PlatformFactory.create(100, 300, false);
@@ -88,9 +87,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 			default:
 				break;
-			
 		}
-		
+
 		this.groupPlatforms.forEach(
 			function(p) {
 				p.body.immovable = true;
@@ -107,9 +105,24 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 	icePit = function(ls, x, y, w) { //ls is LevelStructure
 		var ice;
-		var p;
 		ls.groupElements.add(ice = IceFactory.create(x, y));
 		ice.width = w;
+		pit(ls, x, y, w);
+	}
+
+	waterPit = function(x, y) {
+		var water;
+		ls.groupElements.add(water = WaterFactory.create(x, y));
+		water.width = w;
+		pit(ls, x, y, w);
+	}
+
+	pit = function(ls, x, y, w) {
+		var ice;
+		ls.groupElements.add(ice = IceFactory.create(x, y));
+		ice.width = w;
+
+		var p;
 
 		p = _game.add.sprite(ice.left, ice.y, 'platforms',3);
 		p.anchor.set(1,0);
@@ -152,10 +165,13 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		p.anchor.set(0,0);
 		ls.groupPlatforms.add(p);
 		p.width = w;
-	}
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = false;
+		p.body.checkCollision.up = false;
+		p.collisionsSet = true;
 
-	waterPit = function(x, y) {
-		
+		ice.kill();
 	}
 
 	platform = function(groupPlatforms, x, y, w) {
