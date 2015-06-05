@@ -40,7 +40,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 2;
 				
 				//X
-				lumX = XLummingFactory.create(250, 200, 50);
+				lumX = XLummingFactory.create(70, 200, 70);
+
 				this.groupLummings.add(lumX);
 				lumM = MicroLummingFactory.create(200, 200, 50);
 				this.groupLummings.add(lumM);
