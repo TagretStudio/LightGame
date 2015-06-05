@@ -191,55 +191,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_game.state.start('Level1');
 			}, _game);
 		}
-<<<<<<< HEAD
-		lums.forEach(function(lum) {
-			lum.animations.add('left', [4, 5, 6, 7], 10, true);
-			lum.animations.add('right',  [8, 9, 10, 11], 10, true);
-			lum.body.gravity.y = 1200;
-			lum.body.bounce.x = 1;
-		});
-
-		// this.startText = this.add.text(150, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-		// this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';music.play();}},this);
-		// this.game.paused = true;
-		// music = this.add.audio('level');
-		// music.loop = true;
-
-		var cliquez = this.add.sprite(60, 500, 'cliquez');
-
-		// this.startText = this.add.text(150, 500, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;music.play();cliquez.destroy();}},this);
-		this.game.paused = true;
-		music = this.add.audio('level');
-		music.loop = true;
-	},
-
-	update: function () {
-		this.physics.arcade.collide(lums, doors, mayExit, null, this);
-		this.physics.arcade.collide(lums, platforms);
-
-		lums.forEach(
-			function(lum) {
-				if (lum.body.velocity.x > 0) {
-					lum.animations.play('right');
-				} else if (lum.body.velocity.x < 0) {
-					lum.animations.play('left');
-				} else {
-					lum.animations.stop();
-				}
-			}
-		);
-	    //Gestion Menu
-
-	    //var space;
-	    //var menuOpened = false;
-	    //space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-	    //if (space.isDown || this.pointer.isDown) {
-		//	this.add.text(200, 500, 'LOOOOOOOOOOL', { fontSize: '32px', fill: '#000' });
-	    //}
-=======
 	    }
->>>>>>> requirejs
 
 	       function actionOnMenu() {
 	  	   var background = _game.add.sprite(0, 0, 'transitionBackground');
