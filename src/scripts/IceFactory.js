@@ -1,4 +1,4 @@
-define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
+define(['Items', 'ColorEnum', 'WaterFactory'], function(Items, ColorEnum, WaterFactory) {
 	var _game = null;
 
 	var Ice = function(x, y) {
@@ -15,6 +15,7 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 	Ice.prototype.interact = function(lum) {
 		switch (lum.color) {
 			case ColorEnum.getColorEnum().X:
+				this.parent.add(WaterFactory.create(this.x, this.y));
 				this.kill();
 				break;
 		}

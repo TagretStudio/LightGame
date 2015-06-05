@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 		'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
-		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory', 'IceFactory'],
+		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory', 'IceFactory', 'WaterFactory'],
 	   function(Images, LummingFactory,	VisibleLummingFactory, ColorEnum,
 				MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest,
 				VisionEnum,	Transition, FilterFactory, RadioLummingFactory,
-				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory, IceFactory) {
+				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory, IceFactory, WaterFactory) {
 	
 	var _game = null;
 	var _currentLevel = null;
@@ -35,6 +35,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			LevelStructure.init(_game);
 			XLummingFactory.init(_game);
 			IceFactory.init(_game);
+			WaterFactory.init(_game);
 		},
 		
 		create: function() {
