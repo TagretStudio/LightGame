@@ -71,8 +71,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 3:
-
+			case 3: //level 1
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
@@ -81,7 +80,63 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				this.nbLummingsWin = 1;
 
+				//un filtre soustractif magenta
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,0];
+
+				break;
+
+			case 4: //level 2 
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+
+				this.nbLummingsWin = 1;
+				//on donne un filtre magenta et un filtre jaune
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,1];
+
+				break;
+
+			case 5: //level 3
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().CYAN, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 100, 200, 50);
+
+				this.nbLummingsWin = 2;
+				//on donne un filtre cyan
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,0,1,0];
+
+				break;
+
+			case 6: //level 4
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 100, 200, 50);
+
+				this.nbLummingsWin = 2;
+				//on donne un filtre vert
+				this.tabAvailableObjects = [0,1,0,0,0,0,0,0,0,0,0,0,0];
+
+				break;
+
+			case 7: //level 5
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().MAGENTA, 100, 200, 50);
+
+				this.nbLummingsWin = 2;
+				//on donne un filtre bleu
+				this.tabAvailableObjects = [0,0,1,0,0,0,0,0,0,0,0,0,0];
 
 				break;
 
