@@ -82,6 +82,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
 			_game.physics.arcade.overlap(_groupLum, _groupElements, elementOverlap, null, _game);
+			_game.physics.arcade.overlap(_groupLum, _groupLum, mayKill, null, _game);
 
 			_groupLum.forEach(
 				function(p){
@@ -113,6 +114,18 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	function elementOverlap(lum, element) {
 		element.interact(lum);
 	}
+
+	function mayKill(lum1, lum2){
+		if(lum1.color == 10 && ((lum2.defaultVision == 2) || (lum2.defaultVision == 1))) {
+			lum2.body.velocity.x = 0;
+			lum2.body.velocity.y = -100;
+			lum2.body.gravity.y = -100;
+			lum2.animations.play('kill');
+			lum2.color = null;
+			//lum2.kill();
+		}
+	}
+
 
 	function mayExit(lum, door){
 		var lx = (lum.left+lum.right)/2;
