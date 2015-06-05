@@ -63,8 +63,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		
 		update: function() {
 			_menu.update();
-			_game.physics.arcade.collide(_groupLum, _groupPlatforms);
+			_game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
 
 			_groupLum.forEach(
 				function(p){
@@ -97,6 +98,16 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				_nbLummingsSaved = _nbLummingsSaved +1;
 				text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 			}
+		}
+	}
+	
+	function collidePf(lum, platform){
+		if(lum.color == 9){
+			if(platform.isPb){
+			 _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
+			}
+		} else {
+		 _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
 		}
 	}
 	
