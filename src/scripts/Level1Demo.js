@@ -50,7 +50,7 @@ var _level1Demo = {
 
     _groupDoorsRadio = _game.add.group();
     _groupDoorsRadio.enableBody = true;
-    porteAntenne1 = PorteAntennaFactory.create(220, 236, 10);
+    porteAntenne1 = PorteAntennaFactory.create(220, 236, 200);
     _groupDoorsRadio.add(porteAntenne1);
 
 
