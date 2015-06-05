@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
- 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory', 'PorteAntennaFactory'], function(Images, LummingFactory,
+ 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory', 'PorteRadioFactory'], function(Images, LummingFactory,
    VisibleLummingFactory, ColorEnum,
        MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum,
         Transition, FilterFactory, RadioLummingFactory, ItemsLevel,
-        MiroirFactory, GammaLummingFactory, PorteAntennaFactory) {
+        MiroirFactory, GammaLummingFactory, PorteRadioFactory) {
 
 var _game;
 var _nbLummingsV = 0;
@@ -31,7 +31,7 @@ var _level1Demo = {
     PlatformFactory.init(_game);
     VisibleLummingFactory.init(_game);
     GammaLummingFactory.init(_game);
-    PorteAntennaFactory.init(_game);
+    PorteRadioFactory.init(_game);
   },
 
   create : function(){
@@ -50,7 +50,7 @@ var _level1Demo = {
 
     _groupDoorsRadio = _game.add.group();
     _groupDoorsRadio.enableBody = true;
-    porteAntenne1 = PorteAntennaFactory.create(220, 236, 200);
+    porteAntenne1 = PorteRadioFactory.create(220, 236, 200);
     _groupDoorsRadio.add(porteAntenne1);
 
 
@@ -90,7 +90,7 @@ var _level1Demo = {
     _menu.update();
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
-    _game.physics.arcade.collide(_groupLum, _groupDoorsRadio);
+//    _game.physics.arcade.collide(_groupLum, _groupDoorsRadio);
 
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 
