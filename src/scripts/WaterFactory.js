@@ -1,4 +1,4 @@
-define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
+define(['Items', 'ColorEnum', 'SteamFactory'], function(Items, ColorEnum, SteamFactory) {
 	var _game = null;
 
 	var Water = function(x, y) {
@@ -15,8 +15,9 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 	Water.prototype.interact = function(lum) {
 		switch (lum.color) {
 			case ColorEnum.getColorEnum().MICRO:
-				//faire de la vapeur ici
-				this.kill();
+				this.parent.add(SteamFactory.create(this.x, this.y));
+				//faudrait faire quelque chose pour éviter de créer de la fumée en boucle
+				//this.kill();
 				break;
 		}
 	}

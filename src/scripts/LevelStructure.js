@@ -1,7 +1,7 @@
 define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
-		'DoorsFactory', 'XLummingFactory', 'IceFactory'],
+		'DoorsFactory', 'XLummingFactory', 'MicroLummingFactory', 'IceFactory'],
 	   function(PlatformFactory, LummingFactory, VisibleLummingFactory, ColorEnum,
-				DoorsFactory, XLummingFactory, IceFactory) {
+				DoorsFactory, XLummingFactory, MicroLummingFactory, IceFactory) {
 	
 	var _game = null;
 	
@@ -40,9 +40,11 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 2;
 				
 				//X
-				lumX = XLummingFactory.create(200, 200, 50);
+				lumX = XLummingFactory.create(250, 200, 50);
 				this.groupLummings.add(lumX);
-				this.groupElements.add(IceFactory.create(400, 240));
+				lumM = MicroLummingFactory.create(200, 200, 50);
+				this.groupLummings.add(lumM);
+				this.groupElements.add(IceFactory.create(400, 290));
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 				
