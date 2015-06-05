@@ -54,7 +54,7 @@ var _level1Demo = {
     _groupDoorsRadio = _game.add.group();
     _groupDoorsRadio.enableBody = true;
   //  porteAntenne1 = PorteRadioFactory.create(220, 236, 200);
-    portetest = PorteWithAura.create(300,236, 200);
+    portetest = PorteWithAura.create(110,236, 200);
     _groupDoorsRadioA.add(portetest);
 //    _groupDoorsRadio.add(porteAntenne1);
 
@@ -95,8 +95,8 @@ var _level1Demo = {
     _menu.update();
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
-    _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, ouver, null, _game);
-
+  //  _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, ouver, ferme, _game);
+    _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, function(lum, door) {door.setOverlap(_game.time.now +100)})
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 
     _groupLum.forEach(
@@ -110,7 +110,10 @@ var _level1Demo = {
 
     _groupDoorsRadioA.forEach(
       function(p){
-        p.update();
+        if (p.getOverlap() && _game.time.now > p.getOverlap()){
+          p.ferme();
+        }
+  //      p.update();
       }
     )
 
@@ -124,6 +127,10 @@ var _level1Demo = {
 
 function ouver(lum, door){
     door.ouvert();
+}
+
+function ferme(lum, door){
+  door.ferme();
 }
 
 function mayExit(lum, door){

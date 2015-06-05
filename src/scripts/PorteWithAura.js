@@ -14,13 +14,26 @@ define(['Items', 'PorteRadioFactory'], function(Items, PorteRadioFactory) {
 //    this.addChild(rond);
     this.door = PorteRadioFactory.create(x, y);
     group.add(this.door);
+    this.lastOverlapped = null;
 	}
 
 	PorteWithAura.prototype = Object.create(Phaser.Sprite.prototype);
 	PorteWithAura.prototype.constructor = PorteWithAura;
 
+  PorteWithAura.prototype.getOverlap = function(){
+    return this.lastOverlapped;
+  }
+  PorteWithAura.prototype.setOverlap = function(time){
+    this.door.ouvrir();
+
+    this.lastOverlapped = time;
+  }
+
   PorteWithAura.prototype.ouvert = function(){
     this.door.ouvrir();
+  }
+  PorteWithAura.prototype.ferme = function(){
+    this.door.fermer();
   }
 
   PorteWithAura.prototype.update = function(){
