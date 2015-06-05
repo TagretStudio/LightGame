@@ -1,4 +1,4 @@
-define(['./Images', './Musiques', 'MusicFactory', 'Transition', 'MenuFactoryTest', 'ItemsLevel'], function(Images, Musiques, MusicFactory, Transition, MenuFactoryTest, ItemsLevel){
+define(['./Images', 'MusicFactory', 'Transition', 'MenuFactoryTest', 'ItemsLevel'], function(Images, MusicFactory, Transition, MenuFactoryTest, ItemsLevel){
 	var _game = null;
 	var _etapesuivante = null;
 
