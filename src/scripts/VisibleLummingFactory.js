@@ -28,12 +28,14 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
     }
 
     VisibleLumming.prototype.collideWithFilter = function(filter) {
+      if (this.color != null){
         var temp = this.color;
         var value = ColorEnum.getValue(temp);
         if (filter.isAdditive()) {
             value = value | ColorEnum.getValue(filter.getColor());
             this.color = ColorEnum.getColorKnowingValue(value);
         } else {
+        //  alert(ColorEnum.getValue(filter.getColor()));
             value = value & ColorEnum.getValue(filter.getColor());
             this.color = ColorEnum.getColorKnowingValue(value);
 
@@ -47,6 +49,7 @@ define(['LummingFactory', 'ColorEnum', 'VisionEnum', 'DoorsFactory', 'FilterFact
                 LummingFactory.Lumming.prototype.updateColor.call(this, 'lumming_' + ColorEnum.getName(this.color));
             }
         }
+      }
     }
 
     VisibleLumming.prototype.update = function() {
