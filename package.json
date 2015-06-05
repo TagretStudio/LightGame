@@ -1,9 +1,10 @@
 {
-  "name": "LightGame",
+  "name": "lightgame2",
   "version": "0.0.0",
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
+<<<<<<< HEAD
     "gulp": "~3.8.11",
     "fluent-ffmpeg": "~1.7",
     "gulp-fluent-ffmpeg": "~1.0.1"
@@ -12,29 +13,52 @@
     "gulp-rename": "~1.2.2",
     "gulp-minify-css": "~1.1.1",
     "gulp-ruby-sass": "~1.0.5",
-    "gulp-autoprefixer": "~2.3.0",
-    "connect-livereload": "~0.5.3",
-    "tiny-lr": "~0.1.5",
-    "gulp-concat": "~2.5.2",
-    "gulp-sass": "~2.0.1",
-    "gulp-imagemin": "~2.2.1",
+=======
+    "bower-installer": "~1.2.0",
     "del": "~1.2.0",
-    "gulp-livereload": "~3.8.0",
+    "gulp": "~3.9.0",
+>>>>>>> requirejs
+    "gulp-autoprefixer": "~2.3.0",
     "gulp-cache": "~0.2.9",
-    "gulp-uglify": "~1.2.0",
-    "gulp-jshint": "~1.10.0",
+    "gulp-connect": "~2.2.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-imagemin": "~2.2.1",
+    "gulp-jshint": "~1.11.0",
+    "gulp-livereload": "~3.8.0",
     "gulp-notify": "~2.2.0",
+    "gulp-minify-css": "~1.1.4",
+    "gulp-rename": "~1.2.2",
+    "gulp-ruby-sass": "~1.0.5",
+    "gulp-sourcemaps": "~1.5.2",
+    "gulp-uglify": "~1.2.0"
+  },
+  "devDependencies": {
+    "gulp-rename": "~1.2.2",
+    "del": "~1.2.0",
+    "gulp-cache": "~0.2.9",
+    "gulp-minify-css": "~1.1.4",
+    "gulp-livereload": "~3.8.0",
+    "gulp-notify": "~2.2.0",
+<<<<<<< HEAD
     "gulp-sourcemaps": "~1.5.2",
     "gulp-connect": "~2.2.0",
     "gulp-fluent-ffmpeg": "~1.0.1",
     "gulp-run": "~1.6.8"
+=======
+    "gulp-uglify": "~1.2.0",
+    "gulp-jshint": "~1.11.0",
+    "gulp-ruby-sass": "~1.0.5",
+    "gulp-autoprefixer": "~2.3.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-imagemin": "~2.2.1"
+>>>>>>> requirejs
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TagretStudio/LightGame.git"
+    "url": "https://marinamitan@github.com/TagretStudio/LightGame.git"
   },
   "author": "TagretStudio",
   "license": "BSD-2-Clause",

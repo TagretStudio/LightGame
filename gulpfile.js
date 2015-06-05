@@ -60,7 +60,11 @@ gulp.task('audio', function () {
 gulp.task('scriptsMin', function() {
   return gulp.src('src/scripts/*.js')
     .pipe(concat('main.js'))
+<<<<<<< HEAD
 	.pipe(gulp.dest('dest/scripts/'))
+=======
+  .pipe(gulp.dest('dest/scripts/'))
+>>>>>>> requirejs
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(gulp.dest('dest/scripts/'));
