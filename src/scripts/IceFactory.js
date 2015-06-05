@@ -15,7 +15,9 @@ define(['Items', 'ColorEnum', 'WaterFactory'], function(Items, ColorEnum, WaterF
 	Ice.prototype.interact = function(lum) {
 		switch (lum.color) {
 			case ColorEnum.getColorEnum().X:
-				this.parent.add(WaterFactory.create(this.x, this.y));
+				var water;
+				this.parent.add(water = WaterFactory.create(this.x, this.y));
+				water.width = this.width;
 				this.kill();
 				break;
 		}
