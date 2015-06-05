@@ -13,6 +13,13 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 	}
 
 	Steam.prototype.interact = function(lum) {
+		switch (lum.color){
+			case ColorEnum.getColorEnum().MICRO:
+			case ColorEnum.getColorEnum().X:
+				break;
+			default:
+				lum.body.velocity.y = Math.max(lum.body.velocity.y-10, -300);
+		}
 	}
 
 	return {
