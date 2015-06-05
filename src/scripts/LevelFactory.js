@@ -92,7 +92,11 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	}
 	
 	function mayExit(lum, door){
-		if (lum.getDefautVision() == 2) {
+		var lx = (lum.left+lum.right)/2;
+		var dl = door.left;
+		var dr = door.right;
+
+		if (lx>dl && lx<dr) {
 			var exit = lum.collideWithDoor(door);
 			if (exit == 1){
 				_nbLummingsSaved = _nbLummingsSaved +1;
