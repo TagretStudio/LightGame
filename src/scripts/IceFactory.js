@@ -27,7 +27,7 @@ define(['Items', 'ColorEnum', 'WaterFactory'], function(Items, ColorEnum, WaterF
 		init : function(game) {
 			_game = game;
 			Items.init(_game);
-			_game.load.image('ice', 'media/img/Ice.png');
+			_game.load.image('ice', 'media/img/ice2.png');
 		},
 
 		create : function(x, y) {
