@@ -101,6 +101,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				if (!_alreadyChangeLevel) {
 					if (_groupLum.total == 0) {
 						Transition.nextState('MainMenu', _music);
+					} else if (_groupLum.countLiving() == 0) {
+					    Transition.nextStateGO('LevelFactory', _music);
 					} else {
 						_currentLevel++;
 						Transition.nextState('LevelFactory', _music);
@@ -124,8 +126,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			lum2.animations.play('kill');
 			lum2.color = null;
 			lum1.body.velocity.x = 0;
-			_game.time.events.add(Phaser.Timer.SECOND, function(){
+			_game.time.events.add(Phaser.Timer.SECOND*0.75, function(){
 				lum1.body.velocity.x = 70;
+			    lum2.kill();
 			}, this);
 			//lum2.kill();
 		}

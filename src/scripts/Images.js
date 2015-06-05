@@ -24,16 +24,19 @@ define (function(){
 			_game.load.spritesheet('button', 'media/img/MenuButtons.png', 274, 71);
 
 		},
-		create : function(){
+		crea : function(){
 			_background = _game.add.sprite(0, 0, 'preloaderBackground');
 			_background.scale.set(1024/800, 768/600);
-
-		},
-		update : function(){
-			_game.time.events.add(50, logo1, _game);
+		    _game.time.events.add(50, logo1, _game);
 			_game.time.events.add(800, logo2, _game);
 			_game.time.events.add(1500, logo3, _game);
-		}
+
+		},
+	    create : function(){
+		_background = _game.add.sprite(0, 0, 'preloaderBackground');
+		_background.scale.set(1024/800, 768/600);
+
+	    },
 	}
 
 
