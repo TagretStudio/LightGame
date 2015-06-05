@@ -1,40 +1,3 @@
-<<<<<<< HEAD
-BasicGame.Level1 = function (game) {
-	this.nextState = 'Level2';
-	this.platforms = null;
-	this.lums = null;
-	this.doors = null;
-};
-
-BasicGame.Level1.prototype = {
-
-	preload: function () {
-		this.load.image('sky', 'media/img/sky.png');
-	    this.load.image('logo', 'media/img/Menu.png');
-		this.load.image('platform', 'media/img/platform.png');
-		this.load.spritesheet('door', 'media/img/door_red.png', 32, 32);
-		this.load.image('cliquez', 'media/img/cliquerPourCommencer.png');
-		// this.load.spritesheet('lumming', 'src/media/img/lumming_magenta.png', 32, 32);
-		this.load.spritesheet('lumming', 'media/img/gamma.png', 32, 32);
-	    var sky = this.add.sprite(0, 0, 'sky');
-	    sky.scale.set(1024/800, 768/600);
-	    this.add.sprite(184, 265, 'logo');
-	},
-
-	create: function () {
-		this.physics.startSystem(Phaser.Physics.ARCADE);
-
-		var sky = this.add.sprite(0, 0, 'sky');
-		sky.scale.set(1024/800, 768/600);
-
-		platforms = this.add.group();
-		platforms.enableBody = true;
-		{
-			platforms.create(  0-200, 100, 'platform');
-			platforms.create(300-200, 200, 'platform');
-			platforms.create(600-200, 300, 'platform');
-			platforms.create(900-200, 280, 'platform');
-=======
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest', 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory', 'ItemsLevel', 'MiroirFactory'],
 	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum, Transition, FilterFactory, RadioLummingFactory, ItemsLevel, MiroirFactory) {
 	var _game = null;
@@ -187,9 +150,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			if (_nbLummingsV == _nbLummingsSaved) {
 				Transition.nextState('Level2', _music);
 			}
->>>>>>> requirejs
 		}
-
 	}
 
 	function mayExit(lum, door){
@@ -303,25 +264,4 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			return _level1;
 		}
 	}
-<<<<<<< HEAD
-};
-
-// TODO quand on aura des classes de lummings, la collision porte/lummming dépendra de la couleur de chacun
-// ça serait bien aussi une petite animation quand on gagne, plutôt que de passer direct au niveau suivant
-function mayExit(lum, door) {
-	lum.kill();
-	//compter les lummings restants ici et s'il n'y en a plus, passer au niveau suivant
-    this.add.sprite(0, 0, 'sky');
-    this.add.sprite(184, 265, 'logo');
-    if (music != null && music.isPlaying == true) {
-	music.fadeOut(700);
-	music.onFadeComplete.dispatch();
-	music.onFadeComplete.addOnce(function() {
-	    this.state.start(this.nextState);
-	}, this);
-    }
-}
-=======
-
 })
->>>>>>> requirejs

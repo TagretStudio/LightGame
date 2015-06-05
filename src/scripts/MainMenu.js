@@ -74,39 +74,4 @@ define(['Images','MusicFactory', 'Transition'], function(Images, MusicFactory, T
 
 	}
 
-<<<<<<< HEAD
-function actionPlay() {
-    this.buttonPlay.kill();
-    this.background2 = this.add.sprite(0, 0, 'preloaderBackground');
-    this.logo = this.add.sprite(184, 265, 'logo');
-    if (music != null && music.isPlaying == true) {
-	music.fadeOut(700);
-	music.onFadeComplete.dispatch();
-	music.onFadeComplete.addOnce(function() {
-	    this.state.start('Level1');
-	}, this);
-    }
-}
-
-function actionCredits() {
-    this.buttonPlay.kill();
-    this.background2 = this.add.sprite(0, 0, 'preloaderBackground');
-    this.logo = this.add.sprite(184, 265, 'logo');
-    if (music != null && music.isPlaying == true) {
-	music.fadeOut(700);
-	music.onFadeComplete.dispatch();
-	music.onFadeComplete.addOnce(function() {
-	    this.state.start('Level2');
-	}, this);
-    }
-}
-
-function actionQuit() {
-	this.buttonQuit.kill();
-	this.state.start('Level3');
-}
-=======
-
-
 })
->>>>>>> requirejs

@@ -1,43 +1,3 @@
-<<<<<<< HEAD
-BasicGame.Level2 = function (game){
-	this.nextState = 'Boot';
-	this.platforms = null;
-	this.white_lums = null;
-	this.blue_lums = null;
-	this.blue_doors = null;
-	this.blue_filters = null;
-	this.startText = null;
-};
-
-BasicGame.Level2.prototype = {
-
-	preload: function () {
-		this.load.image('sky', 'media/img/sky.png');
-		this.load.image('platform', 'media/img/platform.png');
-		this.load.spritesheet('blue_door', 'media/img/door_blue.png', 32, 32);
-		this.load.spritesheet('white_lumming', 'media/img/lumming_white.png', 32, 32);
-		this.load.spritesheet('blue_lumming', 'media/img/lumming_blue.png', 32, 32);
-		this.load.spritesheet('blue_filter', 'media/img/filter_blue.png', 32, 32);
-		this.load.image('cliquez', 'media/img/cliquerPourCommencer.png');
-	},
-
-	create: function () {
-		this.physics.startSystem(Phaser.Physics.ARCADE);
-
-		var sky = this.add.sprite(0, 0, 'sky');
-		sky.scale.set(1024/800, 768/600);
-
-		platforms = this.add.group();
-		platforms.enableBody = true;
-		{
-			platforms.create(  0-200, 100, 'platform');
-			platforms.create(300-200, 200, 'platform');
-			platforms.create(600-200, 300, 'platform');
-			platforms.create(900-200, 280, 'platform');
-			platforms.create(200-200, 280, 'platform');
-		}
-		platforms.forEach(function(p){p.body.immovable=true});
-=======
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'Transition', 'MenuFactoryTest', 'ItemsLevel'],
 	   function(Images, LummingFactory, VisibleLummingFactory, ColorEnum, MusicFactory, PlatformFactory, DoorsFactory, Transition, MenuFactoryTest, ItemsLevel) {
 	var _game = null;
@@ -124,7 +84,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 			_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
 
 			_game.paused = true;
->>>>>>> requirejs
 
 
 		},
@@ -180,35 +139,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum', 'Music
 				text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
 			}
 		}
-<<<<<<< HEAD
-		blue_filters.forEach(function(filter) {
-			filter.animations.add('anim', [], 10, true);
-			filter.animations.play('anim');
-		});
-
-		// this.startText = this.add.text(0, 0, 'cliquez pour commencer', { fontSize: '32px', fill: '#000' });
-		// this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;this.startText.text = '';music.play();}},this);
-		// this.game.paused = true;
-	 //    music = this.add.audio('level2');
-		// music.loop = true;
-
-		var cliquez = this.add.sprite(60, 500, 'cliquez');
-		this.game.input.onDown.add(function () {if(this.game.paused) {this.game.paused = false;music.play();cliquez.destroy();}},this);
-		this.game.paused = true;
-		music = this.add.audio('level2');
-		music.loop = true;
-	},
-	
-	update: function () {
-		this.physics.arcade.collide(blue_lums, blue_doors, mayExit, null, this);
-		this.physics.arcade.overlap(white_lums, blue_filters, toBlue, null, this);
-		this.physics.arcade.collide(white_lums, platforms);
-		this.physics.arcade.collide(blue_lums, platforms);
-
-		white_lums.forEach(lumAnim);
-		blue_lums.forEach(lumAnim);
-=======
->>>>>>> requirejs
 	}
 
 
