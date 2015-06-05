@@ -64,8 +64,10 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		//miroirs
 		miroirH = _game.add.sprite(660, 536, 'miroirH');
+		miroirH.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		miroirH.number= tab[3];
 		miroirV = _game.add.sprite(700, 536, 'miroirV');
+		miroirV.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		miroirV.number = tab [4];
 		this.groupMiroir.add(miroirH);
 		this.groupMiroir.add(miroirV);
