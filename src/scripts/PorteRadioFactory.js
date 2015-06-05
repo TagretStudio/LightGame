@@ -25,11 +25,6 @@ define(['Items'], function(Items) {
   }
 
 
-	PorteRadio.prototype.update = function() {
-    this.animations.play('ouvert');
-    this.body.setSize(10,32);
-
-	}
 
 
 
