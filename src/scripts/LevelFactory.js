@@ -161,6 +161,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	function actionOnMenu() {
 	   var background = _game.add.sprite(0, 0, 'transitionBackground');
 	   var logo = _game.add.sprite(184, 265, 'logo');
+	   _currentLevel = 1;
 	   if (_music != null) {
 			_music.getMusic().fadeOut(700);
 			_music.getMusic().onFadeComplete.dispatch();
