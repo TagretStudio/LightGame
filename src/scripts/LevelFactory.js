@@ -51,7 +51,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_tabAvailableObjects = this.levelStruct.getTabAvailableObjects();
 			
 			if (_groupLum.total == 0) {
-				alert(_groupLum.total);
 				Transition.nextState('MainMenu', _music);
 			}
 			
