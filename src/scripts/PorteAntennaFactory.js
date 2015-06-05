@@ -8,6 +8,13 @@ define(['Items'], function(Items) {
     this.animations.add('ouvert', [1], 10, true);
     this.animations.add('lol', [0,1], 0.2, true);
     this.frame = 0;
+    this.anchor.setTo(0.5, 0);
+    this.rond = _game.add.graphics(x, y);
+    this.rond.beginFill(0xF0FFFF, 0.1);
+
+    this.rond.drawCircle(0 ,0, rayon);
+
+
 	}
 
 	PorteAntenna.prototype = Object.create(Items.Item.prototype);
