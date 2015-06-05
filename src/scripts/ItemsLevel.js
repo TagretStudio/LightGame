@@ -108,7 +108,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
     },
 
     collideItem : function(lum, objet){
-      switch (objet.key){
+      switch (objet.key) {
         case 'filter_red' :
         case 'filter_green' :
         case 'filter_blue' :
@@ -123,11 +123,17 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
         case 'miroir_Horizontal' :
           lum.collideWithMiroir(_game, objet);
           break;
-      case 'plomb_Bloc' :
-      case 'plomb_Vertical' :
-      case 'plomb_Horizontal' :
-	  lum.collide(_game, objet);
-	  break;
+        case 'plomb_Bloc' :
+        case 'plomb_Vertical' :
+        case 'plomb_Horizontal' :
+          lum.collide(_game, objet);
+          break;
+        case 'ice':
+          switch (lum.color) {
+            case ColorEnum.getColorEnum().X:
+              break;
+          }
+          break;
         }
 
     }

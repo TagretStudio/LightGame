@@ -6,7 +6,7 @@ define(['LummingFactory', 'VisionEnum', 'ColorEnum'],
 
     var XLumming = function(game, x, y, vitesseX) {
 	this.sprite = 'media/img/lumming_blue';
-    this.color = ColorEnum.getColorEnum().RADIO;
+    this.color = ColorEnum.getColorEnum().X;
 	LummingFactory.Lumming.call(this, game, 'lumming_blue', x, y, vitesseX, 3);
     }
 

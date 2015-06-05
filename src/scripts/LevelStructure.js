@@ -1,7 +1,7 @@
 define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
-		'DoorsFactory', 'XLummingFactory'],
+		'DoorsFactory', 'XLummingFactory', 'IceFactory'],
 	   function(PlatformFactory, LummingFactory, VisibleLummingFactory, ColorEnum,
-				DoorsFactory, XLummingFactory) {
+				DoorsFactory, XLummingFactory, IceFactory) {
 	
 	var _game = null;
 	
