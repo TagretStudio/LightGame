@@ -52,6 +52,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			
 			if (_groupLum.total == 0) {
 				Transition.nextState('MainMenu', _music);
+				_currentLevel = 1;
 			}
 			
 			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
