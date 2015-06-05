@@ -3,6 +3,8 @@ define(['Items', 'ColorEnum', 'SteamFactory'], function(Items, ColorEnum, SteamF
 
 	var Water = function(x, y) {
 		Items.Item.call(this, 'water', x, y);
+		this.animations.add('animFilter', [], 5, true);
+		this.frame = 0;
 	}
 
 	Water.prototype = Object.create(Items.Item.prototype);
@@ -10,6 +12,7 @@ define(['Items', 'ColorEnum', 'SteamFactory'], function(Items, ColorEnum, SteamF
 
 	Water.prototype.update = function() {
 		//this.animations.play('???');
+		this.animations.play('animFilter');
 	}
 
 	Water.prototype.interact = function(lum) {
@@ -31,7 +34,8 @@ define(['Items', 'ColorEnum', 'SteamFactory'], function(Items, ColorEnum, SteamF
 		init : function(game) {
 			_game = game;
 			Items.init(_game);
-			_game.load.image('water', 'media/img/Water.png');
+			// _game.load.image('water', 'media/img/Water.png');
+			_game.load.spritesheet('water', 'media/img/water3.png', 32, 32, 11);
 		},
 
 		create : function(x, y) {

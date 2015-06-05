@@ -3,6 +3,8 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 
 	var Steam = function(x, y) {
 		Items.Item.call(this, 'steam', x, y);
+		this.animations.add('animFilter', [], 5, true);
+		this.frame = 0;
 	}
 
 	Steam.prototype = Object.create(Items.Item.prototype);
@@ -10,6 +12,7 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 
 	Steam.prototype.update = function() {
 		//this.animations.play('???');
+		this.animations.play('animFilter');
 	}
 
 	Steam.prototype.interact = function(lum) {
@@ -26,7 +29,8 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 		init : function(game) {
 			_game = game;
 			Items.init(_game);
-			_game.load.image('steam', 'media/img/Steam.png');
+			// _game.load.image('steam', 'media/img/Steam.png');
+			_game.load.spritesheet('steam', 'media/img/steam2.png', 32, 32, 11);
 		},
 
 		create : function(x, y) {
