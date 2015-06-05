@@ -19,7 +19,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _currentVision = null;
 	var _button_restart = null;
 	var _button_menu = null;
-
+	var _tabAvailableObjects = null;
 	
 	var LevelFactory = {
 		
@@ -47,7 +47,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_groupDoors = this.levelStruct.getDoors();
 			_groupLum = this.levelStruct.getLummings();
 			_nbLummingsV = this.levelStruct.getNbLummingsWin();
-			
+			_tabAvailableObjects = this.levelStruct.getTabAvailableObjects();
 			
 			text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 			button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);

@@ -16,6 +16,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.groupDoors.enableBody = true;
 		
 		this.nbLummingsWin = 1;
+		this.tabAvailableObjects = [];
+
 		
 		switch (indexLevel) {
 			case 1:
@@ -37,6 +39,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				
 				this.nbLummingsWin = 2;
 				
+				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+				
 				break;
 			
 		}
@@ -56,6 +60,10 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 	
 	LevelStructure.prototype.getNbLummingsWin = function() {
 		return this.nbLummingsWin;
+	}
+	
+	LevelStructure.prototype.getTabAvailableObjects = function() {
+		return this.tabAvailableObjects;
 	}
 	
 	return {
