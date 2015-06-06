@@ -33,6 +33,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupPlatforms.add(platform1);
 				//this.groupPlatforms.add(platform2);
 
+				platform(this.groupPlatforms, 200, 236, 600, false);
+
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
 				door2 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 400, 270);
 				this.groupDoors.add(door1);
@@ -283,6 +285,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 			p.anchor.set(1,0);
 		}
 		p = _game.add.sprite(x,y,'platforms',4);
+		if (!l) p.frame+=2;
 		groupPlatforms.add(p);
 		p.body.checkCollision.down = false;
 		p.body.checkCollision.left = l;
@@ -290,6 +293,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		p.body.checkCollision.up = false;
 		p.collisionsSet = true;
 		p = _game.add.sprite(x+w,y,'platforms',2);
+		if (!r) p.frame+=4;
 		groupPlatforms.add(p);
 		p.anchor.set(1,0);
 		p.body.checkCollision.down = false;
