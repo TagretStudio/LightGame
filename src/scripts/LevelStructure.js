@@ -267,7 +267,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		ice.kill();
 	}
 
-	platform = function(groupPlatforms, x, y, w) {
+	platform = function(groupPlatforms, x, y, w, l, r) {
 		var dummy = _game.add.sprite(0,0,'platforms',1);
 		var sw = dummy.width;
 		dummy.kill();
@@ -282,9 +282,11 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		}
 		p = _game.add.sprite(x,y,'platforms',4);
 		groupPlatforms.add(p);
+		p.collisionsSet = true;
 		p = _game.add.sprite(x+w,y,'platforms',2);
 		groupPlatforms.add(p);
 		p.anchor.set(1,0);
+		p.collisionsSet = true;
 	}
 
 	LevelStructure.prototype.getPlatforms = function() {
