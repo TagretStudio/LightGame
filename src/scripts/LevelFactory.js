@@ -113,12 +113,14 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 			if (_nbLummingsV == _nbLummingsSaved) {
 				if (!_alreadyChangeLevel) {
-					if (_groupLum.total == 0) {
-						Transition.nextState('MainMenu', _music);
-					} else {
-						_currentLevel++;
-						Transition.nextState('LevelFactory', _music);
-					}
+					_game.time.events.add(Phaser.Timer.SECOND*1.8, function() {
+						if (_groupLum.total == 0) {
+							Transition.nextState('MainMenu', _music);
+						} else {
+							_currentLevel++;
+							Transition.nextState('LevelFactory', _music);
+						}
+					});
 				}
 				_alreadyChangeLevel = true;
 			} else if (_groupLum.countLiving() == 0) {

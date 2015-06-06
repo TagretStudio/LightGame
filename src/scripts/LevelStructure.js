@@ -88,8 +88,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
-				this.groupDoors.add(door1);
 
+				this.groupDoors.add(door1);
 				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
 				this.groupLummings.add(lum1);
 
@@ -146,8 +146,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lum2);
 
 				this.nbLummingsWin = 2;
-				//on donne un filtre vert
-				this.tabAvailableObjects = [0,1,0,0,0,0,0,0,0,0,0,0,0];
+				//on donne un filtre vert et un jaune
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,1,0,0,0,1];
 
 				break;
 
@@ -164,11 +164,26 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				this.nbLummingsWin = 2;
 				//on donne un filtre bleu
-				this.tabAvailableObjects = [0,0,1,0,0,0,0,0,0,0,0,0,0];
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,1,0,0,0];
 
 				break;
 
 			case 8:
+				platform(this.groupPlatforms, 100, 300, 600);
+				platform(this.groupPlatforms, 0, 280, 110, true, true);
+				
+				doorRadio1 = PorteWithAuraFactory.create(300, 240, 200);
+				this.groupDoorsRadioAura.add(doorRadio1);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270);
+				this.groupDoors.add(door1);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+				this.groupLummings.add(lum1);
+
+				this.nbLummingsWin = 1;
+				//on donne un filtre jaune et une antenne
+				this.tabAvailableObjects = [0,0,0,0,0,1,0,0,0,0,0,0,1];
 				
 				break;
 			
