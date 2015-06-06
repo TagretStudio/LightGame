@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
- 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory', 'PorteRadioFactory', 'PorteWithAura'], function(Images, LummingFactory,
+ 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory', 'PorteRadioFactory', 'PorteWithAuraFactory'], function(Images, LummingFactory,
    VisibleLummingFactory, ColorEnum,
        MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum,
         Transition, FilterFactory, RadioLummingFactory, ItemsLevel,
-        MiroirFactory, GammaLummingFactory, PorteRadioFactory, PorteWithAura) {
+        MiroirFactory, GammaLummingFactory, PorteRadioFactory, PorteWithAuraFactory) {
 
 var _game;
 var _nbLummingsV = 0;
@@ -33,7 +33,7 @@ var _level1Demo = {
     VisibleLummingFactory.init(_game);
     GammaLummingFactory.init(_game);
     PorteRadioFactory.init(_game);
-    PorteWithAura.init(_game);
+    PorteWithAuraFactory.init(_game);
   },
 
   create : function(){
@@ -52,7 +52,7 @@ var _level1Demo = {
 
     _groupDoorsRadioA = _game.add.group();
     _groupDoorsRadioA.enableBody = true;
-    portetest = PorteWithAura.create(220,236, 200);
+    portetest = PorteWithAuraFactory.create(220,236, 200);
     _groupDoorsRadioA.add(portetest);
     _groupDoorsRadioB = _game.add.group();
     _groupDoorsRadioB.enableBody = true;
@@ -101,7 +101,7 @@ var _level1Demo = {
     _menu.update();
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
-    _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, function(lum, door) {door.setOverlap(_game.time.now +100)});
+    _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, function(lum, door) {door.setOverlap(lum, _game.time.now +100)});
     _game.physics.arcade.collide(_groupLum, _groupDoorsRadioB);
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 

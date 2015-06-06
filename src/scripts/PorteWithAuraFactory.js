@@ -1,4 +1,4 @@
-define(['Items', 'PorteRadioFactory'], function(Items, PorteRadioFactory) {
+define(['Items', 'PorteRadioFactory', 'LummingFactory', 'ColorEnum'], function(Items, PorteRadioFactory, LummingFactory, ColorEnum) {
   var _game = null;
 
   var PorteWithAura = function(x, y, rayon) {
@@ -26,10 +26,11 @@ define(['Items', 'PorteRadioFactory'], function(Items, PorteRadioFactory) {
   PorteWithAura.prototype.getOverlap = function(){
     return this.lastOverlapped;
   }
-  PorteWithAura.prototype.setOverlap = function(time){
-    this.door.ouvrir();
-
-    this.lastOverlapped = time;
+  PorteWithAura.prototype.setOverlap = function(lum, time){
+    if (lum.color == ColorEnum.getColorEnum().RADIO){
+      this.door.ouvrir();
+      this.lastOverlapped = time;
+    }
   }
 
   PorteWithAura.prototype.ouvert = function(){

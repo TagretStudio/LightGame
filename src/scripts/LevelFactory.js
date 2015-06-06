@@ -1,12 +1,12 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 		'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory', 'MicroLummingFactory',
-		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory', 'IceFactory', 'WaterFactory', 'SteamFactory'],
+		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory', 'IceFactory', 'WaterFactory', 'SteamFactory', 'PorteWithAuraFactory'],
 	   function(Images, LummingFactory,	VisibleLummingFactory, ColorEnum,
 				MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest,
 				VisionEnum,	Transition, FilterFactory, RadioLummingFactory, MicroLummingFactory,
-				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory, IceFactory, WaterFactory, SteamFactory) {
-	
+				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory, IceFactory, WaterFactory, SteamFactory, PorteWithAuraFactory) {
+
 	var _game = null;
 	var _currentLevel = null;
 	var _nbLummingsV = 0;
@@ -14,6 +14,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _groupPlatforms = null;
 	var _groupLum = null;
 	var _groupElements = null;
+	var _groupPorteRadioAura = null;
+	var _groupPorteRadio = null;
 	var _music = null;
 	var _menu = null;
 	var _text = null;
@@ -21,9 +23,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _button_restart = null;
 	var _button_menu = null;
 	var _tabAvailableObjects = null;
-	
+
 	var LevelFactory = {
-		
+
 		preload: function() {
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
 			_game.load.image('buttonDiamond', 'media/img/menuButton.png');
@@ -38,8 +40,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			IceFactory.init(_game);
 			WaterFactory.init(_game);
 			SteamFactory.init(_game);
+			PorteWithAuraFactory.init(_game);
 		},
-		
+
 		create: function() {
 			_alreadyChangeLevel = false;
 			_nbLummingsSaved = 0;
@@ -47,16 +50,24 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			Images.boot().create();
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
-			
+			VisionEnum.setVisionCurrent(_currentVision);
 			this.levelStruct = LevelStructure.create(_currentLevel);
-			
+
 			_groupPlatforms = this.levelStruct.getPlatforms();
 			_groupDoors = this.levelStruct.getDoors();
 			_groupLum = this.levelStruct.getLummings();
 			_groupElements = this.levelStruct.getElements();
+			_groupPorteRadioAura = this.levelStruct.getPorteRadioAura();
+			_groupPorteRadio = _game.add.group();
+			_groupPorteRadio.enableBody = true;
+			_groupPorteRadioAura.forEach(
+				function(p){
+					_groupPorteRadio.add(p.getDoor());
+				}
+			)
 			_nbLummingsV = this.levelStruct.getNbLummingsWin();
 			_tabAvailableObjects = this.levelStruct.getTabAvailableObjects();
-			
+
 			if (_groupLum.total == 0) {
 				_currentLevel = 1;
 				_game.state.start('MainMenu');
@@ -75,9 +86,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
 				_game.paused = true;
 			}
-			
+
 		},
-		
+
 		update: function() {
 			_menu.update();
 			_game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
@@ -85,18 +96,21 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
 			_game.physics.arcade.overlap(_groupLum, _groupElements, elementOverlap, null, _game);
 			_game.physics.arcade.overlap(_groupLum, _groupLum, mayKill, null, _game);
+			_game.physics.arcade.overlap(_groupLum, _groupPorteRadioAura, function(lum, door) {door.setOverlap(lum, _game.time.now +100)});
+			_game.physics.arcade.collide(_groupLum, _groupPorteRadio);
 
 			_groupLum.forEach(
 				function(p){
 					p.update(_currentVision);
 				}
 			)
-			
+
 			_groupDoors.forEach(
 				function(p){
 					p.update();
 				}
 			)
+
 			if (_nbLummingsV == _nbLummingsSaved) {
 				if (!_alreadyChangeLevel) {
 					if (_groupLum.total == 0) {
@@ -118,7 +132,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			}
 			text.setText(_groupLum.countLiving()+'-'+_nbLummingsSaved + '/' + _nbLummingsV);
 		}
-		
+
 	}
 
 	function elementOverlap(lum, element) {
@@ -161,7 +175,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			}
 		}
 	}
-	
+
 	function collidePf(lum, platform){
 		if(lum.color == 9){
 			if(platform.isPb){
@@ -171,7 +185,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		 _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
 		}
 	}
-	
+
 	function actionOnRestart() {
 		var background = _game.add.sprite(0, 0, 'transitionBackground');
 		var logo = _game.add.sprite(184, 265, 'logo');
@@ -185,7 +199,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			}, _game);
 		}
 	}
-	
+
 	function actionOnMenu() {
 	   var background = _game.add.sprite(0, 0, 'transitionBackground');
 	   var logo = _game.add.sprite(184, 265, 'logo');
@@ -199,7 +213,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			}, _game);
 		}
 	}
-	
+
 	return {
 		init: function(game) {
 			_game = game;
@@ -209,5 +223,5 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			return LevelFactory;
 		}
 	}
-	
+
  })
