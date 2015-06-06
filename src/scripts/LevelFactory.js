@@ -97,10 +97,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 					p.update();
 				}
 			)
-			if (_groupLum.countLiving() == 0) {
-			    alert('lol');
-			    Transition.nextStateGO('LevelFactory', _music);
-			}
 			if (_nbLummingsV == _nbLummingsSaved) {
 				if (!_alreadyChangeLevel) {
 					if (_groupLum.total == 0) {
@@ -111,8 +107,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 					}
 				}
 				_alreadyChangeLevel = true;
+			} else if (_groupLum.countLiving() == 0) {
+			    Transition.nextStateGO('LevelFactory', _music);
 			}
-
 			text.setText(_groupLum.countLiving()+'-'+_nbLummingsSaved + '/' + _nbLummingsV);
 		}
 		
@@ -146,10 +143,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 		if (lx>dl && lx<dr) {
 			var exit = lum.collideWithDoor(door);
-			if (exit == 1){
+		    if (exit == 1){
+			_nbLummingsSaved = _nbLummingsSaved +1;
 				this.time.events.add(1000,
 					function() {
-						_nbLummingsSaved = _nbLummingsSaved +1;
 						text.setText(_nbLummingsSaved + '/' + _nbLummingsV);
 					}
 				, this);
