@@ -20,6 +20,14 @@ define(['Items', 'ColorEnum', 'WaterFactory'], function(Items, ColorEnum, WaterF
 				water.width = this.width;
 				this.kill();
 				break;
+			default:
+				if (lum.body.touching.down) {
+					lum.body.velocity.y = 0;
+					lum.body.y -= lum.body.deltaY();
+				} else if (lum.body.touching.left || lum.body.touching.right) {
+					lum.body.x -= lum.body.deltaX();
+					lum.body.velocity.x *= -1;
+				}
 		}
 	}
 
