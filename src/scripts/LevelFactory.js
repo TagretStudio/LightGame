@@ -110,6 +110,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				}
 				_alreadyChangeLevel = true;
 			}
+
+			text.setText(_groupLum.countLiving()+'-'+_nbLummingsSaved + '/' + _nbLummingsV);
+
 		}
 		
 	}
@@ -143,10 +146,11 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		if (lx>dl && lx<dr) {
 			var exit = lum.collideWithDoor(door);
 			if (exit == 1){
+				lum.parent.remove(lum);
 				this.time.events.add(1000,
 					function() {
 						_nbLummingsSaved = _nbLummingsSaved +1;
-						text.setText( _nbLummingsSaved + '/'+ _nbLummingsV);
+						text.setText(_nbLummingsSaved + '/' + _nbLummingsV);
 					}
 				, this);
 				//_nbLummingsSaved = _nbLummingsSaved +1;
