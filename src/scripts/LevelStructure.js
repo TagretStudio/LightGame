@@ -59,7 +59,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 2:
+			case 2: // level 0
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
@@ -104,8 +104,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lum1);
 
 				this.nbLummingsWin = 1;
-				//on donne un filtre magenta et un filtre jaune
-				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,1];
+				//on donne les 3 filtres soustractifs
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,1,1];
 
 				break;
 
