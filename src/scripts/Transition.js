@@ -46,6 +46,7 @@ nextStateGO : function(nextState, musicA){
     }
     var logo = _game.add.sprite(184, 265, 'gameOver');
     if (music != null) {
+	alert('lol');
        music.fadeOut(1500);
 	music.onFadeComplete.dispatch();
         music.onFadeComplete.addOnce(function() {
@@ -53,8 +54,8 @@ nextStateGO : function(nextState, musicA){
 	    music = null;
 	   // _game.state.start(nextState);
 	}, _game);
-     } else{
-       _game.time.events.add(Phaser.Timer.SECOND * 2, transition, this);
+     //} else{
+       //_game.time.events.add(Phaser.Timer.SECOND * 2, transition, this);
 
   //    _game.state.start(nextState);
     }
