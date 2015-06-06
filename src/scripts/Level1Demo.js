@@ -95,8 +95,7 @@ var _level1Demo = {
     _menu.update();
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
-  //  _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, ouver, ferme, _game);
-    _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, function(lum, door) {door.setOverlap(_game.time.now +100)})
+    _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, function(lum, door) {door.setOverlap(_game.time.now +100)});
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 
     _groupLum.forEach(
@@ -110,10 +109,7 @@ var _level1Demo = {
 
     _groupDoorsRadioA.forEach(
       function(p){
-        if (p.getOverlap() && _game.time.now > p.getOverlap()){
-          p.ferme();
-        }
-  //      p.update();
+        p.update();
       }
     )
 
@@ -124,14 +120,6 @@ var _level1Demo = {
 
 }
 
-
-function ouver(lum, door){
-    door.ouvert();
-}
-
-function ferme(lum, door){
-  door.ferme();
-}
 
 function mayExit(lum, door){
     var exit = lum.collideWithDoor(door);

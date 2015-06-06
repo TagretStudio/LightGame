@@ -29,9 +29,9 @@ define(['VisionEnum'], function(VisionEnum) {
 
 
 	Lumming.prototype.update = function() {
-		if (this.color == null) { //vaut null si on est en train de sortir d'une porte
+		if (this.color == null) { //vaut null si on est en train de sortir d'une porte ou si on est en train de mourir
 			this.alpha -= 0.01;
-			if (this.alpha == 0) {
+			if (this.alpha <= 0) {
 				this.kill();
 			}
 		} else {
