@@ -96,13 +96,14 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 					p.update();
 				}
 			)
-			
+			if (_groupLum.countLiving() == 0) {
+			    alert('lol');
+			    Transition.nextStateGO('LevelFactory', _music);
+			}
 			if (_nbLummingsV == _nbLummingsSaved) {
 				if (!_alreadyChangeLevel) {
 					if (_groupLum.total == 0) {
 						Transition.nextState('MainMenu', _music);
-					} else if (_groupLum.countLiving() == 0) {
-					    Transition.nextStateGO('LevelFactory', _music);
 					} else {
 						_currentLevel++;
 						Transition.nextState('LevelFactory', _music);
@@ -110,6 +111,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				}
 				_alreadyChangeLevel = true;
 			}
+		    alert(_groupLum.countLiving());
 		}
 		
 	}

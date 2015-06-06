@@ -11,6 +11,7 @@ return{
     _game = game;
     _game.load.image('transitionBackground', 'media/img/sky.png');
     _game.load.image('transitionLogo', 'media/img/Menu.png');
+      _game.load.image('gameOver', 'media/img/gameOver.png');
 
  
   },
@@ -20,12 +21,10 @@ return{
     if (musicA != null){
       music = musicA.getMusic();
     }
-      if (nextState != 'MainMenu') {
-	  var background = _game.add.sprite(0, 0, 'transitionBackground');
-	  var logo = _game.add.sprite(184, 265, 'logo');
-      }
-    if (music != null) {
-       music.fadeOut(700);
+      var background = _game.add.sprite(0, 0, 'transitionBackground');
+      var logo = _game.add.sprite(184, 265, 'logo');
+      if (music != null) {
+	  music.fadeOut(700);
 	music.onFadeComplete.dispatch();
         music.onFadeComplete.addOnce(function() {
           _game.time.events.add(Phaser.Timer.SECOND * 1, transition, this);
