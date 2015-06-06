@@ -33,6 +33,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupPlatforms.add(platform1);
 				//this.groupPlatforms.add(platform2);
 
+				platform(this.groupPlatforms, 200, 236, 600, false);
+
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
 				door2 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 400, 270);
 				this.groupDoors.add(door1);
@@ -57,6 +59,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
+				_game.add.text(0, 0, "car il ne sert de rien de dire qu'il est certain que l'on hasarde, et qu'il est incertain si l'on gagnera, et que l'infinie distance qui est entre la certitude de ce qu'on s'expose et l'incertitude de ce qu'on gagnera égale le bien fini, qu'on expose à l'infini, qui est incertain.", {wordWrap: true, wordWrapWidth: _game.world.width});
+
 				break;
 
 			case 2: // level 0
@@ -76,6 +80,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
+				_game.add.text(0, 32, "Le but du jeu est de faire passer les lummings de couleur par les portes de même couleur", {wordWrap: true, wordWrapWidth: _game.world.width});
+
 				break;
 
 			case 3: //level 1
@@ -91,6 +97,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				//un filtre soustractif magenta
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,0];
+
+				_game.add.text(0, 32, "Utilisez les filtres à votre disposition pour changer la couleur des lummings. Les filtres soustractifs suppriment toute composante de couleur qui n'est pas celle indiquée sur le filtre.", {wordWrap: true, wordWrapWidth: _game.world.width});
 
 				break;
 
@@ -261,7 +269,9 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		ice.kill();
 	}
 
-	platform = function(groupPlatforms, x, y, w) {
+	platform = function(groupPlatforms, x, y, w, l, r) {
+		if (l==null) l=false;
+		if (r==null) r=false;
 		var dummy = _game.add.sprite(0,0,'platforms',1);
 		var sw = dummy.width;
 		dummy.kill();
@@ -275,10 +285,22 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 			p.anchor.set(1,0);
 		}
 		p = _game.add.sprite(x,y,'platforms',4);
+		if (!l) p.frame+=2;
 		groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = l;
+		p.body.checkCollision.right = false;
+		p.body.checkCollision.up = false;
+		p.collisionsSet = true;
 		p = _game.add.sprite(x+w,y,'platforms',2);
+		if (!r) p.frame+=4;
 		groupPlatforms.add(p);
 		p.anchor.set(1,0);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = r;
+		p.body.checkCollision.up = false;
+		p.collisionsSet = true;
 	}
 
 	LevelStructure.prototype.getPlatforms = function() {

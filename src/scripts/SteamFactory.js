@@ -21,7 +21,8 @@ define(['Items', 'ColorEnum'], function(Items, ColorEnum) {
 			case ColorEnum.getColorEnum().X:
 				break;
 			default:
-				lum.body.velocity.y = Math.max(lum.body.velocity.y-10, -300);
+				if (lum.body.position.x < this.right) lum.body.velocity.y = Math.max(lum.body.velocity.y-15, -300);
+				//aucune idee de pourquoi ce if est necessaire
 		}
 	}
 
