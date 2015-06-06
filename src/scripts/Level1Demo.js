@@ -1,11 +1,11 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory',
- 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory', 'PorteRadioFactory', 'PorteWithAura'], function(Images, LummingFactory,
+ 'ItemsLevel', 'MiroirFactory', 'GammaLummingFactory', 'PorteRadioFactory', 'PorteWithAuraFactory'], function(Images, LummingFactory,
    VisibleLummingFactory, ColorEnum,
        MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest, VisionEnum,
         Transition, FilterFactory, RadioLummingFactory, ItemsLevel,
-        MiroirFactory, GammaLummingFactory, PorteRadioFactory, PorteWithAura) {
+        MiroirFactory, GammaLummingFactory, PorteRadioFactory, PorteWithAuraFactory) {
 
 var _game;
 var _nbLummingsV = 0;
@@ -33,7 +33,7 @@ var _level1Demo = {
     VisibleLummingFactory.init(_game);
     GammaLummingFactory.init(_game);
     PorteRadioFactory.init(_game);
-    PorteWithAura.init(_game);
+    PorteWithAuraFactory.init(_game);
   },
 
   create : function(){
@@ -52,7 +52,7 @@ var _level1Demo = {
 
     _groupDoorsRadioA = _game.add.group();
     _groupDoorsRadioA.enableBody = true;
-    portetest = PorteWithAura.create(220,236, 200);
+    portetest = PorteWithAuraFactory.create(220,236, 200);
     _groupDoorsRadioA.add(portetest);
     _groupDoorsRadioB = _game.add.group();
     _groupDoorsRadioB.enableBody = true;
