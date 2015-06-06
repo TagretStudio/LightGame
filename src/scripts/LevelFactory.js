@@ -72,10 +72,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				_currentLevel = 1;
 				_game.state.start('MainMenu');
 			} else {
-				text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
+				text = _game.add.text(_game.world.width - 50, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 				text.anchor.set(1,0);
 				button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
-				button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);
+				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
 
 				_menu = MenuFactoryTest.create(_tabAvailableObjects);
 				ItemsLevel.reinit(_game);
@@ -122,7 +122,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				}
 				_alreadyChangeLevel = true;
 			} else if (_groupLum.countLiving() == 0) {
-			    _game.add.sprite(184, 265, 'gameOver');
+			    _game.add.sprite(_game.world.centerX - 170, _game.world.centerY - 25, 'gameOver');
 			    _music.getMusic().fadeOut(1500);
 			    _music.getMusic().onFadeComplete.addOnce(function() {
 				_game.time.events.add(Phaser.Timer.SECOND*1.8, function() {
@@ -130,7 +130,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				}, _game);
 			    }, _game);
 			}
-			text.setText(_groupLum.countLiving()+'-'+_nbLummingsSaved + '/' + _nbLummingsV);
+			text.setText(_nbLummingsSaved + '/' + _nbLummingsV);
 		}
 
 	}
@@ -188,7 +188,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 	function actionOnRestart() {
 		var background = _game.add.sprite(0, 0, 'transitionBackground');
-		var logo = _game.add.sprite(184, 265, 'logo');
+		var logo = _game.add.sprite(_game.world.centerX - 216, _game.world.centerY - 35, 'logo');
 		if (_music != null) {
 			_music.getMusic().fadeOut(700);
 			_music.getMusic().onFadeComplete.dispatch();
@@ -202,7 +202,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 	function actionOnMenu() {
 	   var background = _game.add.sprite(0, 0, 'transitionBackground');
-	   var logo = _game.add.sprite(184, 265, 'logo');
+	   var logo = _game.add.sprite(_game.world.centerX - 216, _game.world.centerY - 35, 'logo');
 	   _currentLevel = 1;
 	   if (_music != null) {
 			_music.getMusic().fadeOut(700);

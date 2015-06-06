@@ -59,7 +59,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
-				_game.add.text(0, 0, "car il ne sert de rien de dire qu'il est certain que l'on hasarde, et qu'il est incertain si l'on gagnera, et que l'infinie distance qui est entre la certitude de ce qu'on s'expose et l'incertitude de ce qu'on gagnera égale le bien fini, qu'on expose à l'infini, qui est incertain.", {wordWrap: true, wordWrapWidth: _game.world.width});
+				_game.add.text(0, 32, "car il ne sert de rien de dire qu'il est certain que l'on hasarde, et qu'il est incertain si l'on gagnera, et que l'infinie distance qui est entre la certitude de ce qu'on s'expose et l'incertitude de ce qu'on gagnera égale le bien fini, qu'on expose à l'infini, qui est incertain.", {wordWrap: true, wordWrapWidth: _game.world.width});
 
 				break;
 

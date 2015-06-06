@@ -22,7 +22,8 @@ return{
       music = musicA.getMusic();
     }
       var background = _game.add.sprite(0, 0, 'transitionBackground');
-      var logo = _game.add.sprite(184, 265, 'logo');
+      background.scale.set(1024/_game.world.width, 768/_game.world.height);
+      var logo = _game.add.sprite(_game.world.centerX - 216, _game.world.centerY - 35, 'logo');
       if (music != null) {
 	  music.fadeOut(700);
 	music.onFadeComplete.dispatch();

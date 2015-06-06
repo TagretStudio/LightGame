@@ -51,22 +51,25 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		//infra
 
 		//plomb
-		plombCarre = _game.add.sprite(20+330, 536, 'plombCarre');
+		plombCarre = _game.add.sprite(20+330, _game.world.centerY - 64, 'plombCarre');
+	    plombCarre.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		plombCarre.number = tab[0];
 
 		this.groupInfra.add(plombCarre);
-		plombVertical = _game.add.sprite(20+370, 536, 'plombVertical');
+		plombVertical = _game.add.sprite(20+370, _game.world.centerY - 64, 'plombVertical');
+	    plombVertical.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		plombVertical.number = tab[1];
 		this.groupInfra.add(plombVertical);
-		plombHorizontal = _game.add.sprite(20+410, 536, 'plombHorizontal');
+		plombHorizontal = _game.add.sprite(20+410, _game.world.centerY - 64, 'plombHorizontal');
+	    plombHorizontal.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		this.groupInfra.add(plombHorizontal);
 		plombHorizontal.number = tab[2];
 
 		//miroirs
-		miroirH = _game.add.sprite(660, 536, 'miroirH');
+		miroirH = _game.add.sprite(660, _game.world.centerY - 64, 'miroirH');
 		miroirH.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		miroirH.number= tab[3];
-		miroirV = _game.add.sprite(700, 536, 'miroirV');
+		miroirV = _game.add.sprite(700, _game.world.centerY - 64, 'miroirV');
 		miroirV.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		miroirV.number = tab [4];
 		this.groupMiroir.add(miroirH);
@@ -75,9 +78,9 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 
 		//antenes
-		aerialRight = _game.add.sprite(310, 536, 'antenna_right');
+		aerialRight = _game.add.sprite(310, _game.world.centerY - 64, 'antenna_right');
 		aerialRight.number = tab[5];
-		aerialLeft = _game.add.sprite(470, 536, 'antenna_left');
+		aerialLeft = _game.add.sprite(470, _game.world.centerY - 64, 'antenna_left');
 		aerialLeft.number = tab[6];
 		this.groupSupra.add(aerialLeft);
 		this.groupSupra.add(aerialRight);
@@ -86,17 +89,17 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		//visibles
 
-		red = _game.add.sprite(190, 536, 'red');
+		red = _game.add.sprite(190, _game.world.centerY - 64, 'red');
 		red.number = tab[7];
-		green = _game.add.sprite(230, 536, 'green');
+		green = _game.add.sprite(230, _game.world.centerY - 64, 'green');
 		green.number = tab[8];
-		blue = _game.add.sprite(270, 536, 'blue');
+		blue = _game.add.sprite(270, _game.world.centerY - 64, 'blue');
 		blue.number = tab[9];
-		magenta = _game.add.sprite(510, 536, 'magenta');
+		magenta = _game.add.sprite(510, _game.world.centerY - 64, 'magenta');
 		magenta.number = tab[10];
-		cyan = _game.add.sprite(550, 536, 'cyan');
+		cyan = _game.add.sprite(550, _game.world.centerY - 64, 'cyan');
 		cyan.number = tab[11];
-		yellow = _game.add.sprite(590, 536, 'yellow');
+		yellow = _game.add.sprite(590, _game.world.centerY - 64, 'yellow');
 		yellow.number = tab[12];
 		this.groupVisible.add(red);
 		this.groupVisible.add(blue);

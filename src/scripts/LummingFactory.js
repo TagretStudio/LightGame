@@ -48,7 +48,7 @@ define(['VisionEnum'], function(VisionEnum) {
 					this.animations.play('left_invisible');
 				}
 			}
-			if (this.position.y > 504) {
+			if (this.position.y > _game.world.height - 96) {
 				this.body.velocity.x = 0;
 				this.body.velocity.y = -100;
 				this.body.gravity.y = -100;
