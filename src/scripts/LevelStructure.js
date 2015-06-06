@@ -7,7 +7,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 	
 	var LevelStructure = function(indexLevel) {
 		this.indexLevel = indexLevel;
-		
+
 		this.groupPlatforms = _game.add.group();
 		this.groupLummings = _game.add.group();
 		this.groupDoors = _game.add.group();
@@ -19,13 +19,12 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.nbLummingsWin = 1;
 		this.tabAvailableObjects = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
-		
 		switch (indexLevel) {
 			case 1:
 				platform1 = PlatformFactory.create(100, 300, false);
-				platform2 = PlatformFactory.create(300, 300, false);
+				//platform2 = PlatformFactory.create(300, 300, false);
 				this.groupPlatforms.add(platform1);
-				this.groupPlatforms.add(platform2);
+				//this.groupPlatforms.add(platform2);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270);
 				door2 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 400, 270);
@@ -46,7 +45,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				lumM = MicroLummingFactory.create(250, 100, 50);
 				this.groupLummings.add(lumM);
 
-				this.groupElements.add(IceFactory.create(460, 290));
+				//this.groupElements.add(IceFactory.create(460, 290));
+				icePit(this, platform1.right + 32, 300, 64);
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
@@ -71,29 +71,162 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
+			case 3: //level 1
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+
+				this.nbLummingsWin = 1;
+
+				//un filtre soustractif magenta
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,0];
+
+				break;
+
+			case 4: //level 2 
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+
+				this.nbLummingsWin = 1;
+				//on donne un filtre magenta et un filtre jaune
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,1];
+
+				break;
+
+			case 5: //level 3
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().CYAN, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 100, 200, 50);
+
+				this.nbLummingsWin = 2;
+				//on donne un filtre cyan
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,0,1,0];
+
+				break;
+
+			case 6: //level 4
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 100, 200, 50);
+
+				this.nbLummingsWin = 2;
+				//on donne un filtre vert
+				this.tabAvailableObjects = [0,1,0,0,0,0,0,0,0,0,0,0,0];
+
+				break;
+
+			case 7: //level 5
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().MAGENTA, 100, 200, 50);
+
+				this.nbLummingsWin = 2;
+				//on donne un filtre bleu
+				this.tabAvailableObjects = [0,0,1,0,0,0,0,0,0,0,0,0,0];
+
+				break;
+
 			default:
 				break;
-			
 		}
-		
+
 		this.groupPlatforms.forEach(
 			function(p) {
 				p.body.immovable = true;
-				p.body.immovable = true;
-				p.body.checkCollision.down = false;
-				p.body.checkCollision.left = false;
-				p.body.checkCollision.right = false;
-				p.body.checkCollision.up = true;
+				if (p.collisionsSet == null) {
+					p.body.immovable = true;
+					p.body.checkCollision.down = false;
+					p.body.checkCollision.left = false;
+					p.body.checkCollision.right = false;
+					p.body.checkCollision.up = true;
+				}
 			}
 		);
 	}
 
-	icePit = function(ls, x, y) { //ls is LevelStructure
-		
+	icePit = function(ls, x, y, w) { //ls is LevelStructure
+		var ice;
+		ls.groupElements.add(ice = IceFactory.create(x, y));
+		ice.width = w;
+		pit(ls, x, y, w);
 	}
 
 	waterPit = function(x, y) {
-		
+		var water;
+		ls.groupElements.add(water = WaterFactory.create(x, y));
+		water.width = w;
+		pit(ls, x, y, w);
+	}
+
+	pit = function(ls, x, y, w) {
+		var ice;
+		ls.groupElements.add(ice = IceFactory.create(x, y));
+		ice.width = w;
+
+		var p;
+
+		p = _game.add.sprite(ice.left, ice.y, 'platforms',3);
+		p.anchor.set(1,0);
+		ls.groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = true;
+		p.body.checkCollision.up = true;
+		p.collisionsSet = true;
+
+		p = _game.add.sprite(ice.right, ice.y, 'platforms',5);
+		p.anchor.set(0,0);
+		ls.groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = true;
+		p.body.checkCollision.right = false;
+		p.body.checkCollision.up = true;
+		p.collisionsSet = true;
+
+		p = _game.add.sprite(ice.left, ice.y + ice.height, 'platforms',12);
+		p.anchor.set(1,0);
+		ls.groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = true;
+		p.body.checkCollision.up = true;
+		p.collisionsSet = true;
+
+		p = _game.add.sprite(x, ice.y + ice.height * 3/2, 'platforms',12); //sprite invisible servant aux collisions
+		p.height /=2;
+		p.anchor.set(0,0);
+		ls.groupPlatforms.add(p);
+		p.width = w;
+
+		p = _game.add.sprite(ice.right, ice.y + ice.height, 'platforms',10);
+		p.anchor.set(0,0);
+		ls.groupPlatforms.add(p);
+
+		p = _game.add.sprite(x, ice.y + ice.height, 'platforms',14);
+		p.anchor.set(0,0);
+		ls.groupPlatforms.add(p);
+		p.width = w;
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = false;
+		p.body.checkCollision.up = false;
+		p.collisionsSet = true;
+
+		ice.kill();
 	}
 
 	platform = function(groupPlatforms, x, y, w) {
