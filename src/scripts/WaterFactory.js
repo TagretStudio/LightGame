@@ -29,6 +29,14 @@ define(['Items', 'ColorEnum', 'SteamFactory'], function(Items, ColorEnum, SteamF
 				}
 				break;
 		}
+		switch (lum.color) {
+			case ColorEnum.getColorEnum().GAMMA:
+				break;
+			default:
+				if (lum.body.y >= this.body.y) {
+					lum.color = null;
+				}
+		}
 	}
 
 	return {
