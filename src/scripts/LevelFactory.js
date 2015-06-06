@@ -115,18 +115,16 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				if (!_alreadyChangeLevel) {
 					if (_groupLum.total == 0) {
 						Transition.nextState('MainMenu', _music);
-					} else if (_groupLum.countLiving() == 0) {
-					    Transition.nextStateGO('LevelFactory', _music);
 					} else {
 						_currentLevel++;
 						Transition.nextState('LevelFactory', _music);
 					}
 				}
 				_alreadyChangeLevel = true;
+			} else if (_groupLum.countLiving() == 0) {
+			    Transition.nextStateGO('LevelFactory', _music);
 			}
-
 			text.setText(_groupLum.countLiving()+'-'+_nbLummingsSaved + '/' + _nbLummingsV);
-
 		}
 
 	}
@@ -159,10 +157,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 		if (lx>dl && lx<dr) {
 			var exit = lum.collideWithDoor(door);
-			if (exit == 1){
+		    if (exit == 1){
+			_nbLummingsSaved = _nbLummingsSaved +1;
 				this.time.events.add(1000,
 					function() {
-						_nbLummingsSaved = _nbLummingsSaved +1;
 						text.setText(_nbLummingsSaved + '/' + _nbLummingsV);
 					}
 				, this);
