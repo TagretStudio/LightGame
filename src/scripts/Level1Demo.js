@@ -19,7 +19,8 @@ var _text = null;
 var _currentVision = null;
 var _button_restart = null;
 var _button_menu = null;
-var _groupDoorsRadio = null;
+var _groupDoorsRadioA = null;
+var _groupDoorsRadioB = null;
 
 var _level1Demo = {
   preload : function(){
@@ -48,14 +49,19 @@ var _level1Demo = {
 
     _groupPlatforms.add(platform1);
     _groupPlatforms.add(platform2);
+
     _groupDoorsRadioA = _game.add.group();
     _groupDoorsRadioA.enableBody = true;
-
-    _groupDoorsRadio = _game.add.group();
-    _groupDoorsRadio.enableBody = true;
-  //  porteAntenne1 = PorteRadioFactory.create(220, 236, 200);
-    portetest = PorteWithAura.create(110,236, 200);
+    portetest = PorteWithAura.create(220,236, 200);
     _groupDoorsRadioA.add(portetest);
+    _groupDoorsRadioB = _game.add.group();
+    _groupDoorsRadioB.enableBody = true;
+    _groupDoorsRadioA.forEach(
+      function(p){
+        _groupDoorsRadioB.add(p.getDoor());
+      }
+    )
+
 //    _groupDoorsRadio.add(porteAntenne1);
 
 
@@ -96,6 +102,7 @@ var _level1Demo = {
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
     _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, function(lum, door) {door.setOverlap(_game.time.now +100)});
+    _game.physics.arcade.collide(_groupLum, _groupDoorsRadioB);
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 
     _groupLum.forEach(

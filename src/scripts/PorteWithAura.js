@@ -19,6 +19,10 @@ define(['Items', 'PorteRadioFactory'], function(Items, PorteRadioFactory) {
 	PorteWithAura.prototype = Object.create(Phaser.Sprite.prototype);
 	PorteWithAura.prototype.constructor = PorteWithAura;
 
+  PorteWithAura.prototype.getDoor = function(){
+    return this.door;
+  }
+
   PorteWithAura.prototype.getOverlap = function(){
     return this.lastOverlapped;
   }

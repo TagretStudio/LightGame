@@ -16,12 +16,12 @@ define(['Items'], function(Items) {
 
   PorteRadio.prototype.fermer = function(){
     this.animations.play('ferme');
-    this.body.setSize(10,64);
+    this.body.setSize(8,64);
   }
 
   PorteRadio.prototype.ouvrir = function(){
     this.animations.play('ouvert');
-    this.body.setSize(10,32);
+    this.body.setSize(8,32);
   }
 
 
