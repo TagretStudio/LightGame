@@ -101,7 +101,7 @@ var _level1Demo = {
     _menu.update();
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
     _game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
-    _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, function(lum, door) {door.setOverlap(_game.time.now +100)});
+    _game.physics.arcade.overlap(_groupLum, _groupDoorsRadioA, function(lum, door) {door.setOverlap(lum, _game.time.now +100)});
     _game.physics.arcade.collide(_groupLum, _groupDoorsRadioB);
     _game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 
