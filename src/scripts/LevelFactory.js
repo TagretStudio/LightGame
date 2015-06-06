@@ -50,7 +50,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			Images.boot().create();
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
-
+			VisionEnum.setVisionCurrent(_currentVision);
 			this.levelStruct = LevelStructure.create(_currentLevel);
 
 			_groupPlatforms = this.levelStruct.getPlatforms();
