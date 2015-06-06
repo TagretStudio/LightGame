@@ -11,7 +11,6 @@ define(['Items', 'PorteRadioFactory'], function(Items, PorteRadioFactory) {
     rond.destroy();
     Phaser.Sprite.call(this, _game, x, y, texture);
     this.anchor.set(0.5,0.5);
-//    this.addChild(rond);
     this.door = PorteRadioFactory.create(x, y);
     group.add(this.door);
     this.lastOverlapped = null;
@@ -37,7 +36,9 @@ define(['Items', 'PorteRadioFactory'], function(Items, PorteRadioFactory) {
   }
 
   PorteWithAura.prototype.update = function(){
-  //  this.door.fermer();
+    if (this.getOverlap() && _game.time.now > this.getOverlap()){
+      this.ferme();
+    }
   }
 
 
