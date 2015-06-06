@@ -62,6 +62,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				_game.state.start('MainMenu');
 			} else {
 				text = _game.add.text(750, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
+				text.anchor.set(1,0);
 				button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(650,0,'buttonRefresh', actionOnRestart, _game);
 
@@ -146,7 +147,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		if (lx>dl && lx<dr) {
 			var exit = lum.collideWithDoor(door);
 			if (exit == 1){
-				lum.parent.remove(lum);
 				this.time.events.add(1000,
 					function() {
 						_nbLummingsSaved = _nbLummingsSaved +1;
