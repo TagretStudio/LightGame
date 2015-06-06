@@ -41,7 +41,7 @@ var _level2Demo = {
     _groupPlatforms = _game.add.group();
     _groupPlatforms.enableBody = true;
     platform1 = PlatformFactory.create(100, 300, false);
-    platform2 = PlatformFactory.create(050, 500, false);
+    platform2 = PlatformFactory.create(50, 500, false);
     platform3 = PlatformFactory.create(300, 500, false);
     platform4 = PlatformFactory.create(600, 500, false);
 

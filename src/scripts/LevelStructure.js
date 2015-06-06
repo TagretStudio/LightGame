@@ -70,13 +70,15 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
 				break;
-
+			
 			case 3: //level 1
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
+				this.groupDoors.add(door1);
 
 				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+				this.groupLummings.add(lum1);
 
 				this.nbLummingsWin = 1;
 
