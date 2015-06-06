@@ -25,8 +25,8 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition'], function(Imag
 		},
 
 		update :function(){
-			this.time.events.add(9000, function() {
-			    Transition.nextState(_etapesuivante);
+			this.time.events.add(5000, function() {
+			    transition();
 			}, _game);
 			if (_space.isDown) {
 				_game.time.events.add(Phaser.Timer.SECOND * 2, transition, this);
