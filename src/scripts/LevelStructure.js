@@ -120,7 +120,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lum1);
 				this.groupLummings.add(lum2);
 
-				this.nbLummingsWin = 2;
+				this.nbLummingsWin = 1;
 				//on donne un filtre cyan
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,0,1,0];
 
