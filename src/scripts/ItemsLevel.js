@@ -15,7 +15,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
           var lumming = RadioLummingFactory.create(x, y, isLeft*85);
          _grouplum.add(lumming);
            }, this);
-      
+
     },
 
     init : function(game){
@@ -25,7 +25,7 @@ define(['DoorsFactory','FilterFactory','ColorEnum', 'VisibleLummingFactory', 'Mi
       FilterFactory.init(game);
       MiroirFactory.init(game);
       RadioLummingFactory.init(game);
-	PlombFactory.init(game);
+	    PlombFactory.init(game);
     },
     reinit : function(game){
       _game = game;
