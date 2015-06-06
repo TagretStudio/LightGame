@@ -88,8 +88,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
-				this.groupDoors.add(door1);
 
+				this.groupDoors.add(door1);
 				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
 				this.groupLummings.add(lum1);
 
@@ -170,7 +170,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 			case 8:
 				platform(this.groupPlatforms, 100, 300, 600);
-				platform(this.groupPlatforms, 0, 280, 110);
+				platform(this.groupPlatforms, 0, 280, 110, true, true);
 				
 				doorRadio1 = PorteWithAuraFactory.create(300, 240, 200);
 				this.groupDoorsRadioAura.add(doorRadio1);
@@ -284,9 +284,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		ice.kill();
 	}
 
-	platform = function(groupPlatforms, x, y, w, l, r) {
-		if (l==null) l=false;
-		if (r==null) r=false;
+	platform = function(groupPlatforms, x, y, w) {
 		var dummy = _game.add.sprite(0,0,'platforms',1);
 		var sw = dummy.width;
 		dummy.kill();
@@ -302,20 +300,10 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		p = _game.add.sprite(x,y,'platforms',4);
 		if (!l) p.frame+=2;
 		groupPlatforms.add(p);
-		p.body.checkCollision.down = false;
-		p.body.checkCollision.left = l;
-		p.body.checkCollision.right = false;
-		p.body.checkCollision.up = false;
-		p.collisionsSet = true;
 		p = _game.add.sprite(x+w,y,'platforms',2);
 		if (!r) p.frame+=4;
 		groupPlatforms.add(p);
 		p.anchor.set(1,0);
-		p.body.checkCollision.down = false;
-		p.body.checkCollision.left = false;
-		p.body.checkCollision.right = r;
-		p.body.checkCollision.up = false;
-		p.collisionsSet = true;
 	}
 
 	LevelStructure.prototype.getPlatforms = function() {
