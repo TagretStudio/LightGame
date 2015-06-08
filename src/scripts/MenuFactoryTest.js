@@ -131,6 +131,10 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					p.origY = p.y;
 
 					p.copy = dragcopy;
+					if (p.number == 0) {
+						p.alpha = 0.25;
+						dragcopy.alpha = 0;
+					}
 				}
 			}
 		)
@@ -157,6 +161,11 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					p.origY = p.y;
 
 					p.copy = dragcopy;
+					p.copy = dragcopy;
+					if (p.number == 0) {
+						p.alpha = 0.25;
+						dragcopy.alpha = 0;
+					}
 				}
 			}
 		)
@@ -184,6 +193,11 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					p.origY = p.y;
 
 					p.copy = dragcopy;
+					p.copy = dragcopy;
+					if (p.number == 0) {
+						p.alpha = 0.25;
+						dragcopy.alpha = 0;
+					}
 				}
 			}
 		)
@@ -211,6 +225,11 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					p.origY = p.y;
 
 					p.copy = dragcopy;
+					p.copy = dragcopy;
+					if (p.number == 0) {
+						p.alpha = 0.25;
+						dragcopy.alpha = 0;
+					}
 				}
 			}
 		)
