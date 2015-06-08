@@ -57,6 +57,7 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
 			dizaineSprite.anchor.set(0.5, 0.5);
 			uniteSprite.anchor.set(0.5, 0.5);
 
+			/*
             //text = _game.add.text(_game.world.centerX + 20, _game.world.centerY, _unite , {align: "center"});
             //text2 = _game.add.text(_game.world.centerX - 20, _game.world.centerY, _dizaine, {align: "center"});
 
@@ -64,6 +65,7 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
             text.scale.set(2,2);
             text2.anchor.set(0.5,0.5);
             text2.scale.set(2,2);
+            */
   		},
 
   		update :function(){
