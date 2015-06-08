@@ -22,9 +22,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _currentVision = null;
 	var _button_restart = null;
 	var _button_menu = null;
-	       var _button_help = null;
 	var _tabAvailableObjects = null;
 	var _dark = null;
+	       var _marque = false;
 
 	var LevelFactory = {
 
@@ -34,7 +34,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.load.image('buttonRefresh', 'media/img/refresh.png')
 			_game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
 		    _game.load.image('aide', 'media/img/aideColore.png');
-
 		    _game.load.image('aideScreen', 'media/img/ecranAide.png');
 			MenuFactoryTest.init(_game);
 			PlatformFactory.init(_game);
@@ -87,7 +86,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				button_menu = _game.add.button(10,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
 			    button_help = _game.add.button(128, 0, 'aide', actionOnHelp, _game);
-			    button_help.scale.set(0.5, 0.5);
+			    button_help.scale.set(64/148, 32/74);
 				_menu = MenuFactoryTest.create(_tabAvailableObjects);
 				ItemsLevel.reinit(_game);
 				ItemsLevel.setgroup(_groupLum);
@@ -124,6 +123,19 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 			_dark.alphaTarget = 0.5 - 0.5 * _nbLummingsSaved/_nbLummingsV;
 			_dark.alpha += (_dark.alphaTarget-_dark.alpha)/8;
+
+		    if (_marque == true) {
+			_marque = false;
+			ecranAide.destroy();
+			_game.input.onDown.add(function () {
+			    //if(_game.paused == true) {
+				alert('before');
+				ecranAide.kill();
+				alert('lol');
+				_game.paused = false;
+			    //}
+			},_game);
+		    }
 
 			if (_nbLummingsV == _nbLummingsSaved) {
 				if (!_alreadyChangeLevel) {
@@ -235,10 +247,16 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	}
 
 	       function actionOnHelp() {
-		   var ecranAide = _game.add.sprite(0, 0, 'aideScreen');
+		   _game.paused = true;
+		   var ecranAide = this.add.sprite(0, 0, 'aideScreen');
 		   ecranAide.scale.set(_game.world.width/786, _game.world.height/588);
-		   _game.pause();
-		   _game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;ecranAide.destroy();;}},_game);
+		   _marque = true;
+		   /*_game.input.onDown.add(function () {
+		       if(_game.paused) {
+			   ecranAide.kill();
+			   _game.paused = false;
+		       }
+		   },_game);*/
 	       }
 
 	return {
