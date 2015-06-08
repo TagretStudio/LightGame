@@ -25,11 +25,16 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _tabAvailableObjects = null;
 	var _dark = null;
 	       var _marque = false;
+	       var _marque_music = true;
 	       var ecranAide = null;
 	var LevelFactory = {
 
 		preload: function() {
+		    if (_marque_music) {
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
+		    } else {
+			_music = MusicFactory.create('level2', 'media/audio/level.ogg');
+		    }
 			_game.load.image('buttonDiamond', 'media/img/menuButton.png');
 			_game.load.image('buttonRefresh', 'media/img/refresh.png')
 			_game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
@@ -140,6 +145,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 							Transition.nextState('MainMenu', _music);
 						} else {
 							_currentLevel++;
+						    _marque_music = !_marque_music;
 							Transition.nextState('LevelFactory', _music);
 						}
 					});
