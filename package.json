@@ -24,16 +24,21 @@
   "devDependencies": {
     "gulp-rename": "~1.2.2",
     "del": "~1.2.0",
-    "gulp-cache": "~0.2.9",
-    "gulp-minify-css": "~1.1.4",
+    "gulp-cache": "~0.2.10",
+    "gulp-minify-css": "~1.1.6",
     "gulp-livereload": "~3.8.0",
     "gulp-notify": "~2.2.0",
     "gulp-uglify": "~1.2.0",
     "gulp-jshint": "~1.11.0",
     "gulp-ruby-sass": "~1.0.5",
-    "gulp-autoprefixer": "~2.3.0",
+    "gulp-autoprefixer": "~2.3.1",
     "gulp-concat": "~2.5.2",
-    "gulp-imagemin": "~2.2.1"
+    "gulp-imagemin": "~2.2.1",
+    "gulp": "~3.9.0",
+    "gulp-sourcemaps": "~1.5.2",
+    "gulp-watch": "~4.2.4",
+    "gulp-fluent-ffmpeg": "~1.0.2",
+    "gulp-connect": "~2.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
