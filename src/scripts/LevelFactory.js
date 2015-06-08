@@ -143,6 +143,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 	function mayKill(lum1, lum2){
 		if(lum1.color == 10 && ((lum2.defaultVision == 2) || (lum2.defaultVision == 1))) {
+			var old = lum1.body.velocity.x;
 			lum2.body.velocity.x = 0;
 			lum2.body.velocity.y = -100;
 			lum2.body.gravity.y = -100;
@@ -150,8 +151,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			lum2.color = null;
 			lum1.body.velocity.x = 0;
 			_game.time.events.add(Phaser.Timer.SECOND*0.75, function(){
-				lum1.body.velocity.x = 70;
-			    lum2.kill();
+			lum1.body.velocity.x = old;
+			lum2.kill();
 			}, this);
 			//lum2.kill();
 		}
