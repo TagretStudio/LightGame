@@ -129,10 +129,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			ecranAide.destroy();
 			_game.input.onDown.add(function () {
 			    //if(_game.paused == true) {
+			    _game.paused = false;
 				alert('before');
 				ecranAide.kill();
 				alert('lol');
-				_game.paused = false;
 			    //}
 			},_game);
 		    }
