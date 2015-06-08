@@ -25,12 +25,15 @@ return{
       background.scale.set(1024/_game.world.width, 768/_game.world.height);
       var logo = _game.add.sprite(_game.world.centerX - 216, _game.world.centerY - 35, 'logo');
 
-
-      var und;
+   
+      var und = null;
       if (!currentLevel) 
         {und = "";}
       else 
-        {und = "Niveau "+currentLevel;}
+        {
+          und = "Niveau " + currentLevel;
+      }
+
 
       _game.add.text(300,0, und, {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
 
