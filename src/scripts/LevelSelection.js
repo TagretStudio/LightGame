@@ -10,6 +10,7 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
   var _pointLogo =null;
 	var dizainesSprite;
 	var uniteSprite;
+	var transpaSprite;
 
   function actionPlay(){
     LevelFactory.setLevel(_unite + 10*_dizaine);
@@ -19,8 +20,24 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
 
   function actionButton(d, u){
   //  LevelFactory.setLevel(niveau);
+	var diz = _dizaine;
+	var uni = _unite;
     _dizaine = (_dizaine+d+10)%10;
     _unite = (_unite+u+10)%10;
+	dizaineSprite.frame = _dizaine;
+	uniteSprite.frame = _unite;
+	if (uni != _unite) {
+		var sp;
+		transpaSprite.add(sp = _game.add.sprite(uniteSprite.x, uniteSprite.y, uniteSprite.key, uniteSprite.frame));
+		sp.anchor.set(0.5, 0.5);
+		sp.angle = Math.random();
+	}
+	if (diz != _dizaine) {
+		var sp;
+		transpaSprite.add(sp = _game.add.sprite(dizaineSprite.x, dizaineSprite.y, dizaineSprite.key, dizaineSprite.frame));
+		sp.anchor.set(0.5, 0.5);
+		sp.angle = Math.random();
+	}
     //Transition.nextState('LevelFactory', _music);
   }
 
@@ -52,10 +69,12 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
     //    _buttonMoins.anchor.set(0.5, 0.5);
     //    _buttonMoins.scale.set(2,2);
 
-			dizaineSprite = _game.add.sprite(_game.world.centerX - 40, _game.world.centerY, 'chiffres', 0);
-			uniteSprite = _game.add.sprite(_game.world.centerX + 40, _game.world.centerY, 'chiffres', 0);
+			dizaineSprite = _game.add.sprite(_game.world.centerX - 40, _game.world.centerY, 'chiffres', _dizaine);
+			uniteSprite = _game.add.sprite(_game.world.centerX + 40, _game.world.centerY, 'chiffres', _unite);
 			dizaineSprite.anchor.set(0.5, 0.5);
 			uniteSprite.anchor.set(0.5, 0.5);
+
+			transpaSprite = _game.add.group();
 
 			/*
             //text = _game.add.text(_game.world.centerX + 20, _game.world.centerY, _unite , {align: "center"});
@@ -69,8 +88,14 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
   		},
 
   		update :function(){
-			dizaineSprite.frame = _dizaine;
-			uniteSprite.frame = _unite;
+			transpaSprite.forEach(
+				function(p) {
+					p.alpha = Math.max(p.alpha-0.1,0);
+					p.x += Math.cos(p.angle)*2;
+					p.y += Math.sin(p.angle)*2;
+					if (p.alpha == 0) p.kill();
+				}
+			);
             //text.setText(_unite);
             //text2.setText(_dizaine);
   		}
