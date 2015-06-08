@@ -23,7 +23,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.nbLummingsWin = 0;
 		this.tabAvailableObjects = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
-		switch (indexLevel+1) {
+		switch (indexLevel+7) {
 			case 1:
 				doorRadio1 = PorteWithAuraFactory.create(380,236, 200);
 				this.groupDoorsRadioAura.add(doorRadio1);
@@ -181,13 +181,17 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270);
 				this.groupDoors.add(door1);
 
-				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 130, 200, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 110, 200, 50);
 				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
 
-				this.nbLummingsWin = 1;
-				//on donne un filtre jaune et une antenne
-				this.tabAvailableObjects = [0,0,0,0,0,1,0,0,0,0,0,0,1];
-				levelText("Expliquer les niveaux de vision, la reglette, les portes antennes et les radios en une fois ?");
+				this.nbLummingsWin = 3;
+				//on donne une antenne
+				this.tabAvailableObjects = [0,0,0,0,0,1,0,0,0,0,0,0,0];
+				levelText("En vous servant de la reglette en bas à gauche, vous changez de niveau de vision. Essayez l'antenne radio: elle génère un lumming \"radio\" qui est capable d'ouvrir les portes radio");
 
 				break;
 			
