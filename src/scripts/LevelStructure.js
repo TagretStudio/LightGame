@@ -172,13 +172,14 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				break;
 
 			case 8: //level 6
-				platform(this.groupPlatforms, 100, 300, 600);
+				platform(this.groupPlatforms, 100, 300, 460);
 				platform(this.groupPlatforms, 0, 280, 110, true, true);
+				platform(this.groupPlatforms, 550, 280, 110, true, true);
 				
 				doorRadio1 = PorteWithAuraFactory.create(300, 236, 150);
 				this.groupDoorsRadioAura.add(doorRadio1);
 
-				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270);
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 450, 270);
 				this.groupDoors.add(door1);
 
 				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 150, 200, 50);
