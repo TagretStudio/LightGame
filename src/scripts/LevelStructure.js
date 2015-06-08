@@ -59,7 +59,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
-				_game.add.text(0, 32, "car il ne sert de rien de dire qu'il est certain que l'on hasarde, et qu'il est incertain si l'on gagnera, et que l'infinie distance qui est entre la certitude de ce qu'on s'expose et l'incertitude de ce qu'on gagnera égale le bien fini, qu'on expose à l'infini, qui est incertain.", {wordWrap: true, wordWrapWidth: _game.world.width});
+				levelText("car il ne sert de rien de dire qu'il est certain que l'on hasarde, et qu'il est incertain si l'on gagnera, et que l'infinie distance qui est entre la certitude de ce qu'on s'expose et l'incertitude de ce qu'on gagnera égale le bien fini, qu'on expose à l'infini, qui est incertain.");
 
 				break;
 
@@ -81,7 +81,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,0,0,0];
 
-				_game.add.text(0, 32, "Le but du jeu est de faire passer les lummings de couleur par les portes de même couleur", {wordWrap: true, wordWrapWidth: _game.world.width});
+				levelText("Le but du jeu est de faire passer les lummings de couleur par les portes de même couleur");
 
 				break;
 
@@ -99,7 +99,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//un filtre soustractif magenta
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,0];
 
-				_game.add.text(0, 32, "Utilisez les filtres à votre disposition pour changer la couleur des lummings. Les filtres soustractifs suppriment toute composante de couleur qui n'est pas celle indiquée sur le filtre.", {wordWrap: true, wordWrapWidth: _game.world.width});
+				levelText("Utilisez les filtres à votre disposition pour changer la couleur des lummings. Les filtres soustractifs suppriment toute composante de couleur qui n'est pas celle indiquée sur le filtre.");
 
 				break;
 
@@ -116,7 +116,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//on donne les 3 filtres soustractifs
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,1,1];
 
-				_game.add.text(0, 32, "La soustraction n'est pas toujours aussi simple...", {wordWrap: true, wordWrapWidth: _game.world.width});
+				levelText("La soustraction n'est pas toujours aussi simple...");
 
 				break;
 
@@ -135,7 +135,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//on donne un filtre cyan
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,0,1,0];
 
-				_game.add.text(0, 32, "Si vous supprimez toutes ses couleurs à un lumming, il meurt. Mais regardez en haut à droite, vous n'avez pas forcément à tous les sauver...", {wordWrap: true, wordWrapWidth: _game.world.width});
+				levelText("Si vous supprimez toutes ses couleurs à un lumming, il meurt. Mais regardez en haut à droite, vous n'avez pas forcément à tous les sauver...");
 
 				break;
 
@@ -150,7 +150,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 1;
 				//on donne un filtre cyan
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,1,0,0,0];
-				_game.add.text(0, 32, "Les additifs (mettre un texte plus intelligent)", {wordWrap: true, wordWrapWidth: _game.world.width});
+				levelText("Les additifs (mettre un texte plus intelligent)");
 
 				break;
 
@@ -172,22 +172,27 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				break;
 
 			case 8: //level 6
-				platform(this.groupPlatforms, 100, 300, 600);
+				platform(this.groupPlatforms, 100, 300, 460);
 				platform(this.groupPlatforms, 0, 280, 110, true, true);
+				platform(this.groupPlatforms, 550, 280, 110, true, true);
 				
 				doorRadio1 = PorteWithAuraFactory.create(300, 236, 150);
 				this.groupDoorsRadioAura.add(doorRadio1);
 
-				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270);
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 450, 270);
 				this.groupDoors.add(door1);
 
-				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 200, 50);
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 150, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 130, 200, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 110, 200, 50);
 				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
 
-				this.nbLummingsWin = 1;
-				//on donne un filtre jaune et une antenne
-				this.tabAvailableObjects = [0,0,0,0,0,1,0,0,0,0,0,0,1];
-				_game.add.text(0, 32, "Expliquer les niveaux de vision, la reglette, les portes antennes et les radios en une fois ?", {wordWrap: true, wordWrapWidth: _game.world.width});
+				this.nbLummingsWin = 3;
+				//on donne une antenne
+				this.tabAvailableObjects = [0,0,0,0,0,1,0,0,0,0,0,0,0];
+				levelText("En vous servant de la reglette en bas à gauche, vous changez de niveau de vision. Essayez l'antenne radio: elle génère un lumming \"radio\" qui est capable d'ouvrir les portes radio");
 
 				break;
 			
@@ -236,6 +241,29 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,0,0,0];
 				
 				break;
+			
+			case 11:
+				platform(this.groupPlatforms, 100, 300, 400);
+				platform(this.groupPlatforms, 540, 210, 100, false);
+				icePit(this, 500, 300, 64);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 620, 180);
+				this.groupDoors.add(door1);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 120, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+
+				lumX = XLummingFactory.create(250, 200, 70);
+				this.groupLummings.add(lumX);
+				lumM = MicroLummingFactory.create(200, 200, 50);
+				this.groupLummings.add(lumM);
+
+				this.nbLummingsWin = 2;
+
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,1,1,1];
+				break;
 				
 			default:
 				break;
@@ -253,6 +281,12 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				}
 			}
 		);
+	}
+
+	function levelText(text, x, y) {
+		if (x == null) x=0;
+		if (y == null) y=32;
+		_game.add.text(x, y, text, {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
 	}
 
 	icePit = function(ls, x, y, w) { //ls is LevelStructure
