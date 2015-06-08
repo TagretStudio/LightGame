@@ -236,6 +236,10 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,0,0,0];
 				
 				break;
+			
+			case 11:
+				// ecriture niveau 11 en cours
+				break;
 				
 			default:
 				break;
