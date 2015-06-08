@@ -25,7 +25,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _tabAvailableObjects = null;
 	var _dark = null;
 	       var _marque = false;
-
+	       var ecranAide = null;
 	var LevelFactory = {
 
 		preload: function() {
@@ -85,7 +85,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				text.anchor.set(1,0);
 				button_menu = _game.add.button(10,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
-			    button_help = _game.add.button(128, 0, 'aide', actionOnHelp, _game);
+			    button_help = _game.add.button(80, 0, 'aide', actionOnHelp, _game);
 			    button_help.scale.set(64/148, 32/74);
 				_menu = MenuFactoryTest.create(_tabAvailableObjects);
 				ItemsLevel.reinit(_game);
@@ -126,14 +126,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 		    if (_marque == true) {
 			_marque = false;
-			ecranAide.destroy();
+			ecranAide.kill();
 			_game.input.onDown.add(function () {
-			    //if(_game.paused == true) {
 			    _game.paused = false;
-				alert('before');
-				ecranAide.kill();
-				alert('lol');
-			    //}
 			},_game);
 		    }
 
@@ -248,15 +243,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 	       function actionOnHelp() {
 		   _game.paused = true;
-		   var ecranAide = this.add.sprite(0, 0, 'aideScreen');
+		   ecranAide = this.add.sprite(0, 0, 'aideScreen');
 		   ecranAide.scale.set(_game.world.width/786, _game.world.height/588);
 		   _marque = true;
-		   /*_game.input.onDown.add(function () {
-		       if(_game.paused) {
-			   ecranAide.kill();
-			   _game.paused = false;
-		       }
-		   },_game);*/
 	       }
 
 	return {
