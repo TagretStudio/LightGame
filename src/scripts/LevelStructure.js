@@ -99,7 +99,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//un filtre soustractif magenta
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,0];
 
-				levelText("Utilisez les filtres à votre disposition pour changer la couleur des lummings. Les filtres soustractifs suppriment toute composante de couleur qui n'est pas celle indiquée sur le filtre.");
+				levelText("Utilisez les filtres à votre disposition pour changer la couleur des lummings. Les filtres soustractifs suppriment toute composante de couleur autre que celle indiquée sur le filtre.");
 
 				break;
 
@@ -150,7 +150,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 1;
 				//on donne un filtre cyan
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,1,0,0,0];
-				levelText("Les additifs (mettre un texte plus intelligent)");
+				levelText("Les additifs, contrairement aux soustractifs, ajoutent la couleur du filtre au lumming");
 
 				break;
 
@@ -168,6 +168,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 2;
 				//on donne un filtre vert et un jaune
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,1,0,0,0,1];
+		    levelText("Dans ce jeu, on vous demandera donc d'utiliser les filtres additifs et soustractifs habilement afin de sauver les lummings de couleur");
 
 				break;
 
@@ -239,6 +240,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				// on donne les filtres additifs				
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,0,0,0];
+		    levelText("Les lummings \"micro-onde\" génèrent de la vapeur au dessus de l'eau. Cela peut etre utile...");
 				
 				break;
 			
@@ -263,6 +265,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 2;
 
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,1,1,1];
+		    levelText("Les lummings \"X\" font fondre la glace, révélant de l'eau. Vous savez ce qu'il vous reste à faire...");
 				break;
 			
 			case 12:
@@ -292,6 +295,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				
 				// tous les filtres
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,1,1,1];
+		    levelText("Mais les lummings \"X\" sont nocifs pour les autres lummings. Protégez les !");
 
 				break;
 			
@@ -341,6 +345,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				
 				// tous les filtres et des miroirs
 				this.tabAvailableObjects = [0,0,0,2,1,0,0,1,1,1,1,1,1];
+		    levelText("Les miroirs reflètent très bien la lumière, pratique pour traverser du vide");
 				
 				break;
 			
