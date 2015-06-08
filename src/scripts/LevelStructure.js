@@ -1,9 +1,9 @@
 define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		'DoorsFactory', 'XLummingFactory', 'MicroLummingFactory', 'IceFactory',
-		'PorteWithAuraFactory'],
+		'PorteWithAuraFactory', 'WaterFactory'],
 	   function(PlatformFactory, LummingFactory, VisibleLummingFactory, ColorEnum,
 				DoorsFactory, XLummingFactory, MicroLummingFactory, IceFactory,
-				 PorteWithAuraFactory) {
+				 PorteWithAuraFactory, WaterFactory) {
 
 	var _game = null;
 
@@ -216,9 +216,9 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				platform(this.groupPlatforms, 80, 150, 100);
 				platform(this.groupPlatforms, 0, 300, 300);
 				waterPit(this, 300, 300, 64);
-				platform(this.groupPlatforms, 480, 150, 150);
+				platform(this.groupPlatforms, 330, 200, 150);
 				
-				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 600, 120);
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 450, 170);
 				this.groupDoors.add(door1);
 				
 				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 60, 250, 50);
