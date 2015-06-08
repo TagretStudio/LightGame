@@ -318,11 +318,32 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				
 				this.nbLummingsWin = 2;
 				
-				// tous les filtres
+				// tous les filtres et un miroir
 				this.tabAvailableObjects = [0,0,0,0,1,0,0,1,1,1,1,1,1];
 				
 				break;
 				
+			case 14:
+				platform(this.groupPlatforms, 100, 200, 250, true, true);
+				platform(this.groupPlatforms, 450, 200, 300, true, true);
+				
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().CYAN, 150, 170);
+				this.groupDoors.add(door1);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 460, 150, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 485, 150, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 510, 150, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
+				
+				this.nbLummingsWin = 3;
+				
+				// tous les filtres et des miroirs
+				this.tabAvailableObjects = [0,0,0,2,1,0,0,1,1,1,1,1,1];
+				
+				break;
+			
 			default:
 				break;
 		}
