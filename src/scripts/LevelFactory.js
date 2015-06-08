@@ -146,7 +146,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 						} else {
 							_currentLevel++;
 						    _marque_music = !_marque_music;
-							Transition.nextState('LevelFactory', _music);
+							Transition.nextState('LevelFactory', _music, _currentLevel);
+
 						}
 					});
 				}
@@ -265,6 +266,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		},
 		setLevel : function(level){
 			_currentLevel = level;
+		},
+		getCurrentLevel : function(level){
+			return _currentLevel;
 		}
 	}
 
