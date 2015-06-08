@@ -8,7 +8,8 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
   var _buttons = null;
   var _button = null;
   var _pointLogo =null;
-
+	var dizainesSprite;
+	var uniteSprite;
 
   function actionPlay(){
     LevelFactory.setLevel(_unite + 10*_dizaine);
@@ -18,57 +19,58 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
 
   function actionButton(d, u){
   //  LevelFactory.setLevel(niveau);
-    _dizaine += d;
-
-    _unite += u;
+    _dizaine = (_dizaine+d+10)%10;
+    _unite = (_unite+u+10)%10;
     //Transition.nextState('LevelFactory', _music);
   }
 
    	var _levelSelection = {
   		preload : function(){
-        _pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
-        _pointButtons = new Phaser.Point(_game.world.centerX , _game.world.centerY - 20);
-        _game.load.spritesheet('buttonplusmoins', 'media/img/buttonplusmoins.png', 38, 38);
-        _game.load.spritesheet('button', 'media/img/MenuButtons.png', 274, 71);
-
-
+            _pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
+            _pointButtons = new Phaser.Point(_game.world.centerX , _game.world.centerY - 20);
+            _game.load.spritesheet('buttonplusmoins', 'media/img/buttonplusmoins.png', 38, 38);
+            _game.load.spritesheet('button', 'media/img/MenuButtons.png', 274, 71);
+            _game.load.spritesheet('chiffres', 'media/img/chiffres.png', 47, 65);
   		},
 
   		create : function(){
-        Images.boot().create();
-        _buttons = _game.add.group();
-  			_buttons.scale.set(_game.world.width/1024, _game.world.height/768);
-  			_buttons.add(_buttonPlus = _game.make.button(_game.world.centerX*1024/800 + 20, _game.world.centerY, 'buttonplusmoins', function(){actionButton(0,1);}, _game, 0, 1, 2));
-        _buttons.add(_buttonMoins = _game.make.button(_game.world.centerX*1024/800 + 20,_game.world.centerY + 150, 'buttonplusmoins', function(){actionButton(0,-1);}, _game, 3, 4, 5));
-        _buttons.add(_buttonPlus = _game.make.button(_game.world.centerX*1024/800 - 20, _game.world.centerY, 'buttonplusmoins', function(){actionButton(1,0);}, _game, 0, 1, 2));
-        _buttons.add(_buttonMoins = _game.make.button(_game.world.centerX*1024/800 - 20,_game.world.centerY + 150, 'buttonplusmoins', function(){actionButton(-1,0);}, _game, 3, 4, 5));
-
-        _buttons.add(_buttonPlay = _game.make.button(_game.world.centerX*1024/800, _game.world.centerY + 300, 'button', actionPlay, _game, 0, 1, 2));
-
-        _buttons.forEach(function (p){
-          p.anchor.set(0.5, 0.5);
-          p.scale.set(2,2);
-
-        })
+            Images.boot().create();
+            _buttons = _game.add.group();
+  	    	_buttons.scale.set(_game.world.width/1024, _game.world.height/768);
+  	    	_buttons.add(_buttonPlus = _game.make.button(_game.world.centerX*1024/800 + 40, _game.world.centerY, 'buttonplusmoins', function(){actionButton(0,1);}, _game, 0, 1, 2));
+            _buttons.add(_buttonMoins = _game.make.button(_game.world.centerX*1024/800 + 40,_game.world.centerY + 150, 'buttonplusmoins', function(){actionButton(0,-1);}, _game, 3, 4, 5));
+            _buttons.add(_buttonPlus = _game.make.button(_game.world.centerX*1024/800 - 40, _game.world.centerY, 'buttonplusmoins', function(){actionButton(1,0);}, _game, 0, 1, 2));
+            _buttons.add(_buttonMoins = _game.make.button(_game.world.centerX*1024/800 - 40,_game.world.centerY + 150, 'buttonplusmoins', function(){actionButton(-1,0);}, _game, 3, 4, 5));
+            _buttons.add(_buttonPlay = _game.make.button(_game.world.centerX*1024/800, _game.world.centerY + 300, 'button', actionPlay, _game, 0, 1, 2));
+            _buttons.forEach(function (p){
+                p.anchor.set(0.5, 0.5);
+                p.scale.set(2,2);
+            })
 
     //    _buttonPlus.anchor.set(0.5, 0.5);
     //    _buttonPlus.scale.set(2,2);
     //    _buttonMoins.anchor.set(0.5, 0.5);
     //    _buttonMoins.scale.set(2,2);
 
-        text = _game.add.text(_game.world.centerX + 20, _game.world.centerY, _unite , {align: "center"});
-        text2 = _game.add.text(_game.world.centerX - 20, _game.world.centerY, _dizaine, {align: "center"});
+			dizaineSprite = _game.add.sprite(_game.world.centerX - 40, _game.world.centerY, 'chiffres', 0);
+			uniteSprite = _game.add.sprite(_game.world.centerX + 40, _game.world.centerY, 'chiffres', 0);
+			dizaineSprite.anchor.set(0.5, 0.5);
+			uniteSprite.anchor.set(0.5, 0.5);
 
-				text.anchor.set(0.5,0.5);
-        text.scale.set(2,2);
-        text2.anchor.set(0.5,0.5);
-        text2.scale.set(2,2);
+            //text = _game.add.text(_game.world.centerX + 20, _game.world.centerY, _unite , {align: "center"});
+            //text2 = _game.add.text(_game.world.centerX - 20, _game.world.centerY, _dizaine, {align: "center"});
 
+        	text.anchor.set(0.5,0.5);
+            text.scale.set(2,2);
+            text2.anchor.set(0.5,0.5);
+            text2.scale.set(2,2);
   		},
 
   		update :function(){
-        text.setText(_unite);
-        text2.setText(_dizaine);
+			dizaineSprite.frame = _dizaine;
+			uniteSprite.frame = _unite;
+            //text.setText(_unite);
+            //text2.setText(_dizaine);
   		}
   	}
 
