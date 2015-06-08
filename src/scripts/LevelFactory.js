@@ -82,7 +82,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				_currentLevel = 1;
 				_game.state.start('MainMenu');
 			} else {
-				text = _game.add.text(_game.world.width - 50, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
+				text = _game.add.text(_game.world.width - 50, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center", fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
 				text.anchor.set(1,0);
 				button_menu = _game.add.button(10,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
