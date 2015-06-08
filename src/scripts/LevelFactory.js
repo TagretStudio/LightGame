@@ -68,7 +68,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_nbLummingsV = this.levelStruct.getNbLummingsWin();
 			_tabAvailableObjects = this.levelStruct.getTabAvailableObjects();
 
-			if (_groupLum.total == 0) {
+			if (_nbLummingsV == 0) {
 				_currentLevel = 1;
 				_game.state.start('MainMenu');
 			} else {
@@ -114,7 +114,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			if (_nbLummingsV == _nbLummingsSaved) {
 				if (!_alreadyChangeLevel) {
 					_game.time.events.add(Phaser.Timer.SECOND*1.8, function() {
-						if (_groupLum.total == 0) {
+						if (_nbLummingsV == 0) {
 							Transition.nextState('MainMenu', _music);
 						} else {
 							_currentLevel++;

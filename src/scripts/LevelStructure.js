@@ -20,7 +20,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.groupDoors.enableBody = true;
 		this.groupDoorsRadioAura.enableBody = true;
 
-		this.nbLummingsWin = 1;
+		this.nbLummingsWin = 0;
 		this.tabAvailableObjects = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
 		switch (indexLevel) {
