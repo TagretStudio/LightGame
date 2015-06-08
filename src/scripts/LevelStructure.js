@@ -23,7 +23,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.nbLummingsWin = 0;
 		this.tabAvailableObjects = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
-		switch (indexLevel+1) {
+		switch (indexLevel+11) {
 			case 1:
 				doorRadio1 = PorteWithAuraFactory.create(380,236, 200);
 				this.groupDoorsRadioAura.add(doorRadio1);
@@ -266,7 +266,29 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				break;
 			
 			case 12:
-				// level en cours
+				platform(this.groupPlatforms, 100, 300, 600);
+				platform(this.groupPlatforms, 100, 150, 200);
+				
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 620, 180);
+				this.groupDoors.add(door1);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 100, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 170, 100, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 190, 100, 50);
+				lum4 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 110, 250, 50);
+				lum5 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 130, 250, 50);
+				lum6 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 150, 250, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
+				this.groupLummings.add(lum4);
+				this.groupLummings.add(lum5);
+				this.groupLummings.add(lum6);
+
+				lumX = XLummingFactory.create(110, 100, 70);
+				this.groupLummings.add(lumX);
+				
+				
 				break;
 				
 			default:
