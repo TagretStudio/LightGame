@@ -22,6 +22,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _currentVision = null;
 	var _button_restart = null;
 	var _button_menu = null;
+	       var _button_help = null;
 	var _tabAvailableObjects = null;
 
 	var LevelFactory = {
@@ -31,6 +32,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.load.image('buttonDiamond', 'media/img/menuButton.png');
 			_game.load.image('buttonRefresh', 'media/img/refresh.png')
 			_game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
+		    _game.load.image('aide', 'media/img/aideColore.png');
+		    
+		    _game.load.image('aideScreen', 'media/img/ecranAide.png');
 			MenuFactoryTest.init(_game);
 			PlatformFactory.init(_game);
 			VisibleLummingFactory.init(_game);
@@ -74,9 +78,10 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			} else {
 				text = _game.add.text(_game.world.width - 50, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center"});
 				text.anchor.set(1,0);
-				button_menu = _game.add.button(32,0, 'buttonDiamond', actionOnMenu, _game);
+				button_menu = _game.add.button(10,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
-
+			    button_help = _game.add.button(128, 0, 'aide', actionOnHelp, _game);
+			    button_help.scale.set(0.5, 0.5);
 				_menu = MenuFactoryTest.create(_tabAvailableObjects);
 				ItemsLevel.reinit(_game);
 				ItemsLevel.setgroup(_groupLum);
@@ -216,6 +221,13 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			}, _game);
 		}
 	}
+
+	       function actionOnHelp() {
+		   var ecranAide = _game.add.sprite(0, 0, 'aideScreen');
+		   ecranAide.scale.set(_game.world.width/786, _game.world.height/588);
+		   _game.pause();
+		   _game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;ecranAide.destroy();;}},_game);
+	       }
 
 	return {
 		init: function(game) {
