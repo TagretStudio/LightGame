@@ -267,17 +267,17 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 			
 			case 12:
 				platform(this.groupPlatforms, 100, 300, 600, true, true);
-				platform(this.groupPlatforms, 100, 150, 200, true, true);
+				platform(this.groupPlatforms, 50, 150, 200, true, true);
 				
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 620, 270);
 				this.groupDoors.add(door1);
 
-				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 150, 100, 50);
-				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 170, 100, 50);
-				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 190, 100, 50);
-				lum4 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 110, 250, 50);
-				lum5 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 130, 250, 50);
-				lum6 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 150, 250, 50);
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 120, 100, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 140, 100, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 160, 100, 50);
+				lum4 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 150, 250, 50);
+				lum5 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 170, 250, 50);
+				lum6 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 190, 250, 50);
 				this.groupLummings.add(lum1);
 				this.groupLummings.add(lum2);
 				this.groupLummings.add(lum3);
@@ -285,7 +285,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lum5);
 				this.groupLummings.add(lum6);
 
-				lumX = XLummingFactory.create(110, 100, 70);
+				lumX = XLummingFactory.create(80, 100, 60);
 				this.groupLummings.add(lumX);
 				
 				this.nbLummingsWin = 4;
@@ -293,6 +293,34 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				// tous les filtres
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,1,1,1];
 
+				break;
+			
+			case 13:
+				platform(this.groupPlatforms, 300, 100, 100, true, true);
+				platform(this.groupPlatforms, 100, 200, 150, true, true);
+				platform(this.groupPlatforms, 350, 200, 260, true, true);
+				platform(this.groupPlatforms, 100, 300, 150, true, true);
+				icePit(this, 250, 300, 64);
+				platform(this.groupPlatforms, 314, 300, 400, true, true);
+				platform(this.groupPlatforms, 700, 270, 64, true, true);
+				
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().CYAN, 130, 170);
+				this.groupDoors.add(door1);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 450, 150, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 470, 150, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				lumM = MicroLummingFactory.create(450, 250, 60);
+				this.groupLummings.add(lumM);
+				lumX = XLummingFactory.create(350, 50, 60);
+				this.groupLummings.add(lumX);
+				
+				this.nbLummingsWin = 2;
+				
+				// tous les filtres
+				this.tabAvailableObjects = [0,0,0,0,1,0,0,1,1,1,1,1,1];
+				
 				break;
 				
 			default:
