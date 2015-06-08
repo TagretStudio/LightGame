@@ -90,7 +90,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				text.anchor.set(1,0);
 				button_menu = _game.add.button(10,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
-			    button_help = _game.add.button(80, 0, 'aide', actionOnHelp, _game);
+			    button_help = _game.add.button(90, 0, 'aide', actionOnHelp, _game);
 			    button_help.scale.set(64/148, 32/74);
 			    button_menu.scale.set(64/148, 32/74);
 				_menu = MenuFactoryTest.create(_tabAvailableObjects);
