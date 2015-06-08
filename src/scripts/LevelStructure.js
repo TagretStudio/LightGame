@@ -296,8 +296,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				break;
 			
 			case 13:
-				platform(this.groupPlatforms, 300, 100, 100, true, true);
-				platform(this.groupPlatforms, 100, 200, 150, true, true);
+				platform(this.groupPlatforms, 300, 100, 250, true, true);
+				platform(this.groupPlatforms, 100, 200, 170, true, true);
 				platform(this.groupPlatforms, 350, 200, 260, true, true);
 				platform(this.groupPlatforms, 100, 300, 150, true, true);
 				icePit(this, 250, 300, 64);
