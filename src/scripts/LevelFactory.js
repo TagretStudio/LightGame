@@ -23,6 +23,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _button_restart = null;
 	var _button_menu = null;
 	var _tabAvailableObjects = null;
+	var _dark = null;
 
 	var LevelFactory = {
 
@@ -51,6 +52,11 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			VisionEnum.setVisionCurrent(_currentVision);
+
+			_dark = _game.add.sprite(0,0,'preloaderBackground');
+			_dark.tint = 0;
+			_dark.alpha = 0.5;
+
 			this.levelStruct = LevelStructure.create(_currentLevel);
 
 			_groupPlatforms = this.levelStruct.getPlatforms();
@@ -110,6 +116,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 					p.update();
 				}
 			)
+
+			_dark.alphaTarget = 0.5 - 0.5 * _nbLummingsSaved/_nbLummingsV;
+			_dark.alpha += (_dark.alphaTarget-_dark.alpha)/8;
 
 			if (_nbLummingsV == _nbLummingsSaved) {
 				if (!_alreadyChangeLevel) {
