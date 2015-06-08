@@ -30,13 +30,13 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
 		var sp;
 		transpaSprite.add(sp = _game.add.sprite(uniteSprite.x, uniteSprite.y, uniteSprite.key, uniteSprite.frame));
 		sp.anchor.set(0.5, 0.5);
-		sp.angle = Math.random();
+		sp.angle = Math.random()*Math.PI-Math.PI/2;
 	}
 	if (diz != _dizaine) {
 		var sp;
 		transpaSprite.add(sp = _game.add.sprite(dizaineSprite.x, dizaineSprite.y, dizaineSprite.key, dizaineSprite.frame));
 		sp.anchor.set(0.5, 0.5);
-		sp.angle = Math.random();
+		sp.angle = Math.random()*Math.PI+Math.PI/2;
 	}
     //Transition.nextState('LevelFactory', _music);
   }
