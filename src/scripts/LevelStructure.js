@@ -213,6 +213,28 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				break;
 			
 			case 10:
+				platform(this.groupPlatforms, 80, 150, 100);
+				platform(this.groupPlatforms, 0, 300, 300);
+				waterPit(this, 300, 300, 64);
+				platform(this.groupPlatforms, 480, 150, 150);
+				
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 600, 120);
+				this.groupDoors.add(door1);
+				
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 60, 250, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().MAGENTA, 90, 250, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 120, 250, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
+				lumM = MicroLummingFactory.create(100, 100, 60);
+				this.groupLummings.add(lumM);
+				
+				this.nbLummingsWin = 3;
+
+				// on donne les filtres additifs				
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,0,0,0];
+				
 				break;
 				
 			default:
@@ -240,7 +262,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		pit(ls, x, y, w);
 	}
 
-	waterPit = function(x, y) {
+	waterPit = function(ls, x, y, w) {
 		var water;
 		ls.groupElements.add(water = WaterFactory.create(x, y));
 		water.width = w;
