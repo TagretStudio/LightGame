@@ -238,7 +238,26 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				break;
 			
 			case 11:
-				// ecriture niveau 11 en cours
+				platform(this.groupPlatforms, 100, 300, 400);
+				platform(this.groupPlatforms, 540, 210, 100, false);
+				icePit(this, 500, 300, 64);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 620, 180);
+				this.groupDoors.add(door1);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 120, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+
+				lumX = XLummingFactory.create(250, 200, 70);
+				this.groupLummings.add(lumX);
+				lumM = MicroLummingFactory.create(200, 200, 50);
+				this.groupLummings.add(lumM);
+
+				this.nbLummingsWin = 2;
+
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,1,1,1];
 				break;
 				
 			default:
