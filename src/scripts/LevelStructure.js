@@ -192,7 +192,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 3;
 				//on donne une antenne
 				this.tabAvailableObjects = [0,0,0,0,0,1,0,0,0,0,0,0,0];
-				levelText("En vous servant de la reglette en bas à gauche, vous changez de niveau de vision. Essayez l'antenne radio: elle génère un lumming \"radio\" qui est capable d'ouvrir les portes radio");
+				levelText("En vous servant de la reglette en bas à gauche, vous changez de niveau de vision. Essayez l'antenne radio: elle génère un lumming \"radio\" qui est capable d'ouvrir les portes antennes");
 
 				break;
 			
