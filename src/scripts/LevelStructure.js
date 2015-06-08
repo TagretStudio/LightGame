@@ -71,14 +71,15 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupDoors.add(door1);
 				this.groupDoors.add(door2);
 
-				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
-				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 100, 200, 50);
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 250, 200, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 200, 200, 50);
 				this.groupLummings.add(lum1);
 				this.groupLummings.add(lum2);
 
 				this.nbLummingsWin = 2;
 
-				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+				//this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 				_game.add.text(0, 32, "Le but du jeu est de faire passer les lummings de couleur par les portes de même couleur", {wordWrap: true, wordWrapWidth: _game.world.width});
 
@@ -115,6 +116,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//on donne les 3 filtres soustractifs
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,1,1];
 
+				_game.add.text(0, 32, "La soustraction n'est pas toujours aussi simple...", {wordWrap: true, wordWrapWidth: _game.world.width});
+
 				break;
 
 			case 5: //level 3
@@ -132,9 +135,26 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//on donne un filtre cyan
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,0,1,0];
 
+				_game.add.text(0, 32, "Si vous supprimez toutes ses couleurs à un lumming, il meurt. Mais regardez en haut à droite, vous n'avez pas forcément à tous les sauver...", {wordWrap: true, wordWrapWidth: _game.world.width});
+
 				break;
 
 			case 6: //level 4
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
+				this.groupDoors.add(door1);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
+				this.groupLummings.add(lum1);
+				this.nbLummingsWin = 1;
+				//on donne un filtre cyan
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,1,0,0,0];
+				_game.add.text(0, 32, "Les additifs (mettre un texte plus intelligent)", {wordWrap: true, wordWrapWidth: _game.world.width});
+
+				break;
+
+			case 7: //level 5
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270);
@@ -148,23 +168,6 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 2;
 				//on donne un filtre vert et un jaune
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,1,0,0,0,1];
-
-				break;
-
-			case 7: //level 5
-				platform(this.groupPlatforms, 100, 300, 600);
-
-				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
-				this.groupDoors.add(door1);
-
-				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
-				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().MAGENTA, 100, 200, 50);
-				this.groupLummings.add(lum1);
-				this.groupLummings.add(lum2);
-
-				this.nbLummingsWin = 2;
-				//on donne un filtre bleu
-				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,1,0,0,0];
 
 				break;
 
@@ -184,7 +187,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 1;
 				//on donne un filtre jaune et une antenne
 				this.tabAvailableObjects = [0,0,0,0,0,1,0,0,0,0,0,0,1];
-				
+				_game.add.text(0, 32, "Expliquer les niveaux de vision, la reglette, les portes antennes et les radios en une fois ?", {wordWrap: true, wordWrapWidth: _game.world.width});
+
 				break;
 			
 			case 9:
@@ -209,7 +213,6 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				break;
 			
 			case 10:
-				
 				break;
 				
 			default:
