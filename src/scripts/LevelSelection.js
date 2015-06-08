@@ -33,8 +33,8 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
    	var _levelSelection = {
   		preload : function(){
         _pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
-        _pointButtons = new Phaser.Point(_game.world.centerX - 20, _game.world.centerY - 100);
-        _game.load.spritesheet('level1Sp', 'media/img/niveau1Spritesheet.png', 288, 64);
+        _pointButtons = new Phaser.Point(20, 20);
+        _game.load.spritesheet('levelSp', 'media/img/niveauSpritesheet.png', 288, 64);
 
   		},
 
@@ -43,9 +43,10 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
 
         _buttons = _game.add.group();
         _buttons.scale.set(_game.world.width/1024, _game.world.height/768);
-        _buttons.add(_buttonCredits = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 160, 'level1Sp', actionCredits, _game, 0, 1, 2));
-        _buttons.add(_buttonPlay = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 100, 'level1Sp', actionPlay, _game, 0, 1, 2));
-        _buttons.add(_buttonQuit = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 220, 'level1Sp', actionQuit, _game, 0, 1, 2));
+        _buttons.add(_buttonPlay = _game.make.button(Math.round(Math.random()*10)*-5, 0, 'levelSp', actionPlay, _game, 0, 1, 2));
+        _buttons.add(_buttonCredits = _game.make.button(Math.round(Math.random()*10)*-5, 60, 'levelSp', actionCredits, _game, 3, 4, 5));
+
+        _buttons.add(_buttonQuit = _game.make.button(Math.round(Math.random()*10)*-5,  120, 'levelSp', actionQuit, _game, 0, 1, 2));
 
   		},
 
