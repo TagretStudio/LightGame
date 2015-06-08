@@ -38,13 +38,13 @@ define(['VisionEnum'], function(VisionEnum) {
 			if (VisionEnum.getVisionCurrent() == this.defaultVision) {
 				if (this.body.velocity.x > 0) {
 					this.animations.play('right');
-				} else {
+				} else if (this.body.velocity.x < 0) {
 					this.animations.play('left');
 				}
 			} else {
 				if (this.body.velocity.x > 0) {
 					this.animations.play('right_invisible');
-				} else {
+				} else if (this.body.velocity.x < 0) {
 					this.animations.play('left_invisible');
 				}
 			}
