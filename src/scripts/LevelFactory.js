@@ -224,6 +224,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		},
 		getLevel: function() {
 			return LevelFactory;
+		},
+		setLevel : function(level){
+			_currentLevel = level;
 		}
 	}
 
