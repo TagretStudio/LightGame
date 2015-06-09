@@ -396,6 +396,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 					p.body.checkCollision.up = true;
 				}
 				var c = _game.add.sprite(p.x, p.y, p.key, p.frame+16);
+				c.width = p.width;
 				c.alpha = 0;
 				c.anchor = p.anchor;
 				p.colorClone = c;
@@ -538,6 +539,13 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		var sw = dummy.width;
 		dummy.kill();
 		var p;
+
+		p = _game.add.sprite(x, y,'platforms',6);
+		p.isPb = false;
+		p.width = w;
+		groupPlatforms.add(p);
+		p.anchor.set(0,0);
+		/*
 		for (var i=0; i< Math.floor(Math.floor(w/sw)/2)+1; i++) {
 			p = _game.add.sprite(x + w/2 - i*sw, y,'platforms',6);
 			p.isPb = false;
@@ -548,6 +556,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 			groupPlatforms.add(p);
 			p.anchor.set(1,0);
 		}
+		*/
 		p = _game.add.sprite(x,y,'platforms',4);
 		p.isPb = false;
 		if (!l) p.frame+=2;
@@ -601,7 +610,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		init: function(game) {
 			_game = game;
 			_game.load.spritesheet('platforms', 'media/img/tiles3.png',32,32);
-            _game.load.image('plomb', 'media/img/plombVertical.png');
+            _game.load.image('plomb', 'media/img/plombVertical.png'); 
 		},
 
 		create: function(indexLevel) {
