@@ -1,11 +1,13 @@
 define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		'MusicFactory', 'PlatformFactory', 'DoorsFactory', 'MenuFactoryTest',
 		'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory', 'MicroLummingFactory',
-		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory', 'IceFactory', 'WaterFactory', 'SteamFactory', 'PorteWithAuraFactory'],
+		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory', 'IceFactory',
+		'WaterFactory', 'SteamFactory', 'PorteWithAuraFactory', 'GammaLummingFactory'],
 	   function(Images, LummingFactory,	VisibleLummingFactory, ColorEnum,
 				MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest,
 				VisionEnum,	Transition, FilterFactory, RadioLummingFactory, MicroLummingFactory,
-				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory, IceFactory, WaterFactory, SteamFactory, PorteWithAuraFactory) {
+				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory, IceFactory,
+				WaterFactory, SteamFactory, PorteWithAuraFactory, GammaLummingFactory) {
 
 	var _game = null;
 	var _currentLevel = null;
@@ -40,7 +42,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		    }
 			_game.load.image('buttonDiamond', 'media/img/menuButton.png');
 			_game.load.image('buttonRefresh', 'media/img/refresh.png')
-			_game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
+			_game.load.image('cliquez', 'media/img/cliquerPourCommencer.png');
 		    _game.load.image('aide', 'media/img/aideColore.png');
 		    _game.load.image('aideScreen', 'media/img/ecranAide.png');
 			MenuFactoryTest.init(_game);
@@ -53,6 +55,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			WaterFactory.init(_game);
 			SteamFactory.init(_game);
 			PorteWithAuraFactory.init(_game);
+			GammaLummingFactory.init(_game);
 		},
 
 		create: function() {
@@ -158,6 +161,13 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 			_dark.alphaTarget = 0.5 - 0.5 * _nbLummingsSaved/_nbLummingsV;
 			_dark.alpha += (_dark.alphaTarget-_dark.alpha)/8;
+
+			_groupPlatforms.forEach(
+				function(p) {
+					p.colorClone.alphaTarget = _nbLummingsSaved/_nbLummingsV;
+					p.colorClone.alpha += (p.colorClone.alphaTarget-p.colorClone.alpha)/8;
+				}
+			);
 
 		    if (_marque == true) {
 			_marque = false;

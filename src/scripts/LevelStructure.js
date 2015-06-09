@@ -1,9 +1,9 @@
 define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		'DoorsFactory', 'XLummingFactory', 'MicroLummingFactory', 'IceFactory',
-		'PorteWithAuraFactory', 'WaterFactory'],
+		'PorteWithAuraFactory', 'WaterFactory', 'GammaLummingFactory'],
 	   function(PlatformFactory, LummingFactory, VisibleLummingFactory, ColorEnum,
 				DoorsFactory, XLummingFactory, MicroLummingFactory, IceFactory,
-				 PorteWithAuraFactory, WaterFactory) {
+				 PorteWithAuraFactory, WaterFactory, GammaLummingFactory) {
 
 	var _game = null;
 
@@ -23,7 +23,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.nbLummingsWin = 0;
 		this.tabAvailableObjects = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
-		switch (indexLevel+1) {
+		switch (indexLevel) {
 			case 1:
 				doorRadio1 = PorteWithAuraFactory.create(380,236, 200);
 				this.groupDoorsRadioAura.add(doorRadio1);
@@ -344,10 +344,72 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 3;
 				
 				// tous les filtres et des miroirs
-				this.tabAvailableObjects = [0,0,0,2,1,0,0,1,1,1,1,1,1];
-		    levelText("Les miroirs reflètent très bien la lumière, pratique pour traverser du vide");
+				this.tabAvailableObjects = [0,0,0,1,1,0,0,1,1,1,1,1,1];
+				levelText("Les miroirs reflètent très bien la lumière, pratique pour traverser du vide");
 				
 				break;
+							
+			case 15:
+				// a changer en plomb
+				platformPlomb(this.groupPlatforms, 690, 170, 60, true, true);
+				platformPlomb(this.groupPlatforms, 200, 200, 500, true, true);
+				platformPlomb(this.groupPlatforms, 100, 300, 600, true, true);
+				platformPlomb(this.groupPlatforms, 50, 270, 60, true, true);
+				
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 590, 170);
+				door2 = DoorsFactory.create(ColorEnum.getColorEnum().GREEN, 620, 170);
+				door3 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 650, 170);
+				door4 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 650, 270);
+				this.groupDoors.add(door1);
+				this.groupDoors.add(door2);
+				this.groupDoors.add(door3);
+				this.groupDoors.add(door4);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 220, 150, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 240, 150, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 260, 150, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
+				
+				gamma = GammaLummingFactory.create(300, 150, 60);
+				this.groupLummings.add(gamma);
+				
+				this.nbLummingsWin = 3;
+				
+				// tous les filtres et des platformes en plomb
+				this.tabAvailableObjects = [0,0,0,0,1,0,0,1,1,1,1,1,1];
+				levelText("Les rayons gamma passent à travers tout sauf le plomb. Faites attention, ils détruisent les portails de sortie");
+				
+				break;
+
+			case 16: //niveau gamma
+
+				platformPlomb(this.groupPlatforms, 300, 100, 500, true, true);
+				platform(this.groupPlatforms, 150, 300, 450, true, true);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 70);
+				door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 400, 270);
+
+				this.groupDoors.add(door1);
+				this.groupDoors.add(door2);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 330, 60, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 350, 60, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 370, 60, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
+
+				gamma = GammaLummingFactory.create(330, 50, 60);
+				this.groupLummings.add(gamma);
+
+				this.nbLummingsWin = 3;
+
+				this.tabAvailableObjects = [1,0,0,0,1,0,0,1,1,1,1,1,1];
+
+				break;
+				
 			
 			default:
 				break;
@@ -363,6 +425,11 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 					p.body.checkCollision.right = false;
 					p.body.checkCollision.up = true;
 				}
+				var c = _game.add.sprite(p.x, p.y, p.key, p.frame+16);
+				c.width = p.width;
+				c.alpha = 0;
+				c.anchor = p.anchor;
+				p.colorClone = c;
 			}
 		);
 	}
@@ -395,6 +462,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		var p;
 
 		p = _game.add.sprite(ice.left, ice.y, 'platforms',3);
+		p.isPb = false;
 		p.anchor.set(1,0);
 		ls.groupPlatforms.add(p);
 		p.body.checkCollision.down = false;
@@ -404,6 +472,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		p.collisionsSet = true;
 
 		p = _game.add.sprite(ice.right, ice.y, 'platforms',5);
+		p.isPb = false;
 		p.anchor.set(0,0);
 		ls.groupPlatforms.add(p);
 		p.body.checkCollision.down = false;
@@ -413,6 +482,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		p.collisionsSet = true;
 
 		p = _game.add.sprite(ice.left, ice.y + ice.height, 'platforms',12);
+		p.isPb = false;
 		p.anchor.set(1,0);
 		ls.groupPlatforms.add(p);
 		p.body.checkCollision.down = false;
@@ -432,6 +502,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		ls.groupPlatforms.add(p);
 
 		p = _game.add.sprite(x, ice.y + ice.height, 'platforms',14);
+		p.isPb = false;
 		p.anchor.set(0,0);
 		ls.groupPlatforms.add(p);
 		p.width = w;
@@ -444,6 +515,53 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		ice.kill();
 	}
 
+	platformPlomb = function(groupPlatforms, x, y, w, l, r) {
+		if (l==null) l=true;
+		if (r==null) r=true;
+
+		var dummy = _game.add.sprite(0,0,'plomb');
+		var sw = dummy.width;
+		dummy.kill();
+		var p;
+
+		for (var i=0; i< Math.floor(Math.floor(w/sw)/2)+1; i++) {
+			p = _game.add.sprite(x + w/2 - i*sw, y,'plomb');
+			p.isPb = true;
+			groupPlatforms.add(p);
+			p.anchor.set(0,0);
+			p = _game.add.sprite(x + w/2 + i*sw, y,'plomb');
+			p.isPb = true;
+			groupPlatforms.add(p);
+			p.anchor.set(1,0);
+		}
+		p = _game.add.sprite(x,y,'plomb');
+		p.isPb = true;
+		if (!l) p.frame+=2;
+		groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = l;
+		p.body.checkCollision.right = false;
+		p.body.checkCollision.up = false;
+		p.collisionsSet = true;
+		p = _game.add.sprite(x+w,y,'plomb');
+		p.isPb = true;
+		if (!r) p.frame+=4;
+		groupPlatforms.add(p);
+		p.anchor.set(1,0);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = r;
+		p.body.checkCollision.up = false;
+		p.collisionsSet = true;
+
+		/*
+		p = _game.add.sprite(x,y,'plomb');
+		p.isPb = true;
+		groupPlatforms.add(p);
+		p.width = w;
+		*/
+	}
+
 	platform = function(groupPlatforms, x, y, w, l, r) {
 		if (l==null) l=false;
 		if (r==null) r=false;
@@ -451,15 +569,26 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		var sw = dummy.width;
 		dummy.kill();
 		var p;
+
+		/*
+		p = _game.add.sprite(x, y,'platforms',6);
+		p.isPb = false;
+		p.width = w;
+		groupPlatforms.add(p);
+		p.anchor.set(0,0);
+		*/
 		for (var i=0; i< Math.floor(Math.floor(w/sw)/2)+1; i++) {
 			p = _game.add.sprite(x + w/2 - i*sw, y,'platforms',6);
+			p.isPb = false;
 			groupPlatforms.add(p);
 			p.anchor.set(0,0);
 			p = _game.add.sprite(x + w/2 + i*sw, y,'platforms',6);
+			p.isPb = false;
 			groupPlatforms.add(p);
 			p.anchor.set(1,0);
 		}
 		p = _game.add.sprite(x,y,'platforms',4);
+		p.isPb = false;
 		if (!l) p.frame+=2;
 		groupPlatforms.add(p);
 		p.body.checkCollision.down = false;
@@ -468,6 +597,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		p.body.checkCollision.up = false;
 		p.collisionsSet = true;
 		p = _game.add.sprite(x+w,y,'platforms',2);
+		p.isPb = false;
 		if (!r) p.frame+=4;
 		groupPlatforms.add(p);
 		p.anchor.set(1,0);
@@ -510,6 +640,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		init: function(game) {
 			_game = game;
 			_game.load.spritesheet('platforms', 'media/img/tiles3.png',32,32);
+            _game.load.image('plomb', 'media/img/plombVertical.png'); 
 		},
 
 		create: function(indexLevel) {
