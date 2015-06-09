@@ -19,6 +19,8 @@ define(['VisionEnum'], function(VisionEnum) {
 		} else {
 			this.animSpeed = 14;
 		}
+		this.animations.add('leftPresentation', [0,1,2,3,4,5,6,7], this.animSpeed/2, true);
+		this.animations.add('rightPresentation', [0,1,2,3,8,9,10,11], this.animSpeed/2, true);
 		this.animations.add('left', [4, 5, 6, 7], this.animSpeed, true);
 		this.animations.add('right',  [8, 9, 10, 11], this.animSpeed, true);
 		this.animations.add('left_invisible', [20, 21, 22, 23], this.animSpeed, true);
@@ -34,14 +36,6 @@ define(['VisionEnum'], function(VisionEnum) {
 		return this.defaultVision;
 	}
 
-	Lumming.prototype.toLol = function() {
-//		if (this.body.velocity.x > 0){
-//alert('je suis la');
-			this.animations.play('right');
-	//	}	else if (this.body.velocity.x < 0) {
-	//		this.animations.play('left');
-	//	}
-	}
 
 	Lumming.prototype.update = function() {
 		if (this.color == null) { //vaut null si on est en train de sortir d'une porte ou si on est en train de mourir
@@ -50,6 +44,15 @@ define(['VisionEnum'], function(VisionEnum) {
 				this.kill();
 			}
 		} else {
+			if (VisionEnum.getVisionCurrent() == VisionEnum.MEGA){
+					if (this.body.velocity.x > 0) {
+					//	this.animations.play('rightPresentation');
+						this.animations.play('rightPresentation');
+					} else if (this.body.velocity.x < 0) {
+						this.animations.play('leftPresentation');
+					}
+			}
+			else{
 			if (VisionEnum.getVisionCurrent() == this.defaultVision || VisionEnum.getVisionCurrent() == VisionEnum.MEGA) {
 				if (this.body.velocity.x > 0) {
 					this.animations.play('right');
@@ -63,6 +66,7 @@ define(['VisionEnum'], function(VisionEnum) {
 					this.animations.play('left_invisible');
 				}
 			}
+		}
 			if (this.position.y > _game.world.height - 96) {
 				this.body.velocity.x = 0;
 				this.body.velocity.y = -100;
