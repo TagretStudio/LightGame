@@ -10,6 +10,15 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 	var _buttonQuit = null;
 	var _music = null;
 
+	function gofull() {
+		if (_game.scale.isFullScreen) {
+			_game.scale.stopFullScreen();
+		} else {
+			_game.scale.startFullScreen(false);
+		}
+	}
+
+
 	function actionPlay() {
 		_buttonPlay.kill();
 		Transition.nextState('LevelFactory', _music);
@@ -32,6 +41,7 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 		},
 
 		create : function(){
+			_game.scale.refresh();
 			if (_music.isPlaying() == false){
 				_music.play();
 			}
@@ -41,11 +51,10 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 
 			_buttons = _game.add.group();
 			_buttons.scale.set(_game.world.width/1024, _game.world.height/768);
-			_buttons.add(_buttonCredits = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 160, 'button', actionCredits, _game, 3, 4, 5));
+			_buttons.add(_buttonCredits = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 160, 'button', function(){			gofull();
+actionCredits()}, _game, 3, 4, 5));
 			_buttons.add(_buttonPlay = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 100, 'button', actionPlay, _game, 0, 1, 2));
 			_buttons.add(_buttonQuit = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 220, 'button', actionQuit, _game, 6, 7, 8));
-
-
 		},
 
 		update : function(){

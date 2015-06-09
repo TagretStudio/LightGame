@@ -3,8 +3,9 @@ require(['./Chargement','./MainMenu', './PreChargement', 'LevelFactory', 'LevelS
 ,function(Chargement, MainMenu, PreChargement, LevelFactory, LevelSelection){
 	var _game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
 
-	//  var _game = new Phaser.Game(1024, 768, Phaser.AUTO, 'game');
 
+	//  var _game = new Phaser.Game(1024, 768, Phaser.AUTO, 'game');
+	
 	// boot state
 	PreChargement.init(_game, 'Chargement');
 	_game.state.add('PreChargement', PreChargement.getPreChargement());

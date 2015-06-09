@@ -6,7 +6,8 @@ define(['./Images', 'MusicFactory', 'Transition', 'MenuFactoryTest', 'ItemsLevel
 
 		init : function(){
 			_game.scale.pageAlignHorizontally = true;
- 
+
+			_game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
 
 		},
 
@@ -23,6 +24,7 @@ define(['./Images', 'MusicFactory', 'Transition', 'MenuFactoryTest', 'ItemsLevel
 		}
 				  ,
 				  create : function(){
+				//		_game.scale.startFullScreen(false);
 
 					//	Transition.nextState(_etapesuivante);
 					  _game.state.start(_etapesuivante);
