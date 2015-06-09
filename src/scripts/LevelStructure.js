@@ -1,9 +1,9 @@
 define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		'DoorsFactory', 'XLummingFactory', 'MicroLummingFactory', 'IceFactory',
-		'PorteWithAuraFactory', 'WaterFactory'],
+		'PorteWithAuraFactory', 'WaterFactory', 'GammaLummingFactory'],
 	   function(PlatformFactory, LummingFactory, VisibleLummingFactory, ColorEnum,
 				DoorsFactory, XLummingFactory, MicroLummingFactory, IceFactory,
-				 PorteWithAuraFactory, WaterFactory) {
+				 PorteWithAuraFactory, WaterFactory, GammaLummingFactory) {
 
 	var _game = null;
 
@@ -345,7 +345,37 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				
 				// tous les filtres et des miroirs
 				this.tabAvailableObjects = [0,0,0,2,1,0,0,1,1,1,1,1,1];
-		    levelText("Les miroirs reflètent très bien la lumière, pratique pour traverser du vide");
+				levelText("Les miroirs reflètent très bien la lumière, pratique pour traverser du vide");
+				
+				break;
+							
+			case 15:
+				// a changer en plomb
+				platformPlomb(this.groupPlatforms, 690, 170, 60, true, true);
+				platformPlomb(this.groupPlatforms, 200, 200, 500, true, true);
+				platformPlomb(this.groupPlatforms, 100, 300, 600, true, true);
+				platformPlomb(this.groupPlatforms, 50, 270, 60, true, true);
+				
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().GREEN, 650, 170);
+				door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 650, 270);
+				this.groupDoors.add(door1);
+				this.groupDoors.add(door2);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 220, 150, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 240, 150, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 260, 150, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
+				
+				//gamma = GammaLummingFactory.create(300, 150, 60);
+				//this.groupLummings.add(gamma);
+				
+				this.nbLummingsWin = 3;
+				
+				// tous les filtres et des platformes en plomb
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,1,1,1];
+				levelText("Les rayons gamma passent à travers tout sauf le plomb. Faites attention, ils détruisent les portails de sortie");
 				
 				break;
 
