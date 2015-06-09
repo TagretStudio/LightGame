@@ -402,7 +402,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				this.nbLummingsWin = 3;
 
-				this.tabAvailableObjects = [1,0,0,0,1,0,0,0,1,0,0,0,1];
+				this.tabAvailableObjects = [1,0,0,0,1,0,0,1,1,1,1,1,1];
 
 				break;
 				
