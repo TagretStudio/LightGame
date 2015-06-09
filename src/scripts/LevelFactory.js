@@ -30,9 +30,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	       var ecranAide = null;
 				var playing = false;
 				var demarrer = false;
-				var helpO = false;
-				var helpI = false;
-				var input;
 	var LevelFactory = {
 
 		preload: function() {
@@ -62,7 +59,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			button_start = _game.add.button(0,0, '',actionOnMenu, _game);
 
 			playing =false;
-			helpI = false;
 			demarrer = false;
 			_alreadyChangeLevel = false;
 			_nbLummingsSaved = 0;
@@ -101,7 +97,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				text.anchor.set(1,0);
 				_menu = MenuFactoryTest.create(_tabAvailableObjects);
 
-				button_start = _game.add.button(0,0, '', function(){if(playing == false) {playing = true;cliquez.destroy();;}}, _game);
+				button_start = _game.add.button(0,0, '', function(){if(playing == false) {playing = true;cliquez.destroy();;} button_start.kill();}, _game);
 				button_start.scale.setTo(800, 600);
 				button_menu = _game.add.button(10,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
@@ -113,10 +109,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				var cliquez = this.add.sprite(_game.world.width/2, _game.world.height*2/3, 'cliquez');
 				cliquez.anchor.set(0.5, 0.5);
 				cliquez.scale.set(0.7, 0.7);
-
-			//	_game.input.onDown.add(function () {if(playing == false && helpI == false) {alert('la');playing = true;cliquez.destroy();;}},_game, 0);
-		//		_game.paused = true;
-	   _game.input.onDown.add(function () {if(_game.paused) {_game.paused = false; }},_game, 1);
+	   		_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false; }},_game, 1);
 				VisionEnum.setVisionCurrent(VisionEnum.MEGA);
 
 			}
@@ -128,10 +121,9 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				_game.physics.arcade.isPaused = true;
 				if (_marque == true) {
 					_marque = false;
-				killhelp();
-
+					ecranAide.kill();
 				}
-				if (playing == true && helpO == false){
+				if (playing == true){
 					demarrer = true;
 					_game.physics.arcade.isPaused = false;
 					VisionEnum.setVisionCurrent(_currentVision);
@@ -294,11 +286,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				   ecranAide.scale.set(_game.world.width/786, _game.world.height/588);
 
 	       }
-
-				function killhelp(){
-					ecranAide.kill();
-			//		helpO = false;
-				}
 
 	return {
 		init: function(game) {
