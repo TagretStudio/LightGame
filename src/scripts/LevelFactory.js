@@ -52,6 +52,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			WaterFactory.init(_game);
 			SteamFactory.init(_game);
 			PorteWithAuraFactory.init(_game);
+			GammaLummingFactory.init(_game);
 		},
 
 		create: function() {
