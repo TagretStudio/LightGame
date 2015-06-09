@@ -566,12 +566,13 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		dummy.kill();
 		var p;
 
+		/*
 		p = _game.add.sprite(x, y,'platforms',6);
 		p.isPb = false;
 		p.width = w;
 		groupPlatforms.add(p);
 		p.anchor.set(0,0);
-		/*
+		*/
 		for (var i=0; i< Math.floor(Math.floor(w/sw)/2)+1; i++) {
 			p = _game.add.sprite(x + w/2 - i*sw, y,'platforms',6);
 			p.isPb = false;
@@ -582,7 +583,6 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 			groupPlatforms.add(p);
 			p.anchor.set(1,0);
 		}
-		*/
 		p = _game.add.sprite(x,y,'platforms',4);
 		p.isPb = false;
 		if (!l) p.frame+=2;
