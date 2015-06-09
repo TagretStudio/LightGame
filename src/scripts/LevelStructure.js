@@ -395,6 +395,10 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 					p.body.checkCollision.right = false;
 					p.body.checkCollision.up = true;
 				}
+				var c = _game.add.sprite(p.x, p.y, p.key, p.frame+16);
+				c.alpha = 0;
+				c.anchor = p.anchor;
+				p.colorClone = c;
 			}
 		);
 	}

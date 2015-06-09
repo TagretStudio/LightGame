@@ -132,6 +132,13 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_dark.alphaTarget = 0.5 - 0.5 * _nbLummingsSaved/_nbLummingsV;
 			_dark.alpha += (_dark.alphaTarget-_dark.alpha)/8;
 
+			_groupPlatforms.forEach(
+				function(p) {
+					p.colorClone.alphaTarget = _nbLummingsSaved/_nbLummingsV;
+					p.colorClone.alpha += (p.colorClone.alphaTarget-p.colorClone.alpha)/8;
+				}
+			);
+
 		    if (_marque == true) {
 			_marque = false;
 			ecranAide.kill();
