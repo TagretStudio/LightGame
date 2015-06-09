@@ -130,12 +130,13 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					p.origX = p.x;
 					p.origY = p.y;
 
+					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 					p.copy = dragcopy;
 					if (p.number == 0) {
 						p.alpha = 0.25;
 						dragcopy.alpha = 0;
+						dragcopy.rect.alpha = 0;
 					}
-					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 				}
 			}
 		)
@@ -161,13 +162,13 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					p.origX = p.x;
 					p.origY = p.y;
 
-					p.copy = dragcopy;
+					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 					p.copy = dragcopy;
 					if (p.number == 0) {
 						p.alpha = 0.25;
 						dragcopy.alpha = 0;
+						dragcopy.rect.alpha = 0;
 					}
-					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 				}
 			}
 		)
@@ -194,13 +195,13 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					p.origX = p.x;
 					p.origY = p.y;
 
-					p.copy = dragcopy;
+					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 					p.copy = dragcopy;
 					if (p.number == 0) {
 						p.alpha = 0.25;
 						dragcopy.alpha = 0;
+						dragcopy.rect.alpha = 0;
 					}
-					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 				}
 			}
 		)
@@ -227,13 +228,13 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 					p.origX = p.x;
 					p.origY = p.y;
 
-					p.copy = dragcopy;
+					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 					p.copy = dragcopy;
 					if (p.number == 0) {
 						p.alpha = 0.25;
 						dragcopy.alpha = 0;
+						dragcopy.rect.alpha = 0;
 					}
-					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 				}
 			}
 		)
@@ -354,6 +355,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 				p.copy.alphaTarget = 0.25;
 				p.alpha += (p.alphaTarget-p.alpha)/8;
 				p.copy.alpha += (p.copy.alphaTarget-p.copy.alpha)/8;
+				p.copy.rect.alphaTarget = 0;
+				p.copy.rect.alpha += (p.copy.rect.alphaTarget-p.copy.rect.alpha)/8;
             }
         }
 	}
