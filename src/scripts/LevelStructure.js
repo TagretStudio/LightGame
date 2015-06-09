@@ -356,14 +356,18 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				platformPlomb(this.groupPlatforms, 100, 300, 600, true, true);
 				platformPlomb(this.groupPlatforms, 50, 270, 60, true, true);
 				
-				door1 = DoorsFactory.create(ColorEnum.getColorEnum().GREEN, 650, 170);
-				door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 650, 270);
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 590, 170);
+				door2 = DoorsFactory.create(ColorEnum.getColorEnum().GREEN, 620, 170);
+				door3 = DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 650, 170);
+				door4 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 650, 270);
 				this.groupDoors.add(door1);
 				this.groupDoors.add(door2);
+				this.groupDoors.add(door3);
+				this.groupDoors.add(door4);
 
-				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 220, 150, 50);
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 220, 150, 50);
 				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 240, 150, 50);
-				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 260, 150, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 260, 150, 50);
 				this.groupLummings.add(lum1);
 				this.groupLummings.add(lum2);
 				this.groupLummings.add(lum3);
