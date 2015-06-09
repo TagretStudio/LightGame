@@ -34,6 +34,14 @@ define(['VisionEnum'], function(VisionEnum) {
 		return this.defaultVision;
 	}
 
+	Lumming.prototype.toLol = function() {
+//		if (this.body.velocity.x > 0){
+//alert('je suis la');
+			this.animations.play('right');
+	//	}	else if (this.body.velocity.x < 0) {
+	//		this.animations.play('left');
+	//	}
+	}
 
 	Lumming.prototype.update = function() {
 		if (this.color == null) { //vaut null si on est en train de sortir d'une porte ou si on est en train de mourir
@@ -42,7 +50,7 @@ define(['VisionEnum'], function(VisionEnum) {
 				this.kill();
 			}
 		} else {
-			if (VisionEnum.getVisionCurrent() == this.defaultVision) {
+			if (VisionEnum.getVisionCurrent() == this.defaultVision || VisionEnum.getVisionCurrent() == VisionEnum.MEGA) {
 				if (this.body.velocity.x > 0) {
 					this.animations.play('right');
 				} else if (this.body.velocity.x < 0) {

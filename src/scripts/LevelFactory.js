@@ -22,11 +22,17 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _currentVision = null;
 	var _button_restart = null;
 	var _button_menu = null;
+	var _button_start = null;
 	var _tabAvailableObjects = null;
 	var _dark = null;
 	       var _marque = false;
 	       var _marque_music = true;
 	       var ecranAide = null;
+				var playing = false;
+				var demarrer = false;
+				var helpO = false;
+				var helpI = false;
+				var input;
 	var LevelFactory = {
 
 		preload: function() {
@@ -53,6 +59,11 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		},
 
 		create: function() {
+			button_start = _game.add.button(0,0, '',actionOnMenu, _game);
+
+			playing =false;
+			helpI = false;
+			demarrer = false;
 			_alreadyChangeLevel = false;
 			_nbLummingsSaved = 0;
 			_music.play();
@@ -88,25 +99,51 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			} else {
 				text = _game.add.text(_game.world.width - 50, 0, _nbLummingsSaved+'/'+_nbLummingsV, {align: "center", fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
 				text.anchor.set(1,0);
+				_menu = MenuFactoryTest.create(_tabAvailableObjects);
+
+				button_start = _game.add.button(0,0, '', function(){if(playing == false) {playing = true;cliquez.destroy();;}}, _game);
+				button_start.scale.setTo(800, 600);
 				button_menu = _game.add.button(10,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
-			    button_help = _game.add.button(90, 0, 'aide', actionOnHelp, _game);
+			    button_help = _game.add.button(90, 0, 'aide', function(){actionOnHelp()}, _game);
 			    button_help.scale.set(64/148, 32/74);
 			    button_menu.scale.set(64/148, 32/74);
-				_menu = MenuFactoryTest.create(_tabAvailableObjects);
 				ItemsLevel.reinit(_game);
 				ItemsLevel.setgroup(_groupLum);
 				var cliquez = this.add.sprite(_game.world.width/2, _game.world.height*2/3, 'cliquez');
 				cliquez.anchor.set(0.5, 0.5);
 				cliquez.scale.set(0.7, 0.7);
-				_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false;cliquez.destroy();;}},_game);
-				_game.paused = true;
+
+			//	_game.input.onDown.add(function () {if(playing == false && helpI == false) {alert('la');playing = true;cliquez.destroy();;}},_game, 0);
+		//		_game.paused = true;
+	   _game.input.onDown.add(function () {if(_game.paused) {_game.paused = false; }},_game, 1);
+				VisionEnum.setVisionCurrent(VisionEnum.MEGA);
+
 			}
 
 		},
 
 		update: function() {
+			if (demarrer == false){
+				_game.physics.arcade.isPaused = true;
+				if (_marque == true) {
+					_marque = false;
+				killhelp();
+
+				}
+				if (playing == true && helpO == false){
+					demarrer = true;
+					_game.physics.arcade.isPaused = false;
+					VisionEnum.setVisionCurrent(_currentVision);
+					VisionEnum.setVisionCurrent(VisionEnum.VISIBLE);
+				}
+
+			}
+			else{
+			VisionEnum.setVisionCurrent(_currentVision);
+
 			_menu.update();
+			_currentVision = VisionEnum.getVisionCurrent();
 			_game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
 			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
 			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
@@ -163,7 +200,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			}
 			text.setText(_nbLummingsSaved + '/' + _nbLummingsV);
 		}
-
+	}
 	}
 
 	function elementOverlap(lum, element) {
@@ -250,11 +287,18 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	}
 
 	       function actionOnHelp() {
-		   _game.paused = true;
-		   ecranAide = this.add.sprite(0, 0, 'aideScreen');
-		   ecranAide.scale.set(_game.world.width/786, _game.world.height/588);
-		   _marque = true;
+					_marque = true;
+			_game.paused = true;
+
+					ecranAide = _game.add.sprite(0, 0, 'aideScreen');
+				   ecranAide.scale.set(_game.world.width/786, _game.world.height/588);
+
 	       }
+
+				function killhelp(){
+					ecranAide.kill();
+			//		helpO = false;
+				}
 
 	return {
 		init: function(game) {
