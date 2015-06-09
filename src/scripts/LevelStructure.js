@@ -368,8 +368,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lum2);
 				this.groupLummings.add(lum3);
 				
-				//gamma = GammaLummingFactory.create(300, 150, 60);
-				//this.groupLummings.add(gamma);
+				gamma = GammaLummingFactory.create(300, 150, 60);
+				this.groupLummings.add(gamma);
 				
 				this.nbLummingsWin = 3;
 				

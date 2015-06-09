@@ -5,10 +5,10 @@ define(['LummingFactory', 'VisionEnum', 'ColorEnum'],
 	var _vision = null;
 
     var GammaLumming = function(game, x, y, vitesseX) {
-	this.sprite = 'media/img/lumming_gamma';
-    this.color = ColorEnum.getColorEnum().GAMMA;
-	LummingFactory.Lumming.call(this, game, 'lumming_gamma', x, y, vitesseX, 3);
-    }
+		this.sprite = 'media/img/lumming_gamma';
+		this.color = ColorEnum.getColorEnum().GAMMA;
+		LummingFactory.Lumming.call(this, game, 'lumming_gamma', x, y, vitesseX, 3);
+	}
 
     GammaLumming.prototype = Object.create(LummingFactory.Lumming.prototype);
 
@@ -23,10 +23,10 @@ define(['LummingFactory', 'VisionEnum', 'ColorEnum'],
             _game = game;
 			_vision = VisionEnum.getVisionEnum().ULTRA;
             LummingFactory.init(_game);
-	    _game.load.spritesheet('lumming_gamma', 'media/img/lumming_gamma.png', 32, 32, 32);
-	},
+			_game.load.spritesheet('lumming_gamma', 'media/img/lumming_gamma.png', 32, 32, 32);
+		},
 
-	create: function(x, y, vitesseX) {
+		create: function(x, y, vitesseX) {
             return (new GammaLumming(_game, x, y, vitesseX));
         }
     }
