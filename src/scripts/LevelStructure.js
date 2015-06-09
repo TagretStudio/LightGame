@@ -451,6 +451,9 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 	}
 
 	platformPlomb = function(groupPlatforms, x, y, w, l, r) {
+		if (l==null) l=true;
+		if (r==null) r=true;
+
 		var dummy = _game.add.sprite(0,0,'plomb');
 		var sw = dummy.width;
 		dummy.kill();
