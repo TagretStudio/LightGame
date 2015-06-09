@@ -135,6 +135,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 						p.alpha = 0.25;
 						dragcopy.alpha = 0;
 					}
+					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 				}
 			}
 		)
@@ -166,6 +167,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 						p.alpha = 0.25;
 						dragcopy.alpha = 0;
 					}
+					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 				}
 			}
 		)
@@ -198,6 +200,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 						p.alpha = 0.25;
 						dragcopy.alpha = 0;
 					}
+					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 				}
 			}
 		)
@@ -230,6 +233,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 						p.alpha = 0.25;
 						dragcopy.alpha = 0;
 					}
+					dragcopy.rect = _game.add.sprite(p.x, p.y, 'whiteSquare');
 				}
 			}
 		)
@@ -330,6 +334,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 	}
 
 	function moveIcon(p) {
+		if (p.rect != null) p.rect.y = p.y;
 		if (p.parent.visibl) {
 			if (p.draggable) {
 				p.y += (_game.world.height-64 - p.y)/4;
@@ -404,6 +409,8 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
        _game.load.image('plombCarre', 'media/img/plombCarre.png');
        _game.load.image('plombHorizontal', 'media/img/plombHorizontal.png');
        _game.load.image('plombVertical', 'media/img/plombVertical.png');
+
+       _game.load.image('whiteSquare', 'media/img/whiteSquare.png');
      },
      create : function(tab){
        return (new Menu(tab));
