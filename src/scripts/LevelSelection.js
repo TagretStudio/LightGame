@@ -64,10 +64,6 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
                 p.scale.set(2,2);
             })
 
-    //    _buttonPlus.anchor.set(0.5, 0.5);
-    //    _buttonPlus.scale.set(2,2);
-    //    _buttonMoins.anchor.set(0.5, 0.5);
-    //    _buttonMoins.scale.set(2,2);
 
 			dizaineSprite = _game.add.sprite(_game.world.centerX - 40, _game.world.centerY, 'chiffres', _dizaine);
 			uniteSprite = _game.add.sprite(_game.world.centerX + 40, _game.world.centerY, 'chiffres', _unite);
@@ -76,15 +72,7 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
 
 			transpaSprite = _game.add.group();
 
-			/*
-            //text = _game.add.text(_game.world.centerX + 20, _game.world.centerY, _unite , {align: "center"});
-            //text2 = _game.add.text(_game.world.centerX - 20, _game.world.centerY, _dizaine, {align: "center"});
-
-        	text.anchor.set(0.5,0.5);
-            text.scale.set(2,2);
-            text2.anchor.set(0.5,0.5);
-            text2.scale.set(2,2);
-            */
+		
   		},
 
   		update :function(){
