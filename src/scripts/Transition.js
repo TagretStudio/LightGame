@@ -13,7 +13,7 @@ return{
     _game.load.image('transitionLogo', 'media/img/Menu.png');
     _game.load.image('gameOver', 'media/img/gameOver.png');
 
- 
+
   },
   nextState : function(nextState, musicA, currentLevel){
     var music = null;
@@ -25,11 +25,11 @@ return{
       background.scale.set(1024/_game.world.width, 768/_game.world.height);
       var logo = _game.add.sprite(_game.world.centerX - 216, _game.world.centerY - 35, 'logo');
 
-   
+
       var und = null;
-      if (!currentLevel) 
+      if (!currentLevel)
         {und = "";}
-      else 
+      else
         {
           und = "Niveau " + currentLevel;
       }
@@ -46,6 +46,7 @@ return{
 	   // _game.state.start(nextState);
 	}, _game);
      } else{
+       music = null;
        _game.time.events.add(Phaser.Timer.SECOND * 2, transition, this);
 
   //    _game.state.start(nextState);
