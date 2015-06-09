@@ -379,6 +379,32 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				
 				break;
 
+			case 16: //niveau gamma
+
+				platformPlomb(this.groupPlatforms, 300, 100, 500, true, true);
+				platform(this.groupPlatforms, 150, 300, 450, true, true);
+
+				door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 70);
+				door2 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 400, 270);
+
+				this.groupDoors.add(door1);
+				this.groupDoors.add(door2);
+
+				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 330, 60, 50);
+				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 350, 60, 50);
+				lum3 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 370, 60, 50);
+				this.groupLummings.add(lum1);
+				this.groupLummings.add(lum2);
+				this.groupLummings.add(lum3);
+
+				gamma = GammaLummingFactory.create(330, 50, 60);
+				this.groupLummings.add(gamma);
+
+				this.nbLummingsWin = 3;
+
+				this.tabAvailableObjects = [1,0,0,0,1,0,0,0,1,0,0,0,1];
+
+				break;
 				
 			
 			default:
