@@ -21,7 +21,7 @@ define (function(){
 			_game.load.image('cible', 'media/img/cible.png');
 			_game.load.image('tagret', 'media/img/tagret_studio.png');
 			_game.load.image('presents', 'media/img/Presents.png');
-			_game.load.spritesheet('button', 'media/img/MenuButtons.png', 274, 71);
+			_game.load.spritesheet('button', 'media/img/MenuButtons.png', 278, 63);
 
 		},
 		crea : function(){

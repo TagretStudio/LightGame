@@ -46,7 +46,7 @@ define(['./Images', './MusicFactory' ,'./MainMenu', 'Transition', 'LevelFactory'
             _pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
             _pointButtons = new Phaser.Point(_game.world.centerX , _game.world.centerY - 20);
             _game.load.spritesheet('buttonplusmoins', 'media/img/buttonplusmoins.png', 38, 38);
-            _game.load.spritesheet('button', 'media/img/MenuButtons.png', 274, 71);
+            _game.load.spritesheet('button', 'media/img/MenuButtons.png',  278, 63);
             _game.load.spritesheet('chiffres', 'media/img/chiffres.png', 47, 65);
   		},
 
