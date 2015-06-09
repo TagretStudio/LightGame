@@ -8,13 +8,19 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 	var _buttonPlay = null;
 	var _buttonCredits = null;
 	var _buttonQuit = null;
+	var _buttonPleinEcran = null;
 	var _music = null;
 
 	function gofull() {
 		if (_game.scale.isFullScreen) {
 			_game.scale.stopFullScreen();
+			_buttonPleinEcran.setFrames(3,4,5);
+
 		} else {
+			_buttonPleinEcran.setFrame(1);
 			_game.scale.startFullScreen(false);
+			_buttonPleinEcran.setFrames(0,1,0);
+
 		}
 	}
 
@@ -38,6 +44,7 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 		preload : function(){
 			_pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
 			_pointButtons = new Phaser.Point(_game.world.centerX - 20, _game.world.centerY - 100);
+			_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 8);
 		},
 
 		create : function(){
@@ -51,10 +58,11 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 
 			_buttons = _game.add.group();
 			_buttons.scale.set(_game.world.width/1024, _game.world.height/768);
-			_buttons.add(_buttonCredits = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 160, 'button', function(){			gofull();
-actionCredits()}, _game, 3, 4, 5));
+			_buttons.add(_buttonCredits = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 160, 'button', function(){actionCredits()}, _game, 3, 4, 5));
 			_buttons.add(_buttonPlay = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 100, 'button', actionPlay, _game, 0, 1, 2));
 			_buttons.add(_buttonQuit = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 220, 'button', actionQuit, _game, 6, 7, 8));
+			_buttons.add(_buttonPleinEcran = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 280, 'pleinecran', gofull, _game, 3, 4, 5));
+			_buttonPleinEcran.setFrames(3,4, 5);
 		},
 
 		update : function(){
