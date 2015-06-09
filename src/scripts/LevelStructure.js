@@ -450,18 +450,48 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		ice.kill();
 	}
 
-	platformPlomb = function(groupPlatforms, x, y, w) {
-		/*
+	platformPlomb = function(groupPlatforms, x, y, w, l, r) {
 		var dummy = _game.add.sprite(0,0,'plomb');
 		var sw = dummy.width;
 		dummy.kill();
-		*/
 		var p;
+
+		for (var i=0; i< Math.floor(Math.floor(w/sw)/2)+1; i++) {
+			p = _game.add.sprite(x + w/2 - i*sw, y,'plomb');
+			p.isPb = true;
+			groupPlatforms.add(p);
+			p.anchor.set(0,0);
+			p = _game.add.sprite(x + w/2 + i*sw, y,'plomb');
+			p.isPb = true;
+			groupPlatforms.add(p);
+			p.anchor.set(1,0);
+		}
+		p = _game.add.sprite(x,y,'plomb');
+		p.isPb = true;
+		if (!l) p.frame+=2;
+		groupPlatforms.add(p);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = l;
+		p.body.checkCollision.right = false;
+		p.body.checkCollision.up = false;
+		p.collisionsSet = true;
+		p = _game.add.sprite(x+w,y,'plomb');
+		p.isPb = true;
+		if (!r) p.frame+=4;
+		groupPlatforms.add(p);
+		p.anchor.set(1,0);
+		p.body.checkCollision.down = false;
+		p.body.checkCollision.left = false;
+		p.body.checkCollision.right = r;
+		p.body.checkCollision.up = false;
+		p.collisionsSet = true;
+
+		/*
 		p = _game.add.sprite(x,y,'plomb');
 		p.isPb = true;
 		groupPlatforms.add(p);
-		p.isPb = true;
 		p.width = w;
+		*/
 	}
 
 	platform = function(groupPlatforms, x, y, w, l, r) {
