@@ -398,15 +398,15 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				platform(this.groupPlatforms, 0, 400, 600, true, false);
 				platform(this.groupPlatforms, 700, 400, 100, false, true);
 				icePit(this, 600, 400, 100);
-				platform(this.groupPlatforms, 700, 300, 100, false, true);
+				platform(this.groupPlatforms, 600, 300, 200, false, true);
 
 				this.groupDoorsRadioAura.add(PorteWithAuraFactory.create(400, 85, 150));
 				this.groupDoorsRadioAura.add(PorteWithAuraFactory.create(400, 235, 150));
 
-				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().RED, 700, 365));
+				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().GREEN, 700, 365));
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().RED, 700, 265));
 
-				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 250, 80, 50));
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 250, 80, 50));
 				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 200, 230, 50));
 				this.groupLummings.add(XLummingFactory.create(0, 350, 50));
 				this.groupLummings.add(MicroLummingFactory.create(50, 350, 50));
