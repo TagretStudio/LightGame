@@ -348,6 +348,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		    levelText("Les miroirs reflètent très bien la lumière, pratique pour traverser du vide");
 				
 				break;
+
+				
 			
 			default:
 				break;

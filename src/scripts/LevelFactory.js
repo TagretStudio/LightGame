@@ -37,7 +37,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		    }
 			_game.load.image('buttonDiamond', 'media/img/menuButton.png');
 			_game.load.image('buttonRefresh', 'media/img/refresh.png')
-			_game.load.image('cliquez', 'media/img/cliquezPourCommencer.png');
+			_game.load.image('cliquez', 'media/img/cliquerPourCommencer.png');
 		    _game.load.image('aide', 'media/img/aideColore.png');
 		    _game.load.image('aideScreen', 'media/img/ecranAide.png');
 			MenuFactoryTest.init(_game);
