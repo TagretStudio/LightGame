@@ -344,7 +344,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 3;
 				
 				// tous les filtres et des miroirs
-				this.tabAvailableObjects = [0,0,0,2,1,0,0,1,1,1,1,1,1];
+				this.tabAvailableObjects = [0,0,0,1,1,0,0,1,1,1,1,1,1];
 				levelText("Les miroirs reflètent très bien la lumière, pratique pour traverser du vide");
 				
 				break;
@@ -374,7 +374,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.nbLummingsWin = 3;
 				
 				// tous les filtres et des platformes en plomb
-				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,1,1,1];
+				this.tabAvailableObjects = [0,0,0,0,1,0,0,1,1,1,1,1,1];
 				levelText("Les rayons gamma passent à travers tout sauf le plomb. Faites attention, ils détruisent les portails de sortie");
 				
 				break;
