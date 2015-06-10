@@ -6,7 +6,9 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
     var _music = null;
 
     var lums = null;
-    
+    var nblums = null;
+    var updateFunction = null;
+
     var _histoire = {
         preload : function(){
             _game.load.spritesheet('lumming_blue', 'media/img/lumming_blue.png', 32, 32, 32);
@@ -32,17 +34,52 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
                 function(l) {
                     l.animations.add('turn', [1, 4, 15, 11], 10, true);
                     l.animations.play('turn');
-                    l.x = i*32;
+                    l.x = _game.world.centerX;
+                    l.y = _game.world.centerY;
                     l.number = i;
                     i++;
                 }
             )
+            nblums = i;
+            updateFunction = colorsAppear;
   		},
 
   		update :function(){
-
-  		}
+            updateFunction();
+        }
   	}
+
+    colorsAppear = function() {
+        var dy;
+        lums.forEach(
+            function(l) {
+                dy = l.y;
+                l.x += (_game.world.centerX+(l.number-nblums/2)*32 - l.x)/8;
+                l.y += (_game.world.height*2/3 - l.y)/8;
+                dy -= l.y;
+            }
+        )
+        if (dy == 0) updateFunction = colorsDisappear;
+    }
+
+    colorsDisappear = function() {
+        var da;
+        lums.forEach(
+            function(l) {
+                l.alpha = Math.max(0, l.alpha-0.1);
+                da = l.alpha;
+            }
+        )
+        if (da == 0) updateFunction = endUpdateLoop;
+    }
+
+    endUpdateLoop = function() {
+        lums.forEach(
+            function(l) {
+                l.alpha = 1;
+            }
+        )
+    }
 
     return {
         init : function(game, etapesuivante){
