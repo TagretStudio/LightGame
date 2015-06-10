@@ -5,6 +5,9 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
     var _etapesuivante = null;
     var _music = null;
 
+    var bg = null;
+    var prism;
+    var master = null;
     var lums = null;
     var nblums = null;
     var updateFunction = null;
@@ -13,6 +16,8 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
 
     var _histoire = {
         preload : function(){
+            _game.load.image('bg', 'media/img/sky.png');
+            _game.load.image('prism', 'media/img/prisme.png');
 
             _game.load.spritesheet('lumming_blue', 'media/img/lumming_blue.png', 32, 32, 32);
             _game.load.spritesheet('lumming_cyan', 'media/img/lumming_cyan.png', 32, 32, 32);
@@ -26,6 +31,16 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
   		},
 
   		create : function(){
+            bg = _game.add.sprite(0, 0, 'bg');
+
+            prism = _game.add.sprite(_game.world.width, _game.world.centerY, 'prism');
+            prism.velocity = 10;
+
+            master = _game.add.sprite(_game.world.centerX, 0, 'lumming_blue', 0);
+            master.tint = 0;
+            master.animations.add('walk', [0, 1, 2, 1], 10, true);
+            master.animations.play('walk');
+
             lums = _game.add.group();
             lums.create(0,0, 'lumming_blue', 0);
             lums.create(0,0, 'lumming_cyan', 0);
@@ -42,12 +57,15 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
                     l.x = _game.world.centerX;
                     l.y = _game.world.centerY;
                     l.number = i;
+                    l.alpha = 0;
                     i++;
                 }
             )
-            nblums = i;
-            updateFunction = colorsAppear;
-    		text = _game.add.text(0, 0, "toaster", {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
+            nblums = i-1;
+
+            updateFunction = masterWalks;
+    		text = _game.add.text(_game.world.centerX, _game.world.height-96, "tout va bien", {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
+            text.anchor.set(0.5, 0);
   		},
 
   		update :function(){
@@ -55,10 +73,26 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
         }
   	}
 
+    masterWalks = function() {
+        master.y = Math.min(master.y+1.5, _game.world.centerY);
+        if (master.y == _game.world.centerY) updateFunction = prismTime;
+    }
+
+    prismTime = function() {
+        text.text = "sheepstorm";
+        text.y = 0;
+        prism.x -= prism.velocity;
+        if (prism.x < _game.world.centerX) updateFunction = colorsAppear;
+    }
+
     colorsAppear = function() {
+        master.alpha = Math.max(master.alpha-0.1, 0);
+        bg.alpha = Math.max(0.5, bg.alpha-0.01);
+        prism.x -= prism.velocity;
         var dy;
         lums.forEach(
             function(l) {
+                l.alpha = Math.min(l.alpha+0.1, 1);
                 dy = l.y;
                 l.x += (_game.world.centerX+(l.number-nblums/2)*32 - l.x)/8;
                 l.y += (_game.world.height*2/3 - l.y)/8;
@@ -69,6 +103,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
     }
 
     colorsDisappear = function() {
+        text.text = "save them";
         var da;
         lums.forEach(
             function(l) {
@@ -77,15 +112,11 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
             }
         )
         if (da == 0) updateFunction = endUpdateLoop;
-        text.text = "lolnope";
     }
 
     endUpdateLoop = function() {
-        lums.forEach(
-            function(l) {
-                l.alpha = 1;
-            }
-        )
+        text.text = "ceci est un test de texte long, le remplacer par quelque chose de plus pertinent plus tard"
+        //revenir au menu ?
     }
 
     return {
