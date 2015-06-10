@@ -445,6 +445,24 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
+			case 19 :
+
+					platformPlomb(this.groupPlatforms, 50, 300, 300, false, false);
+					waterPit(this, 350, 300, 130);
+					platformPlomb(this.groupPlatforms, 500, 200, 350, false, false);
+					platformPlomb(this.groupPlatforms, 600, 500, 50, false, false);
+
+					this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 50, 250, 50));
+					this.groupLummings.add(MicroLummingFactory.create(150, 250, 50));
+
+					this.nbLummingsWin = 2;
+					gamma = GammaLummingFactory.create(60, 250, 60);
+					this.groupLummings.add(gamma);
+
+
+
+
+
 			default:
 				break;
 		}
