@@ -57,7 +57,7 @@ return {
         _music = music;
     },
 
-    getLevelSelection : function(){
+    getHistoire : function(){
         return _histoire;
     }
 

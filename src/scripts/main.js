@@ -19,7 +19,8 @@ require(['./Chargement','./MainMenu', './PreChargement', 'LevelFactory', 'LevelS
 
 	LevelSelection.init(_game, 'LevelSelection');
 	_game.state.add('LevelSelection', LevelSelection.getLevelSelection());
-    _game.state.add('Histoire', Histoire.getHistoire);
+    Histoire.init(_game, 'Histoire');
+    _game.state.add('Histoire', Histoire.getHistoire());
 
 	_game.state.start('PreChargement');
 
