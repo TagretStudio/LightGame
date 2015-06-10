@@ -28,11 +28,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _buttonPleinEcran;
 	var _tabAvailableObjects = null;
 	var _dark = null;
-		   var _marque = false;
-		   var _marque_music = true;
-		   var ecranAide = null;
-				var playing = false;
-				var demarrer = false;
+	var _marque = false;
+	var _marque_music = true;
+	var ecranAide = null;
+	var playing = false;
+	var demarrer = false;
+
 	var LevelFactory = {
 
 		preload: function() {
@@ -125,7 +126,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				var cliquez = this.add.sprite(_game.world.width/2, _game.world.height*2/3, 'cliquez');
 				cliquez.anchor.set(0.5, 0.5);
 				cliquez.scale.set(0.7, 0.7);
-	   		_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false; }},_game, 1);
+				_game.input.onDown.add(function () {if(_game.paused) {_game.paused = false; }},_game, 1);
 				VisionEnum.setVisionCurrent(VisionEnum.MEGA);
 			}
 
