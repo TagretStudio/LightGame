@@ -33,7 +33,8 @@ define(['Items', 'ColorEnum', 'SteamFactory'], function(Items, ColorEnum, SteamF
 			case ColorEnum.getColorEnum().GAMMA:
 				break;
 			default:
-				if (lum.body.y >= this.body.y) {
+			//	if (lum.body.y >= this.body.y && lum.body.y <= this.body.y-this.body.height/2 && lum.body.x >= this.body.x && lum.body.x <= this.body.x + this.body.width) {
+				if (lum.body.position.x < this.right && lum.body.y >= this.body.y){
 					lum.color = null;
 				}
 		}

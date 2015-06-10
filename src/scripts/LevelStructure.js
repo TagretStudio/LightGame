@@ -450,12 +450,14 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 					platformPlomb(this.groupPlatforms, 50, 300, 300, false, false);
 					waterPit(this, 350, 300, 130);
 					platformPlomb(this.groupPlatforms, 500, 200, 350, false, false);
-					platformPlomb(this.groupPlatforms, 600, 500, 50, false, false);
+					platformPlomb(this.groupPlatforms, 500, 500, 350, false, false);
+					this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().GREEN, 600, 168));
+					this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().GREEN, 600, 490));
 
 					this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 50, 250, 50));
 					this.groupLummings.add(MicroLummingFactory.create(150, 250, 50));
 
-					this.nbLummingsWin = 2;
+					this.nbLummingsWin = 1;
 					gamma = GammaLummingFactory.create(60, 250, 60);
 					this.groupLummings.add(gamma);
 
