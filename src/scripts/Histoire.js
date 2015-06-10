@@ -1,5 +1,8 @@
-define(['Transition', 'MainMenu', 'Images', 'MusicFactory'], function(Transition, MainMenu, Images, MusicFactory)) {
+define(['Transition', 'MainMenu', 'Images', 'MusicFactory'], function(Transition, MainMenu, Images, MusicFactory) {
 
+    var _game = null;
+    var _etapesuivante = null;
+    var _music = null;
     
     var _histoire = {
     preload : function(){
