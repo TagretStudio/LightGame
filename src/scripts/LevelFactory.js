@@ -134,6 +134,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		update: function() {
 			if (demarrer == false){
 				if (_music!= null ) _music.getMusic().pause();
+				_game.physics.arcade.isPaused = true;
 
 				if (_marque == true) {
 					_marque = false;

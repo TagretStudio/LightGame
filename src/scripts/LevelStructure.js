@@ -130,12 +130,11 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 			case 6: //level 4
 				platform(this.groupPlatforms, 100, 300, 600);
 
-				door1 = DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270);
-				this.groupDoors.add(door1);
+				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270));
 
-				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
-				this.groupLummings.add(lum1);
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50));
 				this.nbLummingsWin = 1;
+
 				//on donne un filtre cyan
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,1,0,0,0];
 				levelText("Les additifs, contrairement aux soustractifs, ajoutent la couleur du filtre au lumming");
@@ -145,12 +144,11 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 			case 7: //level 5
 				platform(this.groupPlatforms, 100, 300, 600);
 
-				door1 = DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270);
-				this.groupDoors.add(door1);
+				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270));
 
-				lum1 = VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50);
-				lum2 = VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 100, 200, 50);
-				this.groupLummings.add(lum1);
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50));
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().WHITE, 100, 200, 50));
+
 				this.groupLummings.add(lum2);
 
 				this.nbLummingsWin = 2;
