@@ -47,6 +47,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		    _game.load.image('aide', 'media/img/aideColore.png');
 		    _game.load.image('aideScreen', 'media/img/ecranAide.png');
 				_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 6);
+				_game.load.spritesheet('pleinecranCadre', 'media/img/pleinEcranCadre.png', 480, 75, 2);
 
 			MenuFactoryTest.init(_game);
 			PlatformFactory.init(_game);
@@ -72,7 +73,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.physics.startSystem(Phaser.Physics.ARCADE);
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			VisionEnum.setVisionCurrent(_currentVision);
-			_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 8);
+		//	_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 8);
+
 
 			_dark = _game.add.sprite(0,0,'preloaderBackground');
 			_dark.tint = 0;
@@ -108,12 +110,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				button_start.scale.setTo(800, 600);
 				button_menu = _game.add.button(10,0, 'buttonDiamond', actionOnMenu, _game);
 				button_restart = _game.add.button(_game.world.width - 150,0,'buttonRefresh', actionOnRestart, _game);
-				buttonPleinEcran = _game.add.button(170, 0, 'pleinecran', gofull, _game, 0, 0, 0);
-				buttonPleinEcran.scale.set(32/64, 32/64);
+				buttonPleinEcran = _game.add.button(158, 0, 'pleinecranCadre', gofull, _game, 0, 0, 0);
+				buttonPleinEcran.scale.set(64/150, 64/150);
 				if (_game.scale.isFullScreen){
 					buttonPleinEcran.setFrames(0,0,0);
 				}
-				else {buttonPleinEcran.setFrames(3,3,3)};
+				else {buttonPleinEcran.setFrames(1,1,1)};
 			    button_help = _game.add.button(90, 0, 'aide', function(){actionOnHelp()}, _game);
 			    button_help.scale.set(64/148, 32/74);
 			    button_menu.scale.set(64/148, 32/74);
@@ -322,7 +324,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			function gofull(){
 				if (_game.scale.isFullScreen) {
 					_game.scale.stopFullScreen();
-					buttonPleinEcran.setFrames(3,3,3);
+					buttonPleinEcran.setFrames(1,1,1);
 				} else {
 					_game.scale.startFullScreen(false);
 					buttonPleinEcran.setFrames(0,0,0);
