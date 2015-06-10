@@ -43,7 +43,8 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 	var _menu = {
 		preload : function(){
 			_pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
-			_pointButtons = new Phaser.Point(_game.world.centerX - 20, _game.world.centerY - 100);
+			_pointButtons = new Phaser.Point(_game.world.centerX + 120, _game.world.centerY - 100);
+			//aucune idee de pourquoi il faut le +120
 			_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 6);
 		},
 
@@ -63,14 +64,15 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 			_buttons.add(_buttonQuit = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 220, 'button', actionQuit, _game, 6, 7, 8));
 			_buttons.add(_buttonPleinEcran = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 280, 'pleinecran', gofull, _game, 3, 4, 5));
 			_buttonPleinEcran.setFrames(3,4, 5);
+			_buttons.forEach(function(b) {b.anchor.set(0.5, 0)});
 		},
 
 		update : function(){
 			_buttons.forEach(
-					function(butt){
-						butt.x += Math.min(30, (_pointButtons.x- butt.x)/4);
-					}
-					);
+				function(butt){
+					butt.x += (_pointButtons.x- butt.x)/4;
+				}
+			);
 		}
 
 	};
