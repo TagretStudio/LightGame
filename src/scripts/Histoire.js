@@ -1,6 +1,7 @@
 define(['Transition', 'MainMenu', 'Images', 'MusicFactory'], function(Transition, MainMenu, Images, MusicFactory)) {
 
-_var histoire = {
+    
+    var _histoire = {
     preload : function(){
             _pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
             _pointButtons = new Phaser.Point(_game.world.centerX , _game.world.centerY - 20);
