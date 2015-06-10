@@ -275,9 +275,9 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				platform(this.groupPlatforms, 300, 100, 250, true, true);
 				platform(this.groupPlatforms, 100, 200, 170, true, true);
 				platform(this.groupPlatforms, 350, 200, 260, true, true);
-				platform(this.groupPlatforms, 100, 300, 150, true, true);
+				platform(this.groupPlatforms, 100, 300, 150, true, false);
 				icePit(this, 250, 300, 64);
-				platform(this.groupPlatforms, 314, 300, 400, true, true);
+				platform(this.groupPlatforms, 314, 300, 400, false, true);
 				platform(this.groupPlatforms, 700, 270, 64, true, true);
 
 				door1 = DoorsFactory.create(ColorEnum.getColorEnum().CYAN, 130, 170);
