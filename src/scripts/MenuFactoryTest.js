@@ -9,7 +9,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 	var Menu = function(tab){
 		this.vision = null;
 		if (tab == null){
-		tab = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+			tab = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 		}
 		this.spriteTempo = null;
   //  _groupItem = _game.add.group();
@@ -52,16 +52,16 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 
 		//plomb
 		plombCarre = _game.add.sprite(20+330, _game.world.centerY - 64, 'plombCarre');
-	    plombCarre.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
+		plombCarre.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		plombCarre.number = tab[0];
 
 		this.groupInfra.add(plombCarre);
 		plombVertical = _game.add.sprite(20+370, _game.world.centerY - 64, 'plombVertical');
-	    plombVertical.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
+		plombVertical.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		plombVertical.number = tab[1];
 		this.groupInfra.add(plombVertical);
 		plombHorizontal = _game.add.sprite(20+410, _game.world.centerY - 64, 'plombHorizontal');
-	    plombHorizontal.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
+		plombHorizontal.hitArea = new Phaser.Rectangle(0, 0, 32, 32);
 		this.groupInfra.add(plombHorizontal);
 		plombHorizontal.number = tab[2];
 
@@ -75,8 +75,6 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupMiroir.add(miroirH);
 		this.groupMiroir.add(miroirV);
 
-
-
 		//antenes
 		aerialRight = _game.add.sprite(310, _game.world.centerY - 64, 'antenna_right');
 		aerialRight.number = tab[5];
@@ -84,8 +82,6 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		aerialLeft.number = tab[6];
 		this.groupSupra.add(aerialLeft);
 		this.groupSupra.add(aerialRight);
-
-
 
 		//visibles
 
@@ -177,7 +173,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupMiroir.addAll('draggable', false)
 		this.groupMiroir.forEach(
 			function(p){
-					p.y = _game.world.height - 64;
+				p.y = _game.world.height - 64;
 				if (!p.draggable) {
 
 					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
@@ -206,12 +202,11 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			}
 		)
 
-
 		this.groupVisible.visibl = true;
 		this.groupVisible.addAll('draggable', false)
 		this.groupVisible.forEach(
 			function(p){
-					p.y = _game.world.height - 64;
+				p.y = _game.world.height - 64;
 				if (!p.draggable) {
 
 					p.spriteText = _game.add.text(p.x + p.width/2, p.y+32, ""+p.number, {fill: "#ffffff", align: "center"});
@@ -248,7 +243,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 	Menu.prototype.dragStart  = function(sprite){
 		/*
 		//this.toVisible();
-		//   aux = sprite;
+		//	aux = sprite;
 		this.spriteTempo = _game.add.sprite(sprite.x, sprite.y, sprite.key);
 		this.spriteTempo.inputEnabled = true;
 		this.spriteTempo.input.enableDrag();
@@ -259,7 +254,7 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		// sprite = this.spriteTempo();
 		// this.spriteTempo = aux;
 		//sprite.destroy();
-		//   this.destroy();
+		//	this.destroy();
 		*/
 	}
 
@@ -272,18 +267,18 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		aux.destroy();
 		// this.spriteTempo = _game.add.sprite(sprite.x, sprite.y, sprite.key);
 		//sprite.destroy();
-		//   this.destroy();
+		//	this.destroy();
 		*/
-	    if (sprite.y >= _game.world.height - 96 - sprite.height || sprite.number==0) {
+		if (sprite.y >= _game.world.height - 96 - sprite.height || sprite.number==0) {
 			//bcall(_DoNothing)
-	    } else {
+		} else {
 			//created = _game.add.sprite(sprite.x, sprite.y, sprite.key);
 		//	door1 = DoorsFactory.create(ColorEnum.getColorEnum().RED, sprite.x, sprite.y);
 		//	_groupItem.add(door1);
-      ItemsLevel.createItem(sprite.key, sprite.x, sprite.y);
+	ItemsLevel.createItem(sprite.key, sprite.x, sprite.y);
 			sprite.number--;
 			sprite.spriteText.text = ""+sprite.number;
-	    }
+		}
 		sprite.x = sprite.origX;
 		sprite.y = sprite.origY;
 	}
@@ -311,14 +306,14 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		if (oldstate != this.state){
 			if (this.state == 'infra') {
 				this.toInfra();
-			    VisionEnum.setVisionCurrent(3);
+				VisionEnum.setVisionCurrent(3);
 			} else if (this.state == 'visible') {
 				this.toVisible();
-			    VisionEnum.setVisionCurrent(2);
+				VisionEnum.setVisionCurrent(2);
 				//code passTo le truc à le milieu
 			} else {
 				this.toSupra();
-			    VisionEnum.setVisionCurrent(1);
+				VisionEnum.setVisionCurrent(1);
 				//code passTo le truc à droite
 			}
 		}
@@ -350,15 +345,15 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 			if (!p.draggable) p.spriteText.y = p.y+32;
 		}
 		if (!p.draggable) {
-            if (p.number == 0) {
-                p.alphaTarget = 0;
+			if (p.number == 0) {
+				p.alphaTarget = 0;
 				p.copy.alphaTarget = 0.25;
 				p.alpha += (p.alphaTarget-p.alpha)/8;
 				p.copy.alpha += (p.copy.alphaTarget-p.copy.alpha)/8;
 				p.copy.rect.alphaTarget = 0;
 				p.copy.rect.alpha += (p.copy.rect.alphaTarget-p.copy.rect.alpha)/8;
-            }
-        }
+			}
+		}
 	}
 
 	Menu.prototype.toInfra = function(){
@@ -379,49 +374,49 @@ define(['VisionEnum','ColorEnum', 'DoorsFactory', 'ItemsLevel'], function(Vision
 		this.groupInfra.visibl = false;
 	}
 
-   return {
-     init : function(game){
+	return {
+		init : function(game){
 
-       _game = game;
-       regY = _game.world.height-48;
-       DoorsFactory.init(_game);
+			_game = game;
+			regY = _game.world.height-48;
+			DoorsFactory.init(_game);
 
-       _game.load.image('menuB', 'media/img/simpleMenu.png');
+			_game.load.image('menuB', 'media/img/simpleMenu.png');
 
-       _game.load.image('Reg', 'media/img/Reglette.png');
-       _game.load.image('RegDot', 'media/img/RegletteDot.png');
-       //filtres aditifs
-       _game.load.image('red', 'media/img/filterRedMenu.png');
-       _game.load.image('green', 'media/img/filterGreenMenu.png');
-       _game.load.image('blue', 'media/img/filterBlueMenu.png');
+			_game.load.image('Reg', 'media/img/Reglette.png');
+			_game.load.image('RegDot', 'media/img/RegletteDot.png');
+			//filtres aditifs
+			_game.load.image('red', 'media/img/filterRedMenu.png');
+			_game.load.image('green', 'media/img/filterGreenMenu.png');
+			_game.load.image('blue', 'media/img/filterBlueMenu.png');
 
-       //filtres sustractifs
-       _game.load.image('magenta', 'media/img/filterMagentaMenu.png');
-       _game.load.image('cyan', 'media/img/filterCyanMenu.png');
-       _game.load.image('yellow', 'media/img/filterYellowMenu.png');
+			//filtres sustractifs
+			_game.load.image('magenta', 'media/img/filterMagentaMenu.png');
+			_game.load.image('cyan', 'media/img/filterCyanMenu.png');
+			_game.load.image('yellow', 'media/img/filterYellowMenu.png');
+	
+			//miroirs
+			_game.load.image('miroirV', 'media/img/miroirVertical.png');
+			_game.load.image('miroirH', 'media/img/miroirHorizontal.png');
 
-       //miroirs
-       _game.load.image('miroirV', 'media/img/miroirVertical.png');
-       _game.load.image('miroirH', 'media/img/miroirHorizontal.png');
+			//antenes
+			_game.load.image('antenna_left', 'media/img/antenna_left.png');
+			_game.load.image('antenna_right', 'media/img/antenna_right.png');
 
-       //antenes
-       _game.load.image('antenna_left', 'media/img/antenna_left.png');
-       _game.load.image('antenna_right', 'media/img/antenna_right.png');
+			//plomb
+			_game.load.image('plombCarre', 'media/img/plombCarre.png');
+			_game.load.image('plombHorizontal', 'media/img/plombHorizontal.png');
+			_game.load.image('plombVertical', 'media/img/plombVertical.png');
 
-       //plomb
-       _game.load.image('plombCarre', 'media/img/plombCarre.png');
-       _game.load.image('plombHorizontal', 'media/img/plombHorizontal.png');
-       _game.load.image('plombVertical', 'media/img/plombVertical.png');
-
-       _game.load.image('whiteSquare', 'media/img/whiteSquare.png');
-     },
-     create : function(tab){
-       return (new Menu(tab));
-     }
-/*
-     getGroupItem : function(){
-       return _groupItem;
-     }
-     */
-   }
- })
+			_game.load.image('whiteSquare', 'media/img/whiteSquare.png');
+		},
+		create : function(tab){
+			return (new Menu(tab));
+		}
+		/*
+		getGroupItem : function(){
+			return _groupItem;
+		}
+		*/
+	}
+})
