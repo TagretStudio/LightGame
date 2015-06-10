@@ -9,8 +9,11 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
     var nblums = null;
     var updateFunction = null;
 
+    var text = null;
+
     var _histoire = {
         preload : function(){
+
             _game.load.spritesheet('lumming_blue', 'media/img/lumming_blue.png', 32, 32, 32);
             _game.load.spritesheet('lumming_cyan', 'media/img/lumming_cyan.png', 32, 32, 32);
             _game.load.spritesheet('lumming_green', 'media/img/lumming_green.png', 32, 32, 32);
@@ -18,6 +21,8 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
             _game.load.spritesheet('lumming_red', 'media/img/lumming_red.png', 32, 32, 32);
             _game.load.spritesheet('lumming_white', 'media/img/lumming_white.png', 32, 32, 32);
             _game.load.spritesheet('lumming_yellow', 'media/img/lumming_yellow.png', 32, 32, 32);
+
+            _game.load.image('prisme', 'media/img/prisme.png');
   		},
 
   		create : function(){
@@ -42,6 +47,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
             )
             nblums = i;
             updateFunction = colorsAppear;
+    		text = _game.add.text(0, 0, "toaster", {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
   		},
 
   		update :function(){
@@ -66,11 +72,12 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
         var da;
         lums.forEach(
             function(l) {
-                l.alpha = Math.max(0, l.alpha-0.1);
+                l.alpha = Math.max(0, l.alpha-0.01);
                 da = l.alpha;
             }
         )
         if (da == 0) updateFunction = endUpdateLoop;
+        text.text = "lolnope";
     }
 
     endUpdateLoop = function() {
