@@ -1,4 +1,4 @@
-define
+define(['Transition', 'MainMenu', 'Images', 'MusicFactory'], function(Transition, MainMenu, Images, MusicFactory)) {
 
 _var histoire = {
     preload : function(){
@@ -48,4 +48,17 @@ _var histoire = {
   		}
   	}
 
-return
+return {
+    init : function(game, etapesuivante){
+  	_game = game;
+  	_etapesuivante = etapesuivante;
+    },
+    setMusic : function(music){
+        _music = music;
+    },
+
+    getLevelSelection : function(){
+        return _histoire;
+    }
+
+}
