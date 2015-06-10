@@ -322,7 +322,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lumX);
 
 				this.nbLummingsWin = 2;
-				levelText("Les miroirs change la direction de (presque) tous les Lummings..");
+				levelText("Les miroirs changent la direction de (presque) tous les Lummings..");
 
 				// tous les filtres et un miroir
 				this.tabAvailableObjects = [0,0,0,0,1,0,0,1,1,1,1,1,1];
