@@ -23,8 +23,8 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.nbLummingsWin = 0;
 		this.tabAvailableObjects = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
-		switch (indexLevel +1) {
-			case 1:
+		switch (indexLevel ) {
+			case 0:
 				doorRadio1 = PorteWithAuraFactory.create(380,236, 200);
 				this.groupDoorsRadioAura.add(doorRadio1);
 
@@ -53,7 +53,6 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lumX);
 				lumM = MicroLummingFactory.create(150, 100, 50);
 				this.groupLummings.add(lumM);
-
 				//this.groupElements.add(IceFactory.create(460, 290));
 				icePit(this, platform1.right + 32, 300, 64);
 
@@ -63,7 +62,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 2: // level 0
+			case 1: // level 0
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270));
@@ -80,7 +79,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 3: //level 1
+			case 5: //level 1
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270));
@@ -92,11 +91,11 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				//un filtre soustractif magenta
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,0,1,0,0];
 
-				levelText("Utilisez les filtres à votre disposition pour changer la couleur des lummings. Les filtres soustractifs suppriment toute composante de couleur autre que celle indiquée sur le filtre.");
+				levelText("Les filtres soustractifs suppriment toute composante de couleur autre que celle indiquée sur le filtre.");
 
 				break;
 
-			case 4: //level 2
+			case 6: //level 2
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 500, 270));
@@ -111,7 +110,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 5: //level 3
+			case 7: //level 3
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().CYAN, 500, 270));
@@ -127,7 +126,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 6: //level 4
+			case 2: //level 4
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().MAGENTA, 500, 270));
@@ -135,13 +134,43 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50));
 				this.nbLummingsWin = 1;
 
-				//on donne un filtre cyan
+				//on donne un filtre bleu
 				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,0,1,0,0,0];
-				levelText("Les additifs, contrairement aux soustractifs, ajoutent la couleur du filtre au lumming");
+				levelText("Utilisez les filtres à votre disposition pour changer la couleur des lummings. Les filtres additifs ajoutent la couleur du filtre au lumming");
 
 				break;
 
-			case 7: //level 5
+			case 3:
+				platform(this.groupPlatforms, 100, 300, 600);
+
+				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().CYAN, 500, 270));
+
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 150, 200, 50));
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().CYAN, 110, 200, 50));
+
+				this.nbLummingsWin = 2;
+				levelText("Si un lumming a une couleur comportant celle du filtre, il ne change pas");
+
+				//on donne un filtre vert
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,0,1,0,0,0,0];
+
+			 	break;
+
+
+			case 4 :
+				platform(this.groupPlatforms, 100, 300, 600);
+				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270));
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 150, 200, 50));
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().YELLOW, 110, 200, 50));
+				this.nbLummingsWin = 2;
+				levelText("Si vous avez un doute sur le filtre à placer, n'hésitez pas à consulter l'aide");
+				this.tabAvailableObjects = [0,0,0,0,0,0,0,1,1,1,0,0,0];
+				break;
+
+				//on donne les filtres additifs
+
+
+			case 8: //level 5
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().YELLOW, 500, 270));
@@ -156,7 +185,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 8: //level 6
+			case 9: //level 6
 				platform(this.groupPlatforms, 100, 300, 460);
 				platform(this.groupPlatforms, 0, 280, 110, true, true);
 				platform(this.groupPlatforms, 550, 280, 110, true, true);
@@ -177,7 +206,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 9:
+			case 10:
 				platform(this.groupPlatforms, 100, 300, 600);
 
 				this.groupDoorsRadioAura.add(PorteWithAuraFactory.create(300, 236, 150));
@@ -194,7 +223,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 10:
+			case 11:
 				platform(this.groupPlatforms, 80, 150, 100);
 				platform(this.groupPlatforms, 0, 300, 300);
 				waterPit(this, 300, 300, 64);
@@ -205,7 +234,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 60, 250, 50));
 				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().MAGENTA, 90, 250, 50));
 				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 120, 250, 50));
-				
+
 				this.groupLummings.add(MicroLummingFactory.create(100, 100, 60));
 
 				this.nbLummingsWin = 3;
@@ -216,7 +245,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 11:
+			case 12:
 				platform(this.groupPlatforms, 100, 300, 400);
 				platform(this.groupPlatforms, 540, 210, 100, false);
 				icePit(this, 500, 300, 64);
@@ -240,7 +269,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				levelText("Les lummings \"X\" font fondre la glace, révélant de l'eau. Vous savez ce qu'il vous reste à faire...");
 				break;
 
-			case 12:
+			case 13:
 				platform(this.groupPlatforms, 100, 300, 600, true, true);
 				platform(this.groupPlatforms, 50, 150, 200, true, true);
 
@@ -271,7 +300,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 13:
+			case 14:
 				platform(this.groupPlatforms, 300, 100, 250, true, true);
 				platform(this.groupPlatforms, 100, 200, 170, true, true);
 				platform(this.groupPlatforms, 350, 200, 260, true, true);
@@ -293,13 +322,14 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lumX);
 
 				this.nbLummingsWin = 2;
+				levelText("Les miroirs change la direction de (presque) tous les Lummings..");
 
 				// tous les filtres et un miroir
 				this.tabAvailableObjects = [0,0,0,0,1,0,0,1,1,1,1,1,1];
 
 				break;
 
-			case 14:
+			case 15:
 				platform(this.groupPlatforms, 100, 200, 250, true, true);
 				platform(this.groupPlatforms, 450, 200, 300, true, true);
 
@@ -321,13 +351,13 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 15:
+			case 16:
 				// a changer en plomb
 				platformPlomb(this.groupPlatforms, 690, 170, 60, true, true);
 				platformPlomb(this.groupPlatforms, 200, 200, 500, true, true);
 				platformPlomb(this.groupPlatforms, 100, 300, 600, true, true);
 				platformPlomb(this.groupPlatforms, 50, 270, 60, true, true);
-				
+
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().RED, 590, 170));
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().GREEN, 620, 170));
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().BLUE, 650, 170));
@@ -336,9 +366,9 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 220, 150, 50));
 				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().GREEN, 240, 150, 50));
 				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().BLUE, 260, 150, 50));
-				
+
 				this.groupLummings.add(GammaLummingFactory.create(300, 150, 60));
-				
+
 				this.nbLummingsWin = 3;
 
 				// tous les filtres et des platformes en plomb
@@ -347,10 +377,10 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 16: //niveau gamma
+			case 17: //niveau gamma
 
 				platformPlomb(this.groupPlatforms, 300, 100, 500, true, true);
-				platform(this.groupPlatforms, 150, 300, 450, true, true);
+				platformPlomb(this.groupPlatforms, 150, 300, 450, true, true);
 
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 70));
 				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().RED, 500, 270));
@@ -371,7 +401,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
-			case 17:
+			case 18:
 
 				platform(this.groupPlatforms, 200, 120, 100, true, true);
 				platform(this.groupPlatforms, 300, 150, 100, true, true);
