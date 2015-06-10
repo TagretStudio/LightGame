@@ -47,8 +47,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_game.load.image('cliquez', 'media/img/cliquerPourCommencer.png');
 			_game.load.image('aide', 'media/img/aideColore.png');
 			_game.load.image('aideScreen', 'media/img/ecranAide.png');
-				_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 6);
-				_game.load.spritesheet('pleinecranCadre', 'media/img/pleinEcranCadre.png', 480, 75, 2);
+			_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 6);
+			_game.load.spritesheet('pleinecranCadre', 'media/img/pleinEcranCadre.png', 480, 75, 2);
 
 			MenuFactoryTest.init(_game);
 			PlatformFactory.init(_game);
@@ -75,7 +75,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			VisionEnum.setVisionCurrent(_currentVision);
 		//	_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 8);
-
 
 			_dark = _game.add.sprite(0,0,'preloaderBackground');
 			_dark.tint = 0;
@@ -200,7 +199,6 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 								_currentLevel++;
 								_marque_music = !_marque_music;
 								Transition.nextState('LevelFactory', _music, _currentLevel);
-
 							}
 						});
 					}
@@ -236,8 +234,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			lum2.color = null;
 			lum1.body.velocity.x = 0;
 			_game.time.events.add(Phaser.Timer.SECOND*0.75, function(){
-			lum2.kill();
-			lum1.body.velocity.x = old;
+				lum2.kill();
+				lum1.body.velocity.x = old;
 			}, this);
 
 			//lum2.kill();
@@ -305,8 +303,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				_music = null;
 				_game.state.start('MainMenu');
 			}, _game);
-		}
-		else if (_music != null && _music.getMusic().paused){
+		} else if (_music != null && _music.getMusic().paused){
 			_music = null;
 			_game.time.events.add(700, function(){_game.state.start('MainMenu');}, this);
 		}
