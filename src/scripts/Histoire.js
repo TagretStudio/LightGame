@@ -1,61 +1,53 @@
-define(['Transition', 'MainMenu', 'Images', 'MusicFactory'], function(Transition, MainMenu, Images, MusicFactory) {
+define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
+       function(Transition, MainMenu, Images, MusicFactory) {
 
     var _game = null;
     var _etapesuivante = null;
     var _music = null;
+
+    var lums = null;
     
     var _histoire = {
         preload : function(){
-            _pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
-            _pointButtons = new Phaser.Point(_game.world.centerX , _game.world.centerY - 20);
-            _game.load.spritesheet('buttonplusmoins', 'media/img/buttonplusmoins.png', 38, 38);
-            _game.load.spritesheet('button', 'media/img/MenuButtons.png',  278, 63);
-            _game.load.spritesheet('chiffres', 'media/img/chiffres.png', 47, 65);
+            _game.load.spritesheet('lumming_blue', 'media/img/lumming_blue.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_cyan', 'media/img/lumming_cyan.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_green', 'media/img/lumming_green.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_magenta', 'media/img/lumming_magenta.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_red', 'media/img/lumming_red.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_white', 'media/img/lumming_white.png', 32, 32, 32);
+            _game.load.spritesheet('lumming_yellow', 'media/img/lumming_yellow.png', 32, 32, 32);
   		},
 
   		create : function(){
-            Images.boot().create();
-            _buttons = _game.add.group();
-  	    	_buttons.scale.set(_game.world.width/1024, _game.world.height/768);
-  	    	_buttons.add(_buttonPlus = _game.make.button(_game.world.centerX*1024/800 + 40, _game.world.centerY, 'buttonplusmoins', function(){actionButton(0,1);}, _game, 0, 1, 2));
-            _buttons.add(_buttonMoins = _game.make.button(_game.world.centerX*1024/800 + 40,_game.world.centerY + 150, 'buttonplusmoins', function(){actionButton(0,-1);}, _game, 3, 4, 5));
-            _buttons.add(_buttonPlus = _game.make.button(_game.world.centerX*1024/800 - 40, _game.world.centerY, 'buttonplusmoins', function(){actionButton(1,0);}, _game, 0, 1, 2));
-            _buttons.add(_buttonMoins = _game.make.button(_game.world.centerX*1024/800 - 40,_game.world.centerY + 150, 'buttonplusmoins', function(){actionButton(-1,0);}, _game, 3, 4, 5));
-            _buttons.add(_buttonPlay = _game.make.button(_game.world.centerX*1024/800, _game.world.centerY + 300, 'button', actionPlay, _game, 0, 1, 2));
-            _buttons.forEach(function (p){
-                p.anchor.set(0.5, 0.5);
-                p.scale.set(2,2);
-            })
-
-
-			dizaineSprite = _game.add.sprite(_game.world.centerX - 40, _game.world.centerY, 'chiffres', _dizaine);
-			uniteSprite = _game.add.sprite(_game.world.centerX + 40, _game.world.centerY, 'chiffres', _unite);
-			dizaineSprite.anchor.set(0.5, 0.5);
-			uniteSprite.anchor.set(0.5, 0.5);
-
-			transpaSprite = _game.add.group();
-
-		
+            lums = _game.add.group();
+            lums.create(0,0, 'lumming_blue', 0);
+            lums.create(0,0, 'lumming_cyan', 0);
+            lums.create(0,0, 'lumming_green', 0);
+            lums.create(0,0, 'lumming_magenta', 0);
+            lums.create(0,0, 'lumming_red', 0);
+            lums.create(0,0, 'lumming_white', 0);
+            lums.create(0,0, 'lumming_yellow', 0);
+            var i = 0;
+            lums.forEach(
+                function(l) {
+                    l.animations.add('turn', [1, 4, 15, 11], 10, true);
+                    l.animations.play('turn');
+                    l.x = i*32;
+                    l.number = i;
+                    i++;
+                }
+            )
   		},
 
   		update :function(){
-			transpaSprite.forEach(
-				function(p) {
-					p.alpha = Math.max(p.alpha-0.1,0);
-					p.x += Math.cos(p.angle)*2;
-					p.y += Math.sin(p.angle)*2;
-					if (p.alpha == 0) p.kill();
-				}
-			);
-            //text.setText(_unite);
-            //text2.setText(_dizaine);
+
   		}
   	}
 
     return {
         init : function(game, etapesuivante){
-        _game = game;
-        _etapesuivante = etapesuivante;
+            _game = game;
+            _etapesuivante = etapesuivante;
         },
         setMusic : function(music){
             _music = music;
