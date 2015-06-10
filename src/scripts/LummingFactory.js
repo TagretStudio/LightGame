@@ -51,22 +51,21 @@ define(['VisionEnum'], function(VisionEnum) {
 					} else if (this.body.velocity.x < 0) {
 						this.animations.play('leftPresentation');
 					}
-			}
-			else{
-			if (VisionEnum.getVisionCurrent() == this.defaultVision || VisionEnum.getVisionCurrent() == VisionEnum.MEGA) {
-				if (this.body.velocity.x > 0) {
-					this.animations.play('right');
-				} else if (this.body.velocity.x < 0) {
-					this.animations.play('left');
+			} else{
+				if (VisionEnum.getVisionCurrent() == this.defaultVision || VisionEnum.getVisionCurrent() == VisionEnum.MEGA) {
+					if (this.body.velocity.x > 0) {
+						this.animations.play('right');
+					} else if (this.body.velocity.x < 0) {
+						this.animations.play('left');
+					}
+				} else {
+					if (this.body.velocity.x > 0) {
+						this.animations.play('right_invisible');
+					} else if (this.body.velocity.x < 0) {
+						this.animations.play('left_invisible');
+					}
 				}
-			} else {
-				if (this.body.velocity.x > 0) {
-					this.animations.play('right_invisible');
-				} else if (this.body.velocity.x < 0) {
-					this.animations.play('left_invisible');
-				}
 			}
-		}
 			if (this.position.y > _game.world.height - 96) {
 				this.body.velocity.x = 0;
 				this.body.velocity.y = -100;
