@@ -63,7 +63,10 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 			_buttons.add(_buttonPlay = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 100, 'button', actionPlay, _game, 0, 1, 2));
 			_buttons.add(_buttonQuit = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 220, 'button', actionQuit, _game, 6, 7, 8));
 			_buttons.add(_buttonPleinEcran = _game.make.button(Math.round(Math.random()*10)*-5, _game.world.centerY + 280, 'pleinecran', gofull, _game, 3, 4, 5));
-			_buttonPleinEcran.setFrames(3,4, 5);
+			if (_game.scale.isFullScreen){
+				_buttonPleinEcran.setFrames(0,1,2);
+			}
+			else {_buttonPleinEcran.setFrames(3,4,5)};
 			_buttons.forEach(function(b) {b.anchor.set(0.5, 0)});
 		},
 
