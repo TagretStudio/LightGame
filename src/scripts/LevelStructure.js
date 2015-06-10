@@ -377,6 +377,21 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 
 				break;
 
+			case 31:
+				var p;
+				p = _game.add.sprite(0, 32, 'plomb');
+				this.groupPlatforms.add(p);
+				p.body.checkCollision.down = true;
+				p.collisionsSet = true;
+				p.width = _game.world.width;
+
+				this.groupLummings.add(VisibleLummingFactory.create(ColorEnum.getColorEnum().RED, 220, 150, 50));
+				this.groupDoors.add(DoorsFactory.create(ColorEnum.getColorEnum().RED, 650, 170));
+				this.nbLummingsWin = 1;
+
+				this.tabAvailableObjects = [9,9,9,9,9,9,9,9,9,9,9,9,9];
+				break;
+
 			case 17: //niveau gamma
 
 				platformPlomb(this.groupPlatforms, 300, 100, 500, true, true);
