@@ -44,7 +44,7 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 		preload : function(){
 			_pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
 			_pointButtons = new Phaser.Point(_game.world.centerX - 20, _game.world.centerY - 100);
-			_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 8);
+			_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 6);
 		},
 
 		create : function(){
