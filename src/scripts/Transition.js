@@ -35,7 +35,7 @@ return{
       }
 
 
-      _game.add.text(300,0, und, {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
+      _game.add.text(360,0, und, {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
 
       if (music != null) {
 	  music.fadeOut(700);
