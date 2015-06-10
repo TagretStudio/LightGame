@@ -75,7 +75,10 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
 
     masterWalks = function() {
         master.y = Math.min(master.y+1.5, _game.world.centerY);
-        if (master.y == _game.world.centerY) updateFunction = prismTime;
+        if (master.y == _game.world.centerY) {
+            _game.add.tween(prism).to({angle: 180}, 2000, Phaser.Easing.Linear.None, true);
+            updateFunction = prismTime;
+        }
     }
 
     prismTime = function() {
