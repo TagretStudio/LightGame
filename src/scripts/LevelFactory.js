@@ -3,7 +3,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		'VisionEnum', 'Transition', 'FilterFactory', 'RadioLummingFactory', 'MicroLummingFactory',
 		'ItemsLevel', 'MiroirFactory', 'LevelStructure', 'XLummingFactory', 'IceFactory',
 		'WaterFactory', 'SteamFactory', 'PorteWithAuraFactory', 'GammaLummingFactory'],
-	   function(Images, LummingFactory,	VisibleLummingFactory, ColorEnum,
+		function(Images, LummingFactory,	VisibleLummingFactory, ColorEnum,
 				MusicFactory, PlatformFactory, DoorsFactory, MenuFactoryTest,
 				VisionEnum,	Transition, FilterFactory, RadioLummingFactory, MicroLummingFactory,
 				ItemsLevel,	MiroirFactory, LevelStructure, XLummingFactory, IceFactory,
@@ -28,24 +28,24 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var _buttonPleinEcran;
 	var _tabAvailableObjects = null;
 	var _dark = null;
-	       var _marque = false;
-	       var _marque_music = true;
-	       var ecranAide = null;
+		   var _marque = false;
+		   var _marque_music = true;
+		   var ecranAide = null;
 				var playing = false;
 				var demarrer = false;
 	var LevelFactory = {
 
 		preload: function() {
-		    if (_marque_music) {
+			if (_marque_music) {
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
-		    } else {
+			} else {
 			_music = MusicFactory.create('level2', 'media/audio/level.ogg');
-		    }
+			}
 			_game.load.image('buttonDiamond', 'media/img/menuButton.png');
 			_game.load.image('buttonRefresh', 'media/img/refresh.png')
 			_game.load.image('cliquez', 'media/img/cliquerPourCommencer.png');
-		    _game.load.image('aide', 'media/img/aideColore.png');
-		    _game.load.image('aideScreen', 'media/img/ecranAide.png');
+			_game.load.image('aide', 'media/img/aideColore.png');
+			_game.load.image('aideScreen', 'media/img/ecranAide.png');
 				_game.load.spritesheet('pleinecran', 'media/img/pleinEcran.png', 480, 62, 6);
 				_game.load.spritesheet('pleinecranCadre', 'media/img/pleinEcranCadre.png', 480, 75, 2);
 
@@ -114,11 +114,12 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 				buttonPleinEcran.scale.set(64/150, 64/150);
 				if (_game.scale.isFullScreen){
 					buttonPleinEcran.setFrames(0,0,0);
-				}
-				else {buttonPleinEcran.setFrames(1,1,1)};
-			    button_help = _game.add.button(90, 0, 'aide', function(){actionOnHelp()}, _game);
-			    button_help.scale.set(64/148, 32/74);
-			    button_menu.scale.set(64/148, 32/74);
+				}else {
+					buttonPleinEcran.setFrames(1,1,1)
+				};
+				button_help = _game.add.button(90, 0, 'aide', function(){actionOnHelp()}, _game);
+				button_help.scale.set(64/148, 32/74);
+				button_menu.scale.set(64/148, 32/74);
 				ItemsLevel.reinit(_game);
 				ItemsLevel.setgroup(_groupLum);
 				var cliquez = this.add.sprite(_game.world.width/2, _game.world.height*2/3, 'cliquez');
@@ -132,10 +133,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 		update: function() {
 			if (demarrer == false){
-				if (_music!= null ){	_music.getMusic().pause();}
+				if (_music!= null ) _music.getMusic().pause();
 
-
-				_game.physics.arcade.isPaused = true;
 				if (_marque == true) {
 					_marque = false;
 					ecranAide.kill();
@@ -147,77 +146,75 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 					VisionEnum.setVisionCurrent(_currentVision);
 					VisionEnum.setVisionCurrent(VisionEnum.VISIBLE);
 				}
+			}else{
+				VisionEnum.setVisionCurrent(_currentVision);
 
+				_menu.update();
+				_currentVision = VisionEnum.getVisionCurrent();
+				_game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
+				_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
+				_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
+				_game.physics.arcade.overlap(_groupLum, _groupElements, elementOverlap, null, _game);
+				_game.physics.arcade.overlap(_groupLum, _groupLum, mayKill, null, _game);
+				_game.physics.arcade.overlap(_groupLum, _groupPorteRadioAura, function(lum, door) {door.setOverlap(lum, _game.time.now +100)});
+				_game.physics.arcade.collide(_groupLum, _groupPorteRadio);
+
+				_groupLum.forEach(
+					function(p){
+						p.update(_currentVision);
+					}
+				)
+
+				_groupDoors.forEach(
+					function(p){
+						p.update();
+					}
+				)
+
+				_dark.alphaTarget = 0.5 - 0.5 * _nbLummingsSaved/_nbLummingsV;
+				_dark.alpha += (_dark.alphaTarget-_dark.alpha)/8;
+
+				_groupPlatforms.forEach(
+					function(p) {
+						p.colorClone.alphaTarget = _nbLummingsSaved/_nbLummingsV;
+						p.colorClone.alpha += (p.colorClone.alphaTarget-p.colorClone.alpha)/8;
+					}
+				);
+
+				if (_marque == true) {
+				_marque = false;
+				ecranAide.kill();
+				_game.input.onDown.add(function () {
+					_game.paused = false;
+				},_game);
+				}
+
+				if (_nbLummingsV == _nbLummingsSaved) {
+					if (!_alreadyChangeLevel) {
+						_game.time.events.add(Phaser.Timer.SECOND*1.8, function() {
+							if (_nbLummingsV == 0) {
+								Transition.nextState('MainMenu', _music);
+							} else {
+								_currentLevel++;
+								_marque_music = !_marque_music;
+								Transition.nextState('LevelFactory', _music, _currentLevel);
+
+							}
+						});
+					}
+					_alreadyChangeLevel = true;
+				} else if (_groupLum.countLiving() == 0) {
+					_game.add.sprite(_game.world.centerX - 170, _game.world.centerY - 25, 'gameOver');
+					_music.getMusic().fadeOut(1500);
+					_music.getMusic().onFadeComplete.addOnce(function() {
+						_game.time.events.add(Phaser.Timer.SECOND*1.8, function() {
+							_game.state.start('LevelFactory');
+						}, _game);
+					}, _game);
+				}
+				text.setText(_nbLummingsSaved + '/' + _nbLummingsV);
 			}
-			else{
-			VisionEnum.setVisionCurrent(_currentVision);
-
-			_menu.update();
-			_currentVision = VisionEnum.getVisionCurrent();
-			_game.physics.arcade.overlap(_groupLum, _groupPlatforms, collidePf, null, _game);
-			_game.physics.arcade.overlap(_groupLum, _groupDoors, mayExit, null, _game);
-			_game.physics.arcade.overlap(_groupLum, ItemsLevel.getGroupItem(), ItemsLevel.collideItem, null, _game);
-			_game.physics.arcade.overlap(_groupLum, _groupElements, elementOverlap, null, _game);
-			_game.physics.arcade.overlap(_groupLum, _groupLum, mayKill, null, _game);
-			_game.physics.arcade.overlap(_groupLum, _groupPorteRadioAura, function(lum, door) {door.setOverlap(lum, _game.time.now +100)});
-			_game.physics.arcade.collide(_groupLum, _groupPorteRadio);
-
-			_groupLum.forEach(
-				function(p){
-					p.update(_currentVision);
-				}
-			)
-
-			_groupDoors.forEach(
-				function(p){
-					p.update();
-				}
-			)
-
-			_dark.alphaTarget = 0.5 - 0.5 * _nbLummingsSaved/_nbLummingsV;
-			_dark.alpha += (_dark.alphaTarget-_dark.alpha)/8;
-
-			_groupPlatforms.forEach(
-				function(p) {
-					p.colorClone.alphaTarget = _nbLummingsSaved/_nbLummingsV;
-					p.colorClone.alpha += (p.colorClone.alphaTarget-p.colorClone.alpha)/8;
-				}
-			);
-
-		    if (_marque == true) {
-			_marque = false;
-			ecranAide.kill();
-			_game.input.onDown.add(function () {
-			    _game.paused = false;
-			},_game);
-		    }
-
-			if (_nbLummingsV == _nbLummingsSaved) {
-				if (!_alreadyChangeLevel) {
-					_game.time.events.add(Phaser.Timer.SECOND*1.8, function() {
-						if (_nbLummingsV == 0) {
-							Transition.nextState('MainMenu', _music);
-						} else {
-							_currentLevel++;
-						    _marque_music = !_marque_music;
-							Transition.nextState('LevelFactory', _music, _currentLevel);
-
-						}
-					});
-				}
-				_alreadyChangeLevel = true;
-			} else if (_groupLum.countLiving() == 0) {
-			    _game.add.sprite(_game.world.centerX - 170, _game.world.centerY - 25, 'gameOver');
-			    _music.getMusic().fadeOut(1500);
-			    _music.getMusic().onFadeComplete.addOnce(function() {
-				_game.time.events.add(Phaser.Timer.SECOND*1.8, function() {
-				    _game.state.start('LevelFactory');
-				}, _game);
-			    }, _game);
-			}
-			text.setText(_nbLummingsSaved + '/' + _nbLummingsV);
 		}
-	}
 	}
 
 	function elementOverlap(lum, element) {
@@ -229,6 +226,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 			var old = lum1.body.velocity.x;
 			if (lum1.body.velocity.x < 0){}
+			// ^ wut ?
 			lum2.body.velocity.x = 0;
 			lum2.body.velocity.y = -100;
 			lum2.body.gravity.y = -100;
@@ -252,8 +250,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 
 		if (lx>dl && lx<dr) {
 			var exit = lum.collideWithDoor(door);
-		    if (exit == 1){
-			_nbLummingsSaved = _nbLummingsSaved +1;
+			if (exit == 1){
+				_nbLummingsSaved = _nbLummingsSaved +1;
 				this.time.events.add(1000,
 					function() {
 						text.setText(_nbLummingsSaved + '/' + _nbLummingsV);
@@ -271,7 +269,7 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			 _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
 			}
 		} else {
-		 _game.physics.arcade.collide(lum, platform, collidePf, null, _game);
+			_game.physics.arcade.collide(lum, platform, collidePf, null, _game);
 		}
 	}
 
@@ -288,8 +286,8 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 			}, _game);
 		}
 		else if (_music != null && _music.getMusic().paused){
-			_music = null;				_currentVision = VisionEnum.getVisionEnum().VISIBLE;
-
+			_music = null;
+			_currentVision = VisionEnum.getVisionEnum().VISIBLE;
 			_game.time.events.add(700, function(){_game.state.start('LevelFactory');}, this);
 		}
 	}
@@ -312,24 +310,22 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		}
 	}
 
-	       function actionOnHelp() {
-					_marque = true;
-			_game.paused = true;
+	function actionOnHelp() {
+		_marque = true;
+		_game.paused = true;
+		ecranAide = _game.add.sprite(0, 0, 'aideScreen');
+		ecranAide.scale.set(_game.world.width/786, _game.world.height/588);
+	}
 
-					ecranAide = _game.add.sprite(0, 0, 'aideScreen');
-				   ecranAide.scale.set(_game.world.width/786, _game.world.height/588);
-
-	       }
-
-			function gofull(){
-				if (_game.scale.isFullScreen) {
-					_game.scale.stopFullScreen();
-					buttonPleinEcran.setFrames(1,1,1);
-				} else {
-					_game.scale.startFullScreen(false);
-					buttonPleinEcran.setFrames(0,0,0);
-				}
-			}
+	function gofull(){
+		if (_game.scale.isFullScreen) {
+			_game.scale.stopFullScreen();
+			buttonPleinEcran.setFrames(1,1,1);
+		} else {
+			_game.scale.startFullScreen(false);
+			buttonPleinEcran.setFrames(0,0,0);
+		}
+	}
 
 	return {
 		init: function(game) {
@@ -347,4 +343,4 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 		}
 	}
 
- })
+})
