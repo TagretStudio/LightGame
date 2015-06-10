@@ -1,4 +1,4 @@
-define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Images, MusicFactory, Transition, LevelSelection){
+define(['Images','MusicFactory', 'Transition', 'LevelSelection', 'Histoire'], function(Images, MusicFactory, Transition, LevelSelection, Histoire){
 	var _game = null;
 	var _etapesuivante = null;
 	var _pointLogo = null;
