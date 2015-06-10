@@ -5,7 +5,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'], function(Transition
     var _music = null;
     
     var _histoire = {
-    preload : function(){
+        preload : function(){
             _pointLogo = new Phaser.Point(_game.world.centerX - 216, _game.world.centerY - 66);
             _pointButtons = new Phaser.Point(_game.world.centerX , _game.world.centerY - 20);
             _game.load.spritesheet('buttonplusmoins', 'media/img/buttonplusmoins.png', 38, 38);
@@ -52,17 +52,19 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'], function(Transition
   		}
   	}
 
-return {
-    init : function(game, etapesuivante){
-  	_game = game;
-  	_etapesuivante = etapesuivante;
-    },
-    setMusic : function(music){
-        _music = music;
-    },
-
-    getHistoire : function(){
-        return _histoire;
+    return {
+        init : function(game, etapesuivante){
+        _game = game;
+        _etapesuivante = etapesuivante;
+        },
+        setMusic : function(music){
+            _music = music;
+        },
+    
+        getHistoire : function(){
+            return _histoire;
+        }
+    
     }
 
-}
+})
