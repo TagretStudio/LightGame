@@ -37,11 +37,17 @@ define(['Images', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum',
 	var LevelFactory = {
 
 		preload: function() {
+		    //Ajouter la musique pour les niveaux ici
+		    //S'il y a plus de 2 musiques, il faut alors tester _marque_music comme un entier
+		    //On aura donc if(_marque_music == 1) { /.../ } else if (_marque_music == 2) { /.../ } etc
 			if (_marque_music) {
 			_music = MusicFactory.create('level1', 'media/audio/Level 1.ogg');
 			} else {
 			_music = MusicFactory.create('level2', 'media/audio/level.ogg');
 			}
+
+		    //Ajouter les sprites/image pour le GUI (boutons en jeu, etc...) hors menu ici
+		    //Attention : ça ne fait que les charger, il faut les placer ensuite (dans le fonction create par exemple)
 			_game.load.image('buttonDiamond', 'media/img/menuButton.png');
 			_game.load.image('buttonRefresh', 'media/img/refresh.png')
 			_game.load.image('cliquez', 'media/img/cliquerPourCommencer.png');

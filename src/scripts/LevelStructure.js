@@ -8,6 +8,7 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 	var _game = null;
 
 	var LevelStructure = function(indexLevel) {
+	    //Numéro du niveau (NE PAS TOUCHER)
 		this.indexLevel = indexLevel;
 
 		this.groupPlatforms = _game.add.group();
@@ -20,18 +21,21 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 		this.groupDoors.enableBody = true;
 		this.groupDoorsRadioAura.enableBody = true;
 
+	    //Nb de Lummings pour gagner un niveau (NE PAS TOUCHER ICI)
 		this.nbLummingsWin = 0;
+
+	    //Nb d'objets donnés par niveau. Dans l'ordre, blocPlomb, plombVertical, plombHorizontal, miroirHorizontal, miroirVertical, antenneDroite, antenneGauche, filtre rouge, filtre vert, filtre bleu, filtre magenta, filtre cyan, filtre jaune
+	    //-1 signifie une infinité d'objets
 		this.tabAvailableObjects = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
 		switch (indexLevel ) {
+		    //INSERER DES NIVEAUX DANS DES CASES (respecter la numérotation, elle indique l'ordre des niveaux)
 			case 0:
 				doorRadio1 = PorteWithAuraFactory.create(380,236, 200);
 				this.groupDoorsRadioAura.add(doorRadio1);
 
 				platform1 = PlatformFactory.create(100, 300, false);
-				//platform2 = PlatformFactory.create(300, 300, false);
 				this.groupPlatforms.add(platform1);
-				//this.groupPlatforms.add(platform2);
 
 				platform(this.groupPlatforms, 200, 236, 600, false);
 
@@ -53,7 +57,6 @@ define(['PlatformFactory', 'LummingFactory', 'VisibleLummingFactory', 'ColorEnum
 				this.groupLummings.add(lumX);
 				lumM = MicroLummingFactory.create(150, 100, 50);
 				this.groupLummings.add(lumM);
-				//this.groupElements.add(IceFactory.create(460, 290));
 				icePit(this, platform1.right + 32, 300, 64);
 
 				this.tabAvailableObjects = [1,2,3,4,5,6,7,8,9,10,11,12,13];
