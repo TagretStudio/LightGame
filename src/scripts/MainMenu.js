@@ -37,7 +37,7 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection'], function(Image
 
 	function actionQuit(){
 		_buttonQuit.kill();
-		Transition.nextState('Chargement', _music);
+		Transition.nextState('Histoire', null);
 	}
 
 	var _menu = {
