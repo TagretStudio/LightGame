@@ -142,8 +142,8 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
     }
 
     endUpdateLoop = function() {
-        text.text = "Aidez la à réordonner l'univers !";
-	_game.time.events.add(Phaser.Timer.SECOND*4, function() {
+        text.text = "Aidez la à retrouver son état primordial !";
+        _game.time.events.add(Phaser.Timer.SECOND*4, function() {
 	    Transition.nextState('MainMenu', null)
 	}, _game);
     }
