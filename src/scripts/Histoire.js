@@ -35,6 +35,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
 
             prism = _game.add.sprite(_game.world.width, _game.world.centerY, 'prism');
             prism.anchor.set(0, 0.5);
+            prism.scale.setTo(2,2);
             prism.velocity = 10;
 
             master = _game.add.sprite(_game.world.centerX, 0, 'lumming_blue', 0);
