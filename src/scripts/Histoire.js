@@ -70,7 +70,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
             nblums = i-1;
 
             updateFunction = masterWalks;
-    		text = _game.add.text(_game.world.centerX, _game.world.height-96, "La lumière sous toutes ses formes régit les lois de l'univers", {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
+		    text = _game.add.text(_game.world.centerX, _game.world.height-96, "La lumière sous toutes ses formes régit les lois de l'univers", {wordWrap: true, wordWrapWidth: _game.world.width, fill: '#ffffff', stroke: '#000000', strokeThickness: 2});
             text.anchor.set(0.5, 0);
   		},
 
@@ -103,7 +103,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
     }
 
     prismTime = function() {
-        text.text = "Mais un simple élément peut perturber ses actions...";
+        text.text = "Mais un simple élément peut perturber son état...";
         text.y = 0;
         master.exclamation.kill();
         _game.add.tween(prism).to({angle: 180}, 2000, Phaser.Easing.Linear.None, true);
@@ -137,7 +137,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
                 da = l.alpha;
             }
         )
-        if (da == 0) nextstate(endUpdateLoop, 1);
+        if (da == 0) nextstate(endUpdateLoop, 2);
     }
 
     endUpdateLoop = function() {
