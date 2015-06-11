@@ -27,20 +27,24 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
             _game.load.spritesheet('lumming_white', 'media/img/lumming_white.png', 32, 32, 32);
             _game.load.spritesheet('lumming_yellow', 'media/img/lumming_yellow.png', 32, 32, 32);
 
-            _game.load.image('prisme', 'media/img/prisme.png');
+            _game.load.image('exclamation', 'media/img/exclamation.png');
   		},
 
   		create : function(){
             bg = _game.add.sprite(0, 0, 'bg');
 
             prism = _game.add.sprite(_game.world.width, _game.world.centerY, 'prism');
-            prism.anchor.set(0.5, 0.5);
+            prism.anchor.set(0, 0.5);
             prism.velocity = 10;
 
             master = _game.add.sprite(_game.world.centerX, 0, 'lumming_blue', 0);
+            master.anchor.set(0.5, 0.5);
             master.tint = 0;
             master.animations.add('walk', [0, 1, 2, 1], 10, true);
             master.animations.play('walk');
+            master.exclamation = _game.add.sprite(0, 0, 'exclamation');
+            master.exclamation.anchor.set(0.5, 0.5);
+            master.exclamation.alpha = 0;
 
             lums = _game.add.group();
             lums.create(0,0, 'lumming_blue', 0);
@@ -57,6 +61,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
                     l.animations.play('turn');
                     l.x = _game.world.centerX;
                     l.y = _game.world.centerY;
+                    l.anchor.set(0.5, 0.5);
                     l.number = i;
                     l.alpha = 0;
                     i++;
@@ -89,12 +94,18 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
     }
 
     metalGear = function() {
-        nextstate(prismTime, 3);
+        master.animations.stop();
+        master.frame = 9;
+        master.exclamation.x = master.x;
+        master.exclamation.y = master.y-master.height;
+        master.exclamation.alpha = 1;
+        nextstate(prismTime, 2);
     }
 
     prismTime = function() {
         text.text = "sheepstorm";
         text.y = 0;
+        master.exclamation.kill();
         _game.add.tween(prism).to({angle: 180}, 2000, Phaser.Easing.Linear.None, true);
         prism.x -= prism.velocity;
         if (prism.x < _game.world.centerX) nextstate(colorsAppear);
