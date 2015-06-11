@@ -34,6 +34,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
             bg = _game.add.sprite(0, 0, 'bg');
 
             prism = _game.add.sprite(_game.world.width, _game.world.centerY, 'prism');
+            prism.anchor.set(0.5, 0.5);
             prism.velocity = 10;
 
             master = _game.add.sprite(_game.world.centerX, 0, 'lumming_blue', 0);
@@ -73,19 +74,30 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
         }
   	}
 
+    nextstate = function(f, s) {
+        if (s == null) {
+            updateFunction = f;
+        } else {
+            _game.time.events.add(Phaser.Timer.SECOND*s, function() {updateFunction = f});
+            updateFunction = function() {};
+        }
+    }
+
     masterWalks = function() {
         master.y = Math.min(master.y+1.5, _game.world.centerY);
-        if (master.y == _game.world.centerY) {
-            _game.add.tween(prism).to({angle: 180}, 2000, Phaser.Easing.Linear.None, true);
-            updateFunction = prismTime;
-        }
+        if (master.y == _game.world.centerY) nextstate(metalGear);
+    }
+
+    metalGear = function() {
+        nextstate(prismTime, 3);
     }
 
     prismTime = function() {
         text.text = "sheepstorm";
         text.y = 0;
+        _game.add.tween(prism).to({angle: 180}, 2000, Phaser.Easing.Linear.None, true);
         prism.x -= prism.velocity;
-        if (prism.x < _game.world.centerX) updateFunction = colorsAppear;
+        if (prism.x < _game.world.centerX) nextstate(colorsAppear);
     }
 
     colorsAppear = function() {
@@ -102,7 +114,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
                 dy -= l.y;
             }
         )
-        if (dy == 0) updateFunction = colorsDisappear;
+        if (dy == 0) nextstate(colorsDisappear);
     }
 
     colorsDisappear = function() {
@@ -114,7 +126,7 @@ define(['Transition', 'MainMenu', 'Images', 'MusicFactory'],
                 da = l.alpha;
             }
         )
-        if (da == 0) updateFunction = endUpdateLoop;
+        if (da == 0) nextstate(endUpdateLoop);
     }
 
     endUpdateLoop = function() {
