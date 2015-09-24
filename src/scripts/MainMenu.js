@@ -20,7 +20,6 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection', 'Histoire'], fu
 			_buttonPleinEcran.setFrame(1);
 			_game.scale.startFullScreen(false);
 			_buttonPleinEcran.setFrames(0,1,0);
-
 		}
 	}
 
@@ -68,6 +67,7 @@ define(['Images','MusicFactory', 'Transition', 'LevelSelection', 'Histoire'], fu
 			}
 			else {_buttonPleinEcran.setFrames(3,4,5)};
 			_buttons.forEach(function(b) {b.anchor.set(0.5, 0)});
+
 		},
 
 		update : function(){
